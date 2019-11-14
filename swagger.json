@@ -1,0 +1,1517 @@
+swagger: '2.0'
+info:
+  version: 1.0.4
+  title: OTData
+  description: |
+    OTData structure
+    - The authentication is specified by the interface operator.
+    - The customer is specified by the authentication.
+  contact:
+    name: OpenTelematics e.V.
+    email: info@opentelematics.io
+host: otdata.dummy.de
+basePath: /
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: |
+      HTTP Basic Authentication
+      Username: username@consumernumber
+      Password: userpassword
+  IO OAuth:
+    type: oauth2
+    description: |
+      InternetOrtung OAuth Authentication
+      Username: username@consumernumber
+      Password: userpassword
+    flow: password
+    tokenUrl: 'https://restricted.api.navkonzept.com/iooauth/login/'
+security:
+  - basicAuth: []
+    IO OAuth: []
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /otdata/gethistory:
+    get:
+      tags:
+        - History data
+      description: |
+        If no deviceid exists, all vehicles are returned,
+        If no utcf exists, all data will be returned till the time utct,
+        If no utct exists, all data will be returned from utcf till now,
+        if nothing exists, all data are returned to the customer, 
+        to the customer
+      parameters:
+        - name: deviceid
+          in: query
+          maxLength: 50
+          type: string
+          description: Unique ObjectID
+        - name: utcf
+          in: query
+          type: integer
+          description: timeintervall start (unix time stamp)
+        - name: utct
+          in: query
+          type: integer
+          description: timeintervall end (unix time stamp)
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTData'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/getlive:
+    get:
+      tags:
+        - Get live data
+      description: |
+        If no deviceid exists, the last position to all vehicles are returned to the customer
+      parameters:
+        - name: deviceid
+          in: query
+          maxLength: 50
+          type: string
+          description: Unique ObjectID
+        - name: mid
+          in: query
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTData'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/setcallback:
+    post:
+      tags:
+        - Set callback url
+      description: |
+        Set a callback url and port for receiving data.
+      parameters:
+        - name: index
+          in: query
+          type: string
+          description: index to identify the callback
+        - name: url
+          in: query
+          type: string
+          description: 'url like https://dummy.de'
+        - name: types
+          in: query
+          type: array
+          items:
+            type: string
+          description: 'livata,orderstate,messages'
+      responses:
+        '200':
+          description: Successful
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdevice/getall:
+    get:
+      tags:
+        - Get all devices
+      description: get all devices that are registered.
+      parameters:
+        - in: header
+          name: otid
+          type: integer
+        - in: header
+          name: mid
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTDevice'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdevice/ordershort:
+    post:
+      tags:
+        - Order short
+      description: |
+        set tour information.
+        Required parameters:
+          - refid
+          - name
+          - carrefid
+          - drives
+            - refid
+            - latitude
+            - longitude
+            - name
+            
+        Do not fill:
+          - status
+          - eta
+      parameters:
+        - in: body
+          name: tour
+          schema:
+            $ref: '#/definitions/OTTour'
+      responses:
+        '200':
+          description: Successful response
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+    get:
+      tags:
+        - Order short
+      description: get tour information for the refid.
+      parameters:
+        - in: header
+          name: otid
+          type: integer
+        - in: header
+          name: refid
+          type: string
+        - in: header
+          name: carrefid
+          type: string
+        - in: header
+          name: tournumber
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTTour'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otmessage/message:
+    post:
+      tags:
+        - Message
+      description: |
+        set message information.
+        Required parameters:
+          - refid
+          - carrefid
+          - message
+          
+        Do not fill:
+          - direction
+          - status
+      parameters:
+        - in: body
+          name: messsage
+          schema:
+            $ref: '#/definitions/OTMessage'
+      responses:
+        '200':
+          description: Successful response
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+    get:
+      tags:
+        - Message
+      description: get message.
+      parameters:
+        - in: header
+          name: refid
+          type: string
+        - in: header
+          name: carrefid
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTMessage'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/log:
+    get:
+      tags:
+        - Log
+      parameters:
+        - name: version
+          in: query
+          type: integer
+          description: Versions number of the protocol
+        - name: otid
+          in: query
+          type: integer
+          description: Registered opentelematics number
+        - name: loglevel
+          in: query
+          type: integer
+          description: all logs lower then loglevel
+        - name: call
+          in: query
+          type: string
+          description: |
+            which logfile.
+            For all logs, set free
+      responses:
+        '200':
+          description: |
+            Successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTlog'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+      description: 'Get log. If a callback address is stored, logs are sent'
+  /otstatus/setstatus:
+    post:
+      tags:
+        - Status
+      description: |
+        Set status for ordershort or message.
+      parameters:
+        - name: refid
+          in: body
+          schema:
+            $ref: '#/definitions/OTSetStatus'
+      responses:
+        '200':
+          description: Successful
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otmember/getmember:
+    get:
+      tags:
+        - Member
+      description: Get all member of Open telematics
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTMember'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/tacho/vehicle:
+    get:
+      tags:
+        - Tacho (NEW)
+      description: get all devices that are registered at tacho.
+      parameters:
+        - in: header
+          name: otid
+          type: integer
+          required: true
+        - in: header
+          name: mid
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTDevice'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/tacho/driver:
+    get:
+      tags:
+        - Tacho (NEW)
+      description: get all drivers that are registered.
+      parameters:
+        - in: header
+          name: otid
+          type: integer
+          required: true
+        - in: header
+          name: mid
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTDriverCardArray'
+        '204':
+          description: The server successfully processed the request and is not returning any content
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+  /otdata/tacho:
+    get:
+      tags: 
+        - Tacho (NEW)
+      description: |
+        Get the matching DDD file.
+        
+        1. Get the latest ones
+            - ALL: class = 3, rest leave blank
+            - Vehicles: class=2, rest leave blank
+            - Driver: class=1, rest leave blank
+        2. Get all since date
+          - ALL: class = 3, date = value
+          - Vehicles: class=2, date = value
+          - Driver: class=1, date = value
+        3. Specification
+          - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2
+       
+        example 1
+        
+          - class: 3
+          - response: All actually DDD files
+          
+        example 2 
+          - class: 3
+          - date: 2019-05-21T17:32:28Z
+          - response: All ones which newer than 2019-05-21T17:32:28Z
+        
+        example 3
+          - class: 2
+          - date: 2019-05-21T17:32:28Z
+          - identification: WVWZZZ1JZ3W386752 
+          - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification
+      parameters:
+        - name: otid
+          type: integer
+          in: header
+          required: true
+        - name: mid
+          type: integer
+          in: header
+          required: true
+        - name: class
+          in: header
+          type: integer
+          required: true
+          description: |
+            Driver = 1,
+            Vehicle = 2,
+            ALL = 3
+        - name: identification
+          type: string
+          in: header
+          description: |
+            It is an optional field to get specific DDD files,
+            Driver or vehicle
+            identification
+        - name: date
+          type: string
+          format: date-time
+          in: header
+          description: |
+            Receive all DDD files, which newer then date.
+            Leave empty, you'll get the newest.
+            ISO8601 Date time. 2017-07-21T17:32:28Z
+          
+      responses:
+        '200':
+          description: Successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/OTTransferContainerArray'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+    post:
+      tags: 
+        - Tacho (NEW)
+      description: Post DDD file
+      parameters:
+        - name: otid
+          type: integer
+          in: header
+          required: true
+        - name: mid
+          type: integer
+          in: header
+          required: true
+        - name: tacho
+          in: body
+          schema:
+             $ref: '#/definitions/OTTransferContainerArray'
+      responses:
+        '202':
+          description: Container data was accepted
+        '400':
+          description: |
+            Invalid parameter
+            Invalid selector
+        '401':
+          description: Unauthorized
+        '403':
+          description: 'Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort.'
+        '503':
+          description: Authenticationlimit exceeded
+        
+definitions:
+  OTDevice:
+    type: object
+    properties:
+      version:
+        type: integer
+        description: Versions number of the protocol
+        example: 1
+      otid:
+        type: integer
+        format: int64
+        description: Registered opentelematics number
+        example: 3
+      id:
+        type: string
+        maxLength: 50
+        description: Unique objectID
+        example: "1"
+      refid:
+        type: string
+        maxLength: 150
+        description: Reference Number
+        example: "1"
+      name:
+        type: string
+        maxLength: 150
+        description: Plate or name
+        example: "MH-MH 1"
+      manufacturer:
+        type: string
+        maxLength: 150
+        description: Manufacturer
+        example: "Mercedes-Benz"
+      model:
+        type: string
+        maxLength: 150
+        description: Model type
+        example: "1844 LS"
+      constructionyear:
+        type: integer
+        format: uint32
+        description: Building Year
+        example: 2008
+      vin:
+        type: string
+        minLength: 17
+        maxLength: 17
+        pattern: '^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$'
+        description: Vehicle identification number
+        example: "WDB9340321L333168"
+      imei:
+        type: string
+        minLength: 15
+        maxLength: 15
+        description: IMEI
+        example: ""
+      sn:
+        type: string
+        maxLength: 30
+        description: Serial number
+        example: ""
+      plate_number:
+        type: string
+        maxLength: 150
+        description: The plate number from the vehicle
+        example: "MH-MH 1"
+    required:
+      - otid
+  OTData:
+    type: object
+    properties:
+      version:
+        type: integer
+        description: Versions number of the protocol
+      otid:
+        type: integer
+        format: int64
+        description: Registered opentelematics number sender receiver
+      dataid:
+        type: integer
+        format: int64
+        description: Data ID (optional)
+      receiverid:
+        type: integer
+        format: int64
+        description: Receicer ID register opentelematics number from receiver
+      manid:
+        type: integer
+        format: int64
+        description: Mandanten id
+      reason:
+        $ref: '#/definitions/OTReason'
+      receivetime:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+          Date Time of message recive (optional)
+        example: '2017-07-21T17:32:28Z'
+      deviceid:
+        type: string
+        maxLength: 50
+        description: Unique ObjectID
+      devicetime:
+        type: string
+        format: date-time
+        description: ISO8601 Date time.
+        example: '2017-07-21T17:32:28Z'
+      io:
+        $ref: '#/definitions/OTIOState'
+      position:
+        $ref: '#/definitions/OTPosition'
+      driver:
+        $ref: '#/definitions/OTDriver'
+      assistant:
+        $ref: '#/definitions/OTAssistant'
+      temperature:
+        $ref: '#/definitions/OTTemp'
+      address:
+        $ref: '#/definitions/OTAddress'
+      can:
+        $ref: '#/definitions/OTCanData'
+      tachograph:
+        $ref: '#/definitions/OTTacho'
+      dtc:
+        $ref: '#/definitions/OTDiag'
+      driverbehavior:
+        $ref: '#/definitions/OTDriverbehavior'
+    required:
+      - position
+      - otid
+      - devicetime
+      - deviceid
+      - receiverid
+  OTReason:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: Reason number  for the message (optional)
+      name:
+        type: string
+        maxLength: 30
+        description: Reason for the message (optional)
+  OTIOState:
+    type: object
+    properties:
+      ignition:
+        type: boolean
+        description: State of ignition
+      battery:
+        type: boolean
+        description: State of external battery input
+      input:
+        example:
+          - 1
+          - 2
+          - ...
+        type: array
+        items:
+          type: integer
+        description: 'Input states (input1, input2, …)'
+      output:
+        example:
+          - 1
+          - 2
+          - ...
+        type: array
+        items:
+          type: integer
+        description: 'Output states (input1, input2, …)'
+      analog:
+        example:
+          - 1.1
+          - 2.2
+          - ...
+        type: array
+        items:
+          type: number
+          format: double
+        description: Analog values
+      voltage:
+        type: number
+        format: float
+        description: Battery input voltage
+      backupbattery:
+        type: number
+        format: float
+        description: Backup battery input voltage
+  OTPosition:
+    properties:
+      datetime:
+        type: string
+        format: date-time
+        description: ISO8601 date time
+        example: '2017-07-21T17:32:28Z'
+      latitude:
+        type: number
+        format: double
+        description: WGS84 latitude
+      longitude:
+        type: number
+        format: double
+        description: WGS84 longitude
+      heading:
+        type: integer
+        format: int32
+        description: Direction in degrees (0-360)
+      speed:
+        type: number
+        format: float
+        description: Speed in km/h
+      altitude:
+        type: integer
+        format: int32
+        description: Altitude in meter
+      accuracy:
+        type: integer
+        format: float
+        description: accuracy in meter
+      characteristic:
+        type: integer
+        description: '0=GPS tracking, 1=GSM tracking, 2=Indirekte tracking, etc.'
+    required:
+      - datetime
+      - latitude
+      - longitude
+  OTDriver:
+    type: object
+    properties:
+      cardid:
+        example:
+          - card1id
+          - card2id
+          - ...
+        type: array
+        items:
+          type: string
+          maxLength: 24
+        description: Driver card id
+      name:
+        example:
+          - drivername1
+          - drivername2
+          - ...
+        type: array
+        items:
+          type: string
+          maxLength: 150
+        description: Driver name
+  OTAssistant:
+    type: object
+    properties:
+      id:
+        example:
+          - 123
+          - 456
+          - ...
+        type: array
+        items:
+          type: integer
+          format: int32
+        description: Assistant id
+      name:
+        example:
+          - assistantname1
+          - assistantname2
+          - ...
+        type: array
+        items:
+          type: string
+          maxLength: 150
+        description: Assistant name
+  OTTemp:
+    type: object
+    properties:
+      setpoint:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 150
+            value:
+              type: number
+              format: float
+              description: in °C
+      temperature:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 150
+            value:
+              type: number
+              format: float
+              description: in °C
+            alert:
+              type: boolean
+              description: alert condition set
+      contacts:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              maxLength: 150
+            value:
+              type: boolean
+  OTAddress:
+    type: object
+    properties:
+      street:
+        type: string
+      streetnumber:
+        type: string
+      province:
+        type: string
+      city:
+        type: string
+      zipcode:
+        type: string
+      state:
+        type: string
+      countycode:
+        type: string
+        minLength: 3
+        maxLength: 3
+        pattern: '^[A-Z]{3}$'
+        description: ISO-3166 ALPHA-3
+      customerid:
+        type: integer
+        format: int32
+      customername:
+        type: string
+        maxLength: 30
+      contactperson:
+        type: string
+        maxLength: 30
+      contactphone:
+        type: string
+        maxLength: 30
+      contactfax:
+        type: string
+        maxLength: 30
+      contactmobile:
+        type: string
+        maxLength: 30
+      contactemail:
+        type: string
+        maxLength: 50
+      poinname:
+        type: string
+        maxLength: 30
+      poigroup:
+        type: string
+        maxLength: 30
+  OTCanData:
+    type: object
+    properties:
+      caninstant:
+        type: object
+        properties:
+          speed:
+            type: number
+            format: float
+            description: Speed km/h
+          rpm:
+            type: number
+            format: float
+            description: Engine rpm
+          fuelconsmpt:
+            type: number
+            format: float
+            description: Fuel consumption l/h
+          fuellevel:
+            type: array
+            items:
+              type: integer
+            description: 'Fule level primary, secondary, ... tank in %'
+          axelweigh:
+            type: array
+            items:
+              type: integer
+            description: 'Axel 1,2,... Weight in kg'
+          turbopressure:
+            type: integer
+            description: Turbo pressure in kPa
+          coolanttemp:
+            type: integer
+            description: Coolant temperature in °C
+          acceleratorpdl:
+            type: integer
+            description: Accelerator pedal in %
+          torque:
+            type: integer
+            description: Torque 0-250 %
+          battvolt:
+            type: number
+            format: float
+            description: Battery voltage in volt
+          coolantlvl:
+            type: integer
+            description: Coolant leve in %
+          oiltemp:
+            type: integer
+            description: Oil temperature in °C
+          oillvl:
+            type: integer
+            description: Oil level in %
+          thottle:
+            type: integer
+            description: Throttle position in %
+          airinltpres:
+            type: integer
+            description: Air inlet pressure in kPa
+          gear:
+            type: integer
+            description: 0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked
+          seatbelt:
+            type: integer
+            description: '0=off(not buckled), 1=on(buckled), 2=error (cant read), 3=n/a'
+          oilpressure:
+            type: integer
+            description: Engine oil pressure in kPa
+          wettankpressure:
+            type: integer
+            description: Wet tank air pressure in kPa
+          pto:
+            type: integer
+            description: '0=no PTO drive is engaged, 1=at least one PTO drive is engaged, 2=error (cant read), 3=n/a'
+          ignswtch:
+            type: integer
+            description: '0=Ignition Switch OFF, 1= ON, 2=error (cant read), 3=n/a'
+      cantotal:
+        type: object
+        properties:
+          mileage:
+            type: integer
+            description: Mileage in km
+          totalfuel:
+            type: integer
+            description: Total fuel in liter
+          fuelusedatcruise:
+            type: integer
+            description: Fuel used at cruise liter
+          fuelusedatdrive:
+            type: integer
+            description: Fuel used at drive liter
+          idlelonger5:
+            type: integer
+            description: Idle longer than 5 min times
+          idlelonger10:
+            type: integer
+            description: Idle longer than 10 min times
+          totalidletime:
+            type: integer
+            description: Total idle time sec.
+          totaltimepto:
+            type: integer
+            description: Total time pto sec.
+          timecruise:
+            type: integer
+            description: Time cruise sec.
+          rpmthreshold:
+            type: array
+            items:
+              type: integer
+            description: 'Rpm > treshold 1,2,3 sec.'
+          speedthreshold:
+            type: array
+            items:
+              type: integer
+            description: 'Speed > threshold speed 1,2,3 sec.'
+          brakeapplications:
+            type: integer
+            description: Brake applications times
+          clutchapplications:
+            type: integer
+            description: Clutch applications times
+          engineon:
+            type: integer
+            description: Engine on in sec.
+          timetorque90:
+            type: integer
+            description: Time torque > 90%  sec.
+          fuelrateavg:
+            type: integer
+            format: float
+            description: Fuel rate average in l/h
+          totalvehiclewocrcontr:
+            type: integer
+            format: float
+            description: Total vehicle distance with cruise control
+          totalfuelconsumptionwithpto:
+            type: integer
+            description: Total fuel consumption with pto
+  OTTacho:
+    type: object
+    properties:
+      driverstatus:
+        type: array
+        items:
+          type: integer
+          description: 0=Rest/1=Available/2=Work/3=Drive/6=Error/7=na
+        description: 'Driver 1,2 work state'
+      driverrecognize:
+        type: boolean
+        description: Driver recognize  1=yes/0=no
+      drivertime:
+        type: array
+        items:
+          type: integer
+          description: 0=normal / 1=15 min. bef. 4 1/2h / 2=4 1/2h reached / 3=15 min bef. 9h / 4=9h reached / 5=15min bef. 16h / 6=16h reached / 14=Error / 15=n/a
+        description: 'Driver 1,2 work state'
+      cardpresent:
+        type: array
+        items:
+          type: boolean
+          description: 1=present/0=absent
+        description: 'Driver 1,2 Card present'
+      cardid:
+        type: array
+        items:
+          type: string
+          description: Cardid
+        description: 'Driver 1,2 Card ID'
+      overspeed:
+        type: boolean
+        description: Overspeed 0=no / 1=yes
+      tachoevent:
+        type: boolean
+        description: Tacho event 0=no / 1=yes
+      direction:
+        type: boolean
+        description: Direction indicator 0=forward / 1=reverse
+      rpm:
+        type: integer
+        format: float
+        description: Output shaft speed  rpm
+      speed:
+        type: integer
+        format: float
+        description: TCO vehicle speed  km/h
+  OTDiag:
+    type: object
+    properties:
+      dtcstatus:
+        type: integer
+        description: |
+          Generic malfunction lamp indicator 
+          0=off, 1=on, 2=error, 3=n/a 
+      dtcred:
+        type: integer
+        description: |
+          Red malfunction lamp indicator
+          0=off, 1=on, 2=error, 3=n/a 
+      dtcamber:
+        type: integer
+        description: |
+          Amber malfunction lamp indicator
+          0=off, 1=on, 2=error, 3=n/a 
+      dtcprotect:
+        type: integer
+        description: |
+          Protect malfunction lamp indicator
+          0=off, 1=on, 2=error, 3=n/a 
+      handbreak:
+        type: integer
+        description: |
+          Handbreak lamp status
+          0=off, 1=on, 2=error, 3=n/a 
+      batterystatus:
+        type: boolean
+        description: 0=no failure/1=failure
+      coolantstatus:
+        type: boolean
+        description: 0=no failure/1=failure
+      oilpressure:
+        type: boolean
+        description: 0=no failure/1=failure
+      breakpads:
+        type: array
+        items:
+          $ref: '#/definitions/OTBreakpad'
+      oillevelstatus:
+        type: boolean
+        description: 0=no failure/1=failure
+      absstatus:
+        type: integer
+        description: 0=not fully operational/1=fully operational/2=reserved/3=n/a
+  OTDriverbehavior:
+    type: object
+    properties:
+      harshbreak:
+        type: integer
+        format: int64
+        description: Total harsh brakes times
+      harshacc:
+        type: integer
+        format: int64
+        description: Total harsh accelerations times
+      idletime:
+        type: integer
+        format: int64
+        description: Total idle time sec.
+      coastingtime:
+        type: integer
+        format: int64
+        description: Total coasting time sec.
+      coastingdistance:
+        type: integer
+        format: float
+        description: Total coasting distance km
+      accelerationtime:
+        type: integer
+        format: int64
+        description: Total acceleration time sec.
+      accelerationdistance:
+        type: integer
+        format: float
+        description: Total acceleration distance km
+      decelerationtime:
+        type: integer
+        format: int64
+        description: Total deceleration time sec.
+      decelerationdistance:
+        type: integer
+        format: float
+        description: Total deceleration distance km
+      overspeedtime:
+        type: integer
+        format: int64
+        description: Total overspeed time sec.
+      overspeeddistance:
+        type: integer
+        format: float
+        description: Total overspeed distance km
+      rpmtime:
+        type: integer
+        format: int64
+        description: Total over RPM time sec.
+      rpmdistance:
+        type: integer
+        format: float
+        description: Total over RPM distance km
+      cruisabletime:
+        type: integer
+        format: int64
+        description: Total cruisable time sec.
+      cruisabledistance:
+        type: integer
+        format: float
+        description: Total cruisable distance km
+      cruisetime:
+        type: integer
+        format: int64
+        description: Total cruise time sec.
+      cruisedistance:
+        type: integer
+        format: float
+        description: Total cruise distance km
+      cruisetime2:
+        type: integer
+        format: int64
+        description: Total cruise time w/o acceleration pedal sec.
+      cruisedistance2:
+        type: integer
+        format: float
+        description: Total cruise distance w/o acceleration pedal km
+  OTBreakpad:
+    type: object
+    properties:
+      axel:
+        type: integer
+        description: axle number front to back
+      wheel:
+        type: integer
+        description: '0=right, 1=left'
+      status:
+        type: integer
+        description: '0=OK, 1=out of adjustment, 2=Delay breake return, 3=break pads worn, 4= delayed break application, 5=reserved, 6=error, 7 = n/a'
+  OTTour:
+    type: object
+    properties:
+      version:
+        type: integer
+        description: Versions number of the protocol
+      id:
+        type: integer
+      otid:
+        type: integer
+        format: int64
+        description: Registered opentelematics number sender receiver
+      receiverid:
+        type: integer
+        format: int64
+        description: Receicer ID register opentelematics number from receiver
+      manid:
+        type: integer
+        format: int64
+        description: Mandanten id
+      refid:
+        type: string
+      name:
+        type: string
+      info:
+        type: string
+      tournumber:
+        type: string
+      carid:
+        type: integer
+      carrefid:
+        type: string
+      status:
+        type: array
+        items:
+          $ref: '#/definitions/OTStatus'
+      drives:
+        type: array
+        items:
+          $ref: '#/definitions/OTDrive'
+    required:
+      - refid
+      - name
+      - carrefid
+  OTDrive:
+    type: object
+    properties:
+      id:
+        type: integer
+      refid:
+        type: string
+      address:
+        $ref: '#/definitions/OTAddress'
+      latitude:
+        type: number
+        format: double
+        description: WGS84 latitude
+      longitude:
+        type: number
+        format: double
+        description: WGS84 longitude
+      info:
+        type: string
+      name:
+        type: string
+      deadline:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+        example: '2017-07-22T17:32:28Z'
+      loading:
+        type: integer
+        description: |
+          '1=loading, 0=not loading'
+      drivenumber:
+        type: string
+      status:
+        type: array
+        items:
+          $ref: '#/definitions/OTStatus'
+      eta:
+        type: string
+        format: date-time
+        example: '2017-07-22T17:32:28Z'
+        description: |
+          ISO8601 Date time. 
+          Estimated time of arrival
+    required:
+      - refid
+      - latitude
+      - longitude
+      - name
+  OTStatusMessage:
+    type: object
+    properties:
+      state:
+        type: integer
+        description: |
+          '1=serverreceived, 2=devicereceived, 3=read, 4=delete'
+      time:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+        example: '2017-07-22T17:32:28Z'
+  OTStatus:
+    type: object
+    properties:
+      state:
+        type: integer
+        description: |
+          '1=aktiv, 2=canceled, 3=deleted, 4=finish, 5=work, 6=readed, 7=arrived'
+      time:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+        example: '2017-07-22T17:32:28Z'
+  OTMessage:
+    type: object
+    properties:
+      id:
+        type: integer
+      refid:
+        type: string
+        maxLength: 150
+        description: Reference Number
+      carid:
+        type: string
+      carrefid:
+        type: string
+        maxLength: 150
+        description: Reference Number
+      userid:
+        type: string
+        maxLength: 150
+        description: Unique user id
+      username:
+        type: string
+        maxLength: 150
+      direction:
+        type: integer
+        description: |
+          '1=server2device (out), 2=device2server (in)'
+      message:
+        type: string
+        description: context
+      status:
+        type: array
+        items:
+          $ref: '#/definitions/OTStatusMessage'
+    required:
+      - refid
+      - carrrefid
+      - message
+  OTSetStatus:
+    type: object
+    properties:
+      otid:
+        type: integer
+        description: Registered opentelematics number
+      version:
+        type: integer
+        description: Protokoll version
+      type:
+        type: string
+        maxLength: 150
+        description: orderstate or message
+      refid:
+        type: string
+        maxLength: 150
+        description: Reference Number
+      carrefid:
+        type: string
+        maxLength: 150
+        description: Reference Number
+      status:
+        $ref: '#/definitions/OTStatusMessage'
+    required:
+      - refid
+      - carrefid
+      - type
+      - status
+  OTlog:
+    type: object
+    properties:
+      otid:
+        type: integer
+        description: Registered opentelematics number
+      version:
+        type: integer
+        description: Protokoll version
+      loglevel:
+        type: integer
+      call:
+        type: string
+        description: Which call (protokoll)
+      username:
+        type: string
+        description: Which useraccount was it
+      time:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+          Date Time of message recive (optional)
+        example: '2017-07-21T17:32:28Z'
+      message:
+        type: string
+        description: Logmessage
+  OTMember:
+    type: object
+    properties:
+      otid:
+        type: integer
+        description: Registered opentelematics number
+      version:
+        type: integer
+        description: Protokoll version
+      name:
+        type: string
+      company:
+        type: string
+      street:
+        type: string
+      postalcode:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+        description: |
+          Example: NRW, BW, RP
+      country:
+        type: string
+        description: ISO 3166-1 alpha-3
+      phonenumber:
+        type: string
+        description: phone number ( NEW )
+      email:
+        type: string
+        description: email ( NEW )
+      memberSince:
+        type: string
+        format: date-time
+        description: |
+          ISO8601 Date time. 
+          Date Time of message recive (optional)
+        example: '2017-07-21T17:32:28Z'
+  OTTransferContainerArray:
+    type: array
+    items:
+      type: object
+      $ref: '#/definitions/OTTransferContainer'
+      
+  OTTransferContainer:
+    type: object
+    properties:
+      filename:
+        type: string
+        description: Filename
+        example: 123456789.DDD
+      class:
+        type: integer
+        description: | 
+          Driver = 1,
+          Vehicle = 2,
+          ALL = 3
+        example: 1
+      used_company_card:
+        type: string
+        description: the company card which was used
+        example: DU000000000000
+      type:
+        type: integer
+        description: |
+          DDD = 0,
+          DLC = 1,
+          TGD = 2,
+          C1B_V1B = 3
+        example: 0
+      data:
+        type: string
+        description: 'container data bytes encoded in Base64'
+        example: "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
+  OTDriverCardArray:
+    type: array
+    items:
+      type: object
+      $ref: '#/definitions/OTDriverCard'
+  OTDriverCard:
+    type: object
+    properties:
+      surname:
+        type: string
+        example: "Mustermann"
+      first_given_name:
+        type: string
+        example: "Max"
+      issue_date:
+        type: object
+        properties:
+          valid_from:
+            type: string
+            example: "01.12.2006"
+          valid_to:
+            type: string
+            example: "30.11.2011"
+      name_of_the_issuing_authority:
+        type: string
+        example: "Fahrerlaubnisbehörde Navkonzept"
+      driver_license_number:
+        type: string
+        example: "A1234567890"
+      card_number:
+        type: string
+        example: "DF00003563691000"
