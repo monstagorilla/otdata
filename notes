@@ -1,0 +1,11 @@
+- navkonzept in schnittstellen def
+- auth verfahren 
+- unix timestamp
+- mid, otid, warum ot spezifisch
+- tags
+- allgemein beispiel ebei parametern.. sollte vom backend festgelegt bzw gecheckt werden
+- fehlende if not exists bzw aufgabe der schnittstelle???
+- order short schema
+- get message... list??
+- setstatus just for order short
+- why getmember in api??
