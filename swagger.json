@@ -44,7 +44,8 @@
         "tags": [
           "History data"
         ],
-        "description": "If no deviceid exists, all vehicles are returned,\nIf no utcf exists, all data will be returned till the time utct,\nIf no utct exists, all data will be returned from utcf till now,\nif nothing exists, all data are returned to the customer, \nto the customer\n",
+        "summary": "Returns list of data in specific time interval",
+        "description": "If no deviceid exists, all vehicles will be returned\nIf no utcf exists, all data will be returned till the time utct\nIf no utct exists, all data will be returned from utcf till now\nif nothing exists, all data will be returned",
         "parameters": [
           {
             "name": "deviceid",
@@ -57,7 +58,7 @@
             "name": "utcf",
             "in": "query",
             "type": "integer",
-            "description": "timeintervall start (unix time stamp)"
+            "description": "Start of the time interval (unix time stamp)"
           },
           {
             "name": "utct",
@@ -93,7 +94,8 @@
         "tags": [
           "Get live data"
         ],
-        "description": "If no deviceid exists, the last position to all vehicles are returned to the customer\n",
+        "summary": "Returns current data",
+        "description": "If no deviceid exists, the last position of all vehicles will be returned\n",
         "parameters": [
           {
             "name": "deviceid",
@@ -135,7 +137,7 @@
         "tags": [
           "Set callback url"
         ],
-        "description": "Set a callback url and port for receiving data.\n",
+        "summary": "Sets callback URL and port for receiving data",
         "parameters": [
           {
             "name": "index",
@@ -156,7 +158,7 @@
             "items": {
               "type": "string"
             },
-            "description": "livata,orderstate,messages"
+            "description": "livedata, orderstate,messages"
           }
         ],
         "responses": {
@@ -177,7 +179,7 @@
         "tags": [
           "Get all devices"
         ],
-        "description": "get all devices that are registered.",
+        "summary": "Returns all registered devices",
         "parameters": [
           {
             "in": "header",
@@ -217,7 +219,8 @@
         "tags": [
           "Order short"
         ],
-        "description": "set tour information.\nRequired parameters:\n  - refid\n  - name\n  - carrefid\n  - drives\n    - refid\n    - latitude\n    - longitude\n    - name\n    \nDo not fill:\n  - status\n  - eta\n",
+        "summary": "Transmits information for simple navigation orders",
+        "description": "\nRequired parameters  - refid\n  - name\n  - carrefid\n  - drives\n    - refid\n    - latitude\n    - longitude\n    - name\n    \nDo not fill:\n  - status\n  - eta\n",
         "parameters": [
           {
             "in": "body",
@@ -246,7 +249,7 @@
         "tags": [
           "Order short"
         ],
-        "description": "get tour information for the refid.",
+        "summary": "Returns information for simple navigation orders",
         "parameters": [
           {
             "in": "header",
@@ -296,7 +299,8 @@
         "tags": [
           "Message"
         ],
-        "description": "set message information.\nRequired parameters:\n  - refid\n  - carrefid\n  - message\n  \nDo not fill:\n  - direction\n  - status\n",
+        "summary": "Sends message",
+        "description": "Required parameters:\n  - refid\n  - carrefid\n  - message\n  \nDo not fill:\n  - direction\n  - status\n",
         "parameters": [
           {
             "in": "body",
@@ -325,7 +329,7 @@
         "tags": [
           "Message"
         ],
-        "description": "get message.",
+        "summary": "Gets message",
         "parameters": [
           {
             "in": "header",
@@ -366,12 +370,14 @@
         "tags": [
           "Log"
         ],
+        "summary": "Gets log",
+        "description": "If a callback address is stored, logs will be send",
         "parameters": [
           {
             "name": "version",
             "in": "query",
             "type": "integer",
-            "description": "Versions number of the protocol"
+            "description": "Version number of the protocol"
           },
           {
             "name": "otid",
@@ -383,18 +389,18 @@
             "name": "loglevel",
             "in": "query",
             "type": "integer",
-            "description": "all logs lower then loglevel"
+            "description": "all logs lower than loglevel"
           },
           {
             "name": "call",
             "in": "query",
             "type": "string",
-            "description": "which logfile.\nFor all logs, set free\n"
+            "description": "which logfile.\nFor all logs, set free"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful\n",
+            "description": "Successful",
             "schema": {
               "type": "array",
               "items": {
@@ -411,8 +417,7 @@
           "403": {
             "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
           }
-        },
-        "description": "Get log. If a callback address is stored, logs are sent"
+        }
       }
     },
     "/otstatus/setstatus": {
@@ -420,7 +425,7 @@
         "tags": [
           "Status"
         ],
-        "description": "Set status for ordershort or message.\n",
+        "summary": "Sets status for ordershort or message", 
         "parameters": [
           {
             "name": "refid",
@@ -451,7 +456,7 @@
         "tags": [
           "Member"
         ],
-        "description": "Get all member of Open telematics",
+        "summary": "Gets all members of OpenTelematics",
         "responses": {
           "200": {
             "description": "Successful",
@@ -479,7 +484,7 @@
         "tags": [
           "Tacho (NEW)"
         ],
-        "description": "get all devices that are registered at tacho.",
+        "summary": "Gets all devices registered at tacho.",
         "parameters": [
           {
             "in": "header",
@@ -521,7 +526,7 @@
         "tags": [
           "Tacho (NEW)"
         ],
-        "description": "get all drivers that are registered.",
+        "summary": "Gets all registered drivers",
         "parameters": [
           {
             "in": "header",
@@ -563,7 +568,8 @@
         "tags": [
           "Tacho (NEW)"
         ],
-        "description": "Get the matching DDD file.\n\n1. Get the latest ones\n    - ALL: class = 3, rest leave blank\n    - Vehicles: class=2, rest leave blank\n    - Driver: class=1, rest leave blank\n2. Get all since date\n  - ALL: class = 3, date = value\n  - Vehicles: class=2, date = value\n  - Driver: class=1, date = value\n3. Specification\n  - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2\n\nexample 1\n\n  - class: 3\n  - response: All actually DDD files\n  \nexample 2 \n  - class: 3\n  - date: 2019-05-21T17:32:28Z\n  - response: All ones which newer than 2019-05-21T17:32:28Z\n\nexample 3\n  - class: 2\n  - date: 2019-05-21T17:32:28Z\n  - identification: WVWZZZ1JZ3W386752 \n  - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification\n",
+        "summary": "Gets the matching DDD file.",
+        "description": "1. Get the latest ones\n    - ALL: class = 3, rest leave blank\n    - Vehicles: class=2, rest leave blank\n    - Driver: class=1, rest leave blank\n2. Get all since date\n  - ALL: class = 3, date = value\n  - Vehicles: class=2, date = value\n  - Driver: class=1, date = value\n3. Specification\n  - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2\n\nexample 1\n\n  - class: 3\n  - response: All actually DDD files\n  \nexample 2 \n  - class: 3\n  - date: 2019-05-21T17:32:28Z\n  - response: All ones which newer than 2019-05-21T17:32:28Z\n\nexample 3\n  - class: 2\n  - date: 2019-05-21T17:32:28Z\n  - identification: WVWZZZ1JZ3W386752 \n  - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification\n",
         "parameters": [
           {
             "name": "otid",
@@ -623,7 +629,7 @@
         "tags": [
           "Tacho (NEW)"
         ],
-        "description": "Post DDD file",
+        "summary": "Posts DDD file",
         "parameters": [
           {
             "name": "otid",
