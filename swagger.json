@@ -304,7 +304,7 @@
         "parameters": [
           {
             "in": "body",
-            "name": "messsage",
+            "name": "message",
             "schema": {
               "$ref": "#/definitions/OTMessage"
             }
