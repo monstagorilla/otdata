@@ -95,7 +95,7 @@
           "Get live data"
         ],
         "summary": "Returns current data",
-        "description": "If no deviceid exists, the last position of all vehicles will be returned\n",
+        "description": "If no deviceid exists, the data of all vehicles will be returned\n",
         "parameters": [
           {
             "name": "deviceid",
@@ -589,6 +589,7 @@
             "type": "integer",
             "required": true,
             "description": "Driver = 1,\nVehicle = 2,\nALL = 3\n"
+
           },
           {
             "name": "identification",
@@ -774,7 +775,7 @@
         "receiverid": {
           "type": "integer",
           "format": "int64",
-          "description": "Receicer ID register opentelematics number from receiver"
+          "description": "Receiver ID register opentelematics number from receiver"
         },
         "manid": {
           "type": "integer",
@@ -787,7 +788,7 @@
         "receivetime": {
           "type": "string",
           "format": "date-time",
-          "description": "ISO8601 Date time. \nDate Time of message recive (optional)\n",
+          "description": "ISO8601 Date time. \nDate Time of message receive (optional)\n",
           "example": "2017-07-21T17:32:28Z"
         },
         "deviceid": {
@@ -846,7 +847,7 @@
         "code": {
           "type": "integer",
           "format": "int32",
-          "description": "Reason number  for the message (optional)"
+          "description": "Reason number for the message (optional)"
         },
         "name": {
           "type": "string",
@@ -1834,7 +1835,7 @@
         "time": {
           "type": "string",
           "format": "date-time",
-          "description": "ISO8601 Date time. \nDate Time of message recive (optional)\n",
+          "description": "ISO8601 Date time. \nDate Time of message receive (optional)\n",
           "example": "2017-07-21T17:32:28Z"
         },
         "message": {

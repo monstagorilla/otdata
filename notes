@@ -1,6 +1,7 @@
+Questions:
 - navkonzept in schnittstellen def
 - auth verfahren 
-- unix timestamp
+- unix timestamp -> date-time?
 - mid, otid, warum ot spezifisch
 - tags
 - allgemein beispiel ebei parametern.. sollte vom backend festgelegt bzw gecheckt werden
@@ -9,3 +10,13 @@
 - get message... list??
 - setstatus just for order short
 - why getmember in api??
+
+
+TODOs:
+- documentation of parameters and functions
+- auth guide
+- examples in different languages
+- example tool
+- website
+- dummy backend
+
