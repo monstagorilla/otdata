@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "OTData",
     "description": "OTData structure\n- The authentication is specified by the interface operator.\n- The customer is specified by the authentication.\n",
     "contact": {
@@ -1714,7 +1714,7 @@
       "properties": {
         "state": {
           "type": "integer",
-          "description": "'1=aktiv, 2=canceled, 3=deleted, 4=finish, 5=work, 6=readed, 7=arrived'\n"
+          "description": "'1=active, 2=canceled, 3=deleted, 4=finished, 5=worked on, 6=readed, 7=arrived'\n"
         },
         "time": {
           "type": "string",
