@@ -11,6 +11,7 @@ Questions:
 - setstatus just for order short
 - why getmember in api??
 - begin < end checken gethistory
+- ascending or descending in lists
 
 TODOs:
 - documentation of parameters and functions
