@@ -1769,7 +1769,7 @@
       },
       "required": [
         "refid",
-        "carrrefid",
+        "carrefid",
         "message"
       ]
     },
