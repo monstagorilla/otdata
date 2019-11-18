@@ -1179,7 +1179,7 @@
               },
               "description": "Fule level primary, secondary, ... tank in %"
             },
-            "axelweigh": {
+            "axelweight": {
               "type": "array",
               "items": {
                 "type": "integer"
