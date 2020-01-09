@@ -11,6 +11,17 @@ Questions:
 - setstatus just for order short
 - begin < end checken gethistory
 - ascending or descending in lists
+- n/a, error in general, just booleans no errror status
+- drivertime in minutes, let backecnd decide specific intervals?
+- descriptions
+- why arrays
+- whats driver recognize
+- why type int and format float?
+- absstatus
+- formats, minimal, maximum
+- c1b_v1b
+- examples not everywhere
+- driver_status array? 
 
 TODOs:
 - documentation of parameters and functions
