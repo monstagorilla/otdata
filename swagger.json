@@ -586,10 +586,9 @@
           {
             "name": "class",
             "in": "header",
-            "type": "integer",
-            "required": true,
-            "description": "Driver = 1,\nVehicle = 2,\nALL = 3\n"
-
+            "type": "string",
+            "enum": ["driver", "vehicle", "all"],
+            "required": true
           },
           {
             "name": "identification",
@@ -1228,12 +1227,12 @@
               "description": "Air inlet pressure in kPa"
             },
             "gear": {
-              "type": "integer",
-              "description": "0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked"
+              "type": "string",
+              "enum": ["neutral", "reverse", "forward", "parked"]
             },
             "seatbelt": {
-              "type": "integer",
-              "description": "0=off(not buckled), 1=on(buckled), 2=error (cant read), 3=n/a"
+              "type": "string",
+              "enum": ["off", "on", "error", "n/a"]
             },
             "oilpressure": {
               "type": "integer",
@@ -1244,13 +1243,13 @@
               "description": "Wet tank air pressure in kPa"
             },
             "pto": {
-              "type": "integer",
-              "description": "0=no PTO drive is engaged, 1=at least one PTO drive is engaged, 2=error (cant read), 3=n/a"
-            },
+              "type": "string",
+              "enum": ["none", "any", "error", "n/a"]
+              },
             "ignswtch": {
-              "type": "integer",
-              "description": "0=Ignition Switch OFF, 1= ON, 2=error (cant read), 3=n/a"
-            }
+              "type": "string",
+              "enum": ["off", "on", "error", "n/a"]
+              }
           }
         },
         "cantotal": {
@@ -1346,14 +1345,14 @@
         "driverstatus": {
           "type": "array",
           "items": {
-            "type": "integer",
-            "description": "0=Rest/1=Available/2=Work/3=Drive/6=Error/7=na"
+            "type": "string",
+            "enum": ["rest", "available", "work", "drive", "error", "n/a"]
           },
           "description": "Driver 1,2 work state"
         },
         "driverrecognize": {
           "type": "boolean",
-          "description": "Driver recognize  1=yes/0=no"
+          "description": "Driver recognize 1=yes/0=no"
         },
         "drivertime": {
           "type": "array",
@@ -1366,8 +1365,7 @@
         "cardpresent": {
           "type": "array",
           "items": {
-            "type": "boolean",
-            "description": "1=present/0=absent"
+            "type": "boolean"
           },
           "description": "Driver 1,2 Card present"
         },
@@ -1380,16 +1378,14 @@
           "description": "Driver 1,2 Card ID"
         },
         "overspeed": {
-          "type": "boolean",
-          "description": "Overspeed 0=no / 1=yes"
+          "type": "boolean"
         },
         "tachoevent": {
-          "type": "boolean",
-          "description": "Tacho event 0=no / 1=yes"
+          "type": "boolean"
         },
         "direction": {
-          "type": "boolean",
-          "description": "Direction indicator 0=forward / 1=reverse"
+          "type": "string",
+          "enum": ["forward", "reverse"]
         },
         "rpm": {
           "type": "integer",
@@ -1407,24 +1403,30 @@
       "type": "object",
       "properties": {
         "dtcstatus": {
-          "type": "integer",
-          "description": "Generic malfunction lamp indicator \n0=off, 1=on, 2=error, 3=n/a \n"
+          "type": "string",
+          "enum": ["off", "on", "n/a"],
+          "description": "Generic malfunction indicator light"
         },
         "dtcred": {
-          "type": "integer",
-          "description": "Red malfunction lamp indicator\n0=off, 1=on, 2=error, 3=n/a \n"
+          "type": "string",
+          "enum": ["off", "on", "error", "n/a"],
+          "description": "Red malfunction indicator light"
         },
         "dtcamber": {
-          "type": "integer",
-          "description": "Amber malfunction lamp indicator\n0=off, 1=on, 2=error, 3=n/a \n"
+          "type": "string",
+          "enum": ["off", "on", "error", "n/a"],
+          "description": "Amber malfunction indicator light"
         },
         "dtcprotect": {
-          "type": "integer",
-          "description": "Protect malfunction lamp indicator\n0=off, 1=on, 2=error, 3=n/a \n"
+          
+          "type": "string",
+          "enum": ["off", "on", "error", "n/a"],
+          "description": "Protection malfunction indicator light"
         },
         "handbreak": {
-          "type": "integer",
-          "description": "Handbreak lamp status\n0=off, 1=on, 2=error, 3=n/a \n"
+          "type": "string",
+          "enum": ["off", "on", "error", "n/a"],
+          "description": "Handbrake malfunction indicator light"
         },
         "batterystatus": {
           "type": "boolean",
@@ -1559,15 +1561,15 @@
       "properties": {
         "axel": {
           "type": "integer",
-          "description": "axle number front to back"
+          "description": "axle number front to back beginning with 0"
         },
         "wheel": {
-          "type": "integer",
-          "description": "0=right, 1=left"
+          "type": "string",
+          "enum": ["left", "right"]
         },
         "status": {
-          "type": "integer",
-          "description": "0=OK, 1=out of adjustment, 2=Delay breake return, 3=break pads worn, 4= delayed break application, 5=reserved, 6=error, 7 = n/a"
+          "type": "string",
+          "enum": ["ok", "maladjusted", "delayedReturn", "delayedBreaking", "outworn", "reserved", "error", "n/a"]
         }
       }
     },
@@ -1576,7 +1578,7 @@
       "properties": {
         "version": {
           "type": "integer",
-          "description": "Versions number of the protocol"
+          "description": "Version number of the protocol"
         },
         "id": {
           "type": "integer"
@@ -1698,8 +1700,8 @@
       "type": "object",
       "properties": {
         "state": {
-          "type": "integer",
-          "description": "'1=serverreceived, 2=devicereceived, 3=read, 4=delete'\n"
+          "type": "string",
+          "enum": ["serverReceived", "deviceReceived", "read", "delete"]
         },
         "time": {
           "type": "string",
@@ -1713,8 +1715,8 @@
       "type": "object",
       "properties": {
         "state": {
-          "type": "integer",
-          "description": "'1=active, 2=canceled, 3=deleted, 4=finished, 5=worked on, 6=readed, 7=arrived'\n"
+          "type": "string",
+          "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
         },
         "time": {
           "type": "string",
@@ -1753,8 +1755,8 @@
           "maxLength": 150
         },
         "direction": {
-          "type": "integer",
-          "description": "'1=server2device (out), 2=device2server (in)'\n"
+          "type": "string",
+          "enum": ["serverToDevice", "deviceToServer"]
         },
         "message": {
           "type": "string",
@@ -1910,9 +1912,9 @@
           "example": "123456789.DDD"
         },
         "class": {
-          "type": "integer",
-          "description": "Driver = 1,\nVehicle = 2,\nALL = 3\n",
-          "example": 1
+          "type": "string",
+          "enum": ["driver", "vehicle", "all"],
+          "example": "driver"
         },
         "used_company_card": {
           "type": "string",
@@ -1920,8 +1922,8 @@
           "example": "DU000000000000"
         },
         "type": {
-          "type": "integer",
-          "description": "DDD = 0,\nDLC = 1,\nTGD = 2,\nC1B_V1B = 3\n",
+          "type": "string",
+          "enum": ["ddd", "dlc", "tgd","c1b_v1b"],
           "example": 0
         },
         "data": {
