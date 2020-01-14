@@ -1176,7 +1176,7 @@
               "items": {
                 "type": "integer"
               },
-              "description": "Fule level primary, secondary, ... tank in %"
+              "description": "Fuel level primary, secondary, ... tank in %"
             },
             "axelweight": {
               "type": "array",
