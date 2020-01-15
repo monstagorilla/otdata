@@ -18,10 +18,18 @@ Questions:
 - whats driver recognize
 - why type int and format float?
 - absstatus
-- formats, minimal, maximum
+- formats, minimal, maximum, maxlength, 
 - c1b_v1b
 - examples not everywhere
 - driver_status array? 
+- booleans description??
+- "in":
+- array collection format
+- error response model
+- best practice link
+- camel cases
+- which properties have to be "required", do superproperies also have to be "required"? 
+
 
 TODOs:
 - documentation of parameters and functions
