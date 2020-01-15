@@ -1,0 +1,30 @@
+basic schema for response data:
+Data that can be not available or faulty is returned in kind of a tuple structure with a "status" property and a "value" property. 
+??
+The "status" property is required, the "value" is optional (because of the possible unavailability of data) but has a default value. 
+??
+
+Example:
+
+"caninstant": {
+  "type": "object",
+  "properties": {
+    "speed": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string", 
+          "enum": ["ok", "error", "n/a"],
+          "description": "Indicates availability of data"
+        },
+        "value":{
+          "type": "number",
+          "format": "float",
+          "default": "0.0",
+          "description": "Speed in km/h"   
+        }
+      }
+    }
+	}
+}
