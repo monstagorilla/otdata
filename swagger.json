@@ -11,24 +11,6 @@
   },
   "host": "otdata.dummy.de",
   "basePath": "/",
-  "securityDefinitions": {
-    "basicAuth": {
-      "type": "basic",
-      "description": "HTTP Basic Authentication\nUsername: username@consumernumber\nPassword: userpassword\n"
-    },
-    "IO OAuth": {
-      "type": "oauth2",
-      "description": "InternetOrtung OAuth Authentication\nUsername: username@consumernumber\nPassword: userpassword\n",
-      "flow": "password",
-      "tokenUrl": "https://restricted.api.navkonzept.com/iooauth/login/"
-    }
-  },
-  "security": [
-    {
-      "basicAuth": [],
-      "IO OAuth": []
-    }
-  ],
   "schemes": [
     "https"
   ],
