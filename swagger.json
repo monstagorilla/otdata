@@ -1157,183 +1157,711 @@
           "type": "object",
           "properties": {
             "speed": {
-              "type": "number",
-              "format": "float",
-              "description": "Speed km/h"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "number",
+                  "format": "float",
+                  "default": 0.0,
+                  "description": "Speed in km/h"   
+                }
+              }
             },
             "rpm": {
-              "type": "number",
-              "format": "float",
-              "description": "Engine rpm"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "number",
+                  "format": "float",
+                  "default": 0.0,
+                  "description": "Rotational speed of engine in rpm"   
+                }
+              }
             },
             "fuelconsmpt": {
-              "type": "number",
-              "format": "float",
-              "description": "Fuel consumption l/h"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "number",
+                  "format": "float",
+                  "default": 0.0,
+                  "minimum": 0.0,
+                  "description": "Fuel consumption in l/h"   
+                }
+              }
             },
             "fuellevel": {
-              "type": "array",
-              "items": {
-                "type": "integer"
-              },
-              "description": "Fuel level primary, secondary, ... tank in %"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Fuel level primary, secondary, ... tank in %"
+                  }
+                }
+              }
             },
             "axelweight": {
-              "type": "array",
-              "items": {
-                "type": "integer"
-              },
-              "description": "Axel 1,2,... Weight in kg"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 0,
+                    "minimum": 0
+                  },
+                  "description": "Axel 1,2,... Weight in kg"
+                }
+              }
             },
             "turbopressure": {
-              "type": "integer",
-              "description": "Turbo pressure in kPa"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Turbo pressure in kPa"
+                }
+              }
             },
             "coolanttemp": {
-              "type": "integer",
-              "description": "Coolant temperature in °C"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "description": "Coolant temperature in °C"
+                }
+              }
             },
             "acceleratorpdl": {
-              "type": "integer",
-              "description": "Accelerator pedal in %"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 100,
+                  "description": "Accelerator pedal in %"
+                }
+              }              
             },
             "torque": {
-              "type": "integer",
-              "description": "Torque 0-250 %"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 250,
+                  "description": "Torque in %"
+                }
+              }   
             },
             "battvolt": {
-              "type": "number",
-              "format": "float",
-              "description": "Battery voltage in volt"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "number",
+                  "format": "float",
+                  "default": 0.0,
+                  "description": "Battery voltage in V"
+                }
+              }
             },
             "coolantlvl": {
-              "type": "integer",
-              "description": "Coolant leve in %"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 100,
+                  "description": "Coolant level in %"
+                }
+              }
             },
             "oiltemp": {
-              "type": "integer",
-              "description": "Oil temperature in °C"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "description": "Oil temperature in °C"
+                }
+              }
             },
             "oillvl": {
-              "type": "integer",
-              "description": "Oil level in %"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 100,
+                  "description": "Oil level in %"
+                }
+              }
             },
-            "thottle": {
-              "type": "integer",
-              "description": "Throttle position in %"
+            "throttle": {
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "maximum": 100,
+                  "description": "Throttle position in %"
+                }
+              }
             },
             "airinltpres": {
-              "type": "integer",
-              "description": "Air inlet pressure in kPa"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Air inlet pressure in kPa"
+                }
+              }
             },
             "gear": {
-              "type": "string",
-              "enum": ["neutral", "reverse", "forward", "parked"]
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "string",
+                  "enum": ["neutral", "reverse", "forward", "parked"]
+                }
+              }
             },
             "seatbelt": {
-              "type": "string",
-              "enum": ["off", "on", "error", "n/a"]
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "string",
+                  "enum": ["off", "on"],
+                  "default": "off"
+                }
+              }
             },
             "oilpressure": {
-              "type": "integer",
-              "description": "Engine oil pressure in kPa"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Engine oil pressure in kPa"
+                }
+              }
             },
             "wettankpressure": {
-              "type": "integer",
-              "description": "Wet tank air pressure in kPa"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Wet tank air pressure in kPa"
+                }
+              }
             },
             "pto": {
-              "type": "string",
-              "enum": ["none", "any", "error", "n/a"]
-              },
-            "ignswtch": {
-              "type": "string",
-              "enum": ["off", "on", "error", "n/a"]
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "string",
+                  "enum": ["none", "any"],
+                  "default": "none"
+                }
               }
+            },
+            "ignswtch": {
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "string",
+                  "enum": ["off", "on"],
+                  "default": "off"
+                }
+              }
+            }
           }
         },
         "cantotal": {
           "type": "object",
           "properties": {
             "mileage": {
-              "type": "integer",
-              "description": "Mileage in km"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Mileage in km"
+                }
+              }
             },
             "totalfuel": {
-              "type": "integer",
-              "description": "Total fuel in liter"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Total fuel in liter"
+                }
+              }
             },
             "fuelusedatcruise": {
-              "type": "integer",
-              "description": "Fuel used at cruise liter"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Fuel used at cruise in liter"
+                }
+              }              
             },
             "fuelusedatdrive": {
-              "type": "integer",
-              "description": "Fuel used at drive liter"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Fuel used at drive in liter"
+                }
+              }              
             },
             "idlelonger5": {
-              "type": "integer",
-              "description": "Idle longer than 5 min times"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Number of idle longer than 5 min"
+                }
+              }              
             },
             "idlelonger10": {
-              "type": "integer",
-              "description": "Idle longer than 10 min times"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Number of idle longer than 10 min"
+                }
+              }              
             },
             "totalidletime": {
-              "type": "integer",
-              "description": "Total idle time sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Total idle time in sec"
+                }
+              }              
             },
             "totaltimepto": {
-              "type": "integer",
-              "description": "Total time pto sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Total pto time in sec"
+                }
+              }              
             },
             "timecruise": {
-              "type": "integer",
-              "description": "Time cruise sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Cruise time in sec."
+                }
+              }              
             },
             "rpmthreshold": {
-              "type": "array",
-              "items": {
-                "type": "integer"
-              },
-              "description": "Rpm > treshold 1,2,3 sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 0,
+                    "minimum": 0
+                  },
+                  "description": "Rpm > treshold 1,2,3 sec."
+                }
+              }
             },
             "speedthreshold": {
-              "type": "array",
-              "items": {
-                "type": "integer"
-              },
-              "description": "Speed > threshold speed 1,2,3 sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 0,
+                    "minimum": 0
+                  },
+                  "description": "Speed > threshold speed 1,2,3 sec."
+                }
+              }
             },
             "brakeapplications": {
-              "type": "integer",
-              "description": "Brake applications times"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Number of brake applications"                }
+              }              
             },
             "clutchapplications": {
-              "type": "integer",
-              "description": "Clutch applications times"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Number of clutch applications"                }
+              }              
             },
             "engineon": {
-              "type": "integer",
-              "description": "Engine on in sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Time engine is on in sec"
+                }
+              }              
             },
             "timetorque90": {
-              "type": "integer",
-              "description": "Time torque > 90%  sec."
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description":"Time torque > 90%  in sec"
+                }
+              }              
             },
             "fuelrateavg": {
-              "type": "integer",
-              "format": "float",
-              "description": "Fuel rate average in l/h"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Fuel rate average in l/h"                }
+              }
             },
             "totalvehiclewocrcontr": {
-              "type": "integer",
-              "format": "float",
-              "description": "Total vehicle distance with cruise control"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Total vehicle distance with cruise control"
+                }
+              }
             },
             "totalfuelconsumptionwithpto": {
-              "type": "integer",
-              "description": "Total fuel consumption with pto"
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "type": "string", 
+                  "enum": ["ok", "error", "n/a"],
+                  "description": "Indicates availability of data"
+                  },
+                "value":{
+                  "type": "integer",
+                  "format": "int32",
+                  "default": 0,
+                  "minimum": 0,
+                  "description": "Total fuel consumption with pto"                }
+              }              
             }
           }
         }
