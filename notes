@@ -19,6 +19,7 @@ Questions:
 - why type int and format float?
 - absstatus
 - formats, minimal, maximum, maxlength, 
+-when minimum e.g. percentage for fuel level... can be ouside of 0-100?
 - c1b_v1b
 - examples not everywhere
 - driver_status array? 
@@ -28,7 +29,15 @@ Questions:
 - error response model
 - best practice link
 - camel cases
-- which properties have to be "required", do superproperies also have to be "required"? 
+- which properties have to be "required", do superproperies also have to be "required"? idea: all required but can be n/a 
+- torque 0-250?
+- number without "
+- when to use int when float
+-"gear" just for automatic vehicles
+-"seatbelt" maybe boolean
+-"wet tank "AIR"?? pressure
+- whats meant with idle longer 10?, rpm treshold 
+- e.g. totalvehiclewocrcontr: bad variable name
 
 
 TODOs:
