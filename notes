@@ -14,7 +14,6 @@ Questions:
 - n/a, error in general, just booleans no errror status
 - drivertime in minutes, let backecnd decide specific intervals?
 - descriptions
-- why arrays
 - whats driver recognize
 - why type int and format float?
 - absstatus
@@ -35,15 +34,28 @@ Questions:
 - when to use int when float
 -"gear" just for automatic vehicles
 "seatbelt" maybe boolean
--"wet tank "AIR"?? pressure
++"wet tank "AIR"?? pressure
 - whats meant with idle longer 10?, rpm treshold 
 - e.g. totalvehiclewocrcontr: bad variable name
 - setcallback types erklärung
 - order short required paramter still in description
-- line 374, vesion number in general string?
++ line 374, vesion number in general string?
 - tacho in general
-- 503 authentication limit? not service unavailable
-
++ 503 authentication limit? not service unavailable
+- refresh tokens
+- mid mandanten idea
+- gid group id 
+- jwt?
+- header to query
+- use activities 
+- data id
+- date-time vereinheitlich?
+- name and plate number 
+- get all gid array 
+- gid in history und möglicherweise im tacho 
+- schema für daten in 
+    driver 
+- address in otmmber use otaddress
 
 TODOs:
 - documentation of parameters and functions
