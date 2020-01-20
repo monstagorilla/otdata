@@ -2091,17 +2091,17 @@
         "cruisedistance": {
           "type": "integer",
           "format": "float",
-          "description": "Total cruise distance km"
+          "description": "Total cruise distance in km"
         },
         "cruisetime2": {
           "type": "integer",
           "format": "int64",
-          "description": "Total cruise time w/o acceleration pedal sec."
+          "description": "Total cruise time w/o acceleration pedal in sec."
         },
         "cruisedistance2": {
           "type": "integer",
           "format": "float",
-          "description": "Total cruise distance w/o acceleration pedal km"
+          "description": "Total cruise distance w/o acceleration pedal in km"
         }
       }
     },
@@ -2478,7 +2478,7 @@
         },
         "type": {
           "type": "string",
-          "enum": ["ddd", "dlc", "tgd","c1b_v1b"],
+          "enum": ["ddd", "dlc", "tgd", "c1b_v1b"],
           "example": 0
         },
         "data": {
