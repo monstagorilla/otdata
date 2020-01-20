@@ -2571,8 +2571,7 @@
           }
         },
         "name_of_the_issuing_authority": {
-          "type": "string",
-          "example": "Fahrerlaubnisbehörde Navkonzept"
+          "type": "string"
         },
         "driver_license_number": {
           "type": "string",
