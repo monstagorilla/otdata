@@ -1,7 +1,4 @@
 Questions:
-- navkonzept in schnittstellen def
-- auth verfahren 
-- unix timestamp -> date-time?
 - mid, otid, warum ot spezifisch
 - tags
 - allgemein beispiele bei parametern.. sollte vom backend festgelegt bzw gecheckt werden
@@ -11,7 +8,6 @@ Questions:
 - setstatus just for order short
 - begin < end checken gethistory
 - ascending or descending in lists
-- n/a, error in general, just booleans no errror status
 - drivertime in minutes, let backecnd decide specific intervals?
 - descriptions
 - whats driver recognize
@@ -19,18 +15,15 @@ Questions:
 - absstatus
 - formats, minimal, maximum, maxlength, 
 -when minimum e.g. percentage for fuel level... can be ouside of 0-100?
-- c1b_v1b
 - examples not everywhere
 - driver_status array? 
 - booleans description??
 - "in":
 - array collection format
-- error response model
 - best practice link
 - camel cases
 - which properties have to be "required", do superproperies also have to be "required"? idea: all required but can be n/a 
 - torque 0-250?
-- number without "
 - when to use int when float
 -"gear" just for automatic vehicles
 "seatbelt" maybe boolean
@@ -42,14 +35,11 @@ Questions:
 + line 374, vesion number in general string?
 - tacho in general
 + 503 authentication limit? not service unavailable
-- refresh tokens
-- mid mandanten idea
+- mid mandanten id
 - gid group id 
-- jwt?
 - header to query
 - use activities 
 - data id
-- date-time vereinheitlich?
 - name and plate number 
 - get all gid array 
 - gid in history und möglicherweise im tacho 
