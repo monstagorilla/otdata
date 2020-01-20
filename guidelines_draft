@@ -45,3 +45,8 @@ Example:
     ...
 	}
 }
+
+
+date and time:
+We use use the ISO 8601 specification for all types of times.
+https://tools.ietf.org/html/rfc3339#section-5.6 
