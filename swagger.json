@@ -1179,7 +1179,6 @@
           "properties": {
             "speed": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1196,7 +1195,6 @@
             },
             "rpm": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1213,7 +1211,6 @@
             },
             "fuelconsmpt": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1231,7 +1228,6 @@
             },
             "fuellevel": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1253,7 +1249,6 @@
             },
             "axelweight": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1274,7 +1269,6 @@
             },
             "turbopressure": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1292,7 +1286,6 @@
             },
             "coolanttemp": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1309,7 +1302,6 @@
             },
             "acceleratorpdl": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1328,7 +1320,6 @@
             },
             "torque": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1347,7 +1338,6 @@
             },
             "battvolt": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1364,7 +1354,6 @@
             },
             "coolantlvl": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1383,7 +1372,6 @@
             },
             "oiltemp": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1400,7 +1388,6 @@
             },
             "oillvl": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1419,7 +1406,6 @@
             },
             "throttle": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1438,7 +1424,6 @@
             },
             "airinltpres": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1456,7 +1441,6 @@
             },
             "gear": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1471,7 +1455,6 @@
             },
             "seatbelt": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1487,7 +1470,6 @@
             },
             "oilpressure": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1505,7 +1487,6 @@
             },
             "wettankpressure": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1523,7 +1504,6 @@
             },
             "pto": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1539,7 +1519,6 @@
             },
             "ignswtch": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1560,7 +1539,6 @@
           "properties": {
             "mileage": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1578,7 +1556,6 @@
             },
             "totalfuel": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1596,7 +1573,6 @@
             },
             "fuelusedatcruise": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1614,7 +1590,6 @@
             },
             "fuelusedatdrive": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1632,7 +1607,6 @@
             },
             "idlelonger5": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1650,7 +1624,6 @@
             },
             "idlelonger10": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1668,7 +1641,6 @@
             },
             "totalidletime": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1686,7 +1658,6 @@
             },
             "totaltimepto": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1704,7 +1675,6 @@
             },
             "timecruise": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1722,7 +1692,6 @@
             },
             "rpmthreshold": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1743,7 +1712,6 @@
             },
             "speedthreshold": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1764,7 +1732,6 @@
             },
             "brakeapplications": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1781,7 +1748,6 @@
             },
             "clutchapplications": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1798,7 +1764,6 @@
             },
             "engineon": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1816,7 +1781,6 @@
             },
             "timetorque90": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1834,7 +1798,6 @@
             },
             "fuelrateavg": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1851,7 +1814,6 @@
             },
             "totalvehiclewocrcontr": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
@@ -1869,7 +1831,6 @@
             },
             "totalfuelconsumptionwithpto": {
               "type": "object",
-              "required": ["status"],
               "properties": {
                 "status": {
                   "type": "string", 
