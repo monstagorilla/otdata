@@ -40,13 +40,17 @@
             "name": "utcf",
             "in": "query",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "description": "Start of the time interval (unix time stamp)"
           },
           {
             "name": "utct",
             "in": "query",
             "type": "integer",
-            "description": "timeintervall end (unix time stamp)"
+            "format": "int64",
+            "minimum": 0,
+            "description": "End of the timeintervall (unix time stamp)"
           }
         ],
         "responses": {
@@ -89,7 +93,9 @@
           {
             "name": "mid",
             "in": "query",
-            "type": "integer"
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
           }
         ],
         "responses": {
@@ -166,12 +172,16 @@
           {
             "in": "header",
             "name": "otid",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
           },
           {
             "in": "header",
             "name": "mid",
-            "type": "integer"
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
           }
         ],
         "responses": {
@@ -236,7 +246,9 @@
           {
             "in": "header",
             "name": "otid",
-            "type": "integer"
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
           },
           {
             "in": "header",
@@ -365,12 +377,15 @@
             "name": "otid",
             "in": "query",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "description": "Registered opentelematics number"
           },
           {
             "name": "loglevel",
             "in": "query",
             "type": "integer",
+            "format": "int32",
             "description": "all logs lower than loglevel"
           },
           {
@@ -472,12 +487,16 @@
             "in": "header",
             "name": "otid",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "required": true
           },
           {
             "in": "header",
             "name": "mid",
             "type": "integer",
+            "format": "int32",
+            "minimum": 0,
             "required": true
           }
         ],
@@ -514,12 +533,16 @@
             "in": "header",
             "name": "otid",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "required": true
           },
           {
             "in": "header",
             "name": "mid",
             "type": "integer",
+            "format": "int32",
+            "minimum": 0,
             "required": true
           }
         ],
@@ -556,12 +579,16 @@
           {
             "name": "otid",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "in": "header",
             "required": true
           },
           {
             "name": "mid",
             "type": "integer",
+            "format": "int32",
+            "minimum": 0,
             "in": "header",
             "required": true
           },
@@ -616,12 +643,16 @@
           {
             "name": "otid",
             "type": "integer",
+            "format": "int64",
+            "minimum": 0,
             "in": "header",
             "required": true
           },
           {
             "name": "mid",
             "type": "integer",
+            "format": "int32",
+            "minimum": 0,
             "in": "header",
             "required": true
           },
@@ -647,7 +678,7 @@
             "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
           },
           "503": {
-            "description": "Authenticationlimit exceeded"
+            "description": "Authentication limit exceeded"
           }
         }
       }
@@ -659,12 +690,15 @@
       "properties": {
         "version": {
           "type": "integer",
+          "format": "int32",
+          "minimum": 0,
           "description": "Versions number of the protocol",
           "example": 1
         },
         "otid": {
           "type": "integer",
           "format": "int64",
+          "minimum": 0,
           "description": "Registered opentelematics number",
           "example": 3
         },
@@ -746,21 +780,25 @@
         "otid": {
           "type": "integer",
           "format": "int64",
+          "minimum": 0,
           "description": "Registered opentelematics number sender receiver"
         },
         "dataid": {
           "type": "integer",
           "format": "int64",
+          "minimum": 0,
           "description": "Data ID (optional)"
         },
         "receiverid": {
           "type": "integer",
           "format": "int64",
+          "minimum": 0,
           "description": "Receiver ID register opentelematics number from receiver"
         },
         "manid": {
           "type": "integer",
           "format": "int64",
+          "minimum": 0,
           "description": "Mandanten id"
         },
         "reason": {
@@ -828,6 +866,7 @@
         "code": {
           "type": "integer",
           "format": "int32",
+          "minimum": 0,
           "description": "Reason number for the message (optional)"
         },
         "name": {
@@ -2290,6 +2329,8 @@
       "properties": {
         "otid": {
           "type": "integer",
+          "format": "int64",
+          "minimum": 0,
           "description": "Registered opentelematics number"
         },
         "version": {
@@ -2327,6 +2368,8 @@
       "properties": {
         "otid": {
           "type": "integer",
+          "format": "int64",
+          "minimum": 0,
           "description": "Registered opentelematics number"
         },
         "version": {
@@ -2361,6 +2404,8 @@
       "properties": {
         "otid": {
           "type": "integer",
+          "format": "int64",
+          "minimum": 0,
           "description": "Registered opentelematics number"
         },
         "version": {
