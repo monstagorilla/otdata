@@ -34,10 +34,15 @@ Questions:
 - number without "
 - when to use int when float
 -"gear" just for automatic vehicles
--"seatbelt" maybe boolean
+"seatbelt" maybe boolean
 -"wet tank "AIR"?? pressure
 - whats meant with idle longer 10?, rpm treshold 
 - e.g. totalvehiclewocrcontr: bad variable name
+- setcallback types erklärung
+- order short required paramter still in description
+- line 374, vesion number in general string?
+- tacho in general
+- 503 authentication limit? not service unavailable
 
 
 TODOs:
