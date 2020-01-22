@@ -1583,7 +1583,7 @@
                   },
                 "value":{
                   "type": "string",
-                  "enum": ["neutral", "reverse", "forward", "parked"]
+                  "enum": ["neutral", "reverse", "forward", "parked", "one", "two", "three", "four", "five", "six", "seven", "eight"]
                 }
               }
             },
