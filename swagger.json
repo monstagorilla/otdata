@@ -2598,6 +2598,12 @@
     "OTDriverCard": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Unique object ID",
+          "example": "4025"
+        },
         "surname": {
           "type": "string",
           "example": "Mustermann"
