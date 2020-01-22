@@ -186,14 +186,14 @@
         "summary": "Returns all registered devices",
         "parameters": [
           {
-            "in": "header",
+            "in": "query",
             "name": "otid",
             "type": "integer",
             "format": "int64",
             "minimum": 0
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "mid",
             "type": "integer",
             "format": "int32",
@@ -272,24 +272,24 @@
         "summary": "Returns information for simple navigation orders",
         "parameters": [
           {
-            "in": "header",
+            "in": "query",
             "name": "otid",
             "type": "integer",
             "format": "int64",
             "minimum": 0
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "refid",
             "type": "string"
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "carrefid",
             "type": "string"
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "tournumber",
             "type": "string"
           },
@@ -366,12 +366,12 @@
         "summary": "Gets message",
         "parameters": [
           {
-            "in": "header",
+            "in": "query",
             "name": "refid",
             "type": "string"
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "carrefid",
             "type": "string",
             "required": true
@@ -550,7 +550,7 @@
         "summary": "Gets all devices registered at tacho.",
         "parameters": [
           {
-            "in": "header",
+            "in": "query",
             "name": "otid",
             "type": "integer",
             "format": "int64",
@@ -558,7 +558,7 @@
             "required": true
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "mid",
             "type": "integer",
             "format": "int32",
@@ -602,7 +602,7 @@
         "summary": "Gets all registered drivers",
         "parameters": [
           {
-            "in": "header",
+            "in": "query",
             "name": "otid",
             "type": "integer",
             "format": "int64",
@@ -610,7 +610,7 @@
             "required": true
           },
           {
-            "in": "header",
+            "in": "query",
             "name": "mid",
             "type": "integer",
             "format": "int32",
@@ -659,7 +659,7 @@
             "type": "integer",
             "format": "int64",
             "minimum": 0,
-            "in": "header",
+            "in": "query",
             "required": true
           },
           {
@@ -667,12 +667,12 @@
             "type": "integer",
             "format": "int32",
             "minimum": 0,
-            "in": "header",
+            "in": "query",
             "required": true
           },
           {
             "name": "class",
-            "in": "header",
+            "in": "query",
             "type": "string",
             "enum": ["driver", "vehicle", "all"],
             "required": true
@@ -680,14 +680,14 @@
           {
             "name": "identification",
             "type": "string",
-            "in": "header",
+            "in": "query",
             "description": "It is an optional field to get specific DDD files,\nDriver or vehicle\nidentification\n"
           },
           {
             "name": "date",
             "type": "string",
             "format": "date-time",
-            "in": "header",
+            "in": "query",
             "description": "Receive all DDD files, which newer then date.\nLeave empty, you'll get the newest."
           },
           {
@@ -729,7 +729,7 @@
             "type": "integer",
             "format": "int64",
             "minimum": 0,
-            "in": "header",
+            "in": "query",
             "required": true
           },
           {
@@ -737,7 +737,7 @@
             "type": "integer",
             "format": "int32",
             "minimum": 0,
-            "in": "header",
+            "in": "query",
             "required": true
           },
           {
