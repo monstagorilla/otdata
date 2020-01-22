@@ -1946,7 +1946,7 @@
                   "description": "Fuel rate average in l/h"                }
               }
             },
-            "totalvehiclewocrcontr": {
+            "totaldistancecruisecontrol": {
               "type": "object",
               "properties": {
                 "status": {
