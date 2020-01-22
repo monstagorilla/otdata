@@ -853,7 +853,13 @@
         "name": {
           "type": "string",
           "maxLength": 150,
-          "description": "Plate or name",
+          "description": "Name of vehicle",
+          "example": "MH-MH 1"
+        },
+        "plate_number": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "Plate number of vehicle",
           "example": "MH-MH 1"
         },
         "manufacturer": {
@@ -894,12 +900,6 @@
           "maxLength": 30,
           "description": "Serial number",
           "example": ""
-        },
-        "plate_number": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "The plate number from the vehicle",
-          "example": "MH-MH 1"
         }
       },
       "required": [
