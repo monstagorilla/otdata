@@ -834,6 +834,15 @@
           "description": "Reference Number",
           "example": "1"
         },
+        "gid":{
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "description": "List of assigned vehicle groups"
+        },
         "name": {
           "type": "string",
           "maxLength": 150,
@@ -907,7 +916,7 @@
           "type": "integer",
           "format": "int64",
           "minimum": 0,
-          "description": "Data ID (optional)"
+          "description": "Data ID"
         },
         "receiverid": {
           "type": "integer",
