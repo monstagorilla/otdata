@@ -2561,6 +2561,11 @@
           "description": "Filename",
           "example": "123456789.DDD"
         },
+        "ident": {
+          "type": "string",
+          "description": "Vehicle or driver ident",
+          "example": "example: DF00000000000000"
+        },
         "class": {
           "type": "string",
           "enum": ["driver", "vehicle", "all"],
