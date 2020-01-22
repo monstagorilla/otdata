@@ -37,6 +37,14 @@
             "description": "Unique ObjectID"
           },
           {
+            "name": "gid",
+            "in": "query",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "Vehicle Group"
+          },
+          {
             "name": "utcf",
             "in": "query",
             "type": "string",
@@ -100,6 +108,14 @@
             "type": "integer",
             "format": "int32",
             "minimum": 0
+          },
+          {
+            "name": "gid",
+            "in": "query",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "Vehicle Group"
           },
           {
             "name": "token",
