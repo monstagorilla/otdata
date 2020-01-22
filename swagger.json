@@ -713,11 +713,18 @@
             "description": "It is an optional field to get specific DDD files,\nDriver or vehicle\nidentification\n"
           },
           {
-            "name": "date",
+            "name": "from",
             "type": "string",
             "format": "date-time",
             "in": "query",
-            "description": "Receive all DDD files, which newer then date.\nLeave empty, you'll get the newest."
+            "description": "Only data from this point in time will be returned"
+          },
+          {
+            "name": "to",
+            "type": "string",
+            "format": "date-time",
+            "in": "query",
+            "description": "Only data up to this point in time will be returned"
           },
           {
             "name": "token",
