@@ -37,6 +37,14 @@
             "description": "Unique ObjectID"
           },
           {
+            "name": "cid",
+            "in": "query",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "Customer ID"
+          },
+          {
             "name": "gid",
             "in": "query",
             "type": "integer",
