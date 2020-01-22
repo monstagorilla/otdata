@@ -18,7 +18,6 @@ Questions:
 - examples not everywhere
 - driver_status array? 
 - booleans description??
-- "in":
 - array collection format
 - best practice link
 - camel cases
@@ -35,17 +34,15 @@ Questions:
 + line 374, vesion number in general string?
 - tacho in general
 + 503 authentication limit? not service unavailable
-- mid mandanten id
-- gid group id 
-- header to query
 - use activities 
 - data id
 - name and plate number 
 - get all gid array 
-- gid in history und möglicherweise im tacho 
+    - gid in history und möglicherweise im tacho 
 - schema für daten in 
     driver 
 - address in otmmber use otaddress
+- getlive should be array of arrays 
 
 TODOs:
 - documentation of parameters and functions
