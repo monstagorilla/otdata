@@ -442,8 +442,9 @@
           {
             "name": "version",
             "in": "query",
-            "type": "integer",
-            "description": "Version number of the protocol"
+            "type": "string",
+            "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+            "description": "Protocol version"
           },
           {
             "name": "otid",
@@ -816,11 +817,9 @@
       "type": "object",
       "properties": {
         "version": {
-          "type": "integer",
-          "format": "int32",
-          "minimum": 0,
-          "description": "Versions number of the protocol",
-          "example": 1
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "otid": {
           "type": "integer",
@@ -910,8 +909,9 @@
       "type": "object",
       "properties": {
         "version": {
-          "type": "integer",
-          "description": "Versions number of the protocol"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "otid": {
           "type": "integer",
@@ -2221,8 +2221,9 @@
       "type": "object",
       "properties": {
         "version": {
-          "type": "integer",
-          "description": "Version number of the protocol"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "id": {
           "type": "integer"
@@ -2426,8 +2427,9 @@
           "description": "Registered opentelematics number"
         },
         "version": {
-          "type": "integer",
-          "description": "Protokoll version"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "type": {
           "type": "string",
@@ -2465,8 +2467,9 @@
           "description": "Registered opentelematics number"
         },
         "version": {
-          "type": "integer",
-          "description": "Protokoll version"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "loglevel": {
           "type": "integer"
@@ -2501,8 +2504,9 @@
           "description": "Registered opentelematics number"
         },
         "version": {
-          "type": "integer",
-          "description": "Protokoll version"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Protocol version"
         },
         "name": {
           "type": "string"
