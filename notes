@@ -34,15 +34,15 @@ Questions:
 + line 374, vesion number in general string?
 - tacho in general
 + 503 authentication limit? not service unavailable
-- use activities 
+- use activities ??
 - data id
 - name and plate number 
-- get all gid array 
-    - gid in history und möglicherweise im tacho 
+- gid möglicherweise im tacho 
 - schema für daten in 
     driver 
 - address in otmmber use otaddress
 - getlive should be array of arrays 
+- why change in tach driver to drivercard?
 
 TODOs:
 - documentation of parameters and functions
