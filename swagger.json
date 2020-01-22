@@ -103,11 +103,12 @@
             "description": "Unique ObjectID"
           },
           {
-            "name": "mid",
+            "name": "cid",
             "in": "query",
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64",
+            "minimum": 0,
+            "description": "Customer ID"
           },
           {
             "name": "gid",
@@ -209,11 +210,12 @@
             "minimum": 0
           },
           {
+            "name": "cid",
             "in": "query",
-            "name": "mid",
             "type": "integer",
-            "format": "int32",
-            "minimum": 0
+            "format": "int64",
+            "minimum": 0,
+            "description": "Customer ID"
           },
           {
             "name": "token",
@@ -574,11 +576,12 @@
             "required": true
           },
           {
+            "name": "cid",
             "in": "query",
-            "name": "mid",
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "minimum": 0,
+            "description": "Customer ID",
             "required": true
           },
           {
@@ -626,11 +629,12 @@
             "required": true
           },
           {
+            "name": "cid",
             "in": "query",
-            "name": "mid",
             "type": "integer",
-            "format": "int32",
+            "format": "int64",
             "minimum": 0,
+            "description": "Customer ID",
             "required": true
           },
           {
@@ -679,11 +683,12 @@
             "required": true
           },
           {
-            "name": "mid",
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0,
+            "name": "cid",
             "in": "query",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "Customer ID",
             "required": true
           },
           {
@@ -749,11 +754,12 @@
             "required": true
           },
           {
-            "name": "mid",
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0,
+            "name": "cid",
             "in": "query",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0,
+            "description": "Customer ID",
             "required": true
           },
           {
