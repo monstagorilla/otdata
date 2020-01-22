@@ -27,7 +27,7 @@
           "History data"
         ],
         "summary": "Returns list of data in specific time interval",
-        "description": "If no deviceid exists, all vehicles will be returned\nIf no utcf exists, all data will be returned till the time utct\nIf no utct exists, all data will be returned from utcf till now\nif nothing exists, all data will be returned",
+        "description": "If no deviceid exists, all vehicles will be returned\nIf 'from' and 'to' do not exist, complete history will be returned ",
         "parameters": [
           {
             "name": "deviceid",
@@ -53,18 +53,18 @@
             "description": "Vehicle Group"
           },
           {
-            "name": "utcf",
+            "name": "from",
             "in": "query",
             "type": "string",
             "format": "date-time",
-            "description": "Start of time interval in UTC"
+            "description": "Only data from this point in time will be returned"
           },
           {
-            "name": "utct",
+            "name": "to",
             "in": "query",
             "type": "string",
             "format": "date-time",
-            "description": "End of time interval in UTC"
+            "description": "Only data up to this point in time will be returned"
           },
           {
             "name": "token",
