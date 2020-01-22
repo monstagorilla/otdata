@@ -1,5 +1,4 @@
 Questions:
-- mid, otid, warum ot spezifisch
 - tags
 - allgemein beispiele bei parametern.. sollte vom backend festgelegt bzw gecheckt werden
 - fehlende if not exists bzw aufgabe der schnittstelle???
@@ -7,46 +6,49 @@ Questions:
 - get message... list??
 - setstatus just for order short
 - begin < end checken gethistory
-- ascending or descending in lists
-- drivertime in minutes, let backecnd decide specific intervals?
++ ascending or descending in lists
++ drivertime in minutes, let backecnd decide specific intervals?
 - descriptions
-- whats driver recognize
-- why type int and format float?
-- absstatus
++ whats driver recognize
+-> absstatus
 - formats, minimal, maximum, maxlength, 
 -when minimum e.g. percentage for fuel level... can be ouside of 0-100?
 - examples not everywhere
 - driver_status array? 
 - booleans description??
 - array collection format
-- best practice link
-- camel cases
+-> best practice link
+-> camel cases/under score?? consistent variable names
 - which properties have to be "required", do superproperies also have to be "required"? idea: all required but can be n/a 
 - torque 0-250?
-- when to use int when float
--"gear" just for automatic vehicles
+-> when to use int when float
+-> + "gear" just for automatic vehicles
 "seatbelt" maybe boolean
 +"wet tank "AIR"?? pressure
 - whats meant with idle longer 10?, rpm treshold 
 - e.g. totalvehiclewocrcontr: bad variable name
 - setcallback types erklärung
 - order short required paramter still in description
-+ line 374, vesion number in general string?
+-> line 374, vesion number in general string?
 - tacho in general
-+ 503 authentication limit? not service unavailable
+-> 503 authentication limit? not service unavailable
 - use activities ??
-- data id
-- name and plate number 
+- data id 
 - gid möglicherweise im tacho 
-- schema für daten in 
+-> schema für daten in 
     driver 
-- address in otmmber use otaddress
-- getlive should be array of arrays 
+-> address in otmmber use otaddress
+-> getlive should be array of arrays 
 - why change in tach driver to drivercard?
 
 TODOs:
 - documentation of parameters and functions
 - auth guide
+- Workflows
+- zusammenfassung änderungen
+- fragen an hj
+
+future work:
 - examples in different languages
 - example tool
 - website
