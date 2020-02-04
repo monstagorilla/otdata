@@ -75,7 +75,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -83,14 +83,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -135,7 +141,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -143,14 +149,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -191,14 +203,23 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful"
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -234,7 +255,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -242,14 +263,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -277,17 +304,23 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response"
-          },
           "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       },
@@ -328,7 +361,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -336,14 +369,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -371,17 +410,23 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response"
-          },
           "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       },
@@ -411,7 +456,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -420,13 +465,22 @@
             }
           },
           "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -476,7 +530,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -484,14 +538,20 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -518,17 +578,23 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful"
+          "204": {
+            "$ref": "#/responses/NoContent"
           },
-          "400": {
-            "description": "Bad Request"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -549,7 +615,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -557,14 +623,20 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -602,7 +674,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -610,14 +682,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -655,7 +733,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -663,14 +741,20 @@
               }
             }
           },
-          "204": {
-            "description": "The server successfully processed the request and is not returning any content"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
@@ -736,7 +820,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful",
+            "description": "OK",
             "schema": {
               "type": "array",
               "items": {
@@ -744,14 +828,20 @@
               }
             }
           },
-          "400": {
-            "description": "Bad Request"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       },
@@ -793,26 +883,77 @@
           }
         ],
         "responses": {
-          "202": {
-            "description": "Container data was accepted"
+          "204": {
+            "$ref": "#/responses/NoContent"
           },
-          "400": {
-            "description": "Invalid parameter\nInvalid selector\n"
+          "400":{
+            "$ref": "#/responses/BadRequest"
           },
           "401": {
-            "description": "Unauthorized"
+            "$ref": "#/responses/Unauthorized"
           },
-          "403": {
-            "description": "Forbidden, the user might not have the necessary permissions for a resource, or may need an account of some sort."
+          "403":{
+            "$ref": "#/responses/Forbidden"
           },
-          "503": {
-            "description": "Authentication limit exceeded"
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
           }
         }
       }
     }
   },
+  "responses": {
+    "NoContent": {
+      "description": "No Content. the server has successfully fulfilled the request and that there is no additional content to return in the response payload body"
+    },
+    "BadRequest": {
+      "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
+      "schema":  {
+        "$ref": "#/definitions/OTError"
+      }
+    },
+    "Unauthorized": {
+      "description": "Unauthorized. The request requires user authentication",
+      "schema":  {
+        "$ref": "#/definitions/OTError"
+      }
+    },
+    "Forbidden": {
+      "description": "Forbidden. The server understood the request, but refuses to authorize it.",
+      "schema":  {
+        "$ref": "#/definitions/OTError"
+      }
+    },
+    "NotFound": {
+      "description": "Not Found. The server has not found anything matching the effective request URI.",
+      "schema":  {
+        "$ref": "#/definitions/OTError"
+      }
+    },
+    "InternalServerError":{
+      "description": "Internal Server Error. The server encountered an unexpected condition which prevented it from fulfilling the request.",
+      "schema":  {
+        "$ref": "#/definitions/OTError"
+      }
+    }
+  },
   "definitions": {
+    "OTError":{
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Further explanation of error or cause"
+        },
+        "code":{
+          "type": "string",
+          "description": "Custom error code"
+        }
+      }
+    },
     "OTDevice": {
       "type": "object",
       "properties": {
