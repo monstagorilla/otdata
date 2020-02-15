@@ -916,7 +916,7 @@
       }
     },
     "Unauthorized": {
-      "description": "Unauthorized. The request requires user authentication",
+      "description": "Unauthorized. The request requires user authentication.",
       "schema":  {
         "$ref": "#/definitions/OTError"
       }
