@@ -2178,12 +2178,12 @@
         },
         "rpm": {
           "type": "integer",
-          "format": "float",
+          "format": "int32",
           "description": "Output shaft speed  rpm"
         },
         "speed": {
           "type": "integer",
-          "format": "float",
+          "format": "int32",
           "description": "TCO vehicle speed  km/h"
         }
       }
@@ -2300,7 +2300,7 @@
         },
         "overspeeddistance": {
           "type": "integer",
-          "format": "float",
+          "format": "int32",
           "description": "Total overspeed distance km"
         },
         "rpmtime": {
@@ -2310,7 +2310,7 @@
         },
         "rpmdistance": {
           "type": "integer",
-          "format": "float",
+          "format": "int32",
           "description": "Total over RPM distance km"
         },
         "cruisabletime": {
