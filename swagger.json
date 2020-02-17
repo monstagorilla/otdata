@@ -9,6 +9,10 @@
       "email": "info@opentelematics.io"
     }
   },
+  "externalDocs": {
+    "description": "Additional Documentation",
+    "url": "https://opentelematics.gitlab.io/otdata/docs/"
+  },
   "host": "otdata.dummy.de",
   "basePath": "/",
   "schemes": [
