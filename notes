@@ -1,44 +1,22 @@
 Questions:
 - allgemein beispiele bei parametern.. sollte vom backend festgelegt bzw gecheckt werden
-- fehlende if not exists bzw aufgabe der schnittstelle???
-- order short schema
-- get message... list??
-- setstatus just for order short
-- begin < end checken gethistory
-+ ascending or descending in lists
-+ drivertime in minutes, let backecnd decide specific intervals?
 - descriptions
-+ whats driver recognize
--> absstatus
 - formats, minimal, maximum, maxlength, patterns
 - when minimum e.g. percentage for fuel level... can be ouside of 0-100?
 - examples not everywhere
-- driver_status array? 
 - booleans description??
-- array collection format
 -> camel cases/under score?? consistent variable names
-- which properties have to be "required", do superproperies also have to be "required"? idea: all required but can be n/a 
 - torque 0-250?
--> when to use int when float
 "seatbelt" maybe boolean
-+ "wet tank "AIR"?? pressure
-- whats meant with idle longer 10?, rpm treshold 
 - e.g. totalvehiclewocrcontr: bad variable name
-- setcallback types erklärung
 - order short required paramter still in description
 - tacho in general
-- use activities ??
-- data id 
 - gid möglicherweise im tacho 
 -> schema für daten in 
     driver 
--> address in otmmber use otaddress
--> getlive should be array of arrays 
-- why change in tach driver to drivercard?
-- body request paramters everywhere? regarding tokens in get requests, consistency
--loglevel.. low important or high important
 -discriminator
-- ids generally strings or integer??? e.g.  deviceid vs. cid
+- externaldocs link in the right places 
+
 
 TODOs:
 - documentation of parameters and functions
