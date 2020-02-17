@@ -4,6 +4,7 @@ pages:
   - mkdir .public
   - cp -r docs/ .public
   - mv .public public
+  - sudo apt install docsify
   - docsify serve public/
   artifacts:
     paths:
