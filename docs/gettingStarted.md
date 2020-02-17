@@ -1,8 +1,4 @@
-# Hello World
+# Getting Started
 
-sdfsdfsdfsdfsdf
-sdfsdf
-s
-dfsdf  
 
 
