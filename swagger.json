@@ -31,7 +31,7 @@
           "otdata"
         ],
         "summary": "Returns a list of data that matches the specified time interval and ID",
-        "description": "If no ID is specified, data is returned for all vehicles.\nIf 'from' and 'to' do not exist, the complete history is returned.",
+        "description": "If no ID is specified, data is returned for all vehicles.\nIf `from` and `to` do not exist, the complete history is returned.",
         "parameters": [
           {
             "$ref": "#/parameters/deviceidParam"
