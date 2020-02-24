@@ -34,47 +34,28 @@
         "description": "If no ID is specified, data is returned for all vehicles.\nIf 'from' and 'to' do not exist, the complete history is returned.",
         "parameters": [
           {
-            "name": "deviceid",
-            "in": "query",
-            "maxLength": 50,
-            "type": "string",
-            "description": "Unique ObjectID"
+            "$ref": "#/parameters/deviceidParam"
           },
           {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID"
+            "$ref": "#/parameters/cidParam"
           },
           {
-            "name": "gid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Vehicle Group"
+            "$ref": "#/parameters/gidParam"
           },
           {
-            "name": "from",
-            "in": "query",
-            "type": "string",
-            "format": "date-time",
-            "description": "Only data from this point on are returned"
+            "$ref": "#/parameters/fromParam"
           },
           {
-            "name": "to",
-            "in": "query",
-            "type": "string",
-            "format": "date-time",
-            "description": "Only data up to this point in time are returned"
+            "$ref": "#/parameters/toParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -114,33 +95,22 @@
         "description": "If no ID is specified, data is returned for all vehicles",
         "parameters": [
           {
-            "name": "deviceid",
-            "in": "query",
-            "maxLength": 50,
-            "type": "string",
-            "description": "Unique ObjectID"
+            "$ref": "#/parameters/deviceidParam"
           },
           {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID"
+            "$ref": "#/parameters/cidParam"
           },
           {
-            "name": "gid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Vehicle Group"
+            "$ref": "#/parameters/gidParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -200,10 +170,13 @@
             "description": "livedata, orderstate, messages"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -236,25 +209,16 @@
         "summary": "Returns a list of all registered devices that match the specified ID",
         "parameters": [
           {
-            "in": "query",
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
+            "$ref": "#/parameters/cidParam"
           },
           {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID"
+            "$ref": "#/parameters/otidParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -301,10 +265,13 @@
             }
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -336,13 +303,6 @@
         "parameters": [
           {
             "in": "query",
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
-          },
-          {
-            "in": "query",
             "name": "refid",
             "type": "string"
           },
@@ -357,10 +317,13 @@
             "type": "string"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -407,10 +370,13 @@
             }
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -452,10 +418,13 @@
             "required": true
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -498,21 +467,6 @@
         "description": "If a callback address is stored, logs will be sent",
         "parameters": [
           {
-            "name": "version",
-            "in": "query",
-            "type": "string",
-            "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-            "description": "Protocol version"
-          },
-          {
-            "name": "otid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Registered opentelematics number"
-          },
-          {
             "name": "loglevel",
             "in": "query",
             "type": "integer",
@@ -526,10 +480,13 @@
             "description": "which logfile.\nFor all logs, set free"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -575,10 +532,13 @@
             }
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -611,10 +571,13 @@
         "summary": "Returns a list of all members of OpenTelematics e.V.",
         "parameters": [
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -653,27 +616,16 @@
         "summary": "Returns a list of all registered vehicles of the specified customer",
         "parameters": [
           {
-            "in": "query",
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "required": true
+            "$ref": "#/parameters/cidParamRequired"
           },
           {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID",
-            "required": true
+            "$ref": "#/parameters/otidParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -712,27 +664,16 @@
         "summary": "Returns a list of all registered drivers of the specified customer",
         "parameters": [
           {
-            "in": "query",
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "required": true
+            "$ref": "#/parameters/cidParamRequired"
           },
           {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID",
-            "required": true
+            "$ref": "#/parameters/otidParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -772,21 +713,7 @@
         "description": "1. Get the latest ones\n    - ALL: class = 3, rest leave blank\n    - Vehicles: class=2, rest leave blank\n    - Driver: class=1, rest leave blank\n2. Get all since date\n  - ALL: class = 3, date = value\n  - Vehicles: class=2, date = value\n  - Driver: class=1, date = value\n3. Specification\n  - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2\n\nexample 1\n\n  - class: 3\n  - response: All actually DDD files\n  \nexample 2 \n  - class: 3\n  - date: 2019-05-21T17:32:28Z\n  - response: All ones which newer than 2019-05-21T17:32:28Z\n\nexample 3\n  - class: 2\n  - date: 2019-05-21T17:32:28Z\n  - identification: WVWZZZ1JZ3W386752 \n  - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification\n",
         "parameters": [
           {
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "in": "query",
-            "required": true
-          },
-          {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID",
-            "required": true
+            "$ref": "#/parameters/cidParamRequired"
           },
           {
             "name": "class",
@@ -802,24 +729,19 @@
             "description": "It is an optional field to get specific DDD files,\nDriver or vehicle\nidentification\n"
           },
           {
-            "name": "from",
-            "type": "string",
-            "format": "date-time",
-            "in": "query",
-            "description": "Only data from this point on are returned"
+            "$ref": "#/parameters/fromParam"
           },
           {
-            "name": "to",
-            "type": "string",
-            "format": "date-time",
-            "in": "query",
-            "description": "Only data up to this point in time are returned"
+            "$ref": "#/parameters/toParam"
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -856,21 +778,7 @@
         "summary": "Transmits a list of DDD files",
         "parameters": [
           {
-            "name": "otid",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "in": "query",
-            "required": true
-          },
-          {
-            "name": "cid",
-            "in": "query",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0,
-            "description": "Customer ID",
-            "required": true
+            "$ref": "#/parameters/cidParamRequired"
           },
           {
             "name": "tacho",
@@ -880,10 +788,13 @@
             }
           },
           {
-            "name": "token",
-            "in": "query",
-            "type": "string",
-            "description": "JSON Web Token"
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
           }
         ],
         "responses": {
@@ -907,6 +818,75 @@
           }
         }
       }
+    }
+  },
+  "parameters": {
+    "tokenParam": {
+      "name": "token",
+      "in": "query",
+      "type": "string",
+      "description": "JSON Web Token"
+    },
+    "otidParam": {
+      "in": "query",
+      "name": "otid",
+      "type": "integer",
+      "format": "int64",
+      "required": true,
+      "description": "Registered OpenTelematics ID of the requester"
+    },
+    "versionParam": {
+      "in": "query",
+      "name": "version",
+      "type": "string",
+      "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "description": "Version of the OpenTelematics API used"
+    },
+    "fromParam": {
+      "name": "from",
+      "type": "string",
+      "format": "date-time",
+      "in": "query",
+      "description": "Only data from this point on are returned"
+    },
+    "toParam": {
+      "name": "to",
+      "type": "string",
+      "format": "date-time",
+      "in": "query",
+      "description": "Only data up to this point in time are returned"
+    },
+    "cidParam": {
+      "name": "cid",
+      "in": "query",
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Customer ID"
+    },
+    "cidParamRequired": {
+      "name": "cid",
+      "in": "query",
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Customer ID",
+      "required": true
+    },
+    "gidParam": {
+      "name": "gid",
+      "in": "query",
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Vehicle Group"
+    },
+    "deviceidParam": {
+      "name": "deviceid",
+      "in": "query",
+      "maxLength": 50,
+      "type": "string",
+      "description": "Unique ObjectID"
     }
   },
   "responses": {
