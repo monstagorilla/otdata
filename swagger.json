@@ -973,7 +973,7 @@
           "description": "Registered opentelematics number",
           "example": 3
         },
-        "id": {
+        "deviceid": {
           "type": "string",
           "maxLength": 50,
           "description": "Unique objectID",
@@ -1076,11 +1076,11 @@
           "minimum": 0,
           "description": "Receiver ID register opentelematics number from receiver"
         },
-        "manid": {
+        "cid": {
           "type": "integer",
           "format": "int64",
           "minimum": 0,
-          "description": "Mandanten id"
+          "description": "Customer ID"
         },
         "reason": {
           "$ref": "#/definitions/OTReason"
@@ -1412,9 +1412,9 @@
           "pattern": "^[A-Z]{3}$",
           "description": "ISO-3166 ALPHA-3"
         },
-        "customerid": {
+        "cid": {
           "type": "integer",
-          "format": "int32"
+          "format": "int64"
         },
         "customername": {
           "type": "string",
@@ -2383,10 +2383,10 @@
           "format": "int64",
           "description": "Receicer ID register opentelematics number from receiver"
         },
-        "manid": {
+        "cid": {
           "type": "integer",
           "format": "int64",
-          "description": "Mandanten id"
+          "description": "Customer ID"
         },
         "refid": {
           "type": "string"
