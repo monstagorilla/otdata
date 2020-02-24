@@ -31,7 +31,7 @@
           "otdata"
         ],
         "summary": "Returns a list of data that matches the specified time interval and ID",
-        "description": "If no deviceid exists, all vehicles will be returned\nIf 'from' and 'to' do not exist, complete history will be returned ",
+        "description": "If no ID is specified, data is returned for all vehicles.\nIf 'from' and 'to' do not exist, the complete history is returned.",
         "parameters": [
           {
             "name": "deviceid",
@@ -61,14 +61,14 @@
             "in": "query",
             "type": "string",
             "format": "date-time",
-            "description": "Only data from this point in time will be returned"
+            "description": "Only data from this point on are returned"
           },
           {
             "name": "to",
             "in": "query",
             "type": "string",
             "format": "date-time",
-            "description": "Only data up to this point in time will be returned"
+            "description": "Only data up to this point in time are returned"
           },
           {
             "name": "token",
@@ -111,7 +111,7 @@
           "otdata"
         ],
         "summary": "Returns a list of the current data of all vehicles or vehicles that match the specified ID ",
-        "description": "If no deviceid exists, the data of all vehicles will be returned\n",
+        "description": "If no ID is specified, data is returned for all vehicles",
         "parameters": [
           {
             "name": "deviceid",
@@ -806,14 +806,14 @@
             "type": "string",
             "format": "date-time",
             "in": "query",
-            "description": "Only data from this point in time will be returned"
+            "description": "Only data from this point on are returned"
           },
           {
             "name": "to",
             "type": "string",
             "format": "date-time",
             "in": "query",
-            "description": "Only data up to this point in time will be returned"
+            "description": "Only data up to this point in time are returned"
           },
           {
             "name": "token",
