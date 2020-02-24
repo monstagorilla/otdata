@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.5",
     "title": "OTData",
-    "description": "OTData structure\n- The authentication is specified by the interface operator.\n- The customer is specified by the authentication.\n",
+    "description": "The software-independent standard interface for the transmission of telematics data.\n- The authentication is specified by the interface operator\n- It is recommended to use OAuth 2.0",
     "contact": {
       "name": "OpenTelematics e.V.",
       "email": "info@opentelematics.io"
