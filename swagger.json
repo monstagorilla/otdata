@@ -28,7 +28,7 @@
     "/otdata/gethistory": {
       "get": {
         "tags": [
-          "History data"
+          "otdata"
         ],
         "summary": "Returns a list of data that matches the specified time interval and ID",
         "description": "If no deviceid exists, all vehicles will be returned\nIf 'from' and 'to' do not exist, complete history will be returned ",
@@ -108,7 +108,7 @@
     "/otdata/getlive": {
       "get": {
         "tags": [
-          "Get live data"
+          "otdata"
         ],
         "summary": "Returns a list of the current data of all vehicles or vehicles that match the specified ID ",
         "description": "If no deviceid exists, the data of all vehicles will be returned\n",
@@ -174,7 +174,7 @@
     "/otdata/setcallback": {
       "post": {
         "tags": [
-          "Set callback url"
+          "otdata"
         ],
         "summary": "Sets callback URL and port for data receiving",
         "parameters": [
@@ -231,7 +231,7 @@
     "/otdevice/getall": {
       "get": {
         "tags": [
-          "Get all devices"
+          "otdevice"
         ],
         "summary": "Returns a list of all registered devices that match the specified ID",
         "parameters": [
@@ -288,7 +288,7 @@
     "/otdevice/ordershort": {
       "post": {
         "tags": [
-          "Order short"
+          "otdevice"
         ],
         "summary": "Transmits information for simple navigation orders",
         "description": "\nRequired parameters  - refid\n  - name\n  - carrefid\n  - drives\n    - refid\n    - latitude\n    - longitude\n    - name\n    \nDo not fill:\n  - status\n  - eta\n",
@@ -330,7 +330,7 @@
       },
       "get": {
         "tags": [
-          "Order short"
+          "otdevice"
         ],
         "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
         "parameters": [
@@ -394,7 +394,7 @@
     "/otmessage/message": {
       "post": {
         "tags": [
-          "Message"
+          "otmessage"
         ],
         "summary": "Sends a message",
         "description": "Required parameters:\n  - refid\n  - carrefid\n  - message\n  \nDo not fill:\n  - direction\n  - status\n",
@@ -436,7 +436,7 @@
       },
       "get": {
         "tags": [
-          "Message"
+          "otmessage"
         ],
         "summary": "Returns a list of messages of a specific vehicle",
         "parameters": [
@@ -492,7 +492,7 @@
     "/otdata/log": {
       "get": {
         "tags": [
-          "Log"
+          "otdata"
         ],
         "summary": "Returns a list of logs",
         "description": "If a callback address is stored, logs will be sent",
@@ -563,7 +563,7 @@
     "/otstatus/setstatus": {
       "post": {
         "tags": [
-          "Status"
+          "otstatus"
         ],
         "summary": "Sets status for a specific ordershort or message", 
         "parameters": [
@@ -606,7 +606,7 @@
     "/otmember/getmember": {
       "get": {
         "tags": [
-          "Member"
+          "otmember"
         ],
         "summary": "Returns a list of all members of OpenTelematics e.V.",
         "parameters": [
@@ -648,7 +648,7 @@
     "/otdata/tacho/vehicle": {
       "get": {
         "tags": [
-          "Tacho (NEW)"
+          "otdata"
         ],
         "summary": "Returns a list of all registered vehicles of the specified customer",
         "parameters": [
@@ -707,7 +707,7 @@
     "/otdata/tacho/driver": {
       "get": {
         "tags": [
-          "Tacho (NEW)"
+          "otdata"
         ],
         "summary": "Returns a list of all registered drivers of the specified customer",
         "parameters": [
@@ -766,7 +766,7 @@
     "/otdata/tacho": {
       "get": {
         "tags": [
-          "Tacho (NEW)"
+          "otdata"
         ],
         "summary": "Returns a list of all matching DDD files of the specified customer",
         "description": "1. Get the latest ones\n    - ALL: class = 3, rest leave blank\n    - Vehicles: class=2, rest leave blank\n    - Driver: class=1, rest leave blank\n2. Get all since date\n  - ALL: class = 3, date = value\n  - Vehicles: class=2, date = value\n  - Driver: class=1, date = value\n3. Specification\n  - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2\n\nexample 1\n\n  - class: 3\n  - response: All actually DDD files\n  \nexample 2 \n  - class: 3\n  - date: 2019-05-21T17:32:28Z\n  - response: All ones which newer than 2019-05-21T17:32:28Z\n\nexample 3\n  - class: 2\n  - date: 2019-05-21T17:32:28Z\n  - identification: WVWZZZ1JZ3W386752 \n  - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification\n",
@@ -851,7 +851,7 @@
       },
       "post": {
         "tags": [
-          "Tacho (NEW)"
+          "otdata"
         ],
         "summary": "Transmits a list of DDD files",
         "parameters": [
