@@ -34,7 +34,7 @@
         "description": "If no ID is specified, data is returned for all vehicles.\nIf `from` and `to` do not exist, the complete history is returned.",
         "parameters": [
           {
-            "$ref": "#/parameters/deviceidParam"
+            "$ref": "#/parameters/didParam"
           },
           {
             "$ref": "#/parameters/cidParam"
@@ -95,7 +95,7 @@
         "description": "If no ID is specified, data is returned for all vehicles",
         "parameters": [
           {
-            "$ref": "#/parameters/deviceidParam"
+            "$ref": "#/parameters/didParam"
           },
           {
             "$ref": "#/parameters/cidParam"
@@ -881,12 +881,12 @@
       "minimum": 0,
       "description": "Vehicle Group"
     },
-    "deviceidParam": {
-      "name": "deviceid",
+    "didParam": {
+      "name": "did",
       "in": "query",
       "maxLength": 50,
       "type": "string",
-      "description": "Unique ObjectID"
+      "description": "Device ID"
     }
   },
   "responses": {
@@ -953,7 +953,7 @@
           "description": "Registered opentelematics number",
           "example": 3
         },
-        "deviceid": {
+        "did": {
           "type": "string",
           "maxLength": 50,
           "description": "Unique objectID",
@@ -1071,7 +1071,7 @@
           "description": "Date Time of message receive (optional)\n",
           "example": "2017-07-21T17:32:28Z"
         },
-        "deviceid": {
+        "did": {
           "type": "string",
           "maxLength": 50,
           "description": "Unique ObjectID"
@@ -1116,7 +1116,7 @@
         "position",
         "otid",
         "devicetime",
-        "deviceid",
+        "did",
         "receiverid"
       ]
     },
