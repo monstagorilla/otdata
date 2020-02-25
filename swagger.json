@@ -827,14 +827,6 @@
       "type": "string",
       "description": "JSON Web Token"
     },
-    "otidParam": {
-      "in": "query",
-      "name": "otid",
-      "type": "integer",
-      "format": "int64",
-      "required": true,
-      "description": "Registered OpenTelematics ID of the requester."
-    },
     "versionParam": {
       "in": "query",
       "name": "version",
@@ -856,35 +848,35 @@
       "in": "query",
       "description": "Only data up to this point in time are returned"
     },
+    "otidParam": {
+      "in": "query",
+      "name": "otid",
+      "type": "string",
+      "required": true,
+      "description": "Registered OpenTelematics ID of the requester."
+    },
     "cidParam": {
       "name": "cid",
       "in": "query",
-      "type": "integer",
-      "format": "int64",
-      "minimum": 0,
+      "type": "string",
       "description": "Customer ID"
     },
     "cidParamRequired": {
       "name": "cid",
       "in": "query",
-      "type": "integer",
-      "format": "int64",
-      "minimum": 0,
+      "type": "string",
       "description": "Customer ID",
       "required": true
     },
     "gidParam": {
       "name": "gid",
       "in": "query",
-      "type": "integer",
-      "format": "int64",
-      "minimum": 0,
+      "type": "string",
       "description": "Vehicle Group ID"
     },
     "didParam": {
       "name": "did",
       "in": "query",
-      "maxLength": 50,
       "type": "string",
       "description": "Device ID"
     }
@@ -925,12 +917,6 @@
     }
   },
   "definitions": {
-
-
-
-
-
-
     "OTError":{
       "type": "object",
       "properties": {
