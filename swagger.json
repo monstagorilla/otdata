@@ -833,7 +833,7 @@
       "type": "integer",
       "format": "int64",
       "required": true,
-      "description": "Registered OpenTelematics ID of the requester"
+      "description": "Registered OpenTelematics ID of the requester."
     },
     "versionParam": {
       "in": "query",
@@ -879,7 +879,7 @@
       "type": "integer",
       "format": "int64",
       "minimum": 0,
-      "description": "Vehicle Group"
+      "description": "Vehicle Group ID"
     },
     "didParam": {
       "name": "did",
@@ -925,6 +925,12 @@
     }
   },
   "definitions": {
+
+
+
+
+
+
     "OTError":{
       "type": "object",
       "properties": {
