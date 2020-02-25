@@ -1,5 +1,7 @@
 # Release Notes
 ## Version 1.0.5 (work in progress)
+A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/master).
+
 ### Major Changes
 - Improve and unify descriptions
 - Create website with additional documentation generated with docsify
