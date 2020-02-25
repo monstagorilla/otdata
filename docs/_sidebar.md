@@ -1,2 +1,3 @@
 - [Getting started](gettingStarted.md)
 - [Additional Documentation](additionalDocs.md)
+- [Release Notes](releaseNotes.md)
