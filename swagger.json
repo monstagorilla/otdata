@@ -809,6 +809,13 @@
             "$ref": "#/parameters/toParam"
           },
           {
+            "name": "timeused",
+            "in": "query",
+            "type": "string", 
+            "enum": ["activity", "download", "data"],
+            "description": "Indicates to which time tags `from` and `to` refer:\n`\"activity\"` refers to the time the activities were stored in the DDD Files\n`\"download\"` refers to the download time of the DDD file\n`\"data\"` refers to the time stemp of the DDD files"
+          },
+          {
             "$ref": "#/parameters/otidParam"
           },
           {
