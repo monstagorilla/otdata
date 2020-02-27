@@ -904,8 +904,10 @@
   "parameters": {
     "tokenParam": {
       "name": "token",
-      "in": "query",
-      "type": "string",
+      "in": "body",
+      "schema": {
+        "type": "string"
+      },
       "description": "JSON Web Token"
     },
     "versionParam": {
