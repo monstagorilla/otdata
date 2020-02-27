@@ -164,7 +164,7 @@
         "tags": [
           "otdata"
         ],
-        "summary": "Sets callback URL and port for data receiving",
+        "summary": "Sets callback URL for data receiving",
         "parameters": [
           {
             "name": "index",
@@ -183,9 +183,10 @@
             "in": "query",
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "enum": ["livedata", "orderstate", "messages", "all"]
             },
-            "description": "livedata, orderstate, messages"
+            "description": "Specifies the type of data to which the callback URL belongs"
           },
           {
             "$ref": "#/parameters/otidParam"
