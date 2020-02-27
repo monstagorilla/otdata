@@ -535,7 +535,7 @@
                     "data" :{
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/OTlog"
+                        "$ref": "#/definitions/OTLog"
                       }
                     }
                   }
@@ -2636,7 +2636,7 @@
         "status"
       ]
     },
-    "OTlog": {
+    "OTLog": {
       "type": "object",
       "properties": {
         "loglevel": {
