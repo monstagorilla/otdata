@@ -62,10 +62,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTData"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTData"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -117,10 +126,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTData"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTData"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -225,10 +243,18 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTDevice"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTDevice"                      }
+                    }
+                  }
+                }   
+              ] 
             }
           },
           "400":{
@@ -326,10 +352,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTTour"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTTour"
+                      }
+                    }
+                  }
+                }   
+              ] 
             }
           },
           "400":{
@@ -422,10 +457,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTMessage"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTMessage"
+                      }
+                    }
+                  }
+                }   
+              ] 
             }
           },
           "204": {
@@ -484,10 +528,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTlog"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTlog"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -575,10 +628,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTMember"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTMember"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -623,10 +685,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTDevice"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTDevice"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -671,10 +742,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTDriverCardArray"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTDriverCardArray"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -739,10 +819,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTTransferContainerArray"
-              }
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTTransferContainerArray"
+                      }
+                    }
+                  }
+                }   
+              ]
             }
           },
           "400":{
@@ -891,36 +980,66 @@
     "BadRequest": {
       "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
       "schema":  {
-        "$ref": "#/definitions/OTError"
+        "allOf": [
+          {"$ref": "#/definitions/OTResponseMeta"},
+          {"$ref": "#/definitions/OTError"}
+        ]
       }
     },
     "Unauthorized": {
       "description": "Unauthorized. The request requires user authentication.",
       "schema":  {
-        "$ref": "#/definitions/OTError"
+        "allOf": [
+          {"$ref": "#/definitions/OTResponseMeta"},
+          {"$ref": "#/definitions/OTError"}
+        ]      
       }
     },
     "Forbidden": {
       "description": "Forbidden. The server understood the request, but refuses to authorize it.",
       "schema":  {
-        "$ref": "#/definitions/OTError"
+        "allOf": [
+          {"$ref": "#/definitions/OTResponseMeta"},
+          {"$ref": "#/definitions/OTError"}
+        ]      
       }
     },
     "NotFound": {
       "description": "Not Found. The server has not found anything matching the effective request URI.",
       "schema":  {
-        "$ref": "#/definitions/OTError"
+        "allOf": [
+          {"$ref": "#/definitions/OTResponseMeta"},
+          {"$ref": "#/definitions/OTError"}
+        ]      
       }
     },
     "InternalServerError":{
       "description": "Internal Server Error. The server encountered an unexpected condition which prevented it from fulfilling the request.",
       "schema":  {
-        "$ref": "#/definitions/OTError"
+        "allOf": [
+          {"$ref": "#/definitions/OTResponseMeta"},
+          {"$ref": "#/definitions/OTError"}
+        ]      
       }
     }
   },
   "definitions": {
-    "OTError":{
+    "OTResponseMeta": {
+      "type": "object", 
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "description": "Version of the OpenTelematics API used"
+        }, 
+        "otid": {
+          "type": "string",
+          "description": "Registered OpenTelematics ID of the responder"
+        }
+      },
+      "required": ["otid"]
+    },
+    "OTError": {
       "type": "object",
       "properties": {
         "message": {
@@ -936,18 +1055,6 @@
     "OTDevice": {
       "type": "object",
       "properties": {
-        "version": {
-          "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
-        },
-        "otid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Registered opentelematics number",
-          "example": 3
-        },
         "did": {
           "type": "string",
           "maxLength": 50,
@@ -1020,36 +1127,16 @@
           "description": "Serial number",
           "example": ""
         }
-      },
-      "required": [
-        "otid"
-      ]
+      }
     },
     "OTData": {
       "type": "object",
       "properties": {
-        "version": {
-          "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
-        },
-        "otid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Registered opentelematics number sender receiver"
-        },
         "dataid": {
           "type": "integer",
           "format": "int64",
           "minimum": 0,
           "description": "Data ID"
-        },
-        "receiverid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Receiver ID register opentelematics number from receiver"
         },
         "cid": {
           "type": "integer",
@@ -1109,10 +1196,8 @@
       },
       "required": [
         "position",
-        "otid",
         "devicetime",
-        "did",
-        "receiverid"
+        "did"
       ]
     },
     "OTReason": {
@@ -2340,23 +2425,8 @@
     "OTTour": {
       "type": "object",
       "properties": {
-        "version": {
-          "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
-        },
         "id": {
           "type": "integer"
-        },
-        "otid": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Registered opentelematics number sender receiver"
-        },
-        "receiverid": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Receicer ID register opentelematics number from receiver"
         },
         "cid": {
           "type": "integer",
@@ -2540,17 +2610,6 @@
     "OTSetStatus": {
       "type": "object",
       "properties": {
-        "otid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Registered opentelematics number"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
-        },
         "type": {
           "type": "string",
           "maxLength": 150,
@@ -2580,17 +2639,6 @@
     "OTlog": {
       "type": "object",
       "properties": {
-        "otid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Registered opentelematics number"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
-        },
         "loglevel": {
           "type": "integer"
         },
@@ -2618,15 +2666,8 @@
       "type": "object",
       "properties": {
         "otid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Registered opentelematics number"
-        },
-        "version": {
           "type": "string",
-          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Protocol version"
+          "description": "Registered OpenTelematics ID of the member"
         },
         "name": {
           "type": "string"
