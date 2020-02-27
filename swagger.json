@@ -2249,8 +2249,8 @@
           "description": "Indicates the direction of the vehicle"
         },
         "speed": {
-          "type": "integer",
-          "format": "int32",
+          "type": "number",
+          "format": "float",
           "description": " Speed of the vehicle registered by the tachograph"
         },
         "cardid": {
@@ -2266,8 +2266,8 @@
           "description": "IDs of the cards of the drivers"
         },
         "rpm": {
-          "type": "integer",
-          "format": "int32",
+          "type": "number",
+          "format": "float",
           "description": "Output shaft speed  rpm"
         }
       }
