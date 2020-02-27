@@ -206,10 +206,10 @@
         "tags": [
           "otdevice"
         ],
-        "summary": "Returns a list of all registered devices that match the specified ID",
+        "summary": "Returns a list of all registered devices of the specified Customer",
         "parameters": [
           {
-            "$ref": "#/parameters/cidParam"
+            "$ref": "#/parameters/cidParamRequired"
           },
           {
             "$ref": "#/parameters/otidParam"
