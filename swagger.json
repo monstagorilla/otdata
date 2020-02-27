@@ -101,7 +101,7 @@
           "otdata"
         ],
         "summary": "Returns a list of the current data of all vehicles or vehicles that match the specified ID ",
-        "description": "If no ID is specified, data is returned for all vehicles",
+        "description": "If no ID is specified, data is returned for all vehicles.",
         "parameters": [
           {
             "$ref": "#/parameters/didParam"
@@ -498,8 +498,8 @@
         "tags": [
           "otdata"
         ],
-        "summary": "Returns a list of logs",
-        "description": "If a callback address is stored, logs will be sent",
+        "summary": "Returns a list of logs that matches the specified time intervall",
+        "description": "If `from` and `to` do not exist, all logs are returned.",
         "parameters": [
           {
             "name": "loglevel",
@@ -509,10 +509,10 @@
             "description": "all logs lower than loglevel"
           },
           {
-            "name": "call",
-            "in": "query",
-            "type": "string",
-            "description": "which logfile.\nFor all logs, set free"
+            "$ref": "#/parameters/fromParam" 
+          },
+          {
+            "$ref": "#/parameters/toParam" 
           },
           {
             "$ref": "#/parameters/otidParam"
