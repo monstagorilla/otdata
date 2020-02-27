@@ -2442,7 +2442,7 @@
         },
         "status": {
           "type": "string",
-          "enum": ["ok", "maladjusted", "delayedReturn", "delayedBreaking", "outworn", "reserved", "error", "n/a"]
+          "enum": ["ok", "maladjusted", "delayedReturn", "delayedBreaking", "outworn", "error", "n/a"]
         }
       }
     },
