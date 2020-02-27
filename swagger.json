@@ -302,14 +302,10 @@
         "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
         "parameters": [
           {
-            "in": "query",
-            "name": "refid",
-            "type": "string"
+            "$ref": "#/parameters/refidParam"
           },
           {
-            "in": "query",
-            "name": "carrefid",
-            "type": "string"
+            "$ref": "#/parameters/refdidParam"
           },
           {
             "in": "query",
@@ -407,15 +403,10 @@
         "summary": "Returns a list of messages of a specific vehicle",
         "parameters": [
           {
-            "in": "query",
-            "name": "refid",
-            "type": "string"
+            "$ref": "#/parameters/refidParam"
           },
           {
-            "in": "query",
-            "name": "carrefid",
-            "type": "string",
-            "required": true
+            "$ref": "#/parameters/refdidParam"
           },
           {
             "$ref": "#/parameters/otidParam"
@@ -875,7 +866,19 @@
       "description": "Vehicle Group ID"
     },
     "didParam": {
-      "name": "did",
+      "name": "refdid",
+      "in": "query",
+      "type": "string",
+      "description": "Device ID"
+    },
+    "refdidParam": {
+      "name": "refdid",
+      "in": "query",
+      "type": "string",
+      "description": "Device ID"
+    },
+    "refidParam": {
+      "name": "refid",
       "in": "query",
       "type": "string",
       "description": "Device ID"
