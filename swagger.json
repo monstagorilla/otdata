@@ -224,7 +224,7 @@
         "tags": [
           "otdevice"
         ],
-        "summary": "Returns a list of all registered devices of the specified Customer",
+        "summary": "Returns a list of all registered devices of the specified customer",
         "parameters": [
           {
             "$ref": "#/parameters/cidParamRequired"
