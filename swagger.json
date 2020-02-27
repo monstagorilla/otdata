@@ -25,7 +25,7 @@
     "application/json"
   ],
   "paths": {
-    "/otdata/gethistory": {
+    "/otdata/history": {
       "get": {
         "tags": [
           "otdata"
@@ -563,7 +563,7 @@
         }
       }
     },
-    "/otmember/getmember": {
+    "/otmember/member": {
       "get": {
         "tags": [
           "otmember"
