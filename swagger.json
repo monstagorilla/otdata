@@ -2191,61 +2191,84 @@
     },
     "OTTacho": {
       "type": "object",
+      "description": "`workstate`, `timerelstate`, `cardpresent`, `overspeed`, `systemevent`, `direction` and `speed` are described and specified as in SAE J 1939",
       "properties": {
-        "driverstatus": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": ["rest", "available", "work", "drive", "error", "n/a"]
+        "workstate": {
+          "type": "object",
+          "properties": {
+            "driver1": {
+              "type": "string",
+              "enum": ["rest", "available", "work", "drive", "error", "n/a"]
+            },
+            "driver2": {
+              "type": "string",
+              "enum": ["rest", "available", "work", "drive", "error", "n/a"]
+            }
           },
-          "description": "Driver 1,2 work state"
+          "description": "State of work of the drivers"
         },
-        "driverrecognize": {
-          "type": "boolean",
-          "description": "Driver recognize 1=yes/0=no"
-        },
-        "drivertime": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "description": "0=normal / 1=15 min. bef. 4 1/2h / 2=4 1/2h reached / 3=15 min bef. 9h / 4=9h reached / 5=15min bef. 16h / 6=16h reached / 14=Error / 15=n/a"
+        "timerelstate": {
+          "type": "object",
+            "properties": {
+            "driver1": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            },
+            "driver2": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
           },
-          "description": "Driver 1,2 work state"
+          "description": "Indicates if the driver approaches or exceeds working time limits\n0=normal / 1=15 min. bef. 4 1/2h / 2=4 1/2h reached / 3=15 min bef. 9h / 4=9h reached / 5=15min bef. 16h / 6=16h reached / 14=Error / 15=n/a"
         },
         "cardpresent": {
-          "type": "array",
-          "items": {
-            "type": "boolean"
+          "type": "object",
+          "properties": {
+            "driver1": {
+              "type": "boolean"
+            },
+            "driver2": {
+              "type": "boolean"
+            }
           },
-          "description": "Driver 1,2 Card present"
-        },
-        "cardid": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "description": "Cardid"
-          },
-          "description": "Driver 1,2 Card ID"
+          "description": "Indicates the presence of a driver card"
         },
         "overspeed": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Indicates whether the vehicle is exceeding the legal speed limit set in the tachograph"
         },
-        "tachoevent": {
-          "type": "boolean"
+        "systemevent": {
+          "type": "boolean",
+          "description": "Indicates that a tachograph event has occurred. This may include power supply interruption, interruption of the speed sensor, incorrect data on the driver card, driving without a driver card, illegal removal of a driver card, insertion of a driver card during driving, and time adjustment"
         },
         "direction": {
           "type": "string",
-          "enum": ["forward", "reverse"]
+          "enum": ["forward", "reverse"],
+          "description": "Indicates the direction of the vehicle"
+        },
+        "speed": {
+          "type": "integer",
+          "format": "int32",
+          "description": " Speed of the vehicle registered by the tachograph"
+        },
+        "cardid": {
+          "type": "object",
+          "properties": {
+            "driver1": {
+              "type": "string"
+            },
+            "driver2": {
+              "type": "string"
+            }
+          },
+          "description": "IDs of the cards of the drivers"
         },
         "rpm": {
           "type": "integer",
           "format": "int32",
           "description": "Output shaft speed  rpm"
-        },
-        "speed": {
-          "type": "integer",
-          "format": "int32",
-          "description": "TCO vehicle speed  km/h"
         }
       }
     },
