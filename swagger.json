@@ -752,7 +752,7 @@
                     "data" :{
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/OTDriverCardArray"
+                        "$ref": "#/definitions/OTDriverCard"
                       }
                     }
                   }
@@ -836,7 +836,7 @@
                     "data" :{
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/OTTransferContainerArray"
+                        "$ref": "#/definitions/OTTransferContainer"
                       }
                     }
                   }
@@ -874,7 +874,10 @@
             "name": "tacho",
             "in": "body",
             "schema": {
-              "$ref": "#/definitions/OTTransferContainerArray"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTTransferContainer"
+              }
             }
           },
           {
@@ -2750,13 +2753,6 @@
         }
       }
     },
-    "OTTransferContainerArray": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "$ref": "#/definitions/OTTransferContainer"
-      }
-    },
     "OTTransferContainer": {
       "type": "object",
       "properties": {
@@ -2790,13 +2786,6 @@
           "description": "container data bytes encoded in Base64",
           "example": "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
         }
-      }
-    },
-    "OTDriverCardArray": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "$ref": "#/definitions/OTDriverCard"
       }
     },
     "OTDriverCard": {
