@@ -968,7 +968,7 @@
       "description": "Vehicle Group ID"
     },
     "didParam": {
-      "name": "refdid",
+      "name": "did",
       "in": "query",
       "type": "string",
       "description": "Device ID"
