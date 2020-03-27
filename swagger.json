@@ -286,16 +286,21 @@
         "parameters": [
           {
             "in": "body",
-            "name": "tour",
+            "name": "tokenandtour",
             "schema": {
-              "$ref": "#/definitions/OTTour"
+              "type": "object",
+              "properties": {
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }, 
+                "tour": {
+                  "$ref": "#/definitions/OTTour"
+                }
+              }
             }
           },
           {
             "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
           },
           {
             "$ref": "#/parameters/versionParam"
@@ -396,16 +401,21 @@
         "parameters": [
           {
             "in": "body",
-            "name": "message",
+            "name": "tokenandmessage",
             "schema": {
-              "$ref": "#/definitions/OTMessage"
+              "type": "object",
+              "properties": {
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }, 
+                "messsage": {
+                  "$ref": "#/definitions/OTMessage"
+                }
+              }
             }
           },
           {
             "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
           },
           {
             "$ref": "#/parameters/versionParam"
@@ -572,17 +582,22 @@
         "summary": "Sets status for a specific ordershort or message", 
         "parameters": [
           {
-            "name": "refid",
             "in": "body",
+            "name": "tokenandstatus",
             "schema": {
-              "$ref": "#/definitions/OTSetStatus"
+              "type": "object",
+              "properties": {
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }, 
+                "status": {
+                  "$ref": "#/definitions/OTSetStatus"
+                }
+              }
             }
           },
           {
             "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
           },
           {
             "$ref": "#/parameters/versionParam"
@@ -869,20 +884,25 @@
             "$ref": "#/parameters/cidParamRequired"
           },
           {
-            "name": "tacho",
             "in": "body",
+            "name": "tokenandtacho",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTTransferContainer"
+              "type": "object",
+              "properties": {
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }, 
+                "tacho": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/OTTransferContainer"
+                  }
+                }
               }
             }
           },
           {
             "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
           },
           {
             "$ref": "#/parameters/versionParam"
@@ -916,7 +936,12 @@
       "name": "token",
       "in": "body",
       "schema": {
-        "type": "string"
+        "type": "object", 
+        "properties": {
+          "token":{
+            "$ref": "#/definitions/OTToken"
+          }
+        }
       },
       "description": "JSON Web Token"
     },
@@ -2830,6 +2855,10 @@
           "example": "DF00003563691000"
         }
       }
+    },
+    "OTToken": {
+      "type": "string", 
+      "description": "JSON Web Token"
     }
   }
 }
