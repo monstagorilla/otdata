@@ -784,7 +784,7 @@
           "otdata"
         ],
         "summary": "Returns a list of all matching DDD files of the specified customer",
-        "description": "1. Get the latest ones\n    - ALL: class = 3, rest leave blank\n    - Vehicles: class=2, rest leave blank\n    - Driver: class=1, rest leave blank\n2. Get all since date\n  - ALL: class = 3, date = value\n  - Vehicles: class=2, date = value\n  - Driver: class=1, date = value\n3. Specification\n  - add vin or driveridentnumber to get the matching ddd file, rest like step 1 or 2\n\nexample 1\n\n  - class: 3\n  - response: All actually DDD files\n  \nexample 2 \n  - class: 3\n  - date: 2019-05-21T17:32:28Z\n  - response: All ones which newer than 2019-05-21T17:32:28Z\n\nexample 3\n  - class: 2\n  - date: 2019-05-21T17:32:28Z\n  - identification: WVWZZZ1JZ3W386752 \n  - response: All ones which newer than 2019-05-21T17:32:28Z and matching the identification\n",
+        "description": "If `from` and `to` do not exist, all DDD files are returned",
         "parameters": [
           {
             "$ref": "#/parameters/cidParamRequired"
@@ -800,7 +800,7 @@
             "name": "identification",
             "type": "string",
             "in": "query",
-            "description": "It is an optional field to get specific DDD files,\nDriver or vehicle\nidentification\n"
+            "description": "field to get specific DDD files,\nDriver or vehicle\nidentification\n"
           },
           {
             "$ref": "#/parameters/fromParam"
