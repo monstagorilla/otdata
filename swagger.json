@@ -784,7 +784,7 @@
           "otdata"
         ],
         "summary": "Returns a list of all matching DDD files of the specified customer",
-        "description": "If `from` and `to` do not exist, all DDD files are returned",
+        "description": "If no `did` is specified, data is returned for all devices.\nIf `from` and `to` do not exist, all DDD files are returned.\nIf `timeused` is set to `activity`, all DDD files needed to cover the given time intervall are returned.",
         "parameters": [
           {
             "$ref": "#/parameters/cidParamRequired"
