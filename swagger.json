@@ -797,10 +797,7 @@
             "required": true
           },
           {
-            "name": "identification",
-            "type": "string",
-            "in": "query",
-            "description": "field to get specific DDD files,\nDriver or vehicle\nidentification\n"
+            "$ref": "#/parameters/didParam"
           },
           {
             "$ref": "#/parameters/fromParam"
@@ -813,6 +810,7 @@
             "in": "query",
             "type": "string", 
             "enum": ["activity", "download", "data"],
+            "default": "activity",
             "description": "Indicates to which time tags `from` and `to` refer:\n`\"activity\"` refers to the time the activities were stored in the DDD Files\n`\"download\"` refers to the download time of the DDD file\n`\"data\"` refers to the time stemp of the DDD files"
           },
           {
