@@ -1072,7 +1072,7 @@
           "description": "Version of the OpenTelematics API used, e.g.:`\"1.0.5\"`"
         }, 
         "otid": {
-          "type": "string",
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],
           "description": "Registered OpenTelematics ID of the responder"
         }
       },
@@ -1095,23 +1095,15 @@
       "type": "object",
       "properties": {
         "did": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Unique objectID",
-          "example": "1"
+          "allOf": [{"$ref": "#/definitions/did"}]
         },
         "refid": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "Reference Number",
-          "example": "1"
+          "allOf": [{"$ref": "#/definitions/refid"}]
         },
         "gid":{
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int64",
-            "minimum": 0
+            "allOf": [{"$ref": "#/definitions/gid"}]          
           },
           "description": "List of assigned vehicle groups"
         },
@@ -1172,16 +1164,10 @@
       "type": "object",
       "properties": {
         "dataid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Data ID"
+          "allOf": [{"$ref": "#/definitions/dataid"}]
         },
         "cid": {
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0,
-          "description": "Customer ID"
+          "allOf": [{"$ref": "#/definitions/cid"}]
         },
         "reason": {
           "$ref": "#/definitions/OTReason"
@@ -1193,9 +1179,7 @@
           "example": "2017-07-21T17:32:28Z"
         },
         "did": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Unique ObjectID"
+          "allOf": [{"$ref": "#/definitions/did"}]        
         },
         "devicetime": {
           "type": "string",
@@ -1367,30 +1351,30 @@
       "type": "object",
       "properties": {
         "cardid": {
-          "example": [
-            "card1id",
-            "card2id",
-            "..."
-          ],
-          "type": "array",
-          "items": {
-            "type": "string",
-            "maxLength": 24
+          "type": "object",
+          "properties": {
+            "driver1": {
+              "allOf": [{"$ref": "#/definitions/OTIDType"}],
+              "description": "Card ID of Driver 1"
+            },
+            "driver2": {
+              "allOf": [{"$ref": "#/definitions/OTIDType"}],
+              "description": "Card ID of Driver 2"
+            }
           },
-          "description": "Driver card id"
+          "description": "Driver card ID"
         },
         "name": {
-          "example": [
-            "drivername1",
-            "drivername2",
-            "..."
-          ],
-          "type": "array",
-          "items": {
-            "type": "string",
-            "maxLength": 150
+          "type": "object",
+          "properties": {
+            "driver1": {
+              "type": "string"
+            },
+            "driver2": {
+              "type": "string"
+            }
           },
-          "description": "Driver name"
+          "description": "Driver names"
         }
       }
     },
@@ -1405,8 +1389,7 @@
           ],
           "type": "array",
           "items": {
-            "type": "integer",
-            "format": "int32"
+            "allOf": [{"$ref": "#/definitions/OTIDType"}]          
           },
           "description": "Assistant id"
         },
@@ -1512,8 +1495,7 @@
           "description": "ISO-3166 ALPHA-3"
         },
         "cid": {
-          "type": "integer",
-          "format": "int64"
+          "allOf": [{"$ref": "#/definitions/cid"}]        
         },
         "customername": {
           "type": "string",
@@ -2295,13 +2277,15 @@
           "type": "object",
           "properties": {
             "driver1": {
-              "type": "string"
+              "allOf": [{"$ref": "#/definitions/OTIDType"}],
+              "description": "Card ID of driver 1"
             },
             "driver2": {
-              "type": "string"
+              "allOf": [{"$ref": "#/definitions/OTIDType"}],
+              "description": "Card ID of driver 2"
             }
           },
-          "description": "IDs of the cards of the drivers"
+          "description": "Driver card IDs"
         },
         "rpm": {
           "type": "number",
@@ -2488,15 +2472,13 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "cid": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Customer ID"
+          "allOf": [{"$ref": "#/definitions/cid"}]        
         },
         "refid": {
-          "type": "string"
+          "allOf": [{"$ref": "#/definitions/refid"}]
         },
         "name": {
           "type": "string"
@@ -2507,11 +2489,11 @@
         "tournumber": {
           "type": "string"
         },
-        "carid": {
-          "type": "integer"
+        "did": {
+          "allOf": [{"$ref": "#/definitions/did"}]        
         },
-        "carrefid": {
-          "type": "string"
+        "refdid": {
+          "allOf": [{"$ref": "#/definitions/refdid"}]        
         },
         "status": {
           "type": "array",
@@ -2529,17 +2511,17 @@
       "required": [
         "refid",
         "name",
-        "carrefid"
+        "refdid"
       ]
     },
     "OTDrive": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "refid": {
-          "type": "string"
+          "allOf": [{"$ref": "#/definitions/refid"}]        
         },
         "address": {
           "$ref": "#/definitions/OTAddress"
@@ -2624,23 +2606,19 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "refid": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "Reference Number"
+          "allOf": [{"$ref": "#/definitions/refid"}]        
         },
-        "carid": {
-          "type": "string"
+        "did": {
+          "allOf": [{"$ref": "#/definitions/did"}]        
         },
-        "carrefid": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "Reference Number"
+        "refdid": {
+          "allOf": [{"$ref": "#/definitions/refdid"}]        
         },
-        "userid": {
-          "type": "string",
+        "uid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],
           "maxLength": 150,
           "description": "Unique user id"
         },
@@ -2665,7 +2643,7 @@
       },
       "required": [
         "refid",
-        "carrefid",
+        "refdid",
         "message"
       ]
     },
@@ -2678,14 +2656,10 @@
           "description": "orderstate or message"
         },
         "refid": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "Reference Number"
+          "allOf": [{"$ref": "#/definitions/refid"}]        
         },
-        "carrefid": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "Reference Number"
+        "refdid": {
+          "allOf": [{"$ref": "#/definitions/refdid"}]        
         },
         "status": {
           "$ref": "#/definitions/OTStatusMessage"
@@ -2693,7 +2667,7 @@
       },
       "required": [
         "refid",
-        "carrefid",
+        "refdid",
         "type",
         "status"
       ]
@@ -2732,7 +2706,7 @@
       "type": "object",
       "properties": {
         "otid": {
-          "type": "string",
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],       
           "description": "Registered OpenTelematics ID of the member"
         },
         "name": {
@@ -2816,7 +2790,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],        
           "maxLength": 50,
           "description": "Unique object ID",
           "example": "4025"
@@ -2860,6 +2834,46 @@
     "OTToken": {
       "type": "string", 
       "description": "JSON Web Token"
+    },
+    "OTIDType": {
+      "type": "string"
+    },
+    "did": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Device ID"}
+      ]
+    },
+    "cid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Customer ID"}
+      ]
+    },
+    "gid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Vehicle Group ID"}
+      ]
+    },
+    "refdid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Reference Device ID"}
+      ]
+    },
+    "refid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Reference ID"}
+      ]
+    },
+    "dataid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Data ID"}
+      ]
     }
+
   }
 }
