@@ -586,6 +586,7 @@
             "name": "tokenandstatus",
             "schema": {
               "type": "object",
+              "required": ["status"],
               "properties": {
                 "token": {
                   "$ref": "#/definitions/OTToken"
