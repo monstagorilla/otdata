@@ -170,7 +170,7 @@
             "name": "index",
             "in": "query",
             "type": "string",
-            "description": "index to identify the callback"
+            "description": "Index to identify the callback"
           },
           {
             "name": "url",
