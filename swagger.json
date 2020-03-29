@@ -286,15 +286,16 @@
         "parameters": [
           {
             "in": "body",
-            "name": "tokenandtour",
+            "name": "tourandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
             "schema": {
               "type": "object",
               "properties": {
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }, 
                 "tour": {
                   "$ref": "#/definitions/OTTour"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
                 }
               }
             }
@@ -401,15 +402,16 @@
         "parameters": [
           {
             "in": "body",
-            "name": "tokenandmessage",
+            "name": "messageandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
             "schema": {
               "type": "object",
               "properties": {
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }, 
                 "messsage": {
                   "$ref": "#/definitions/OTMessage"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
                 }
               }
             }
@@ -583,16 +585,17 @@
         "parameters": [
           {
             "in": "body",
-            "name": "tokenandstatus",
+            "name": "statusandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
             "schema": {
               "type": "object",
               "required": ["status"],
               "properties": {
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }, 
                 "status": {
                   "$ref": "#/definitions/OTSetStatus"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
                 }
               }
             }
@@ -889,19 +892,20 @@
           },
           {
             "in": "body",
-            "name": "tokenandtacho",
+            "name": "tachoandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
             "schema": {
               "type": "object",
               "properties": {
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }, 
                 "tacho": {
                   "type": "array",
                   "items": {
                     "$ref": "#/definitions/OTTransferContainer"
                   }
-                }
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                } 
               }
             }
           },
