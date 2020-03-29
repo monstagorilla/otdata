@@ -48,7 +48,9 @@ You can verify the correctness of the data with the `“status”` and if it is 
 },
 ```
 ## HTTP Status Codes  
-Overview of the use of HTTP Status Codes.  
+Overview of the use of HTTP Status Codes. 
+
+In the body of all error codes optional error messages and custom error codes can be returned.
   
 **Successful (2xx):**  
 There is always only **one** of the following status codes available for successfully responding to a request.  
