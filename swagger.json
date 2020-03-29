@@ -282,7 +282,6 @@
           "otdevice"
         ],
         "summary": "Transmits information for simple navigation orders",
-        "description": "\nRequired parameters  - refid\n  - name\n  - carrefid\n  - drives\n    - refid\n    - latitude\n    - longitude\n    - name\n    \nDo not fill:\n  - status\n  - eta\n",
         "parameters": [
           {
             "in": "body",
@@ -292,7 +291,7 @@
               "type": "object",
               "properties": {
                 "tour": {
-                  "$ref": "#/definitions/OTTour"
+                  "$ref": "#/definitions/OTTourParam"
                 },
                 "token": {
                   "$ref": "#/definitions/OTToken"
@@ -398,7 +397,6 @@
           "otmessage"
         ],
         "summary": "Sends a message",
-        "description": "Required parameters:\n  - refid\n  - carrefid\n  - message\n  \nDo not fill:\n  - direction\n  - status\n",
         "parameters": [
           {
             "in": "body",
@@ -407,8 +405,8 @@
             "schema": {
               "type": "object",
               "properties": {
-                "messsage": {
-                  "$ref": "#/definitions/OTMessage"
+                "message": {
+                  "$ref": "#/definitions/OTMessageBase"
                 },
                 "token": {
                   "$ref": "#/definitions/OTToken"
@@ -2477,6 +2475,36 @@
     },
     "OTTour": {
       "type": "object",
+      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "properties": {
+        "status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTStatus"
+          }
+        },
+        "drives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTDrive"
+          }
+        }
+      }
+    },
+    "OTTourParam": {
+      "type": "object",
+      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "properties": {
+        "drives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTDriveBase"
+          }
+        }
+      }
+    },
+    "OTTourBase": {
+      "type": "object",
       "properties": {
         "id": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
@@ -2501,18 +2529,6 @@
         },
         "refdid": {
           "allOf": [{"$ref": "#/definitions/refdid"}]        
-        },
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
-        },
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTDrive"
-          }
         }
       },
       "required": [
@@ -2522,6 +2538,24 @@
       ]
     },
     "OTDrive": {
+      "allOf": [{"$ref": "#/definitions/OTDriveBase"}],
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTStatus"
+          }
+        },
+        "eta": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-07-22T17:32:28Z",
+          "description": "Estimated time of arrival"
+        }
+      }
+    },
+    "OTDriveBase": {
       "type": "object",
       "properties": {
         "id": {
@@ -2560,18 +2594,6 @@
         },
         "drivenumber": {
           "type": "string"
-        },
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
-        },
-        "eta": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2017-07-22T17:32:28Z",
-          "description": "Estimated time of arrival"
         }
       },
       "required": [
@@ -2611,6 +2633,22 @@
     },
     "OTMessage": {
       "type": "object",
+      "allOf": [{"$ref": "#/definitions/OTMessageBase"}],
+      "properties": {
+        "direction": {
+          "type": "string",
+          "enum": ["serverToDevice", "deviceToServer"]
+        },
+        "status": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTStatusMessage"
+          }
+        }
+      }
+    },
+    "OTMessageBase": {
+      "type": "object",
       "properties": {
         "id": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
@@ -2633,19 +2671,9 @@
           "type": "string",
           "maxLength": 150
         },
-        "direction": {
-          "type": "string",
-          "enum": ["serverToDevice", "deviceToServer"]
-        },
         "message": {
           "type": "string",
           "description": "context"
-        },
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatusMessage"
-          }
         }
       },
       "required": [
