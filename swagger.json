@@ -2304,7 +2304,7 @@
       "properties": {
         "dtcstatus": {
           "type": "string",
-          "enum": ["off", "on", "n/a"],
+          "enum": ["off", "on", "error", "n/a"],
           "description": "Generic malfunction indicator light"
         },
         "dtcred": {
