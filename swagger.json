@@ -1197,11 +1197,17 @@
         "position": {
           "$ref": "#/definitions/OTPosition"
         },
-        "driver": {
-          "$ref": "#/definitions/OTDriver"
+        "drivers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTDriver"
+          }
         },
-        "assistant": {
-          "$ref": "#/definitions/OTAssistant"
+        "assistants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTAssistant"
+          }
         },
         "temperature": {
           "$ref": "#/definitions/OTTemp"
@@ -1356,30 +1362,12 @@
       "type": "object",
       "properties": {
         "cardid": {
-          "type": "object",
-          "properties": {
-            "driver1": {
-              "allOf": [{"$ref": "#/definitions/OTIDType"}],
-              "description": "Card ID of Driver 1"
-            },
-            "driver2": {
-              "allOf": [{"$ref": "#/definitions/OTIDType"}],
-              "description": "Card ID of Driver 2"
-            }
-          },
-          "description": "Driver card ID"
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],
+          "description": "The card ID of the driver "
         },
         "name": {
-          "type": "object",
-          "properties": {
-            "driver1": {
-              "type": "string"
-            },
-            "driver2": {
-              "type": "string"
-            }
-          },
-          "description": "Driver names"
+          "type": "string",
+          "description": "Driver name"
         }
       }
     },
@@ -1387,28 +1375,12 @@
       "type": "object",
       "properties": {
         "id": {
-          "example": [
-            123,
-            456,
-            "..."
-          ],
-          "type": "array",
-          "items": {
-            "allOf": [{"$ref": "#/definitions/OTIDType"}]          
-          },
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],          
           "description": "Assistant id"
         },
         "name": {
-          "example": [
-            "assistantname1",
-            "assistantname2",
-            "..."
-          ],
-          "type": "array",
-          "items": {
-            "type": "string",
-            "maxLength": 150
-          },
+          "type": "string",
+          "maxLength": 150,
           "description": "Assistant name"
         }
       }
