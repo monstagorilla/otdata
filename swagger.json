@@ -28,7 +28,7 @@
     "/otdata/history": {
       "get": {
         "tags": [
-          "otdata"
+          "Live Data"
         ],
         "summary": "Returns a list of data that matches the specified time interval and ID",
         "description": "If no ID is specified, data is returned for all vehicles.\nIf `from` and `to` do not exist, the complete history is returned.",
@@ -98,7 +98,7 @@
     "/otdata/getlive": {
       "get": {
         "tags": [
-          "otdata"
+          "Live Data"
         ],
         "summary": "Returns a list of the current data of all vehicles or vehicles that match the specified ID ",
         "description": "If no ID is specified, data is returned for all vehicles.",
@@ -159,646 +159,10 @@
         }
       }
     },
-    "/otdata/setcallback": {
-      "post": {
-        "tags": [
-          "otdata"
-        ],
-        "summary": "Sets callback URL for data receiving",
-        "parameters": [
-          {
-            "name": "index",
-            "in": "query",
-            "type": "string",
-            "description": "Index to identify the callback"
-          },
-          {
-            "name": "url",
-            "in": "query",
-            "type": "string",
-            "description": "URL like https://dummy.de"
-          },
-          {
-            "name": "types",
-            "in": "query",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": ["livedata", "orderstate", "messages", "all"]
-            },
-            "description": "Specifies the type of data to which the callback URL belongs"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdevice/getall": {
-      "get": {
-        "tags": [
-          "otdevice"
-        ],
-        "summary": "Returns a list of all registered devices of the specified customer",
-        "parameters": [
-          {
-            "$ref": "#/parameters/cidParamRequired"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array", 
-                      "items": {
-                        "$ref": "#/definitions/OTDevice"                      }
-                    }
-                  }
-                }   
-              ] 
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdevice/ordershort": {
-      "post": {
-        "tags": [
-          "otdevice"
-        ],
-        "summary": "Transmits information for simple navigation orders",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "tourandtoken",
-            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "tour": {
-                  "$ref": "#/definitions/OTTourParam"
-                },
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }
-              }
-            }
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "otdevice"
-        ],
-        "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
-        "parameters": [
-          {
-            "$ref": "#/parameters/refidParam"
-          },
-          {
-            "$ref": "#/parameters/refdidParam"
-          },
-          {
-            "in": "query",
-            "name": "tournumber",
-            "type": "string"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array", 
-                      "items": {
-                        "$ref": "#/definitions/OTTour"
-                      }
-                    }
-                  }
-                }   
-              ] 
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otmessage/message": {
-      "post": {
-        "tags": [
-          "otmessage"
-        ],
-        "summary": "Sends a message",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "messageandtoken",
-            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "$ref": "#/definitions/OTMessageBase"
-                },
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }
-              }
-            }
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "otmessage"
-        ],
-        "summary": "Returns a list of messages of a specific vehicle",
-        "parameters": [
-          {
-            "$ref": "#/parameters/refidParam"
-          },
-          {
-            "$ref": "#/parameters/refdidParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTMessage"
-                      }
-                    }
-                  }
-                }   
-              ] 
-            }
-          },
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdata/log": {
-      "get": {
-        "tags": [
-          "otdata"
-        ],
-        "summary": "Returns a list of logs that matches the specified time intervall",
-        "description": "If `from` and `to` do not exist, all logs are returned.\nAll logs up to `loglevel` are returned.",
-        "parameters": [
-          {
-            "name": "loglevel",
-            "in": "query",
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0, 
-            "maximum": 7,
-            "description": "From 0 (most important) to 7 (least important):\n0=Emergency, 1=Alert, 2=Critical, 3=Error, 4=Warning, 5=Notice, 6=Informational, 7=Debug"
-          },
-          {
-            "$ref": "#/parameters/fromParam" 
-          },
-          {
-            "$ref": "#/parameters/toParam" 
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTLog"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otstatus/setstatus": {
-      "post": {
-        "tags": [
-          "otstatus"
-        ],
-        "summary": "Sets status for a specific ordershort or message", 
-        "parameters": [
-          {
-            "in": "body",
-            "name": "statusandtoken",
-            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
-            "schema": {
-              "type": "object",
-              "required": ["status"],
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/OTSetStatus"
-                },
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                }
-              }
-            }
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otmember/member": {
-      "get": {
-        "tags": [
-          "otmember"
-        ],
-        "summary": "Returns a list of all members of OpenTelematics e.V.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTMember"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdata/tacho/vehicle": {
-      "get": {
-        "tags": [
-          "otdata"
-        ],
-        "summary": "Returns a list of all registered vehicles of the specified customer",
-        "parameters": [
-          {
-            "$ref": "#/parameters/cidParamRequired"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTDevice"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdata/tacho/driver": {
-      "get": {
-        "tags": [
-          "otdata"
-        ],
-        "summary": "Returns a list of all registered drivers of the specified customer",
-        "parameters": [
-          {
-            "$ref": "#/parameters/cidParamRequired"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTDriverCard"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/otdata/tacho": {
       "get": {
         "tags": [
-          "otdata"
+          "Tacho"
         ],
         "summary": "Returns a list of all matching DDD files of the specified customer",
         "description": "If no `did` or `gid` is specified, data is returned for all devices.\nIf `from` and `to` do not exist, all DDD files are returned.\nIf `timeused` is set to `activity`, all DDD files needed to cover the given time intervall are returned.",
@@ -881,7 +245,7 @@
       },
       "post": {
         "tags": [
-          "otdata"
+          "Tacho"
         ],
         "summary": "Transmits a list of DDD files",
         "parameters": [
@@ -917,6 +281,642 @@
         "responses": {
           "204": {
             "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/ordershort": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Transmits information for simple navigation orders",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tourandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tour": {
+                  "$ref": "#/definitions/OTTourParam"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
+        "parameters": [
+          {
+            "$ref": "#/parameters/refidParam"
+          },
+          {
+            "$ref": "#/parameters/refdidParam"
+          },
+          {
+            "in": "query",
+            "name": "tournumber",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTTour"
+                      }
+                    }
+                  }
+                }   
+              ] 
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/getall": {
+      "get": {
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Returns a list of all registered devices of the specified customer",
+        "parameters": [
+          {
+            "$ref": "#/parameters/cidParamRequired"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array", 
+                      "items": {
+                        "$ref": "#/definitions/OTDevice"                      }
+                    }
+                  }
+                }   
+              ] 
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/setcallback": {
+      "post": {
+        "tags": [
+          "Callback URL"
+        ],
+        "summary": "Sets callback URL for data receiving",
+        "parameters": [
+          {
+            "name": "index",
+            "in": "query",
+            "type": "string",
+            "description": "Index to identify the callback"
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "type": "string",
+            "description": "URL like https://dummy.de"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["livedata", "orderstate", "messages", "all"]
+            },
+            "description": "Specifies the type of data to which the callback URL belongs"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otmessage/message": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Sends a message",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "messageandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "$ref": "#/definitions/OTMessageBase"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Returns a list of messages of a specific vehicle",
+        "parameters": [
+          {
+            "$ref": "#/parameters/refidParam"
+          },
+          {
+            "$ref": "#/parameters/refdidParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTMessage"
+                      }
+                    }
+                  }
+                }   
+              ] 
+            }
+          },
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/log": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Returns a list of logs that matches the specified time intervall",
+        "description": "If `from` and `to` do not exist, all logs are returned.\nAll logs up to `loglevel` are returned.",
+        "parameters": [
+          {
+            "name": "loglevel",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0, 
+            "maximum": 7,
+            "description": "From 0 (most important) to 7 (least important):\n0=Emergency, 1=Alert, 2=Critical, 3=Error, 4=Warning, 5=Notice, 6=Informational, 7=Debug"
+          },
+          {
+            "$ref": "#/parameters/fromParam" 
+          },
+          {
+            "$ref": "#/parameters/toParam" 
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTLog"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otstatus/setstatus": {
+      "post": {
+        "tags": [
+          "Set Status"
+        ],
+        "summary": "Sets status for a specific ordershort or message", 
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statusandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "schema": {
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "$ref": "#/definitions/OTSetStatus"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otmember/member": {
+      "get": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Returns a list of all members of OpenTelematics e.V.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTMember"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/tacho/vehicle": {
+      "get": {
+        "tags": [
+          "Tacho"
+        ],
+        "summary": "Returns a list of all registered vehicles of the specified customer",
+        "parameters": [
+          {
+            "$ref": "#/parameters/cidParamRequired"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTDevice"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/tacho/driver": {
+      "get": {
+        "tags": [
+          "Tacho"
+        ],
+        "summary": "Returns a list of all registered drivers of the specified customer",
+        "parameters": [
+          {
+            "$ref": "#/parameters/cidParamRequired"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTDriverCard"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
           },
           "400":{
             "$ref": "#/responses/BadRequest"
