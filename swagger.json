@@ -715,12 +715,12 @@
         }
       }
     },
-    "/otstatus/setstatus": {
+    "/otstatus/setMessageStatus": {
       "post": {
         "tags": [
-          "Set Status"
+          "Messages"
         ],
-        "summary": "Sets status for a specific ordershort or message", 
+        "summary": "Sets status for a specific message", 
         "parameters": [
           {
             "in": "body",
@@ -732,6 +732,59 @@
               "properties": {
                 "status": {
                   "$ref": "#/definitions/OTSetStatus"
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otstatus/setOrderStatus": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Sets status for a specific order", 
+        "parameters": [
+          {
+            "in": "body",
+            "name": "statusandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "schema": {
+              "type": "object",
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "$ref": "#/definitions/OTSetOrderStatus"
                 },
                 "token": {
                   "$ref": "#/definitions/OTToken"
@@ -2503,7 +2556,7 @@
         "name"
       ]
     },
-    "OTStatusMessage": {
+    "OTMessageStatus": {
       "type": "object",
       "properties": {
         "state": {
@@ -2542,7 +2595,7 @@
         "status": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OTStatusMessage"
+            "$ref": "#/definitions/OTMessageStatus"
           }
         }
       }
@@ -2585,11 +2638,6 @@
     "OTSetStatus": {
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string",
-          "maxLength": 150,
-          "description": "orderstate or message"
-        },
         "refid": {
           "allOf": [{"$ref": "#/definitions/refid"}]        
         },
@@ -2597,13 +2645,31 @@
           "allOf": [{"$ref": "#/definitions/refdid"}]        
         },
         "status": {
-          "$ref": "#/definitions/OTStatusMessage"
+          "$ref": "#/definitions/OTMessageStatus"
         }
       },
       "required": [
         "refid",
         "refdid",
-        "type",
+        "status"
+      ]
+    },
+    "OTSetOrderStatus": {
+      "type": "object",
+      "properties": {
+        "refid": {
+          "allOf": [{"$ref": "#/definitions/refid"}]        
+        },
+        "refdid": {
+          "allOf": [{"$ref": "#/definitions/refdid"}]        
+        },
+        "status": {
+          "$ref": "#/definitions/OTStatus"
+        }
+      },
+      "required": [
+        "refid",
+        "refdid",
         "status"
       ]
     },
