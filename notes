@@ -1,21 +1,16 @@
-Questions:
-- allgemein beispiele bei parametern.. sollte vom backend festgelegt bzw gecheckt werden
-- descriptions
-- formats, minimal, maximum, maxlength, patterns
-- when minimum e.g. percentage for fuel level... can be ouside of 0-100?
-- examples not everywhere
-- booleans description??
+important for 1.1.0:
 -> camel cases/under score?? consistent variable names
-- torque 0-250?
-"seatbelt" maybe boolean
-- e.g. totalvehiclewocrcontr: bad variable name
-- order short required paramter still in description
-- tacho in general
-- gid möglicherweise im tacho 
--> schema für daten in 
-    driver 
--discriminator
-- externaldocs link in the right places 
+- class parameter driver vehicle description missing
+- speed distance float? 
+- fuel liter flosat?
+- everywhere float?
+- OTTemp
+- some generic ids, cardid
+- carid same as did?
+- ref id why not always
+- endpoints
+- tournumber
+- vehicle or driver ident? same as did?
 
 
 TODOs:
@@ -28,3 +23,16 @@ future work:
 - website
 - dummy backend
 
+
+NOTE:
+
+Questions:
+- descriptions
+- formats, minimal, maximum, maxlength, patterns
+- when minimum e.g. percentage for fuel level... can be ouside of 0-100?
+- examples not everywhere
+- torque 0-250?
+-discriminator
+- externaldocs link in the right places 
+- required keyword everywhere correct
+- setcallback needs further docs
