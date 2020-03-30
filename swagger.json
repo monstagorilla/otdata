@@ -1835,10 +1835,10 @@
         },
         "cantotal": {
           "type": "object",
-          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
           "properties": {
             "mileage": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
                   "type": "integer",
