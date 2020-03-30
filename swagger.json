@@ -1544,12 +1544,8 @@
           "properties": {
             "speed": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "number",
                   "format": "float",
@@ -1560,12 +1556,8 @@
             },
             "rpm": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "number",
                   "format": "float",
@@ -1576,12 +1568,8 @@
             },
             "fuelconsmpt": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "number",
                   "format": "float",
@@ -1593,12 +1581,8 @@
             },
             "fuellevel": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "array",
                   "items": {
@@ -1614,12 +1598,8 @@
             },
             "axelweight": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "array",
                   "items": {
@@ -1634,12 +1614,8 @@
             },
             "turbopressure": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1651,12 +1627,8 @@
             },
             "coolanttemp": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1667,12 +1639,8 @@
             },
             "acceleratorpdl": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1685,12 +1653,8 @@
             },
             "torque": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1703,12 +1667,8 @@
             },
             "battvolt": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "number",
                   "format": "float",
@@ -1719,12 +1679,8 @@
             },
             "coolantlvl": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1737,12 +1693,8 @@
             },
             "oiltemp": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1753,12 +1705,8 @@
             },
             "oillvl": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1771,12 +1719,8 @@
             },
             "throttle": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1789,12 +1733,8 @@
             },
             "airinltpres": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1806,12 +1746,8 @@
             },
             "gear": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "string",
                   "enum": ["neutral", "reverse", "forward", "parked", "one", "two", "three", "four", "five", "six", "seven", "eight"]
@@ -1820,12 +1756,8 @@
             },
             "seatbelt": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "string",
                   "enum": ["off", "on"],
@@ -1835,12 +1767,8 @@
             },
             "oilpressure": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1852,12 +1780,8 @@
             },
             "wettankpressure": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1869,12 +1793,8 @@
             },
             "pto": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "string",
                   "enum": ["none", "any"],
@@ -1884,12 +1804,8 @@
             },
             "ignswtch": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "string",
                   "enum": ["off", "on"],
@@ -1901,15 +1817,11 @@
         },
         "cantotal": {
           "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
           "properties": {
             "mileage": {
               "type": "object",
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1921,12 +1833,8 @@
             },
             "totalfuel": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1938,12 +1846,8 @@
             },
             "fuelusedatcruise": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1955,12 +1859,8 @@
             },
             "fuelusedatdrive": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1972,12 +1872,8 @@
             },
             "idlelonger5": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -1989,12 +1885,8 @@
             },
             "idlelonger10": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2006,12 +1898,8 @@
             },
             "totalidletime": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2023,12 +1911,8 @@
             },
             "totaltimepto": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2040,12 +1924,8 @@
             },
             "timecruise": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2057,12 +1937,8 @@
             },
             "rpmthreshold": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "array",
                   "items": {
@@ -2077,12 +1953,8 @@
             },
             "speedthreshold": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "array",
                   "items": {
@@ -2097,12 +1969,8 @@
             },
             "brakeapplications": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2113,12 +1981,8 @@
             },
             "clutchapplications": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2129,12 +1993,8 @@
             },
             "engineon": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2146,12 +2006,8 @@
             },
             "timetorque90": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2163,12 +2019,8 @@
             },
             "fuelrateavg": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2179,12 +2031,8 @@
             },
             "totaldistancecruisecontrol": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2196,12 +2044,8 @@
             },
             "totalfuelconsumptionwithpto": {
               "type": "object",
+              "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
-                "status": {
-                  "type": "string", 
-                  "enum": ["ok", "error", "n/a"],
-                  "description": "Indicates availability of data"
-                  },
                 "value":{
                   "type": "integer",
                   "format": "int32",
@@ -2872,6 +2716,16 @@
     },
     "OTIDType": {
       "type": "string"
+    },
+    "OTDataStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string", 
+          "enum": ["ok", "error", "n/a"],
+          "description": "Indicates availability of data"
+        }
+      }
     },
     "did": {
       "allOf": [
