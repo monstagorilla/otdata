@@ -1416,40 +1416,52 @@
     "OTTemp": {
       "type": "object",
       "properties": {
-        "setpoint": {
+        "setpoints": {
           "type": "array",
           "items": {
             "type": "object",
+            "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
             "properties": {
-              "name": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "value": {
-                "type": "number",
-                "format": "float",
-                "description": "in °C"
+              "value":{
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 150
+                  },
+                  "value": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "in °C"
+                  }
+                }
               }
             }
           }
         },
-        "temperature": {
+        "temperatures": {
           "type": "array",
           "items": {
             "type": "object",
+            "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
             "properties": {
-              "name": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "value": {
-                "type": "number",
-                "format": "float",
-                "description": "in °C"
-              },
-              "alert": {
-                "type": "boolean",
-                "description": "alert condition set"
+              "value":{
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 150
+                  },
+                  "value": {
+                    "type": "number",
+                    "format": "float",
+                    "description": "in °C"
+                  },
+                  "alert": {
+                    "type": "boolean",
+                    "description": "alert condition set"
+                  }
+                }
               }
             }
           }
@@ -1458,13 +1470,19 @@
           "type": "array",
           "items": {
             "type": "object",
+            "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
             "properties": {
-              "name": {
-                "type": "string",
-                "maxLength": 150
-              },
-              "value": {
-                "type": "boolean"
+              "value":{
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "maxLength": 150
+                  },
+                  "value": {
+                    "type": "boolean"
+                  }
+                }
               }
             }
           }
@@ -2147,56 +2165,122 @@
       "type": "object",
       "properties": {
         "dtcstatus": {
-          "type": "string",
-          "enum": ["off", "on", "error", "n/a"],
-          "description": "Generic malfunction indicator light"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["off", "on"],
+              "description": "Generic malfunction indicator light"
+          
+            }
+          }
         },
         "dtcred": {
-          "type": "string",
-          "enum": ["off", "on", "error", "n/a"],
-          "description": "Red malfunction indicator light"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["off", "on"],
+              "description": "Red malfunction indicator light"
+            }
+          }
         },
         "dtcamber": {
-          "type": "string",
-          "enum": ["off", "on", "error", "n/a"],
-          "description": "Amber malfunction indicator light"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["off", "on"],
+              "description": "Amber malfunction indicator light"
+            }
+          }
         },
         "dtcprotect": {
-          
-          "type": "string",
-          "enum": ["off", "on", "error", "n/a"],
-          "description": "Protection malfunction indicator light"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {      
+              "type": "string",
+              "enum": ["off", "on"],
+              "description": "Protection malfunction indicator light"
+            }
+          }
         },
         "handbreak": {
-          "type": "string",
-          "enum": ["off", "on", "error", "n/a"],
-          "description": "Handbrake malfunction indicator light"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["off", "on"],
+              "description": "Handbrake malfunction indicator light"
+            }
+          }
         },
         "batterystatus": {
-          "type": "boolean",
-          "description": "0=no failure/1=failure"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["ok", "failure"]
+            }
+          }
         },
         "coolantstatus": {
-          "type": "boolean",
-          "description": "0=no failure/1=failure"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["ok", "failure"]
+            }
+          }
         },
         "oilpressure": {
-          "type": "boolean",
-          "description": "0=no failure/1=failure"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["ok", "failure"]
+            }
+          }
         },
         "breakpads": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OTBreakpad"
+            "type": "object",
+            "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+            "properties": {
+              "value": {
+                "$ref": "#/definitions/OTBreakpad"
+              }
+            }
           }
         },
         "oillevelstatus": {
-          "type": "boolean",
-          "description": "0=no failure/1=failure"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["ok", "failure"]
+            }
+          }
         },
         "absstatus": {
-          "type": "integer",
-          "description": "0=not fully operational/1=fully operational/2=reserved/3=n/a"
+          "type": "object",
+          "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": ["fully_operational", "not_fully_operational"]
+            }
+          }
         }
       }
     },
