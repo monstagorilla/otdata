@@ -1256,10 +1256,10 @@
             "$ref": "#/definitions/OTDriver"
           }
         },
-        "assistants": {
+        "codrivers": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OTAssistant"
+            "$ref": "#/definitions/OTCoDriver"
           }
         },
         "temperature": {
@@ -1425,17 +1425,17 @@
         }
       }
     },
-    "OTAssistant": {
+    "OTCoDriver": {
       "type": "object",
       "properties": {
         "id": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}],          
-          "description": "Assistant id"
+          "description": "Co-driver ID"
         },
         "name": {
           "type": "string",
           "maxLength": 150,
-          "description": "Assistant name"
+          "description": "Co-driver name"
         }
       }
     },
