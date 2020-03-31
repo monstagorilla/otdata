@@ -1393,12 +1393,12 @@
         "altitude": {
           "type": "integer",
           "format": "int32",
-          "description": "Altitude in meter"
+          "description": "Altitude in m"
         },
         "accuracy": {
           "type": "integer",
           "format": "int32",
-          "description": "Accuracy in meter"
+          "description": "Accuracy in m"
         },
         "characteristic": {
           "type": "string",
