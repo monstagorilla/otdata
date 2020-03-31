@@ -1397,8 +1397,8 @@
         },
         "accuracy": {
           "type": "integer",
-          "format": "float",
-          "description": "accuracy in meter"
+          "format": "int32",
+          "description": "Accuracy in meter"
         },
         "characteristic": {
           "type": "string",
