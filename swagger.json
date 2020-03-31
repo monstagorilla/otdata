@@ -2701,21 +2701,21 @@
         },
         "call": {
           "type": "string",
-          "description": "Which call (protokoll)"
+          "description": "Which call (protocol)"
         },
         "username": {
           "type": "string",
-          "description": "Which useraccount was it"
+          "description": "Which user account was it"
         },
         "time": {
           "type": "string",
           "format": "date-time",
-          "description": "Date Time of message receive (optional)\n",
+          "description": "Date Time of message receive",
           "example": "2017-07-21T17:32:28Z"
         },
         "message": {
           "type": "string",
-          "description": "Logmessage"
+          "description": "Log message"
         }
       }
     },
@@ -2754,16 +2754,16 @@
         },
         "phonenumber": {
           "type": "string",
-          "description": "phone number ( NEW )"
+          "description": "phone number"
         },
         "email": {
           "type": "string",
-          "description": "email ( NEW )"
+          "description": "email"
         },
         "memberSince": {
           "type": "string",
           "format": "date-time",
-          "description": "Date Time of message receive (optional)\n",
+          "description": "Date Time of message receive",
           "example": "2017-07-21T17:32:28Z"
         }
       }
