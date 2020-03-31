@@ -1256,6 +1256,12 @@
         "codriver": {
           "$ref": "#/definitions/OTCoDriver"
         },
+        "passengers": {
+          "type": "array", 
+          "items": {
+            "$ref": "#/definitions/OTPassenger"
+          }
+        },
         "temperature": {
           "$ref": "#/definitions/OTTemp"
         },
@@ -1430,6 +1436,20 @@
           "type": "string",
           "maxLength": 150,
           "description": "Co-driver name"
+        }
+      }
+    },
+    "OTPassenger": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],          
+          "description": "Passenger ID"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "Passenger name"
         }
       }
     },
