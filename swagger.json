@@ -1009,7 +1009,7 @@
       "name": "version",
       "type": "string",
       "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-      "description": "Version of the OpenTelematics API used, e.g.:`\"1.0.5\"`"
+      "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`"
     },
     "fromParam": {
       "name": "from",
@@ -1127,7 +1127,7 @@
         "version": {
           "type": "string",
           "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "description": "Version of the OpenTelematics API used, e.g.:`\"1.0.5\"`"
+          "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`"
         }, 
         "otid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
