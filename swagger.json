@@ -1294,12 +1294,12 @@
           "type": "integer",
           "format": "int32",
           "minimum": 0,
-          "description": "Reason number for the message (optional)"
+          "description": "Reason number for the message"
         },
         "name": {
           "type": "string",
           "maxLength": 30,
-          "description": "Reason for the message (optional)"
+          "description": "Reason for the message"
         }
       }
     },
