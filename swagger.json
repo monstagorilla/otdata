@@ -1807,8 +1807,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "string",
-                  "enum": ["neutral", "reverse", "forward", "parked", "one", "two", "three", "four", "five", "six", "seven", "eight"]
+                  "type": "integer",
+                  "description": "0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked"
                 }
               }
             },
