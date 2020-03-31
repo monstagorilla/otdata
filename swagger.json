@@ -1250,17 +1250,11 @@
         "position": {
           "$ref": "#/definitions/OTPosition"
         },
-        "drivers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTDriver"
-          }
+        "driver": {
+          "$ref": "#/definitions/OTDriver"
         },
-        "codrivers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTCoDriver"
-          }
+        "codriver": {
+          "$ref": "#/definitions/OTCoDriver"
         },
         "temperature": {
           "$ref": "#/definitions/OTTemp"
