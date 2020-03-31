@@ -1401,8 +1401,9 @@
           "description": "accuracy in meter"
         },
         "characteristic": {
-          "type": "integer",
-          "description": "0=GPS tracking, 1=GSM tracking, 2=Indirekte tracking, etc."
+          "type": "string",
+          "enum": ["satellite", "gsm", "indirect"],
+          "description": "`satellite`: GPS, Galileo, GLONASS etc.\n`indirect`: Bluetooth, Wi-Fi etc."
         }
       },
       "required": [
