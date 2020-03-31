@@ -496,7 +496,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["livedata", "orderstate", "messages", "all"]
+              "enum": ["liveData", "orderState", "messages", "all"]
             },
             "description": "Specifies the type of data to which the callback URL belongs"
           },
@@ -1855,7 +1855,7 @@
               "properties": {
                 "value":{
                   "type": "string",
-                  "enum": ["none", "atleastone"],
+                  "enum": ["none", "atLeastOne"],
                   "default": "none"
                 }
               }
@@ -2318,7 +2318,7 @@
           "properties": {
             "value": {
               "type": "string",
-              "enum": ["fully_operational", "not_fully_operational"]
+              "enum": ["fullyOperational", "notFullyOperational"]
             }
           }
         }
