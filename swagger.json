@@ -1855,7 +1855,7 @@
               "properties": {
                 "value":{
                   "type": "string",
-                  "enum": ["none", "any"],
+                  "enum": ["none", "atleastone"],
                   "default": "none"
                 }
               }
