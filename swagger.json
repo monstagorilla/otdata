@@ -2761,9 +2761,9 @@
           "description": "Filename",
           "example": "123456789.DDD"
         },
-        "ident": {
+        "id": {
           "type": "string",
-          "description": "Vehicle or driver ident",
+          "description": "Vehicle or driver ID",
           "example": "example: DF00000000000000"
         },
         "class": {
