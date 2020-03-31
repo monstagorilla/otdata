@@ -1617,8 +1617,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "number",
-                  "format": "float",
+                  "type": "integer",
+                  "format": "int32",
                   "default": 0.0,
                   "description": "Rotational speed of engine in rpm"   
                 }
@@ -1688,8 +1688,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "number",
+                  "format": "float",
                   "default": 0,
                   "description": "Coolant temperature in °C"
                 }
@@ -1754,8 +1754,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "number",
+                  "format": "float",
                   "default": 0,
                   "description": "Oil temperature in °C"
                 }
@@ -1907,8 +1907,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "number",
+                  "format": "float",
                   "default": 0,
                   "minimum": 0,
                   "description": "Fuel used at cruise in liter"
@@ -1920,8 +1920,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "number",
+                  "format": "float",
                   "default": 0,
                   "minimum": 0,
                   "description": "Fuel used at drive in liter"
@@ -2080,8 +2080,8 @@
               "allOf": [{"$ref": "#/definitions/OTDataStatus"}],
               "properties": {
                 "value":{
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "number",
+                  "format": "float",
                   "default": 0,
                   "minimum": 0,
                   "description": "Fuel rate average in l/h"                }
@@ -2195,8 +2195,8 @@
           "description": "Driver card IDs"
         },
         "rpm": {
-          "type": "number",
-          "format": "float",
+          "type": "integer",
+          "format": "int32",
           "description": "Output shaft speed  rpm"
         }
       }
@@ -2329,96 +2329,96 @@
       "properties": {
         "harshbreak": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total harsh brakes times"
         },
         "harshacc": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total harsh accelerations times"
         },
         "idletime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total idle time sec."
         },
         "coastingtime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total coasting time sec."
         },
         "coastingdistance": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total coasting distance km"
         },
         "accelerationtime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total acceleration time sec."
         },
         "accelerationdistance": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total acceleration distance km"
         },
         "decelerationtime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total deceleration time sec."
         },
         "decelerationdistance": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total deceleration distance km"
         },
         "overspeedtime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total overspeed time sec."
         },
         "overspeeddistance": {
-          "type": "integer",
-          "format": "int32",
+          "type": "number",
+          "format": "float",
           "description": "Total overspeed distance km"
         },
         "rpmtime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total over RPM time sec."
         },
         "rpmdistance": {
-          "type": "integer",
-          "format": "int32",
+          "type": "number",
+          "format": "float",
           "description": "Total over RPM distance km"
         },
         "cruisabletime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total cruisable time sec."
         },
         "cruisabledistance": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total cruisable distance km"
         },
         "cruisetime": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total cruise time sec."
         },
         "cruisedistance": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total cruise distance in km"
         },
         "cruisetime2": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "Total cruise time w/o acceleration pedal in sec."
         },
         "cruisedistance2": {
-          "type": "integer",
+          "type": "number",
           "format": "float",
           "description": "Total cruise distance w/o acceleration pedal in km"
         }
@@ -2429,6 +2429,7 @@
       "properties": {
         "axel": {
           "type": "integer",
+          "minimum": 0,
           "description": "axle number front to back beginning with 0"
         },
         "wheel": {
@@ -2557,8 +2558,8 @@
           "example": "2017-07-22T17:32:28Z"
         },
         "loading": {
-          "type": "integer",
-          "description": "'1=loading, 0=not loading'\n"
+          "type": "boolean",
+          "description": "true=loading, false=not loading"
         },
         "drivenumber": {
           "type": "string"
