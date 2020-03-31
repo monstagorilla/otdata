@@ -1409,9 +1409,9 @@
     "OTDriver": {
       "type": "object",
       "properties": {
-        "cardid": {
+        "id": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
-          "description": "The card ID of the driver "
+          "description": "Driver ID "
         },
         "name": {
           "type": "string",
