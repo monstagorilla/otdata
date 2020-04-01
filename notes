@@ -1,5 +1,5 @@
 important for 1.1.0:
--> camel cases/under score?? consistent variable names
+->camel cases/under score?? consistent variable names
 - class parameter driver vehicle description missing
 - speed distance float? 
 - fuel liter flosat?
@@ -11,7 +11,7 @@ important for 1.1.0:
 - endpoints
 - tournumber
 - vehicle or driver ident? same as did?
-
+- is a set drive state missing? 
 
 TODOs:
 - documentation of parameters and functions
