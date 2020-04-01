@@ -7,7 +7,7 @@ A complete list of changes can be found in the [git history](https://gitlab.com/
 - Improve and unify descriptions
 - Create website with further documentation
 - Remove obligatory authentifications and add optional token parameter
-- Introduce tuple-like [data structure](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=basic-schema-for-vehicle-data-in-api-responses) for vehicle data
+- Introduce tuple-like [data structure](https://opentelematics.gitlab.io/otdata/docs/#/dataModels?id=basic-schema-for-vehicle-data-in-api-responses) for vehicle data
 - Unifiy [HTTP status codes](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=http-status-codes)
 - Unify [response bodies]() 
 - Unify [request parameters]()
