@@ -1,6 +1,6 @@
 # Release Notes
 ## Version 1.1.0 
-A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/master).
+A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/tree/1.1.0).
 
 ### Major Changes
 - Introduce strong abstractions for better reusable, more consistent and unified code
