@@ -1,28 +1,28 @@
 # Release Notes
-## Version 1.0.5 (work in progress)
+## Version 1.1.0 
 A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/master).
 
 ### Major Changes
+- Introduce strong abstractions for better reusable, more consistent and unified code
 - Improve and unify descriptions
-- Create website with additional documentation generated with docsify
-- Remove obligatory authentifications
+- Create website with further documentation
+- Remove obligatory authentifications and add optional token parameter
 - Introduce tuple-like [data structure](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=basic-schema-for-vehicle-data-in-api-responses) for vehicle data
-- Abstract and unfiy [HTTP status codes](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=http-status-codes)
+- Unifiy [HTTP status codes](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=http-status-codes)
+- Unify [response bodies]() 
+- Unify [request parameters]()
+- Unify use of [IDs]()
+- Replace `POST /otstate/setstatus` with `POST /otstate/setOrderStatus` and `POST /otstate/setMessageStatus`
+- Replace all `header` parameters with `query` parameters
+- Unify types
 
 ### Minor Changes
 - Fix typos and grammar mistakes
-- Add string pattern for version number
 - Use enums instead of integers associated with values 
-- Add `format`, `minimum`, `maximum` and `default` values for many fields 
-- Abstract and unify many parameters 
-- Add `token`, `otid` and `version` for all requests
-- Replace all `header` parameters with `query` parameters
-- Change `mid` to `cid`
-- Unify ID fields
-- Small changes in requests
+- Abstract and unify many parameters and fields
 - Introduce `gid` parameter
-- Fix wrong usage of float format for integers
-- Restructure requests for Swagger UI
+- Restructure Swagger UI
+- Add string pattern for version number
 - Unify [date and time indications](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=date-and-time-indications)
-- Add and change some properties and parameters
 - Change metadata
+- Some minor changes and fixes
