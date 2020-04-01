@@ -1,3 +1,4 @@
 - [Getting started](gettingStarted.md)
-- [Additional Documentation](additionalDocs.md)
+- [Request Structure](requestStructure.md)
+- [Data Models](dataModels.md)
 - [Release Notes](releaseNotes.md)
