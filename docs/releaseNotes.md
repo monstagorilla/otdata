@@ -8,10 +8,10 @@ A complete list of changes can be found in the [git history](https://gitlab.com/
 - Create website with further documentation
 - Remove obligatory authentifications and add optional token parameter
 - Introduce tuple-like [data structure](https://opentelematics.gitlab.io/otdata/docs/#/dataModels?id=basic-schema-for-vehicle-data-in-api-responses) for vehicle data
-- Unifiy [HTTP status codes](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=http-status-codes)
-- Unify [response bodies]() 
-- Unify [request parameters]()
-- Unify use of [IDs]()
+- Unifiy [HTTP status codes](https://opentelematics.gitlab.io/otdata/docs/#/requestStructure?id=http-status-codes)
+- Unify [response bodies](https://opentelematics.gitlab.io/otdata/docs/#/requestStructure?id=response-body) 
+- Unify [request parameters](https://opentelematics.gitlab.io/otdata/docs/#/requestStructure?id=parameter-structure)
+- Unify use of [IDs](https://opentelematics.gitlab.io/otdata/docs/#/dataModels?id=ids)
 - Replace `POST /otstate/setstatus` with `POST /otstate/setOrderStatus` and `POST /otstate/setMessageStatus`
 - Replace all `header` parameters with `query` parameters
 - Unify types
@@ -23,6 +23,6 @@ A complete list of changes can be found in the [git history](https://gitlab.com/
 - Introduce `gid` parameter
 - Restructure Swagger UI
 - Add string pattern for version number
-- Unify [date and time indications](https://opentelematics.gitlab.io/otdata/docs/#/additionalDocs?id=date-and-time-indications)
+- Unify [date and time indications](https://opentelematics.gitlab.io/otdata/docs/#/dataModels?id=date-and-time-indications)
 - Change metadata
 - Some minor changes and fixes
