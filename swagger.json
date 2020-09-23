@@ -1536,7 +1536,7 @@
           "type": "string"
         },
         "streetnumber": {
-          "type": "string"
+          "type": "integer"
         },
         "province": {
           "type": "string"
