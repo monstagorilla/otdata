@@ -12,7 +12,7 @@ important for 1.1.0:
 - tournumber
 - vehicle or driver ident? same as did?
 - is a set drive state missing? 
-
+- general usage of ids
 TODOs:
 - documentation of parameters and functions
 - auth guide
