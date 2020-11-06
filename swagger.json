@@ -855,22 +855,17 @@
         "parameters": [
           {
             "in": "body",
-            "name": "membersandtoken",
-            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "name": "members",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "members": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/OTMember"
-                  }
-                },
-                "token": {
-                  "$ref": "#/definitions/OTToken"
-                } 
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTMember"
               }
             }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
           },
           {
             "$ref": "#/parameters/otidParam"
