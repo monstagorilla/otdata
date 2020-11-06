@@ -873,6 +873,104 @@
             "$ref": "#/responses/InternalServerError"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Adds or updates new members",
+        "description": "If a member already exists, it is not added, but updated.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "membersandtoken",
+            "description": "Since there can be only one body parameter, it contains all data that is transferred in the body and thus also the token. The parameter name is for documentation purposes only.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "members": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/OTMember"
+                  }
+                },
+                "token": {
+                  "$ref": "#/definitions/OTToken"
+                } 
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Deletes the specified member",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "member",
+            "description": "OpenTelematics ID of member to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
       }
     },
     "/otdata/tacho/vehicle": {
