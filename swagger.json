@@ -2749,7 +2749,6 @@
           "type": "string",
           "minLength": 3,
           "maxLength": 3,
-          "pattern": "",
           "description": "ISO 3166-1 alpha-3"
         },
         "phonenumber": {
