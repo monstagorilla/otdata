@@ -80,6 +80,6 @@ Use the OpenAPI format `“date”` for ISO 8601 "full-date":
 "valid_from": {
     "type": "string",
     "format": "date",
-    "example": "01.12.2006"
+    "example": "2017-07-21"
 }```
 
