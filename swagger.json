@@ -2801,27 +2801,26 @@
         },
         "state": {
           "type": "string",
-          "description": "Example: NRW, BW, RP\n"
+          "example": "NRW"
         },
         "country": {
           "type": "string",
           "minLength": 3,
           "maxLength": 3,
-          "description": "ISO 3166-1 alpha-3"
+          "description": "ISO 3166-1 alpha-3",
+          "example": "DEU"
         },
         "phonenumber": {
-          "type": "string",
-          "description": "phone number"
+          "type": "string"
         },
         "email": {
-          "type": "string",
-          "description": "email"
+          "type": "string"
         },
         "memberSince": {
           "type": "string",
-          "format": "date-time",
-          "description": "Date Time of message receive",
-          "example": "2017-07-21T17:32:28Z"
+          "format": "date",
+          "description": "Date the member joined OpenTelematics",
+          "example": "2017-07-21"
         }
       }
     },
