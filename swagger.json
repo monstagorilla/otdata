@@ -1190,6 +1190,10 @@
         "otid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
           "description": "Registered OpenTelematics ID of the responder"
+        },
+        "message": {
+          "type": "string",
+          "description": "Further explanation"
         }
       },
       "required": ["otid"]
@@ -1197,10 +1201,6 @@
     "OTError": {
       "type": "object",
       "properties": {
-        "message": {
-          "type": "string",
-          "description": "Further explanation of error or cause"
-        },
         "code":{
           "type": "string",
           "description": "Custom error code"
