@@ -2615,7 +2615,7 @@
           "format": "date-time",
           "example": "2017-07-22T17:32:28Z"
         },
-        "loading": {
+        "hasloading": {
           "type": "boolean",
           "description": "true=loading, false=not loading"
         },
