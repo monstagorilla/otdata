@@ -1647,11 +1647,24 @@
     "newOTAddress": {
       "type": "object",
       "properties": {
-        "street": {
+        "addresstype":{
+          "type":"string", 
+          "enum": ["customer", "personal", "invoice", "contractee"],
+          "description": "Type to distinguish between different types of addresses, so that you can have several addresses in one list"
+        },
+        "name":{
           "type": "string"
         },
-        "streetnumber": {
-          "type": "integer"
+        "companyname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street name and possibly number"
+        },
+        "addition":{
+          "type": "string", 
+          "description": "Further address information or additional details"
         },
         "province": {
           "type": "string"
@@ -1672,17 +1685,9 @@
           "pattern": "^[A-Z]{3}$",
           "description": "ISO-3166 ALPHA-3"
         },
-        "cid": {
-          "allOf": [{"$ref": "#/definitions/cid"}]        
-        },
-        "customername": {
-          "type": "string",
-          "maxLength": 30
-        },
         "contactperson": {
           "$ref": "#/definitions/OTContactPerson"  
         },
-        
         "poiname": {
           "type": "string",
           "maxLength": 30
