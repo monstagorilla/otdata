@@ -1642,7 +1642,7 @@
           "type": "string",
           "maxLength": 50
         },
-        "poinname": {
+        "poiname": {
           "type": "string",
           "maxLength": 30
         },
