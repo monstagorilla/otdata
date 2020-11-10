@@ -1698,6 +1698,24 @@
         }
       }
     },
+    "OTAvis":{
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Hr Max Muster"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+41793332211"
+        },
+        "ismandatory": {
+          "type": "boolean",
+          "description": "Indicates if it is mandatory to notify",
+          "example": true
+        }
+      }
+    },
     "OTContactPerson":{
       "type": "object",
       "properties": {
