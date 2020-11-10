@@ -1428,15 +1428,8 @@
           "format": "date-time",
           "example": "2017-07-21T17:32:28Z"
         },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 longitude"
+        "coordinates":{
+          "$ref": "#/definitions/OTCoordinates"
         },
         "heading": {
           "type": "integer",
@@ -1466,8 +1459,7 @@
       },
       "required": [
         "datetime",
-        "latitude",
-        "longitude"
+        "coordinates"
       ]
     },
     "OTDriver": {
@@ -2594,15 +2586,8 @@
         "address": {
           "$ref": "#/definitions/OTAddress"
         },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 longitude"
+        "coordinates":{
+          "$ref": "#/definitions/OTCoordinates"
         },
         "info": {
           "type": "string"
@@ -2625,8 +2610,7 @@
       },
       "required": [
         "refid",
-        "latitude",
-        "longitude",
+        "coordinates",
         "name"
       ]
     },
@@ -2914,6 +2898,21 @@
           "type": "string", 
           "enum": ["ok", "error", "n/a"],
           "description": "Indicates availability of data"
+        }
+      }
+    },
+    "OTCoordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "WGS84 latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "WGS84 longitude"
         }
       }
     },
