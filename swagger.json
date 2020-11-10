@@ -2651,7 +2651,7 @@
           "type": "string",
           "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
         },
-        "time": {
+        "deadline": {
           "type": "string",
           "format": "date-time",
           "example": "2017-07-22T17:32:28Z"
