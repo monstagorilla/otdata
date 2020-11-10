@@ -2176,7 +2176,7 @@
     },
     "OTTacho": {
       "type": "object",
-      "description": "`workstate`, `timerelstate`, `cardpresent`, `overspeed`, `systemevent`, `direction` and `speed` are described and specified as in SAE J 1939",
+      "description": "`workingstate`, `timerelstate`, `cardpresent`, `overspeed`, `systemevent`, `direction` and `speed` are described and specified as in SAE J 1939",
       "properties": {
         "workstate": {
           "type": "object",
