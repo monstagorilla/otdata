@@ -1644,6 +1644,79 @@
         }
       }
     },
+    "newOTAddress": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "streetnumber": {
+          "type": "integer"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "countrycode": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3,
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO-3166 ALPHA-3"
+        },
+        "cid": {
+          "allOf": [{"$ref": "#/definitions/cid"}]        
+        },
+        "customername": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "contactperson": {
+          "$ref": "#/definitions/OTContactPerson"  
+        },
+        
+        "poiname": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "poigroup": {
+          "type": "string",
+          "maxLength": 30
+        }
+      }
+    },
+    "OTContactPerson":{
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "fax": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "mobile": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 50
+        }
+      }
+    },
     "OTCanData": {
       "type": "object",
       "properties": {
