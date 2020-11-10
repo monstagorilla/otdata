@@ -2,16 +2,17 @@
 ## Parameter Structure
 Each request has at least the following parameters:  
 - `otid` (required): Registered OpenTelematics ID of the requester
-- `token`: JSON Web Token
 - `version`: Version of the OpenTelematics API used, e.g.:`"1.1.0"`  
+- `token`: JSON Web Token
   
 For all primitive types query parameters are used. Objects and tokens are transmitted in the body.  
 
 
 ## Response Body
-Each "200: OK" response body consists of three fields:
-- `version`: Version of the OpenTelematics API used, e.g.:`"1.1.0"`
+Each "200: OK" response body consists of four fields:
 - `otid` (required): Registered OpenTelematics ID of the responder
+- `version`: Version of the OpenTelematics API used, e.g.:`"1.1.0"`
+- `message`: Further explanation
 - `data`: Object that contains the actual data
 
 ## HTTP Status Codes  
