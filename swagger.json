@@ -1428,15 +1428,8 @@
           "format": "date-time",
           "example": "2017-07-21T17:32:28Z"
         },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 longitude"
+        "coordinates":{
+          "$ref": "#/definitions/OTCoordinates"
         },
         "heading": {
           "type": "integer",
@@ -1466,8 +1459,7 @@
       },
       "required": [
         "datetime",
-        "latitude",
-        "longitude"
+        "coordinates"
       ]
     },
     "OTDriver": {
@@ -2176,7 +2168,7 @@
     },
     "OTTacho": {
       "type": "object",
-      "description": "`workstate`, `timerelstate`, `cardpresent`, `overspeed`, `systemevent`, `direction` and `speed` are described and specified as in SAE J 1939",
+      "description": "`workingstate`, `timerelstate`, `cardpresent`, `overspeed`, `systemevent`, `direction` and `speed` are described and specified as in SAE J 1939",
       "properties": {
         "workstate": {
           "type": "object",
@@ -2594,15 +2586,8 @@
         "address": {
           "$ref": "#/definitions/OTAddress"
         },
-        "latitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 latitude"
-        },
-        "longitude": {
-          "type": "number",
-          "format": "double",
-          "description": "WGS84 longitude"
+        "coordinates":{
+          "$ref": "#/definitions/OTCoordinates"
         },
         "info": {
           "type": "string"
@@ -2625,8 +2610,7 @@
       },
       "required": [
         "refid",
-        "latitude",
-        "longitude",
+        "coordinates",
         "name"
       ]
     },
@@ -2914,6 +2898,21 @@
           "type": "string", 
           "enum": ["ok", "error", "n/a"],
           "description": "Indicates availability of data"
+        }
+      }
+    },
+    "OTCoordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double",
+          "description": "WGS84 latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double",
+          "description": "WGS84 longitude"
         }
       }
     },
