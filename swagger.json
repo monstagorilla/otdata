@@ -2710,6 +2710,21 @@
         "name"
       ]
     },
+    "OTTimeWindow":{
+      "type": "object",
+      "properties": {
+        "earliest": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-01-01T09:28:00.000Z"
+        },
+        "latest": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-01-01T10:00:00.000Z"
+        }
+      }
+    },
     "OTMessageStatus": {
       "type": "object",
       "properties": {
