@@ -2803,7 +2803,7 @@
           "type": "string",
           "example": "NRW"
         },
-        "country": {
+        "countrycode": {
           "type": "string",
           "minLength": 3,
           "maxLength": 3,
