@@ -2650,6 +2650,211 @@
         "name"
       ]
     },
+    "OTExtendedDriveBase":{
+      "allOf": [{"$ref": "#/definitions/OTBasicDriveBase"},
+                {"$ref": "#/definitions/OTShipment"}]
+    },
+    "OTShipment":{
+      "type": "object",
+      "properties": {
+        "addresses":{
+          "type": "array", 
+          "items": {"$ref": "#/definitions/OTAddress"},
+          "description": "All addresses relevant for the shipment"
+        },
+        "shipmentpositions":{
+          "type":"array",
+          "items": {
+            "$ref": "#/definitions/OTShipmentPosition"
+          }
+        },
+        "tasks":{
+          "type":"array",
+          "items": {
+            "$ref": "#/definitions/OTTask"
+          }
+        },
+        "adrtotals": {
+          "type": "object",
+          "required": [
+            "points",
+            "UNNR"
+          ],
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "UNNR": {
+              "type": "array",
+              "description": "Array Containing Loaded adr goods UNNRs",
+              "items": {
+                "type": "string",
+                "example": "1905"
+              }
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
+        }
+      }
+    },
+    "OTShipmentPosition":{
+      "type": "object",
+      "required": [
+        "orderposition",
+        "count",
+        "unit"
+      ],
+      "properties": {
+        "orderposition": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1
+        },
+        "unit": {
+          "type": "string",
+          "example": "PAL"
+        },
+        "description": {
+          "type": "string",
+          "example": "Deuteriumfläschchen"
+        },
+        "dimension": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in cm",
+              "example": 30
+            },
+            "width": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in cm",
+              "example": 80
+            },
+            "length": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in cm",
+              "example": 120
+            },
+            "weight": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in kg",
+              "example": 566
+            },
+            "area": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in m2",
+              "example": 0.96
+            },
+            "volume": {
+              "type": "number",
+              "format": "decimal",
+              "description": "in m3",
+              "example": 0.288
+            },
+            "cargospace": {
+              "type": "number",
+              "format": "decimal",
+              "description": "Amount of Cargospaces the transportgood takes",
+              "example": 1.5
+            }
+          }
+        },
+        "adrinfo": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "amount": {
+              "type": "integer",
+              "format": "int32",
+              "example": 500
+            },
+            "unit": {
+              "type": "string",
+              "example": "l",
+              "enum": [
+                "l",
+                "kg"
+              ]
+            },
+            "UNNR": {
+              "type": "string",
+              "example": "1905"
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
+        }
+      }
+    },
+    "OTTask":{
+      "type": "object",
+      "required": [
+        "address",
+        "timewindow"
+      ],
+      "properties": {
+        "tasktype": {
+          "type": "string",
+          "enum": ["pickup", "delivery"]
+        },
+        "address": {
+          "$ref": "#/definitions/OTAddress"
+        },
+        "timewindow": {
+          "$ref": "#/definitions/OTTimeWindow"
+        },
+        "avis": {
+          "$ref": "#/definitions/OTAvis"
+        },
+        "remarks": {
+          "type": "object",
+          "properties": {
+            "remarkline1": {
+              "type": "string",
+              "example": "Bitte klingeln"
+            },
+            "remarkline2": {
+              "type": "string",
+              "example": "Rampe 2 könnte zu sein -> Rampe 3"
+            }
+          }
+        },
+        "additions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Array Containing Information about what has to be respected on location or transport or any additional service performed",
+            "example": "Zusatzleistung XY",
+            "enum": [
+              "tbd"
+            ]
+          }
+        }
+      } 
+      
+    },
     "OTTimeWindow":{
       "type": "object",
       "properties": {
