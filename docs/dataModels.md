@@ -36,6 +36,7 @@ Overview of the data types used in the respective context.
 |---------------------|------------------|--------------------|
 | kilometer           | `float`          | mileage: `int32`   |
 | meter               | `int32`          |                    |
+| centimeter          | `number`         |                    |
 | km/h                | `float`          |                    |
 | rpm                 | `int32`          |                    |
 | liter, l/h          | `float`          | total fuel: `int32`| 
