@@ -793,6 +793,163 @@
         }
       }
     },
+    "/otdevice/extendedorder/tour":{
+      "get": {
+        "tags": [
+          "Extended Order"
+        ],
+        "summary": "Returns a list of all tours of the specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTExtendedTour"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Extended Order"
+        ],
+        "summary": "Updates a specified tour on a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "description": "ID of tour to update"
+          },
+          {
+            "in": "body", 
+            "name": "tour", 
+            "schema": {"$ref": "#/definitions/OTExtendedTourParam"},
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Extended Order"
+        ],
+        "summary": "Deletes a specified tour on a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "description": "ID of tour to delete",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/otmember/member": {
       "get": {
         "tags": [
@@ -1114,6 +1271,13 @@
       "in": "query",
       "type": "string",
       "description": "Device ID"
+    },
+    "didParamRequired": {
+      "name": "did",
+      "in": "query",
+      "type": "string",
+      "description": "Device ID",
+      "required": true
     },
     "refdidParam": {
       "name": "refdid",
