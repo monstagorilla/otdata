@@ -1041,23 +1041,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTExtendedTour"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
+          "204": {
+            "$ref": "#/responses/NoContent"
           },
           "400":{
             "$ref": "#/responses/BadRequest"
@@ -1077,12 +1062,12 @@
         }
       }
     },
-    "/otdevice/shipment/":{
+    "/otdevice/shipment":{
       "get": {
         "tags": [
-          "Shipments"
+          "Shipment Management"
         ],
-        "summary": "Returns a list of all tours of the specified device",
+        "summary": "Returns a list of all shipments of the specified device",
         "parameters": [
           {
             "$ref": "#/parameters/didParamRequired"
@@ -1108,13 +1093,160 @@
                     "data" :{
                       "type": "array",
                       "items": {
-                        "$ref": "#/definitions/OTExtendedTour"
+                        "$ref": "#/definitions/OTShipment"
                       }
                     }
                   }
                 }   
               ]
             }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Adds a new shipment on specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "body", 
+            "name": "shipment",
+            "required": true,
+            "schema": {"$ref": "#/definitions/OTShipment"}
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },"delete": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Deletes a specified shipment from a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "shipmentid",
+            "description": "ID of shipment to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/shipment/update":{
+      "post": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Updates a specified shipment on a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "shipmentid",
+            "description": "ID of shipment to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "shipment",
+            "required": true,
+            "schema": {"$ref": "#/definitions/OTShipment"}
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
           },
           "400":{
             "$ref": "#/responses/BadRequest"
