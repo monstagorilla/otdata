@@ -2615,25 +2615,30 @@
           "allOf": [{"$ref": "#/definitions/refid"}]        
         },
         "address": {
-          "$ref": "#/definitions/OTAddress"
+          "allOf": [{"$ref": "#/definitions/OTAddress"}],
+          "description": "Destination address"
         },
         "coordinates":{
-          "$ref": "#/definitions/OTCoordinates"
+          "allOf": [{"$ref": "#/definitions/OTCoordinates"}],
+          "description": "Destination coordinates"
         },
         "info": {
-          "type": "string"
+          "type": "string",
+          "description": "Further information"
         },
         "name": {
           "type": "string"
         },
-        "deadline": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2017-07-22T17:32:28Z"
+        "starttimewindow": {
+          "allOf": [{"$ref": "#/definitions/OTTimeWindow"}],
+          "description": "Earliest and latest start time"
         },
-        "isloading": {
-          "type": "boolean",
-          "description": "true=loading, false=not loading"
+        "arrivaltimewindow":{
+          "allOf": [{"$ref": "#/definitions/OTTimeWindow"}],
+          "description": "Earliest and latest arrival time"
+        },
+        "avis": {
+          "$ref": "#/definitions/OTAvis"
         },
         "drivenumber": {
           "type": "string"
