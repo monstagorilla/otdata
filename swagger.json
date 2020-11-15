@@ -3188,10 +3188,10 @@
           "items": {"$ref": "#/definitions/OTAddress"},
           "description": "All addresses relevant for the shipment"
         },
-        "shipmentpositions":{
+        "items":{
           "type":"array",
           "items": {
-            "$ref": "#/definitions/OTShipmentPosition"
+            "$ref": "#/definitions/OTItem"
           }
         },
         "tasks":{
@@ -3228,7 +3228,7 @@
         }
       }
     },
-    "OTShipmentPosition":{
+    "OTItem":{
       "type": "object",
       "required": [
         "orderposition",
