@@ -2103,8 +2103,8 @@
           "pattern": "^[A-Z]{3}$",
           "description": "ISO-3166 ALPHA-3"
         },
-        "contactperson": {
-          "$ref": "#/definitions/OTContactPerson"  
+        "contact": {
+          "$ref": "#/definitions/OTContact"  
         },
         "poiname": {
           "type": "string",
@@ -2134,7 +2134,7 @@
         }
       }
     },
-    "OTContactPerson":{
+    "OTContact":{
       "type": "object",
       "properties": {
         "name": {
