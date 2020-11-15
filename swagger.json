@@ -2062,6 +2062,9 @@
     "OTAddress": {
       "type": "object",
       "properties": {
+        "coordinates": {
+          "$ref": "#/definitions/OTCoordinates"
+        },
         "addresstype":{
           "type":"string", 
           "enum": ["customer", "personal", "invoice", "contractee"],
@@ -3139,10 +3142,6 @@
         "address": {
           "allOf": [{"$ref": "#/definitions/OTAddress"}],
           "description": "Destination address"
-        },
-        "coordinates":{
-          "allOf": [{"$ref": "#/definitions/OTCoordinates"}],
-          "description": "Destination coordinates"
         },
         "info": {
           "type": "string",
