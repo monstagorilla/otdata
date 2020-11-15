@@ -3236,6 +3236,10 @@
         "unit"
       ],
       "properties": {
+        "items":{
+          "type": "array", 
+          "items": {"$ref": "#/definitions/OTItem"}
+        },
         "orderposition": {
           "type": "integer",
           "format": "int32",
