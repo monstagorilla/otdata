@@ -3008,11 +3008,9 @@
     },
     "OTBasicTour": {
       "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "allOf": [{"$ref": "#/definitions/OTTourBase"},
+                {"$ref": "#/definitions/OTStatus"}],
       "properties": {
-        "status":  {
-          "$ref": "#/definitions/OTStatus"
-        },
         "drives": {
           "type": "array",
           "items": {
@@ -3023,11 +3021,9 @@
     },
     "OTExtendedTour": {
       "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "allOf": [{"$ref": "#/definitions/OTTourBase"},
+                {"$ref": "#/definitions/OTStatus"}],
       "properties": {
-        "status": {
-          "$ref": "#/definitions/OTStatus"
-        },
         "drives": {
           "type": "array",
           "items": {
@@ -3096,10 +3092,8 @@
     },
     "OTDriveLiveInfo":{
       "type": "object",
+      "allOf": [{"$ref": "#/definitions/OTStatus"}],
       "properties": {
-        "status": {
-          "$ref": "#/definitions/OTStatus"
-        },
         "eta": {
           "type": "string",
           "format": "date-time",
@@ -3409,7 +3403,7 @@
     "OTStatus": {
       "type": "object",
       "properties": {
-        "state": {
+        "status": {
           "type": "string",
           "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
         }
