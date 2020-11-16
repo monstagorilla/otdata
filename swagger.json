@@ -3029,10 +3029,7 @@
       "allOf": [{"$ref": "#/definitions/OTTourBase"}],
       "properties": {
         "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
+          "$ref": "#/definitions/OTStatus"
         },
         "drives": {
           "type": "array",
