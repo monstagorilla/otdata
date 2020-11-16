@@ -3104,10 +3104,7 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
+          "$ref": "#/definitions/OTStatus"
         },
         "eta": {
           "type": "string",
