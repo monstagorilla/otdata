@@ -3356,18 +3356,25 @@
           }
         },
         "additions": {
-          "type": "array",
-          "items": {
+          "$ref": "#/definitions/OTKeyValueList"
+        }
+      }   
+    }
+    ,
+    "OTKeyValueList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties":{
+          "key": {
             "type": "string",
-            "description": "Array Containing Information about what has to be respected on location or transport or any additional service performed",
-            "example": "Zusatzleistung XY",
-            "enum": [
-              "tbd"
-            ]
+                "description": ""
+            },
+          "value":{
+            "type": "string"
           }
         }
-      } 
-      
+      }
     },
     "OTTimeWindow":{
       "type": "object",
