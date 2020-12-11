@@ -3331,8 +3331,7 @@
       ],
       "properties": {
         "tasktype": {
-          "type": "string",
-          "enum": ["pickup", "delivery"]
+          "type": "string"
         },
         "address": {
           "$ref": "#/definitions/OTAddress"
