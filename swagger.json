@@ -3342,21 +3342,8 @@
         "timewindow": {
           "$ref": "#/definitions/OTTimeWindow"
         },
-        "avis": {
-          "$ref": "#/definitions/OTAvis"
-        },
-        "remarks": {
-          "type": "object",
-          "properties": {
-            "remarkline1": {
-              "type": "string",
-              "example": "Bitte klingeln"
-            },
-            "remarkline2": {
-              "type": "string",
-              "example": "Rampe 2 könnte zu sein -> Rampe 3"
-            }
-          }
+        "description": {
+          "type": "string"
         },
         "additions": {
           "$ref": "#/definitions/OTKeyValueList"
