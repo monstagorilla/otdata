@@ -3221,9 +3221,12 @@
         "unit"
       ],
       "properties": {
-        "items":{
-          "type": "array", 
-          "items": {"$ref": "#/definitions/OTItem"}
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        }, 
+        "parentID":{
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],
+          "description": "ID to be able to map tree structure in list"        
         },
         "orderposition": {
           "type": "integer",
