@@ -3029,6 +3029,20 @@
           "items": {
             "$ref": "#/definitions/OTExtendedDrive"
           }
+        },
+        "adrtotals": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
         }
       }
     },
@@ -3184,39 +3198,12 @@
           "items": {
             "$ref": "#/definitions/OTTask"
           }
-        },
-        "adrtotals": {
-          "type": "object",
-          "required": [
-            "points",
-            "UNNR"
-          ],
-          "properties": {
-            "points": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1650
-            },
-            "UNNR": {
-              "type": "array",
-              "description": "Array Containing Loaded adr goods UNNRs",
-              "items": {
-                "type": "string",
-                "example": "1905"
-              }
-            },
-            "tunnelcode": {
-              "type": "string",
-              "example": "E"
-            }
-          }
         }
       }
     },
     "OTItem":{
       "type": "object",
       "required": [
-        "orderposition",
         "count",
         "unit"
       ],
@@ -3228,7 +3215,7 @@
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
           "description": "ID to be able to map tree structure in list"        
         },
-        "orderposition": {
+        "positionorder": {
           "type": "integer",
           "format": "int32",
           "example": 1
@@ -3246,49 +3233,60 @@
           "type": "string",
           "example": "Deuteriumfläschchen"
         },
+        "codes": {
+          "type": "array",
+          "description": "List of codes on the item, e.g. barcodes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scanrequired": {
+          "type": "boolean",
+          "description": "Indicates if the item must be scanned"
+        },
         "dimension": {
           "type": "object",
           "properties": {
             "height": {
               "type": "number",
               "format": "decimal",
-              "description": "in cm",
+              "description": "Height in cm",
               "example": 30
             },
             "width": {
               "type": "number",
               "format": "decimal",
-              "description": "in cm",
+              "description": "Width in cm",
               "example": 80
             },
             "length": {
               "type": "number",
               "format": "decimal",
-              "description": "in cm",
+              "description": "Length in cm",
               "example": 120
             },
             "weight": {
               "type": "number",
               "format": "decimal",
-              "description": "in kg",
+              "description": "Weight in kg",
               "example": 566
             },
             "area": {
               "type": "number",
               "format": "decimal",
-              "description": "in m2",
+              "description": "Area in m2",
               "example": 0.96
             },
             "volume": {
               "type": "number",
               "format": "decimal",
-              "description": "in m3",
+              "description": "Volume in m3",
               "example": 0.288
             },
             "cargospace": {
               "type": "number",
               "format": "decimal",
-              "description": "Amount of Cargospaces the transportgood takes",
+              "description": "Number of cargo spaces occupied by the transported goods",
               "example": 1.5
             }
           }
