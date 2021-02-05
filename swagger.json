@@ -2067,7 +2067,7 @@
         },
         "addresstype":{
           "type":"string", 
-          "enum": ["customer", "personal", "invoice", "contractee"],
+          "enum": ["customer", "personal", "invoice", "client", "sender", "receiver", "shippingPartner", "receivingPartner", "forwarder"],
           "description": "Type to distinguish between different types of addresses, so that you can have several addresses in one list"
         },
         "name":{
@@ -3182,6 +3182,9 @@
     "OTShipment":{
       "type": "object",
       "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
         "addresses":{
           "type": "array", 
           "items": {"$ref": "#/definitions/OTAddress"},
@@ -3215,11 +3218,6 @@
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
           "description": "ID to be able to map tree structure in list"        
         },
-        "positionorder": {
-          "type": "integer",
-          "format": "int32",
-          "example": 1
-        },
         "count": {
           "type": "integer",
           "format": "int32",
@@ -3237,7 +3235,21 @@
           "type": "array",
           "description": "List of codes on the item, e.g. barcodes",
           "items": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "string"
+              },
+              "scanpossible": {
+                "type": "boolean",
+                "description": "If the code is scannable"
+              },
+              "type": {
+                "type": "string",
+                "example": "QRCode",
+                "description": "Type to distinguish between different types of codes"
+              }
+            }
           }
         },
         "scanrequired": {
@@ -3316,9 +3328,39 @@
               "type": "string",
               "example": "1905"
             },
-            "tunnelcode": {
+            "properShippingName": {
+              "type": "string"
+            },
+            "additionalDescription": {
+              "type": "string"
+            },
+            "classNumber": {
+              "type": "string",
+              "example": "4.2"
+            },
+            "className": {
+              "type": "string",
+              "example": "flammable liquids"
+            },
+            "packingGroup": {
+              "type": "string",
+              "example": "II"
+            },
+            "classificationCode": {
+              "type": "string",
+              "example": "F1"
+            }, 
+            "tunnelRestrictionCode": {
               "type": "string",
               "example": "E"
+            }, 
+            "isEnvironmentallyHazardous": {
+              "type": "boolean", 
+              "example": false
+            },
+            "isHighRisk": {
+              "type": "boolean",
+              "example": true
             }
           }
         }
