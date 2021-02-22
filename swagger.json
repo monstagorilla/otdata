@@ -2067,7 +2067,7 @@
         },
         "addresstype":{
           "type":"string", 
-          "enum": ["customer", "personal", "invoice", "client", "sender", "receiver", "shippingPartner", "receivingPartner", "forwarder"],
+          "enum": ["customer", "personal", "invoice", "shipper", "consignee", "shippingPartner", "receivingPartner", "forwarder", "service"],
           "description": "Type to distinguish between different types of addresses, so that you can have several addresses in one list"
         },
         "name":{
