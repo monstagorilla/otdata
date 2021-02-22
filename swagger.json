@@ -913,9 +913,6 @@
         "summary": "Adds a new tour to specified device",
         "parameters": [
           {
-            "$ref": "#/parameters/didParamRequired"
-          },
-          {
             "in": "body", 
             "name": "tour", 
             "schema": {"$ref": "#/definitions/OTExtendedTourParam"},
@@ -3091,8 +3088,14 @@
         "did": {
           "allOf": [{"$ref": "#/definitions/did"}]        
         },
+        "vid": {
+          "allOf": [{"$ref": "#/definitions/vid"}]        
+        },
         "refdid": {
           "allOf": [{"$ref": "#/definitions/refdid"}]        
+        },
+        "refvid": {
+          "allOf": [{"$ref": "#/definitions/refvid"}]        
         }
       },
       "required": [
@@ -3722,6 +3725,12 @@
         {"description": "Device ID"}
       ]
     },
+    "vid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Vehicle ID"}
+      ]
+    },
     "cid": {
       "allOf": [
         {"$ref": "#/definitions/OTIDType"},
@@ -3738,6 +3747,12 @@
       "allOf": [
         {"$ref": "#/definitions/OTIDType"},
         {"description": "Reference Device ID"}
+      ]
+    },
+    "refvid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Reference Vehicle ID"}
       ]
     },
     "refid": {
