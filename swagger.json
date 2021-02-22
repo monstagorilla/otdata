@@ -3088,9 +3088,6 @@
         "info": {
           "type": "string"
         },
-        "tournumber": {
-          "type": "string"
-        },
         "did": {
           "allOf": [{"$ref": "#/definitions/did"}]        
         },
