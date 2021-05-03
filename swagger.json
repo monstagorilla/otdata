@@ -3246,7 +3246,7 @@
           "format": "date-time"
         },
         "coordinates": {
-
+          "$ref": "#/definitions/OTCoordinates"
         }
       }
     },
