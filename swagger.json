@@ -1457,6 +1457,129 @@
           }
         }
       }
+    },
+
+    "/otdata/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Returns a list of all events relating to the specified tour that are in queue and not yet pulled",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tourid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "object",
+                      "properties": {
+                        "tourevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTTourEvent"
+                          }
+                        },
+                        "driveevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTDriveEvent"
+                          }
+                        },
+                        "shipment":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTShipmentEvent"
+                          }
+                        },
+                        "taskevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTTaskEvent"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes a tour event",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tourEvent",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTTourEvent"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -3119,6 +3242,68 @@
         }
       }
     },
+    "OTEventMeta": {
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
+        "timestamp": {
+          "type": "string", 
+          "format": "date-time"
+        }
+      }
+    },
+    "OTTourEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "tourid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "event": {
+          "type": "string",
+          "enum": ["available/created", "transmitted", "read", "excepted", "started", "canceled?", "deleted?", "finished?", "denied?"]
+        }
+      }
+
+    },
+    "OTDriveEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "driveid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },        
+        "event": {
+          "type": "string",
+          "enum": ["started", "paused", "interrupted?", "canceled", "deleted", "finished"]
+        }
+      }
+    },
+    "OTShipmentEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "shipmentid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "event": {
+          "type": "string",
+          "enum": ["pickedup", "canceled", "delivered/finished"],
+          "description": "Dopplung mit zb Task 'delivery'?"
+        }
+      }
+    },
+
+    "OTTaskEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "taskid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "event": {
+          "type": "string",
+          "enum": ["started", "canceled", "finished"]
+        }
+      }
+    }    ,
     "OTShipment":{
       "type": "object",
       "properties": {
@@ -3382,9 +3567,14 @@
         "status": {
           "type": "string",
           "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
+        },
+        "deadline": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-07-22T17:32:28Z"
         }
       }
-    },
+    },  
     "OTMessage": {
       "type": "object",
       "allOf": [{"$ref": "#/definitions/OTMessageBase"}],
