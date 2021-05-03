@@ -1496,12 +1496,6 @@
                             "$ref": "#/definitions/OTDriveEvent"
                           }
                         },
-                        "shipment":{
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/definitions/OTShipmentEvent"
-                          }
-                        },
                         "taskevents":{
                           "type": "array",
                           "items": {
@@ -3250,6 +3244,9 @@
         "timestamp": {
           "type": "string", 
           "format": "date-time"
+        },
+        "coordinates": {
+
         }
       }
     },
@@ -3261,7 +3258,8 @@
         },
         "event": {
           "type": "string",
-          "enum": ["available/created", "transmitted", "read", "excepted", "started", "canceled?", "deleted?", "finished?", "denied?"]
+          "enum": ["available/created", "transmitted", "read", "excepted", "started", "canceled", "deleted", "finished", "denied"],
+          "description": "'available/created': Telematic -> TMS, tour fertig vorliegend"
         }
       }
 
@@ -3274,24 +3272,10 @@
         },        
         "event": {
           "type": "string",
-          "enum": ["started", "paused", "interrupted?", "canceled", "deleted", "finished"]
+          "enum": ["started", "paused", "interrupted?mitextrainfos", "canceled", "deleted", "arrived", "finished"]
         }
       }
     },
-    "OTShipmentEvent": {
-      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
-      "properties": {
-        "shipmentid": {
-          "allOf": [{"$ref": "#/definitions/OTIDType"}]
-        },
-        "event": {
-          "type": "string",
-          "enum": ["pickedup", "canceled", "delivered/finished"],
-          "description": "Dopplung mit zb Task 'delivery'?"
-        }
-      }
-    },
-
     "OTTaskEvent": {
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
