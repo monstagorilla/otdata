@@ -3083,20 +3083,6 @@
           "items": {
             "$ref": "#/definitions/OTExtendedDrive"
           }
-        },
-        "adrtotals": {
-          "type": "object",
-          "properties": {
-            "points": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1650
-            },
-            "tunnelcode": {
-              "type": "string",
-              "example": "E"
-            }
-          }
         }
       }
     },
@@ -3183,6 +3169,20 @@
         "shipments":{
           "type": "array", 
           "items": {"$ref": "#/definitions/OTShipment"}
+        },
+        "adrtotals": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
         }
       }
     },
@@ -3233,6 +3233,20 @@
         "shipments":{
           "type": "array", 
           "items": {"$ref": "#/definitions/OTShipment"}
+        },
+        "adrtotals": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
         }
       }
     },
