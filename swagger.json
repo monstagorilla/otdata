@@ -305,7 +305,7 @@
             "in": "body",
             "name": "tour",
             "schema": {
-              "$ref": "#/definitions/OTBasicTourParam"
+              "$ref": "#/definitions/OTBasicTour"
             }
           },
           {
@@ -863,7 +863,7 @@
           {
             "in": "body", 
             "name": "tour", 
-            "schema": {"$ref": "#/definitions/OTExtendedTourParam"},
+            "schema": {"$ref": "#/definitions/OTExtendedTour"},
             "required": true
           },
           {
@@ -908,7 +908,7 @@
           {
             "in": "body", 
             "name": "tour", 
-            "schema": {"$ref": "#/definitions/OTExtendedTourParam"},
+            "schema": {"$ref": "#/definitions/OTExtendedTour"},
             "required": true
           },
           {
@@ -3075,37 +3075,12 @@
     },
     "OTExtendedTour": {
       "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"},
-                {"$ref": "#/definitions/OTStatus"}],
+      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
       "properties": {
         "drives": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/OTExtendedDrive"
-          }
-        }
-      }
-    },
-    "OTBasicTourParam": {
-      "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTBasicDriveBase"
-          }
-        }
-      }
-    },
-    "OTExtendedTourParam": {
-      "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTExtendedDriveBase"
           }
         }
       }
@@ -3159,10 +3134,6 @@
         }
       }
     },
-    "OTBasicDrive": {
-      "allOf": [{"$ref": "#/definitions/OTBasicDriveBase"}, 
-                {"$ref": "#/definitions/OTDriveLiveInfo"}]
-    },
     "OTExtendedDrive": {
       "allOf": [{"$ref": "#/definitions/OTBasicDrive"}], 
       "properties":{
@@ -3186,7 +3157,7 @@
         }
       }
     },
-    "OTBasicDriveBase": {
+    "OTBasicDrive": {
       "type": "object",
       "properties": {
         "id": {
@@ -3226,29 +3197,6 @@
         "coordinates",
         "name"
       ]
-    },
-    "OTExtendedDriveBase":{
-      "allOf": [{"$ref": "#/definitions/OTBasicDriveBase"}],
-      "properties":{
-        "shipments":{
-          "type": "array", 
-          "items": {"$ref": "#/definitions/OTShipment"}
-        },
-        "adrtotals": {
-          "type": "object",
-          "properties": {
-            "points": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1650
-            },
-            "tunnelcode": {
-              "type": "string",
-              "example": "E"
-            }
-          }
-        }
-      }
     },
     "OTEventMeta": {
       "properties": {
