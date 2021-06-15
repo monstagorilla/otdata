@@ -1463,14 +1463,9 @@
         "tags": [
           "Events"
         ],
-        "summary": "Returns a list of all events relating to the specified tour that are in queue and not yet pulled",
+        "summary": "Returns a list of all events that are in queue",
         "parameters": [
-          {
-            "in": "query",
-            "name": "tourid",
-            "required": true,
-            "type": "string"
-          }
+          
         ],
         "responses": {
           "200": {
@@ -1507,6 +1502,41 @@
                 }   
               ]
             }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Deletes an event from the queue",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "eventid",
+            "description": "ID of the event to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
           },
           "400":{
             "$ref": "#/responses/BadRequest"
@@ -1676,6 +1706,53 @@
         }
       }
     },
+    "/otdata/ack": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes an acknowledgment for a certain event",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "eventid",
+            "description": "ID of the event to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+
+    },
     "/otdata/eta": {
       "post": {
         "tags": [
@@ -1734,7 +1811,11 @@
           {
             "in": "query",
             "name": "driveid",
-            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "shipmentid",
             "type": "string"
           },
           {
@@ -3339,8 +3420,14 @@
     },
     
     "OTEta": {
-      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
+        "timestamp": {
+          "type": "string", 
+          "format": "date-time"
+        },
         "driveid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
@@ -3349,6 +3436,9 @@
           "format": "date-time",
           "example": "2017-07-22T17:32:28Z",
           "description": "Estimated time of arrival"
+        },
+        "timewindow": {
+          "$ref": "#/definitions/OTTimeWindow"
         }
       }
     }    ,
@@ -3449,7 +3539,10 @@
       "properties": {
         "driveid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
-        },        
+        },     
+        "tourid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },   
         "event": {
           "type": "string",
           "enum": ["started", "paused", "interrupted?mitextrainfos", "canceled", "deleted", "arrived", "finished"]
@@ -3460,6 +3553,9 @@
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
         "taskid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "tourid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
         "event": {
@@ -3706,7 +3802,6 @@
         "latest": {
           "type": "string",
           "format": "date-time",
-          "description": "deadline",
           "example": "2020-01-01T10:00:00.000Z"
         }
       }
