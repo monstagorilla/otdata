@@ -1519,41 +1519,6 @@
             "$ref": "#/responses/InternalServerError"
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Events"
-        ],
-        "summary": "Deletes an event from the queue",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "eventid",
-            "description": "ID of the event to be deleted",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204":{
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
       }
     },
     "/otdata/events/tour": {
@@ -1711,14 +1676,19 @@
         "tags": [
           "Events"
         ],
-        "summary": "Pushes an acknowledgment for a certain event",
+        "summary": "Pushes an acknowledgment for a list of events",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "eventid",
-            "description": "ID of the event to be deleted",
+            "description": "List of Event IDs to be acknowledged",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "array", 
+              "items": {
+                "$ref": "#/definitions/OTIDType"
+              }
+            }
           },
           {
             "$ref": "#/parameters/tokenParam"
@@ -1758,11 +1728,11 @@
         "tags": [
           "Events"
         ],
-        "summary": "Pushes ETA",
+        "summary": "Pushes a list of ETAs",
         "parameters": [
           {
             "in": "body",
-            "name": "taskEvent",
+            "name": "ETAs",
             "required": true,
             "schema": {
               "type": "array",
@@ -1806,17 +1776,19 @@
         "tags": [
           "Events"
         ],
-        "summary": "Returns ETA of specified drive",
+        "summary": "Returns list of ETAs for either a certain drive or tour",
         "parameters": [
           {
             "in": "query",
             "name": "driveid",
-            "type": "string"
+            "type": "string",
+            "description": "Drive ID"
           },
           {
             "in": "query",
-            "name": "shipmentid",
-            "type": "string"
+            "name": "tourid",
+            "type": "string",
+            "description": "Tour ID"
           },
           {
             "$ref": "#/parameters/tokenParam"
@@ -1834,7 +1806,10 @@
                 {"type": "object", 
                   "properties": {
                     "data" :{
+                      "type": "array",
+                      "items": {
                         "$ref": "#/definitions/OTEta"
+                      }
                     }
                   }
                 }   
@@ -3502,7 +3477,7 @@
       },
       "required": [
         "refid",
-        "coordinates",
+        "address",
         "name"
       ]
     },
@@ -3530,9 +3505,11 @@
           "type": "string",
           "enum": ["available/created", "transmitted", "read", "excepted", "started", "canceled", "deleted", "finished", "denied"],
           "description": "'available/created': Telematic -> TMS, tour fertig vorliegend"
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
         }
       }
-
     },
     "OTDriveEvent": {
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
@@ -3545,7 +3522,10 @@
         },   
         "event": {
           "type": "string",
-          "enum": ["started", "paused", "interrupted?mitextrainfos", "canceled", "deleted", "arrived", "finished"]
+          "enum": ["started", "paused", "interrupted", "canceled", "deleted", "arrived", "finished"]
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
         }
       }
     },
@@ -3561,6 +3541,9 @@
         "event": {
           "type": "string",
           "enum": ["started", "canceled", "finished"]
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
         }
       }
     },
@@ -3753,11 +3736,10 @@
     },
     "OTTask":{
       "type": "object",
-      "required": [
-        "address",
-        "timewindow"
-      ],
       "properties": {
+        "id": {
+          "$ref": "#/definitions/OTIDType"
+        },
         "tasktype": {
           "type": "string"
         },
@@ -3774,8 +3756,7 @@
           "$ref": "#/definitions/OTKeyValueList"
         }
       }   
-    }
-    ,
+    },
     "OTKeyValueList": {
       "type": "array",
       "items": {
@@ -4156,6 +4137,5 @@
         {"description": "Data ID"}
       ]
     }
-
   }
 }
