@@ -3540,7 +3540,35 @@
         },
         "event": {
           "type": "string",
-          "enum": ["started", "canceled", "finished"]
+          "enum": ["started", "canceled", "finished", "info"]
+        },
+        "shipment": {
+          "type": "object", 
+          "properties": {
+            "status": {
+              "type": "string"
+            }, 
+            "additions": {
+              "$ref": "#/definitions/OTKeyValueList"
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object", 
+            "properties": {
+              "itemid": {
+                "$ref": "#/definitions/OTIDType"
+              }, 
+              "status": {
+                "type": "string" 
+              },
+              "additions": {
+                "$ref": "#/definitions/OTKeyValueList"
+              }
+            }
+          }
         },
         "additions": {
           "$ref": "#/definitions/OTKeyValueList"
