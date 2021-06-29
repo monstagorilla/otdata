@@ -1,3 +1,4 @@
 - [Request Structure](requestStructure.md)
 - [Data Models](dataModels.md)
+- [API Sections](apiSections.md)
 - [Release Notes](releaseNotes.md)
