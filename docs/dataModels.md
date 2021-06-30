@@ -65,7 +65,7 @@ All IDs are `strings`. With the exception of `otid`, which is assigned by OpenTe
 | `dataid`   | Data ID      |
 
 ## Date and time indications  
-Unless otherwise stated, we use use the ISO 8601 specification for all types of times.  
+Unless otherwise stated, we use the ISO 8601 specification for all types of times.  
 https://tools.ietf.org/html/rfc3339#section-5.6 
    
 Use the OpenAPI format `“date-time”` for ISO 8601 "date-time":   

@@ -297,7 +297,7 @@
     "/otdevice/ordershort": {
       "post": {
         "tags": [
-          "Orders"
+          "Tour Management"
         ],
         "summary": "Transmits information for simple navigation orders",
         "parameters": [
@@ -305,7 +305,7 @@
             "in": "body",
             "name": "tour",
             "schema": {
-              "$ref": "#/definitions/OTTourParam"
+              "$ref": "#/definitions/OTBasicTour"
             }
           },
           {
@@ -341,7 +341,7 @@
       },
       "get": {
         "tags": [
-          "Orders"
+          "Tour Management"
         ],
         "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
         "parameters": [
@@ -377,7 +377,7 @@
                     "data" :{
                       "type": "array", 
                       "items": {
-                        "$ref": "#/definitions/OTTour"
+                        "$ref": "#/definitions/OTBasicTour"
                       }
                     }
                   }
@@ -793,6 +793,410 @@
         }
       }
     },
+    "/otdevice/extendedOrder/tour/all":{
+      "get": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Returns a list of all tours of the specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParam"
+          },
+          {
+            "$ref": "#/parameters/vidParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTExtendedTour"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/extendedOrder/updateTour":{
+      "post": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Updates a specified tour on a specified device",
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "tour", 
+            "schema": {"$ref": "#/definitions/OTExtendedTour"},
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/extendedOrder/tour":{
+      "post": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Adds a new tour to specified device",
+        "parameters": [
+          {
+            "in": "body", 
+            "name": "tour", 
+            "schema": {"$ref": "#/definitions/OTExtendedTour"},
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Deletes a specified tour on a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParam"
+          },
+          {
+            "$ref": "#/parameters/vidParam"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "description": "ID of tour to delete",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/shipment":{
+      "get": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Returns a list of all shipments of the specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTShipment"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Adds a new shipment on specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "body", 
+            "name": "shipment",
+            "required": true,
+            "schema": {"$ref": "#/definitions/OTShipment"}
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },"delete": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Deletes a specified shipment from a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "shipmentid",
+            "description": "ID of shipment to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdevice/shipment/update":{
+      "post": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Updates a specified shipment on a specified device",
+        "parameters": [
+          {
+            "$ref": "#/parameters/didParamRequired"
+          },
+          {
+            "in": "query",
+            "name": "shipmentid",
+            "description": "ID of shipment to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "shipment",
+            "required": true,
+            "schema": {"$ref": "#/definitions/OTShipment"}
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/otmember/member": {
       "get": {
         "tags": [
@@ -1053,6 +1457,382 @@
           }
         }
       }
+    },
+    "/otdata/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Returns a list of all events that are in queue",
+        "parameters": [
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "object",
+                      "properties": {
+                        "tourevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTTourEvent"
+                          }
+                        },
+                        "driveevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTDriveEvent"
+                          }
+                        },
+                        "taskevents":{
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/OTTaskEvent"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/events/tour": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes a tour event",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tourEvent",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTTourEvent"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/events/drive": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes a drive event",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "tourEvent",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTDriveEvent"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/events/task": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes a task event",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "taskEvent",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTTaskEvent"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/otdata/ack": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes an acknowledgment for a list of events",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "eventid",
+            "description": "List of Event IDs to be acknowledged",
+            "required": true,
+            "schema": {
+              "type": "array", 
+              "items": {
+                "$ref": "#/definitions/OTIDType"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
+
+    },
+    "/otdata/eta": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Pushes a list of ETAs",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ETAs",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OTEta"
+              }
+            }
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/otidParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "204":{
+            "$ref": "#/responses/NoContent"
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Returns list of ETAs for either a certain drive or tour",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "driveid",
+            "type": "string",
+            "description": "Drive ID"
+          },
+          {
+            "in": "query",
+            "name": "tourid",
+            "type": "string",
+            "description": "Tour ID"
+          },
+          {
+            "$ref": "#/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/parameters/versionParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {"$ref": "#/definitions/OTResponseMeta"},
+                {"type": "object", 
+                  "properties": {
+                    "data" :{
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/OTEta"
+                      }
+                    }
+                  }
+                }   
+              ]
+            }
+          },
+          "400":{
+            "$ref": "#/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "403":{
+            "$ref": "#/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          },
+          "500":{
+            "$ref": "#/responses/InternalServerError"
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -1114,6 +1894,19 @@
       "in": "query",
       "type": "string",
       "description": "Device ID"
+    },
+    "vidParam": {
+      "name": "vid",
+      "in": "query",
+      "type": "string",
+      "description": "Vehicle ID"
+    },
+    "didParamRequired": {
+      "name": "did",
+      "in": "query",
+      "type": "string",
+      "description": "Device ID",
+      "required": true
     },
     "refdidParam": {
       "name": "refdid",
@@ -1582,11 +2375,27 @@
     "OTAddress": {
       "type": "object",
       "properties": {
-        "street": {
+        "coordinates": {
+          "$ref": "#/definitions/OTCoordinates"
+        },
+        "addresstype":{
+          "type":"string", 
+          "enum": ["customer", "personal", "invoice", "shipper", "consignee", "shippingPartner", "receivingPartner", "forwarder", "service"],
+          "description": "Type to distinguish between different types of addresses, so that you can have several addresses in one list"
+        },
+        "name":{
           "type": "string"
         },
-        "streetnumber": {
-          "type": "integer"
+        "companyname": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street name and possibly number"
+        },
+        "addition":{
+          "type": "string", 
+          "description": "Further address information or additional details"
         },
         "province": {
           "type": "string"
@@ -1607,32 +2416,8 @@
           "pattern": "^[A-Z]{3}$",
           "description": "ISO-3166 ALPHA-3"
         },
-        "cid": {
-          "allOf": [{"$ref": "#/definitions/cid"}]        
-        },
-        "customername": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "contactperson": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "contactphone": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "contactfax": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "contactmobile": {
-          "type": "string",
-          "maxLength": 30
-        },
-        "contactemail": {
-          "type": "string",
-          "maxLength": 50
+        "contact": {
+          "$ref": "#/definitions/OTContact"  
         },
         "poiname": {
           "type": "string",
@@ -1641,6 +2426,48 @@
         "poigroup": {
           "type": "string",
           "maxLength": 30
+        }
+      }
+    },
+    "OTAvis":{
+      "type": "object",
+        "properties": {
+        "name": {
+          "type": "string",
+          "example": "Hr Max Muster"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+41793332211"
+        },
+        "ismandatory": {
+          "type": "boolean",
+          "description": "Indicates if it is mandatory to notify",
+          "example": true
+        }
+      }
+    },
+    "OTContact":{
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "fax": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "mobile": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 50
         }
       }
     },
@@ -2492,32 +3319,27 @@
         }
       }
     },
-    "OTTour": {
+    "OTBasicTour": {
       "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "allOf": [{"$ref": "#/definitions/OTTourBase"},
+                {"$ref": "#/definitions/OTStatus"}],
       "properties": {
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
-        },
         "drives": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OTDrive"
+            "$ref": "#/definitions/OTBasicDrive"
           }
         }
       }
     },
-    "OTTourParam": {
+    "OTExtendedTour": {
       "type": "object",
       "allOf": [{"$ref": "#/definitions/OTTourBase"}],
       "properties": {
         "drives": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/OTDriveBase"
+            "$ref": "#/definitions/OTExtendedDrive"
           }
         }
       }
@@ -2540,14 +3362,17 @@
         "info": {
           "type": "string"
         },
-        "tournumber": {
-          "type": "string"
-        },
         "did": {
           "allOf": [{"$ref": "#/definitions/did"}]        
         },
+        "vid": {
+          "allOf": [{"$ref": "#/definitions/vid"}]        
+        },
         "refdid": {
           "allOf": [{"$ref": "#/definitions/refdid"}]        
+        },
+        "refvid": {
+          "allOf": [{"$ref": "#/definitions/refvid"}]        
         }
       },
       "required": [
@@ -2556,16 +3381,10 @@
         "refdid"
       ]
     },
-    "OTDrive": {
-      "allOf": [{"$ref": "#/definitions/OTDriveBase"}],
+    "OTDriveLiveInfo":{
       "type": "object",
+      "allOf": [{"$ref": "#/definitions/OTStatus"}],
       "properties": {
-        "status": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTStatus"
-          }
-        },
         "eta": {
           "type": "string",
           "format": "date-time",
@@ -2574,7 +3393,54 @@
         }
       }
     },
-    "OTDriveBase": {
+    
+    "OTEta": {
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
+        "timestamp": {
+          "type": "string", 
+          "format": "date-time"
+        },
+        "driveid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "eta": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2017-07-22T17:32:28Z",
+          "description": "Estimated time of arrival"
+        },
+        "timewindow": {
+          "$ref": "#/definitions/OTTimeWindow"
+        }
+      }
+    }    ,
+    "OTExtendedDrive": {
+      "allOf": [{"$ref": "#/definitions/OTBasicDrive"}], 
+      "properties":{
+        "shipments":{
+          "type": "array", 
+          "items": {"$ref": "#/definitions/OTShipment"}
+        },
+        "adrtotals": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
+        }
+      }
+    },
+    "OTBasicDrive": {
       "type": "object",
       "properties": {
         "id": {
@@ -2584,25 +3450,26 @@
           "allOf": [{"$ref": "#/definitions/refid"}]        
         },
         "address": {
-          "$ref": "#/definitions/OTAddress"
-        },
-        "coordinates":{
-          "$ref": "#/definitions/OTCoordinates"
+          "allOf": [{"$ref": "#/definitions/OTAddress"}],
+          "description": "Destination address"
         },
         "info": {
-          "type": "string"
+          "type": "string",
+          "description": "Further information"
         },
         "name": {
           "type": "string"
         },
-        "deadline": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2017-07-22T17:32:28Z"
+        "starttimewindow": {
+          "allOf": [{"$ref": "#/definitions/OTTimeWindow"}],
+          "description": "Earliest and latest start time"
         },
-        "hasloading": {
-          "type": "boolean",
-          "description": "true=loading, false=not loading"
+        "arrivaltimewindow":{
+          "allOf": [{"$ref": "#/definitions/OTTimeWindow"}],
+          "description": "Earliest and latest arrival time"
+        },
+        "avis": {
+          "$ref": "#/definitions/OTAvis"
         },
         "drivenumber": {
           "type": "string"
@@ -2610,9 +3477,343 @@
       },
       "required": [
         "refid",
-        "coordinates",
+        "address",
         "name"
       ]
+    },
+    "OTEventMeta": {
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
+        "timestamp": {
+          "type": "string", 
+          "format": "date-time"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/OTCoordinates"
+        }
+      }
+    },
+    "OTTourEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "tourid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "event": {
+          "type": "string",
+          "enum": ["available/created", "transmitted", "read", "excepted", "started", "canceled", "deleted", "finished", "denied"],
+          "description": "'available/created': Telematic -> TMS, tour fertig vorliegend"
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
+        }
+      }
+    },
+    "OTDriveEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "driveid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },     
+        "tourid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },   
+        "event": {
+          "type": "string",
+          "enum": ["started", "paused", "interrupted", "canceled", "deleted", "arrived", "finished"]
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
+        }
+      }
+    },
+    "OTTaskEvent": {
+      "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
+      "properties": {
+        "taskid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "tourid": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]
+        },
+        "event": {
+          "type": "string",
+          "enum": ["started", "canceled", "finished", "info"]
+        },
+        "shipment": {
+          "type": "object", 
+          "properties": {
+            "status": {
+              "type": "string"
+            }, 
+            "additions": {
+              "$ref": "#/definitions/OTKeyValueList"
+            }
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object", 
+            "properties": {
+              "itemid": {
+                "$ref": "#/definitions/OTIDType"
+              }, 
+              "status": {
+                "type": "string" 
+              },
+              "additions": {
+                "$ref": "#/definitions/OTKeyValueList"
+              }
+            }
+          }
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
+        }
+      }
+    },
+    "OTShipment":{
+      "type": "object",
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        },
+        "addresses":{
+          "type": "array", 
+          "items": {"$ref": "#/definitions/OTAddress"},
+          "description": "All addresses relevant for the shipment"
+        },
+        "items":{
+          "type":"array",
+          "items": {
+            "$ref": "#/definitions/OTItem"
+          }
+        },
+        "tasks":{
+          "type":"array",
+          "items": {
+            "$ref": "#/definitions/OTTask"
+          }
+        }
+      }
+    },
+    "OTItem":{
+      "type": "object",
+      "required": [
+        "count",
+        "unit"
+      ],
+      "properties": {
+        "id": {
+          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
+        }, 
+        "parentID":{
+          "allOf": [{"$ref": "#/definitions/OTIDType"}],
+          "description": "ID to be able to map tree structure in list"        
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1
+        },
+        "unit": {
+          "type": "string",
+          "example": "PAL"
+        },
+        "description": {
+          "type": "string",
+          "example": "Deuteriumfläschchen"
+        },
+        "codes": {
+          "type": "array",
+          "description": "List of codes on the item, e.g. barcodes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "string"
+              },
+              "scanpossible": {
+                "type": "boolean",
+                "description": "If the code is scannable"
+              },
+              "type": {
+                "type": "string",
+                "example": "QRCode",
+                "description": "Type to distinguish between different types of codes"
+              }
+            }
+          }
+        },
+        "scanrequired": {
+          "type": "boolean",
+          "description": "Indicates if the item must be scanned"
+        },
+        "dimension": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "number",
+              "multipleOf": 0.1,
+              "description": "Height in cm",
+              "example": 30
+            },
+            "width": {
+              "type": "number",
+              "multipleOf": 0.1,
+              "description": "Width in cm",
+              "example": 80
+            },
+            "length": {
+              "type": "number",
+              "multipleOf": 0.1,
+              "description": "Length in cm",
+              "example": 120
+            },
+            "weight": {
+              "type": "number",
+              "multipleOf": 0.1,
+              "description": "Weight in kg",
+              "example": 566
+            },
+            "area": {
+              "type": "number",
+              "multipleOf": 0.1,
+              "description": "Area in m2",
+              "example": 0.96
+            },
+            "volume": {
+              "type": "number",
+              "format": "decimal",
+              "multipleOf": 0.1,
+              "example": 0.288
+            },
+            "cargospace": {
+              "type": "number",
+              "format": "decimal",
+              "multipleOf": 0.1,
+              "example": 1.5
+            }
+          }
+        },
+        "adrinfo": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "amount": {
+              "type": "integer",
+              "format": "int32",
+              "example": 500
+            },
+            "unit": {
+              "type": "string",
+              "example": "l",
+              "enum": [
+                "l",
+                "kg"
+              ]
+            },
+            "UNNR": {
+              "type": "string",
+              "example": "1905"
+            },
+            "properShippingName": {
+              "type": "string"
+            },
+            "additionalDescription": {
+              "type": "string"
+            },
+            "classNumber": {
+              "type": "string",
+              "example": "4.2"
+            },
+            "className": {
+              "type": "string",
+              "example": "flammable liquids"
+            },
+            "packingGroup": {
+              "type": "string",
+              "example": "II"
+            },
+            "classificationCode": {
+              "type": "string",
+              "example": "F1"
+            }, 
+            "tunnelRestrictionCode": {
+              "type": "string",
+              "example": "E"
+            }, 
+            "isEnvironmentallyHazardous": {
+              "type": "boolean", 
+              "example": false
+            },
+            "isHighRisk": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        }
+      }
+    },
+    "OTTask":{
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/OTIDType"
+        },
+        "tasktype": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/OTAddress"
+        },
+        "timewindow": {
+          "$ref": "#/definitions/OTTimeWindow"
+        },
+        "description": {
+          "type": "string"
+        },
+        "additions": {
+          "$ref": "#/definitions/OTKeyValueList"
+        }
+      }   
+    },
+    "OTKeyValueList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties":{
+          "key": {
+            "type": "string",
+                "description": ""
+            },
+          "value":{
+            "type": "string"
+          }
+        }
+      }
+    },
+    "OTTimeWindow":{
+      "type": "object",
+      "properties": {
+        "earliest": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-01-01T09:28:00.000Z"
+        },
+        "latest": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2020-01-01T10:00:00.000Z"
+        }
+      }
     },
     "OTMessageStatus": {
       "type": "object",
@@ -2631,7 +3832,7 @@
     "OTStatus": {
       "type": "object",
       "properties": {
-        "state": {
+        "status": {
           "type": "string",
           "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
         },
@@ -2641,7 +3842,7 @@
           "example": "2017-07-22T17:32:28Z"
         }
       }
-    },
+    },  
     "OTMessage": {
       "type": "object",
       "allOf": [{"$ref": "#/definitions/OTMessageBase"}],
@@ -2922,6 +4123,12 @@
         {"description": "Device ID"}
       ]
     },
+    "vid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Vehicle ID"}
+      ]
+    },
     "cid": {
       "allOf": [
         {"$ref": "#/definitions/OTIDType"},
@@ -2940,6 +4147,12 @@
         {"description": "Reference Device ID"}
       ]
     },
+    "refvid": {
+      "allOf": [
+        {"$ref": "#/definitions/OTIDType"},
+        {"description": "Reference Vehicle ID"}
+      ]
+    },
     "refid": {
       "allOf": [
         {"$ref": "#/definitions/OTIDType"},
@@ -2952,6 +4165,5 @@
         {"description": "Data ID"}
       ]
     }
-
   }
 }
