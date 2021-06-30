@@ -1458,10 +1458,10 @@
         }
       }
     },
-    "/otdata/events": {
+    "/otdata/extendedOrder/events": {
       "get": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Returns a list of all events that are in queue",
         "parameters": [
@@ -1521,10 +1521,10 @@
         }
       }
     },
-    "/otdata/events/tour": {
+    "/otdata/extendedOrder/events/tour": {
       "post": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Pushes a tour event",
         "parameters": [
@@ -1571,10 +1571,10 @@
         }
       }
     },
-    "/otdata/events/drive": {
+    "/otdata/extendedOrder/events/drive": {
       "post": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Pushes a drive event",
         "parameters": [
@@ -1621,10 +1621,10 @@
         }
       }
     },
-    "/otdata/events/task": {
+    "/otdata/extendedOrder/events/task": {
       "post": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Pushes a task event",
         "parameters": [
@@ -1671,10 +1671,10 @@
         }
       }
     },
-    "/otdata/ack": {
+    "/otdata/extendedOrder/events/ack": {
       "post": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Pushes an acknowledgment for a list of events",
         "parameters": [
@@ -1723,10 +1723,10 @@
       }
 
     },
-    "/otdata/eta": {
+    "/otdata/extendedOrder/events/eta": {
       "post": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Pushes a list of ETAs",
         "parameters": [
@@ -1774,7 +1774,7 @@
       },
       "get": {
         "tags": [
-          "Events"
+          "Tour Management"
         ],
         "summary": "Returns list of ETAs for either a certain drive or tour",
         "parameters": [
