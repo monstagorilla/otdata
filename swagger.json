@@ -294,19 +294,20 @@
         }
       }
     },
-    "/otdevice/ordershort": {
+    "/otdevice/basicTour": {
       "post": {
         "tags": [
           "Tour Management"
         ],
-        "summary": "Transmits information for simple navigation orders",
+        "summary": "Adds a new  basic tour to specified device",
         "parameters": [
           {
             "in": "body",
             "name": "tour",
             "schema": {
               "$ref": "#/definitions/OTBasicTour"
-            }
+            },
+            "required": true
           },
           {
             "$ref": "#/parameters/tokenParam"
@@ -343,7 +344,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Returns a list of information for simple navigation orders that match the specified ID or tournumber",
+        "summary": "Returns a list of all basic tours of the specified device",
         "parameters": [
           {
             "$ref": "#/parameters/refidParam"
@@ -353,7 +354,7 @@
           },
           {
             "in": "query",
-            "name": "tournumber",
+            "name": "tourid",
             "type": "string"
           },
           {
@@ -746,59 +747,12 @@
         }
       }
     },
-    "/otstatus/setOrderStatus": {
-      "post": {
-        "tags": [
-          "Orders"
-        ],
-        "summary": "Sets status for a specific order", 
-        "parameters": [
-          {
-            "in": "body",
-            "name": "status",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/OTSetOrderStatus"
-            }
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdevice/extendedOrder/tour/all":{
+    "/otdevice/extendedTour/all":{
       "get": {
         "tags": [
           "Tour Management"
         ],
-        "summary": "Returns a list of all tours of the specified device",
+        "summary": "Returns a list of all extended tours of the specified device",
         "parameters": [
           {
             "$ref": "#/parameters/didParam"
@@ -853,7 +807,7 @@
         }
       }
     },
-    "/otdevice/extendedOrder/updateTour":{
+    "/otdevice/extendedTour/update":{
       "post": {
         "tags": [
           "Tour Management"
@@ -898,12 +852,12 @@
         }
       }
     },
-    "/otdevice/extendedOrder/tour":{
+    "/otdevice/extendedTour":{
       "post": {
         "tags": [
           "Tour Management"
         ],
-        "summary": "Adds a new tour to specified device",
+        "summary": "Adds a new  extended tour to specified device",
         "parameters": [
           {
             "in": "body", 
@@ -993,10 +947,10 @@
         }
       }
     },
-    "/otdevice/shipment":{
+    "/otdevice/extendedTour/shipment":{
       "get": {
         "tags": [
-          "Shipment Management"
+          "Tour Management"
         ],
         "summary": "Returns a list of all shipments of the specified device",
         "parameters": [
@@ -1051,7 +1005,7 @@
       },
       "post": {
         "tags": [
-          "Shipment Management"
+          "Tour Management"
         ],
         "summary": "Adds a new shipment on specified device",
         "parameters": [
@@ -1096,7 +1050,7 @@
         }
       },"delete": {
         "tags": [
-          "Shipment Management"
+          "Tour Management"
         ],
         "summary": "Deletes a specified shipment from a specified device",
         "parameters": [
@@ -1142,10 +1096,10 @@
         }
       }
     },
-    "/otdevice/shipment/update":{
+    "/otdevice/extendedTour/shipment/update":{
       "post": {
         "tags": [
-          "Shipment Management"
+          "Tour Management"
         ],
         "summary": "Updates a specified shipment on a specified device",
         "parameters": [
@@ -1458,7 +1412,7 @@
         }
       }
     },
-    "/otdata/extendedOrder/events": {
+    "/otdevice/events": {
       "get": {
         "tags": [
           "Tour Management"
@@ -1521,7 +1475,7 @@
         }
       }
     },
-    "/otdata/extendedOrder/events/tour": {
+    "/otdevice/events/tour": {
       "post": {
         "tags": [
           "Tour Management"
@@ -1571,7 +1525,7 @@
         }
       }
     },
-    "/otdata/extendedOrder/events/drive": {
+    "/otdevice/events/drive": {
       "post": {
         "tags": [
           "Tour Management"
@@ -1621,7 +1575,7 @@
         }
       }
     },
-    "/otdata/extendedOrder/events/task": {
+    "/otdevice/events/task": {
       "post": {
         "tags": [
           "Tour Management"
@@ -1671,7 +1625,7 @@
         }
       }
     },
-    "/otdata/extendedOrder/events/ack": {
+    "/otdevice/events/ack": {
       "post": {
         "tags": [
           "Tour Management"
@@ -1723,7 +1677,7 @@
       }
 
     },
-    "/otdata/extendedOrder/events/eta": {
+    "/otdevice/eta": {
       "post": {
         "tags": [
           "Tour Management"
@@ -3319,35 +3273,11 @@
         }
       }
     },
-    "OTBasicTour": {
-      "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"},
-                {"$ref": "#/definitions/OTStatus"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTBasicDrive"
-          }
-        }
-      }
-    },
-    "OTExtendedTour": {
-      "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTExtendedDrive"
-          }
-        }
-      }
-    },
     "OTTourBase": {
       "type": "object",
+      "description": "Fields that `OTExtendedTour` and `OTBasicTour` have in common.",
       "properties": {
-        "id": {
+        "tourid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "cid": {
@@ -3381,28 +3311,39 @@
         "refdid"
       ]
     },
-    "OTDriveLiveInfo":{
+    "OTBasicTour": {
       "type": "object",
-      "allOf": [{"$ref": "#/definitions/OTStatus"}],
+      "description": "Contains all static information about a basic tour. Is a subset of `OTExtendedTour` and is intended for tours with only driving information.",
+      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
       "properties": {
-        "eta": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2017-07-22T17:32:28Z",
-          "description": "Estimated time of arrival"
+        "drives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTBasicDrive"
+          }
         }
       }
     },
-    
+    "OTExtendedTour": {
+      "type": "object",
+      "description": "Contains all static information about an extended tour. The `OTExtendedTour` is an extension of the `OTBasicTour`. It contains additional data about shipments, items, tasks and dangerous goods.",
+      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
+      "properties": {
+        "drives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTExtendedDrive"
+          }
+        }
+      }
+    }, 
     "OTEta": {
       "properties": {
         "id": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "timestamp": {
-          "type": "string", 
-          "format": "date-time"
-        },
+          "$ref": "#/definitions/OTTimestamp"        },
         "driveid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
@@ -3413,7 +3354,8 @@
           "description": "Estimated time of arrival"
         },
         "timewindow": {
-          "$ref": "#/definitions/OTTimeWindow"
+          "$ref": "#/definitions/OTTimeWindow",
+          "description": "Estimated time window of arrival"
         }
       }
     }    ,
@@ -3443,7 +3385,7 @@
     "OTBasicDrive": {
       "type": "object",
       "properties": {
-        "id": {
+        "driveid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "refid": {
@@ -3472,7 +3414,9 @@
           "$ref": "#/definitions/OTAvis"
         },
         "drivenumber": {
-          "type": "string"
+          "type": "integer",
+          "format": "int32",
+          "description": "Indicates the position of the drive in a tour"
         }
       },
       "required": [
@@ -3482,14 +3426,13 @@
       ]
     },
     "OTEventMeta": {
+      "description": "Meta information common to all event types",
       "properties": {
-        "id": {
+        "eventid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "timestamp": {
-          "type": "string", 
-          "format": "date-time"
-        },
+          "$ref": "#/definitions/OTTimestamp"        },
         "coordinates": {
           "$ref": "#/definitions/OTCoordinates"
         }
@@ -3578,7 +3521,7 @@
     "OTShipment":{
       "type": "object",
       "properties": {
-        "id": {
+        "shipmentid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         },
         "addresses":{
@@ -3602,12 +3545,8 @@
     },
     "OTItem":{
       "type": "object",
-      "required": [
-        "count",
-        "unit"
-      ],
       "properties": {
-        "id": {
+        "itemid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         }, 
         "parentID":{
@@ -3765,7 +3704,7 @@
     "OTTask":{
       "type": "object",
       "properties": {
-        "id": {
+        "taskid": {
           "$ref": "#/definitions/OTIDType"
         },
         "tasktype": {
@@ -3829,20 +3768,6 @@
         }
       }
     },
-    "OTStatus": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "type": "string",
-          "enum": ["active", "canceled", "deleted", "finished", "workingOn", "read", "arrived"]
-        },
-        "deadline": {
-          "type": "string",
-          "format": "date-time",
-          "example": "2017-07-22T17:32:28Z"
-        }
-      }
-    },  
     "OTMessage": {
       "type": "object",
       "allOf": [{"$ref": "#/definitions/OTMessageBase"}],
@@ -3905,25 +3830,6 @@
         },
         "status": {
           "$ref": "#/definitions/OTMessageStatus"
-        }
-      },
-      "required": [
-        "refid",
-        "refdid",
-        "status"
-      ]
-    },
-    "OTSetOrderStatus": {
-      "type": "object",
-      "properties": {
-        "refid": {
-          "allOf": [{"$ref": "#/definitions/refid"}]        
-        },
-        "refdid": {
-          "allOf": [{"$ref": "#/definitions/refdid"}]        
-        },
-        "status": {
-          "$ref": "#/definitions/OTStatus"
         }
       },
       "required": [
@@ -4116,6 +4022,11 @@
           "description": "WGS84 longitude"
         }
       }
+    },
+    "OTTimestamp": {
+      "type": "string", 
+      "format": "date-time",
+      "description": "Creation time of the data set"
     },
     "did": {
       "allOf": [
