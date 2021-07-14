@@ -3364,10 +3364,12 @@
       "properties":{
         "shipments":{
           "type": "array", 
-          "items": {"$ref": "#/definitions/OTShipment"}
+          "items": {"$ref": "#/definitions/OTShipment"},
+          "description": "List of shipments, that need to be processed at the target address of the drive"
         },
         "adrtotals": {
           "type": "object",
+          "description": "Summarized information about the dangerous goods that are present during the drive. May be different for each drive.",
           "properties": {
             "points": {
               "type": "integer",
@@ -3426,7 +3428,6 @@
       ]
     },
     "OTEventMeta": {
-      "description": "Meta information common to all event types",
       "properties": {
         "eventid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
@@ -3442,6 +3443,7 @@
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
         "tourid": {
+          "description": "ID of the associated tour",
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
         "event": {
@@ -3450,6 +3452,7 @@
           "description": "'available/created': Telematic -> TMS, tour fertig vorliegend"
         },
         "additions": {
+          "description": "List of generic key-value pairs for additional custom information e.g. reason for the cancellation of the tour",
           "$ref": "#/definitions/OTKeyValueList"
         }
       }
@@ -3458,9 +3461,11 @@
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
         "driveid": {
+          "description": "ID of the associated drive",
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },     
         "tourid": {
+          "description": "ID of the associated tour",
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },   
         "event": {
@@ -3468,6 +3473,7 @@
           "enum": ["started", "paused", "interrupted", "canceled", "deleted", "arrived", "finished"]
         },
         "additions": {
+          "description": "List of generic key-value pairs for additional custom information e.g. reason for the interruption of the drive",
           "$ref": "#/definitions/OTKeyValueList"
         }
       }
@@ -3476,44 +3482,54 @@
       "allOf": [{"$ref": "#/definitions/OTEventMeta"}],
       "properties": {
         "taskid": {
+          "description": "ID of the associated task",
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
         "tourid": {
+          "description": "ID of the associated tour",
           "allOf": [{"$ref": "#/definitions/OTIDType"}]
         },
         "event": {
+          "description": "Type of the event. If you just want to transmit information during a task, use the enum 'info'",
           "type": "string",
-          "enum": ["started", "canceled", "finished", "info"]
+          "enum": ["started", "canceled", "finished", "deleted", "info"]
         },
         "shipment": {
-          "type": "object", 
+          "type": "object",
+          "description": "Information about the associated shipment",
           "properties": {
             "status": {
               "type": "string"
             }, 
             "additions": {
+              "description": "List of generic key-value pairs for additional custom information",
               "$ref": "#/definitions/OTKeyValueList"
             }
           }
         },
         "items": {
+          "description": "Information about single items.",
           "type": "array",
           "items": {
             "type": "object", 
             "properties": {
               "itemid": {
+                "description": "ID of the associated item",
                 "$ref": "#/definitions/OTIDType"
               }, 
               "status": {
+                "description": "Information about the status of an item e.g. the condition at delivery",
                 "type": "string" 
               },
               "additions": {
+                "description": "List of generic key-value pairs for additional custom information",
                 "$ref": "#/definitions/OTKeyValueList"
               }
             }
           }
         },
         "additions": {
+          "description": "List of generic key-value pairs for additional custom information about the task event",
           "$ref": "#/definitions/OTKeyValueList"
         }
       }
@@ -3531,12 +3547,14 @@
         },
         "items":{
           "type":"array",
+          "description": "List of all single items of the shipment",
           "items": {
             "$ref": "#/definitions/OTItem"
           }
         },
         "tasks":{
           "type":"array",
+          "description": "List of tasks for the stop of the current drive",
           "items": {
             "$ref": "#/definitions/OTTask"
           }
@@ -3545,13 +3563,14 @@
     },
     "OTItem":{
       "type": "object",
+      "description": "",
       "properties": {
         "itemid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
         }, 
-        "parentID":{
+        "parentid":{
           "allOf": [{"$ref": "#/definitions/OTIDType"}],
-          "description": "ID to be able to map tree structure in list"        
+          "description": "Item ID of the package the item is part of (e.g. the ID of the palette to which the item belongs). With the `parentid` you are able to map any tree structure in the item list."        
         },
         "count": {
           "type": "integer",
@@ -3640,6 +3659,7 @@
         },
         "adrinfo": {
           "type": "object",
+          "description": "Information on classification according to the 'Agreement concerning the International Carriage of Dangerous Goods by Road' (ADR). Summarized information on the dangerous goods present on each drive can be found in `OTDrive`",
           "properties": {
             "points": {
               "type": "integer",
@@ -3708,10 +3728,12 @@
           "$ref": "#/definitions/OTIDType"
         },
         "tasktype": {
-          "type": "string"
+          "type": "string",
+          "description": "Custom designation for task type"
         },
         "address": {
-          "$ref": "#/definitions/OTAddress"
+          "$ref": "#/definitions/OTAddress",
+          "description": "Additional exact location for the task e.g. coordinates on a factory plant"
         },
         "timewindow": {
           "$ref": "#/definitions/OTTimeWindow"
@@ -3720,7 +3742,8 @@
           "type": "string"
         },
         "additions": {
-          "$ref": "#/definitions/OTKeyValueList"
+          "$ref": "#/definitions/OTKeyValueList",
+          "description": "Additional fields to define complex custom tasks"
         }
       }   
     },
