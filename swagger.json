@@ -294,116 +294,6 @@
         }
       }
     },
-    "/otdevice/basicTour": {
-      "post": {
-        "tags": [
-          "Tour Management"
-        ],
-        "summary": "Adds a new  basic tour to specified device",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "tour",
-            "schema": {
-              "$ref": "#/definitions/OTBasicTour"
-            },
-            "required": true
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Tour Management"
-        ],
-        "summary": "Returns a list of all basic tours of the specified device",
-        "parameters": [
-          {
-            "$ref": "#/parameters/refidParam"
-          },
-          {
-            "$ref": "#/parameters/refdidParam"
-          },
-          {
-            "in": "query",
-            "name": "tourid",
-            "type": "string"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array", 
-                      "items": {
-                        "$ref": "#/definitions/OTBasicTour"
-                      }
-                    }
-                  }
-                }   
-              ] 
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/otdevice/getall": {
       "get": {
         "tags": [
@@ -746,124 +636,25 @@
           }
         }
       }
-    },
-    "/otdevice/extendedTour/all":{
-      "get": {
+    },      
+    "/otdevice/Tour":{
+      "post": {
         "tags": [
           "Tour Management"
         ],
-        "summary": "Returns a list of all extended tours of the specified device",
+        "summary": "Adds a new  tour to specified device",
         "parameters": [
+          {
+            "in": "body", 
+            "name": "tour", 
+            "schema": {"$ref": "#/definitions/OTTour"},
+            "required": true
+          },
           {
             "$ref": "#/parameters/didParam"
           },
           {
             "$ref": "#/parameters/vidParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTExtendedTour"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdevice/extendedTour/update":{
-      "post": {
-        "tags": [
-          "Tour Management"
-        ],
-        "summary": "Updates a specified tour on a specified device",
-        "parameters": [
-          {
-            "in": "body", 
-            "name": "tour", 
-            "schema": {"$ref": "#/definitions/OTExtendedTour"},
-            "required": true
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204":{
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otdevice/extendedTour":{
-      "post": {
-        "tags": [
-          "Tour Management"
-        ],
-        "summary": "Adds a new  extended tour to specified device",
-        "parameters": [
-          {
-            "in": "body", 
-            "name": "tour", 
-            "schema": {"$ref": "#/definitions/OTExtendedTour"},
-            "required": true
           },
           {
             "$ref": "#/parameters/otidParam"
@@ -947,7 +738,7 @@
         }
       }
     },
-    "/otdevice/extendedTour/shipment":{
+    "/otdevice/Tour/shipment":{
       "get": {
         "tags": [
           "Tour Management"
@@ -1096,7 +887,7 @@
         }
       }
     },
-    "/otdevice/extendedTour/shipment/update":{
+    "/otdevice/Tour/shipment/update":{
       "post": {
         "tags": [
           "Tour Management"
@@ -3286,9 +3077,9 @@
         }
       }
     },
-    "OTTourBase": {
+    "OTTour": {
       "type": "object",
-      "description": "Fields that `OTExtendedTour` and `OTBasicTour` have in common.",
+      "description": "Contains all static information about a tour. It consists of a number of `drives`. For complex tours there are optional structures that contain data about `shipments`, `items`, `tasks` and dangerous goods.",
       "properties": {
         "tourid": {
           "allOf": [{"$ref": "#/definitions/OTIDType"}]        
@@ -3316,6 +3107,12 @@
         },
         "refvid": {
           "allOf": [{"$ref": "#/definitions/refvid"}]        
+        },
+        "drives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OTDrive"
+          }
         }
       },
       "required": [
@@ -3324,32 +3121,6 @@
         "refdid"
       ]
     },
-    "OTBasicTour": {
-      "type": "object",
-      "description": "Contains all static information about a basic tour. Is a subset of `OTExtendedTour` and is intended for tours with only driving information.",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTBasicDrive"
-          }
-        }
-      }
-    },
-    "OTExtendedTour": {
-      "type": "object",
-      "description": "Contains all static information about an extended tour. The `OTExtendedTour` is an extension of the `OTBasicTour`. It contains additional data about shipments, items, tasks and dangerous goods.",
-      "allOf": [{"$ref": "#/definitions/OTTourBase"}],
-      "properties": {
-        "drives": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OTExtendedDrive"
-          }
-        }
-      }
-    }, 
     "OTEta": {
       "properties": {
         "timestamp": {
@@ -3368,33 +3139,8 @@
           "description": "Estimated time window of arrival"
         }
       }
-    }    ,
-    "OTExtendedDrive": {
-      "allOf": [{"$ref": "#/definitions/OTBasicDrive"}], 
-      "properties":{
-        "shipments":{
-          "type": "array", 
-          "items": {"$ref": "#/definitions/OTShipment"},
-          "description": "List of shipments, that need to be processed at the target address of the drive"
-        },
-        "adrtotals": {
-          "type": "object",
-          "description": "Summarized information about the dangerous goods that are present during the drive. May be different for each drive.",
-          "properties": {
-            "points": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1650
-            },
-            "tunnelcode": {
-              "type": "string",
-              "example": "E"
-            }
-          }
-        }
-      }
     },
-    "OTBasicDrive": {
+    "OTDrive": {
       "type": "object",
       "properties": {
         "driveid": {
@@ -3429,6 +3175,26 @@
           "type": "integer",
           "format": "int32",
           "description": "Indicates the position of the drive in a tour"
+        },
+        "shipments":{
+          "type": "array", 
+          "items": {"$ref": "#/definitions/OTShipment"},
+          "description": "List of shipments, that need to be processed at the target address of the drive"
+        },
+        "adrtotals": {
+          "type": "object",
+          "description": "Summarized information about the dangerous goods that are present during the drive. May be different for each drive.",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1650
+            },
+            "tunnelcode": {
+              "type": "string",
+              "example": "E"
+            }
+          }
         }
       },
       "required": [
