@@ -3339,9 +3339,6 @@
     }, 
     "OTEta": {
       "properties": {
-        "id": {
-          "allOf": [{"$ref": "#/definitions/OTIDType"}]        
-        },
         "timestamp": {
           "$ref": "#/definitions/OTTimestamp"        },
         "driveid": {
