@@ -1417,9 +1417,15 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Returns a list of all events that are in queue",
+        "summary": "Returns a list of all or a maximum number of events that are in queue",
         "parameters": [
-          
+          {
+            "in": "query",
+            "name": "maximum",
+            "description": "Maximum number of events to be returned",
+            "type": "integer",
+            "format": "int32"
+          }
         ],
         "responses": {
           "200": {
@@ -1743,6 +1749,13 @@
             "name": "tourid",
             "type": "string",
             "description": "Tour ID"
+          },
+          {
+            "in": "query",
+            "name": "maximum",
+            "description": "Maximum number of ETAs to be returned",
+            "type": "integer",
+            "format": "int32"
           },
           {
             "$ref": "#/parameters/tokenParam"
