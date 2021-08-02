@@ -642,7 +642,8 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Adds a new  tour to specified device",
+        "summary": "Adds or updates a tour.",
+        "description": "",
         "parameters": [
           {
             "in": "body", 
@@ -922,153 +923,6 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otmember/member": {
-      "get": {
-        "tags": [
-          "Members"
-        ],
-        "summary": "Returns a list of all members of OpenTelematics e.V.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "allOf": [
-                {"$ref": "#/definitions/OTResponseMeta"},
-                {"type": "object", 
-                  "properties": {
-                    "data" :{
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/definitions/OTMember"
-                      }
-                    }
-                  }
-                }   
-              ]
-            }
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Members"
-        ],
-        "summary": "Adds or updates new members",
-        "description": "If a member already exists, it is not added, but updated.",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "members",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/OTMember"
-              }
-            }
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204":{
-            "$ref": "#/responses/NoContent"
-          },
-          "400":{
-            "$ref": "#/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/responses/Unauthorized"
-          },
-          "403":{
-            "$ref": "#/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/responses/NotFound"
-          },
-          "500":{
-            "$ref": "#/responses/InternalServerError"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Members"
-        ],
-        "summary": "Deletes the specified member",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "member",
-            "description": "OpenTelematics ID of member to be deleted",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "$ref": "#/parameters/otidParam"
-          },
-          {
-            "$ref": "#/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/parameters/versionParam"
-          }
-        ],
-        "responses": {
-          "204":{
             "$ref": "#/responses/NoContent"
           },
           "400":{
@@ -3664,53 +3518,6 @@
         "message": {
           "type": "string",
           "description": "Log message"
-        }
-      }
-    },
-    "OTMember": {
-      "type": "object",
-      "properties": {
-        "otid": {
-          "allOf": [{"$ref": "#/definitions/OTIDType"}],       
-          "description": "Registered OpenTelematics ID of the member"
-        },
-        "name": {
-          "type": "string"
-        },
-        "company": {
-          "type": "string"
-        },
-        "street": {
-          "type": "string"
-        },
-        "postalcode": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "state": {
-          "type": "string",
-          "example": "NRW"
-        },
-        "countrycode": {
-          "type": "string",
-          "minLength": 3,
-          "maxLength": 3,
-          "description": "ISO 3166-1 alpha-3",
-          "example": "DEU"
-        },
-        "phonenumber": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "memberSince": {
-          "type": "string",
-          "format": "date",
-          "description": "Date the member joined OpenTelematics",
-          "example": "2017-07-21"
         }
       }
     },
