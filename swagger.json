@@ -701,7 +701,7 @@
           },
           {
             "in": "query",
-            "name": "id",
+            "name": "tourid",
             "description": "ID of tour to delete",
             "required": true,
             "type": "string"
