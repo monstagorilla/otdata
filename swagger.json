@@ -636,13 +636,13 @@
             }
           }
         }
-      },      
-      "/otdevice/Tour":{
+      },     
+      "/tours":{
         "post": {
           "tags": [
             "Tour Management"
           ],
-          "summary": "Adds or updates a tour.",
+          "summary": "Adds a new tour.",
           "description": "",
           "parameters": [
             {
@@ -652,10 +652,122 @@
               "required": true
             },
             {
-              "$ref": "#/parameters/didParam"
+              "$ref": "#/parameters/otidParam"
             },
             {
-              "$ref": "#/parameters/vidParam"
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        }
+      }, 
+      "/tours/{tour-id}":{
+        "get": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Gets a tour if it has a different entity tag",
+          "parameters": [
+            {
+              "in": "header", 
+              "name": "If-None-Match", 
+              "type": "string",
+              "description": "Newest known entity tag of the ressource"
+            },
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "ETag": {
+                  "type": "string",
+                  "description": "Entity Tag"
+                }
+              },
+              "schema": {
+                "allOf": [
+                  {"$ref": "#/definitions/OTResponseMeta"},
+                  {"type": "object", 
+                    "properties": {
+                      "data" :{
+                        "type": "object",
+                        "$ref": "#/definitions/OTTour"
+                      }
+                    }
+                  }   
+                ]
+              }
+            },
+            "304": {
+              "$ref": "#/responses/NotModified"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Updates or adds a tour under a certain URI if the entity tag in the `If-Match` header matches the current entity tag on the server.",
+          "description": "",
+          "parameters": [
+            
+            {
+              "in": "body", 
+              "name": "tour", 
+              "schema": {"$ref": "#/definitions/OTTour"},
+              "required": true
+            },
+            {
+              "in": "header", 
+              "name": "If-Match", 
+              "type": "string",
+              "description": "Newest known entity tag of the ressource"
             },
             {
               "$ref": "#/parameters/otidParam"
@@ -695,18 +807,261 @@
           "summary": "Deletes a specified tour on a specified device",
           "parameters": [
             {
-              "$ref": "#/parameters/didParam"
-            },
-            {
-              "$ref": "#/parameters/vidParam"
-            },
-            {
               "in": "query",
               "name": "tourid",
-              "description": "ID of tour to delete",
+              "description": "UUID of tour to delete",
               "required": true,
               "type": "string"
             },
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        }
+      },
+      "/otdevice/{drive-id}":{
+        "post": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Adds a new drive.",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body", 
+              "name": "drive", 
+              "schema": {"$ref": "#/definitions/OTDrive"},
+              "required": true
+            },
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Deletes a specified drive",
+          "parameters": [
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        }
+      },
+      "/otdevice/{shipment-id}":{
+        "post": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Adds a new shipment.",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body", 
+              "name": "tour", 
+              "schema": {"$ref": "#/definitions/OTShipment"},
+              "required": true
+            },
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Deletes a specified shipment",
+          "parameters": [
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        }
+      },
+      "/otdevice/{task-id}":{
+        "post": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Adds a new task.",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body", 
+              "name": "tour", 
+              "schema": {"$ref": "#/definitions/OTTask"},
+              "required": true
+            },
+            {
+              "$ref": "#/parameters/otidParam"
+            },
+            {
+              "$ref": "#/parameters/tokenParam"
+            },
+            {
+              "$ref": "#/parameters/versionParam"
+            }
+          ],
+          "responses": {
+            "204":{
+              "$ref": "#/responses/NoContent"
+            },
+            "400":{
+              "$ref": "#/responses/BadRequest"
+            },
+            "401": {
+              "$ref": "#/responses/Unauthorized"
+            },
+            "403":{
+              "$ref": "#/responses/Forbidden"
+            },
+            "404": {
+              "$ref": "#/responses/NotFound"
+            },
+            "500":{
+              "$ref": "#/responses/InternalServerError"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Tour Management"
+          ],
+          "summary": "Deletes a specified task",
+          "parameters": [
             {
               "$ref": "#/parameters/otidParam"
             },
@@ -1332,6 +1687,9 @@
     "responses": {
       "NoContent": {
         "description": "No Content. The server has successfully fulfilled the request and there is no additional content to return in the response payload body"
+      },
+      "NotModified": {
+        "description": "Not Modified. The resource has not been modified since the version specified by the request header If-None-Match."
       },
       "BadRequest": {
         "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
@@ -2727,18 +3085,10 @@
           }
         }
       },
-      "OTUpdateTag":{
-        "type": "string", 
-        "description": "",
-        "enum": ["add", "keep", "update", "delete"]
-      },
       "OTTour": {
         "type": "object",
         "description": "Contains all static information about a tour. It consists of a number of `drives`. For complex tours there are optional structures that contain data about `shipments`, `items`, `tasks` and dangerous goods.",
         "properties": {
-          "updateTag": {
-            "allOf": [{"$ref": "#/definitions/OTUpdateTag"}]
-          },
           "tourid": {
             "allOf": [{"$ref": "#/definitions/OTIDType"}]        
           },
@@ -2766,10 +3116,23 @@
           "refvid": {
             "allOf": [{"$ref": "#/definitions/refvid"}]        
           },
+          
           "drives": {
             "type": "array",
             "items": {
               "$ref": "#/definitions/OTDrive"
+            }
+          },
+          "shipments":{
+            "type": "array", 
+            "items": {"$ref": "#/definitions/OTShipment"},
+            "description": "List of shipments, that need to be processed at the target address of the drive"
+          },
+          "tasks":{
+            "type":"array",
+            "description": "List of tasks for the stop of the current drive",
+            "items": {
+              "$ref": "#/definitions/OTTask"
             }
           }
         },
@@ -2801,9 +3164,6 @@
       "OTDrive": {
         "type": "object",
         "properties": {
-          "updateTag": {
-            "allOf": [{"$ref": "#/definitions/OTUpdateTag"}]
-          },
           "driveid": {
             "allOf": [{"$ref": "#/definitions/OTIDType"}]        
           },
@@ -2836,11 +3196,6 @@
             "type": "integer",
             "format": "int32",
             "description": "Indicates the position of the drive in a tour"
-          },
-          "shipments":{
-            "type": "array", 
-            "items": {"$ref": "#/definitions/OTShipment"},
-            "description": "List of shipments, that need to be processed at the target address of the drive"
           },
           "adrtotals": {
             "type": "object",
@@ -2974,9 +3329,6 @@
       "OTShipment":{
         "type": "object",
         "properties": {
-            "updateTag": {
-                "allOf": [{"$ref": "#/definitions/OTUpdateTag"}]
-              },
           "shipmentid": {
             "allOf": [{"$ref": "#/definitions/OTIDType"}]        
           },
@@ -2991,13 +3343,6 @@
             "items": {
               "$ref": "#/definitions/OTItem"
             }
-          },
-          "tasks":{
-            "type":"array",
-            "description": "List of tasks for the stop of the current drive",
-            "items": {
-              "$ref": "#/definitions/OTTask"
-            }
           }
         }
       },
@@ -3005,9 +3350,6 @@
         "type": "object",
         "description": "",
         "properties": {
-            "updateTag": {
-                "allOf": [{"$ref": "#/definitions/OTUpdateTag"}]
-              },
           "itemid": {
             "allOf": [{"$ref": "#/definitions/OTIDType"}]        
           }, 
@@ -3167,11 +3509,16 @@
       "OTTask":{
         "type": "object",
         "properties": {
-            "updateTag": {
-                "allOf": [{"$ref": "#/definitions/OTUpdateTag"}]
-              },
-          "taskid": {
-            "$ref": "#/definitions/OTIDType"
+          "uuid": {
+            "type": "string"
+          },
+          "driveid":{
+            "description": "The UUID of the drive the task refers to",
+            "type": "string"
+          },
+          "shipmentid":{
+            "description": "The UUID of the shipment the task refers to",
+            "type": "string"
           },
           "tasktype": {
             "type": "string",
