@@ -3122,18 +3122,6 @@
             "items": {
               "$ref": "#/definitions/OTDrive"
             }
-          },
-          "shipments":{
-            "type": "array", 
-            "items": {"$ref": "#/definitions/OTShipment"},
-            "description": "List of shipments, that need to be processed at the target address of the drive"
-          },
-          "tasks":{
-            "type":"array",
-            "description": "List of tasks for the stop of the current drive",
-            "items": {
-              "$ref": "#/definitions/OTTask"
-            }
           }
         },
         "required": [
@@ -3164,7 +3152,7 @@
       "OTDrive": {
         "type": "object",
         "properties": {
-          "driveid": {
+          "id": {
             "allOf": [{"$ref": "#/definitions/OTIDType"}]        
           },
           "refid": {
@@ -3210,6 +3198,13 @@
                 "type": "string",
                 "example": "E"
               }
+            }
+          },
+          "tasks":{
+            "type":"array",
+            "description": "List of tasks for the stop of the current drive",
+            "items": {
+              "$ref": "#/definitions/OTTask"
             }
           }
         },
@@ -3510,10 +3505,6 @@
         "type": "object",
         "properties": {
           "uuid": {
-            "type": "string"
-          },
-          "driveid":{
-            "description": "The UUID of the drive the task refers to",
             "type": "string"
           },
           "shipmentid":{
