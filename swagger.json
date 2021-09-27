@@ -845,7 +845,7 @@
           }
         }
       },
-      "/otdevice/{drive-id}":{
+      "/drives/{drive-id}":{
         "post": {
           "tags": [
             "Tour Management"
@@ -928,7 +928,7 @@
           }
         }
       },
-      "/otdevice/{shipment-id}":{
+      "/shipments/{shipment-id}":{
         "post": {
           "tags": [
             "Tour Management"
@@ -1011,7 +1011,7 @@
           }
         }
       },
-      "/otdevice/{task-id}":{
+      "/drives/{drive-id}/tasks/{task-id}":{
         "post": {
           "tags": [
             "Tour Management"
