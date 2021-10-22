@@ -775,7 +775,7 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embed"
+            "$ref": "#/components/parameters/embedRequired"
           },
           {
             "$ref": "#/components/parameters/otidParam"
@@ -793,21 +793,54 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
+                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
+                  "oneOf": [
                     {
-                      "$ref": "#/components/schemas/OTResponseMeta"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/OTTour"
-                            
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/OTResponseMeta"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "allOf":[
+                                  {
+                                    "$ref": "#/components/schemas/OTTourMeta"
+                                  },
+                                  {
+                                    "$ref": "#/components/schemas/OTTour"
+                                  }
+                                ]
+                              }
+                            }
                           }
                         }
-                      }
+                      ]
+                    }, 
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/OTResponseMeta"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "allOf":[
+                                  {
+                                    "$ref": "#/components/schemas/OTTourMeta"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1651,7 +1684,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/OTIDType"
+                  "$ref": "#/components/schemas/OTID"
                 }
               }
             }
@@ -1947,10 +1980,10 @@
           "default": 30
         }
       },
-      "embed": {
+      "embedRequired": {
         "name": "embed",
         "in": "query",
-        "required": false,
+        "required": true,
         "description": "Whether the data of the returned resources should be embedded or whether\nonly a link should be returned",
         "schema": {
           "type": "boolean",
@@ -2091,7 +2124,7 @@
           "otid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "description": "Registered OpenTelematics ID of the responder"
@@ -2403,7 +2436,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "description": "Driver ID "
@@ -2420,7 +2453,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "description": "Co-driver ID"
@@ -2438,7 +2471,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "description": "Passenger ID"
@@ -3425,7 +3458,7 @@
               "driver1": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/OTIDType"
+                    "$ref": "#/components/schemas/OTID"
                   }
                 ],
                 "description": "Card ID of driver 1"
@@ -3433,7 +3466,7 @@
               "driver2": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/OTIDType"
+                    "$ref": "#/components/schemas/OTID"
                   }
                 ],
                 "description": "Card ID of driver 2"
@@ -3773,16 +3806,33 @@
           }
         }
       },
+      "OTTourMeta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "allOf": [{"$ref": "#/components/schemas/OTID"}], 
+            "example": "123"
+          },
+          "uri": {
+            "allOf": [{"$ref": "#/components/schemas/OTURI"}], 
+            "example": "/tours/123"
+          }, 
+          "drives_uri": {
+            "allOf": [{"$ref": "#/components/schemas/OTURI"}], 
+            "example": "/tours/123/drives"
+          }
+        },
+        "required": ["id","uri", "drives_uri"]
+      },
       "OTTour": {
         "type": "object",
         "description": "Contains all static information about a tour. It consists of a number of\n`drives`. For complex tours there are optional structures that contain\ndata about `shipments`, `items`, `tasks` and dangerous goods.",
         "properties": {
-          "tourid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OTIDType"
-              }
-            ]
+          "name": {
+            "type": "string"
+          },
+          "info": {
+            "type": "string"
           },
           "cid": {
             "allOf": [
@@ -3790,19 +3840,6 @@
                 "$ref": "#/components/schemas/cid"
               }
             ]
-          },
-          "refid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refid"
-              }
-            ]
-          },
-          "name": {
-            "type": "string"
-          },
-          "info": {
-            "type": "string"
           },
           "did": {
             "allOf": [
@@ -3818,20 +3855,6 @@
               }
             ]
           },
-          "refdid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refdid"
-              }
-            ]
-          },
-          "refvid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refvid"
-              }
-            ]
-          },
           "drives": {
             "type": "array",
             "items": {
@@ -3840,9 +3863,8 @@
           }
         },
         "required": [
-          "refid",
-          "name",
-          "refdid"
+          "name", 
+          "drives"
         ]
       },
       "OTEta": {
@@ -3853,7 +3875,7 @@
           "driveid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -3874,7 +3896,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -3958,7 +3980,7 @@
           "eventid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -3981,7 +4003,7 @@
             "description": "ID of the associated tour",
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4016,7 +4038,7 @@
             "description": "ID of the associated drive",
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4024,7 +4046,7 @@
             "description": "ID of the associated tour",
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4056,7 +4078,7 @@
             "description": "ID of the associated task",
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4064,7 +4086,7 @@
             "description": "ID of the associated tour",
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4098,7 +4120,7 @@
               "type": "object",
               "properties": {
                 "itemid": {
-                  "$ref": "#/components/schemas/OTIDType"
+                  "$ref": "#/components/schemas/OTID"
                 },
                 "status": {
                   "description": "Information about the status of an item e.g. the condition at\ndelivery",
@@ -4121,7 +4143,7 @@
           "shipmentid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4148,14 +4170,14 @@
           "itemid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
           "parentid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "description": "Item ID of the package the item is part of (e.g. the ID of the\npalette to which the item belongs). With the `parentid` you are able\nto map any tree structure in the item list."
@@ -4415,7 +4437,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ]
           },
@@ -4443,7 +4465,7 @@
           "uid": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "maxLength": 150,
@@ -4571,7 +4593,7 @@
           "id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/OTIDType"
+                "$ref": "#/components/schemas/OTID"
               }
             ],
             "maxLength": 50,
@@ -4614,8 +4636,12 @@
           }
         }
       },
-      "OTIDType": {
+      "OTID": {
         "type": "string"
+      },
+      "OTURI": {
+        "type": "string", 
+        "format": "uri"
       },
       "OTDataStatus": {
         "type": "object",
@@ -4651,10 +4677,22 @@
         "format": "date-time",
         "description": "Creation time of the data set"
       },
+      "OTResourceMeta": {
+        "type": "object", 
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/OTID", 
+            "example": 123
+          }, 
+          "uri": {
+            "$ref": "#/components/schemas/OTURI"
+          }
+        } 
+      },
       "did": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Device ID"
@@ -4664,7 +4702,7 @@
       "vid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Vehicle ID"
@@ -4674,7 +4712,7 @@
       "cid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Customer ID"
@@ -4684,7 +4722,7 @@
       "gid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Vehicle Group ID"
@@ -4694,7 +4732,7 @@
       "refdid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Reference Device ID"
@@ -4704,7 +4742,7 @@
       "refvid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Reference Vehicle ID"
@@ -4714,7 +4752,7 @@
       "refid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Reference ID"
@@ -4724,7 +4762,7 @@
       "dataid": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/OTIDType"
+            "$ref": "#/components/schemas/OTID"
           },
           {
             "description": "Data ID"
