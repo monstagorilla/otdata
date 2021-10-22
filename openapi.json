@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "version": "1.1.1",
-    "title": "OTData",
+    "title": "OTData API",
     "description": "The software-independent standard interface for the transmission of telematics data.\n- The authentication is specified by the interface operator\n- It is recommended to use OAuth 2.0",
     "contact": {
       "name": "OpenTelematics e.V.",
@@ -13,6 +13,51 @@
     "description": "Additional Documentation",
     "url": "https://opentelematics.gitlab.io/otdata/docs/"
   },
+  "servers": [
+    {
+      "url": "{protocol}://api.{hostname}/{version}",
+      "variables": {
+        "hostname": {
+          "description": "Self-hosted Enterprise Server or Enterprise Cloud hostname",
+          "default": "opentelematics"
+        },
+        "protocol": {
+          "enum": ["https"],
+          "default": "https"
+        }, 
+        "version": {
+          "enum": ["1.1.1"],
+          "default": "1.1.1"
+        }
+      }
+    }
+  ],
+  "tags": [
+    {
+      "name": "Live Data", 
+      "description": ""
+    },
+    {
+      "name": "Tacho", 
+      "description": ""
+    },
+    {
+      "name": "Devices", 
+      "description": ""
+    },
+    {
+      "name": "Messages", 
+      "description": ""
+    },
+    {
+      "name": "Logs", 
+      "description": ""
+    },
+    {
+      "name": "Tour Management", 
+      "description": "Endpoints to manage tours, drives and shipments "
+    }    
+  ],
   "paths": {
     "/otdata/history": {
       "get": {
@@ -701,47 +746,6 @@
       }
     },
     "/tours": {
-      "post": {
-        "tags": [
-          "Tour Management"
-        ],
-        "summary": "Adds a new tour.",
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/otidParam"
-          },
-          {
-            "$ref": "#/components/parameters/tokenParam"
-          },
-          {
-            "$ref": "#/components/parameters/versionParam"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/OTTour"
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
       "get": {
         "summary": "Returns a list of tours",
         "tags": [
@@ -800,6 +804,7 @@
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/OTTour"
+                            
                           }
                         }
                       }
@@ -808,6 +813,47 @@
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Adds a new tour.",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/otidParam"
+          },
+          {
+            "$ref": "#/components/parameters/tokenParam"
+          },
+          {
+            "$ref": "#/components/parameters/versionParam"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/OTTour"
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -1769,11 +1815,6 @@
       }
     }
   },
-  "servers": [
-    {
-      "url": "https://otdata.dummy.de/"
-    }
-  ],
   "components": {
     "parameters": {
       "tokenParam": {
