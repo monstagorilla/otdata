@@ -99,9 +99,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -170,9 +168,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -274,9 +270,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -390,9 +384,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -577,9 +569,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -659,9 +649,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -1319,9 +1307,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -1383,9 +1369,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -1444,9 +1428,6 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
                     {
                       "type": "object",
                       "properties": {
@@ -1803,9 +1784,7 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
+                    
                     {
                       "type": "object",
                       "properties": {
@@ -2057,7 +2036,7 @@
           }
         },
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
               "$ref": "#/components/schemas/ProblemDetails"  
             }
@@ -2077,7 +2056,7 @@
           }
         },
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
               "$ref": "#/components/schemas/ProblemDetails"  
             }
@@ -2097,7 +2076,7 @@
           }
         },
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
               "$ref": "#/components/schemas/ProblemDetails"  
             }
@@ -2117,7 +2096,7 @@
           }
         },
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
               "$ref": "#/components/schemas/ProblemDetails"  
             }
@@ -2137,7 +2116,7 @@
           }
         },
         "content": {
-          "application/json": {
+          "application/problem+json": {
             "schema": {
               "$ref": "#/components/schemas/ProblemDetails"  
             }
@@ -2158,56 +2137,41 @@
       }
     },
     "schemas": {
-      "ResponseMeta": {
-        "type": "object",
-        "properties": {
-          "version": {
-            "type": "string",
-            "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-            "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`"
-          },
-          "otid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ],
-            "description": "Registered OpenTelematics ID of the responder"
-          },
-          "message": {
-            "type": "string",
-            "description": "Further explanation"
-          }
-        },
-        "required": [
-          "otid"
-        ]
-      },
       "ProblemDetails": {
         "type": "object",
-        "description": "Problem details as defined by [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) with an additional ``code`` for custom error codes",
+        "description": "Problem details as defined by [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)",
         "properties": {
           "type": {
-            "type": "string", 
-            "format": "uri", 
-            "description": "A URI that identifies the problem type and provides human-readable documentation for it."
-          },
-          "status":{
-            "type": "number", 
-            "description": "HTTP Status Code", 
-            "example": 404
+            "type": "string",
+            "format": "uri-reference",
+            "description": "A URI reference that uniquely identifies the problem type only in the context of the provided API. Opposed to the specification in RFC-7807, it is neither recommended to be dereferencable and point to a human-readable documentation nor globally unique for the problem type.",
+            "default": "about:blank",
+            "example": "/problem/connection-error"
           },
           "title": {
-            "type": "string", 
-            "description": "A short, human-readable summary of the problem type. It should not change from occurrence to occurrence of the problem."
-          }, 
-          "detail": {
-            "type": "string", 
-            "description": "A human-readable explanation specific to this occurrence of the problem."
-          }, 
-          "code": {
             "type": "string",
-            "description": "Custom error code"
+            "description": "A short summary of the problem type. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.\n",
+            "example": "Internal Server Error."
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The HTTP status code generated by the origin server for this occurrence of the problem.",
+            "minimum": 100,
+            "maximum": 600,
+            "exclusiveMaximum": true,
+            "example": 500
+          },
+          "detail": {
+            "type": "string",
+            "description": "A human readable explanation specific to this occurrence of the problem that is helpful to locate the problem and give advice on how to proceed. Written in English and readable for engineers, usually not suited for non technical stakeholders and not localized.",
+            "example": "Connection to database timed out"
+          },
+          "instance": {
+            "type": "string",
+            "format": "uri-reference",
+            "description": "A URI reference that identifies the specific occurrence of the problem, e.g. by adding a fragment identifier or sub-path to the problem type. May be used to locate the root of this problem in the source code.",
+            "example": "/problem/connection-error#token-info-read-timed-out"
           }
         }
       },
