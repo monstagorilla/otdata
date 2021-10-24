@@ -798,27 +798,13 @@
                     {
                       "type": "array",
                       "items": {
-                        "allOf":[
-                          {
-                            "$ref": "#/components/schemas/TourMeta"
-                          },
-                          {
-                            "$ref": "#/components/schemas/TourLinkFields"
-                          },
-                          {
-                            "$ref": "#/components/schemas/Tour"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/TourFull"
                       }
                     }, 
                     {
                       "type": "array",
                       "items": {
-                        "allOf":[
-                          {
-                            "$ref": "#/components/schemas/TourMeta"
-                          }
-                        ]
+                        "$ref": "#/components/schemas/TourMeta"
                       }
                     }
                   ]
@@ -934,12 +920,7 @@
         "summary": "Returns a specific tour",
         "parameters": [
           {
-            "in": "path",
-            "name": "tour-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tour_id"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -959,28 +940,25 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "description": "Entity Tag",
-                "schema": {
-                  "type": "string"
-                }
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
               }
             },
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ResponseMeta"
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "$ref": "#/components/schemas/Tour"
-                        }
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/TourFull"
                 }
               }
             }
@@ -2031,6 +2009,15 @@
         "schema": {
           "type": "boolean",
           "default": false
+        }
+      },
+      "tour_id": {
+        "name": "tour-id", 
+        "in": "path", 
+        "required": true, 
+        "description": "Tour ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
         }
       },
       "if_none_match": {
@@ -3882,6 +3869,19 @@
             ]
           }
         }
+      },
+      "TourFull": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TourMeta"
+          },
+          {
+            "$ref": "#/components/schemas/TourLinkFields"
+          },
+          {
+            "$ref": "#/components/schemas/Tour"
+          }
+        ]
       },
       "TourMeta": {
         "type": "object",
