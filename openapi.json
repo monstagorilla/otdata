@@ -778,6 +778,19 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
@@ -835,7 +848,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/Tour"
+          "$ref": "#/components/requestBodies/TourCreate"
         },
         "responses": {
           "201": {
@@ -869,14 +882,7 @@
               "application/json": {
                 "schema": {
                   "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
-                  "allOf":[
-                    {
-                      "$ref": "#/components/schemas/TourMeta"
-                    },
-                    {
-                      "$ref": "#/components/schemas/Tour"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/TourFull"
                 }
               }
             }
@@ -979,20 +985,10 @@
         "description": "",
         "parameters": [
           {
-            "in": "path",
-            "name": "tour-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tour_id"
           },
           {
-            "in": "header",
-            "name": "If-Match",
-            "description": "Newest known entity tag of the ressource",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/if_match"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1005,11 +1001,35 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/Tour"
+          "$ref": "#/components/requestBodies/TourUpdate"
         },
         "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": false
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TourFull"
+                }
+              }
+            }
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -1784,7 +1804,6 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    
                     {
                       "type": "object",
                       "properties": {
@@ -1829,10 +1848,17 @@
         }
       },
       "cache_control": {
-        "description": "Cache-Control header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)",
+        "description": "Header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)",
         "schema": {
           "type": "string"
         }
+      },
+      "content_type": {
+        "description": "Header field that indicates the media type of the associated representation as defined by [RFC7231](https://datatracker.ietf.org/doc/html/rfc7231#section-3.1.1.5)",
+        "schema": {
+          "type": "string"
+        }
+
       },
       "otid": {
         "description": "Registered OpenTelematics ID of the requester",
@@ -1853,7 +1879,7 @@
         "name": "access-token",
         "in": "header",
         "description": "JSON Web Token",
-        "required": true,
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -1862,7 +1888,7 @@
         "in": "header",
         "name": "api-version",
         "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`",
-        "required": true,
+        "required": false,
         "schema": {
           "$ref": "#/components/headers/api_version"
         }
@@ -2013,19 +2039,45 @@
         "description": "Newest known entity tag of the ressource as defined by [RFC7232](https://datatracker.ietf.org/doc/html/rfc7232#section-3.1)",
         "schema": {
           "type": "string"
-        }
+        }, 
+        "required": false
       }
     },
     "responses": {
       "NoContent": {
+        "headers": {
+          "api-version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "otid": {
+            "$ref": "#/components/headers/otid",
+            "required": true
+          }
+        },
         "description": "No Content. The server has successfully fulfilled the request and there is no additional content to return in the response payload body"
       },
       "NotModified": {
-        "description": "Not Modified. The resource has not been modified since the version specified by the request header If-None-Match."
+        "description": "Not Modified. The resource has not been modified since the version specified by the request header If-None-Match.",
+        "headers": {
+          "api-version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "otid": {
+            "$ref": "#/components/headers/otid",
+            "required": true
+          }
+        }
       },
       "BadRequest": {
         "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
         "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
           "api-version": {
             "$ref": "#/components/headers/api_version",
             "required": true
@@ -2046,6 +2098,11 @@
       "Unauthorized": {
         "description": "Unauthorized. The request requires user authentication.",
         "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
           "api-version": {
             "$ref": "#/components/headers/api_version",
             "required": true
@@ -2066,6 +2123,11 @@
       "Forbidden": {
         "description": "Forbidden. The server understood the request, but refuses to authorize\nit.",
         "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
           "api-version": {
             "$ref": "#/components/headers/api_version",
             "required": true
@@ -2086,6 +2148,86 @@
       "NotFound": {
         "description": "Not Found. The server has not found anything matching the effective\nrequest URI.",
         "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
+          "api-version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "otid": {
+            "$ref": "#/components/headers/otid",
+            "required": true
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"  
+            }
+          }
+        }
+      },
+      "PreconditionFailed": {
+        "description": "Precondition Failed. One or more conditions (e.g. If-None-Match header) given in the request header fields evaluated to false when tested on the server.",
+        "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
+          "api-version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "otid": {
+            "$ref": "#/components/headers/otid",
+            "required": true
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"  
+            }
+          }
+        }
+      },
+      "UnsupportedMediaType": {
+        "description": "Unsupported Media Type. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource.",
+        "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
+          "api-version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "otid": {
+            "$ref": "#/components/headers/otid",
+            "required": true
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"  
+            }
+          }
+        }
+      },
+      "PreconditionRequired": {
+        "description": "Precondition Required. The origin server requires the request to be conditional.",
+        "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
           "api-version": {
             "$ref": "#/components/headers/api_version",
             "required": true
@@ -2106,6 +2248,11 @@
       "InternalServerError": {
         "description": "Internal Server Error. The server encountered an unexpected condition\nwhich prevented it from fulfilling the request.",
         "headers": {
+          "Content-Type": {
+            "$ref": "#/components/headers/content_type",
+            "default": "application/problem+json",
+            "required": true
+          },
           "api-version": {
             "$ref": "#/components/headers/api_version",
             "required": true
@@ -2125,11 +2272,36 @@
       }
     },
     "requestBodies": {
-      "Tour": {
+      "TourCreate": {
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Tour"
+            }
+          }
+        },
+        "required": true
+      }, 
+      "TourUpdate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "oneOf":[
+                {
+                  "$ref": "#/components/schemas/Tour"
+                },
+                {
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/TourMeta"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Tour"
+                    }
+                  ]
+                }
+              ]
             }
           }
         },
@@ -3900,10 +4072,7 @@
               }
             ]
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "Eta": {
         "properties": {
