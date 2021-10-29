@@ -55,7 +55,11 @@
     },
     {
       "name": "Tour Management", 
-      "description": "Endpoints to manage tours, drives and shipments "
+      "description": "Endpoints to manage tours and their belonging drives"
+    },
+    {
+      "name": "Shipment Management", 
+      "description": "Endpoints to manage shipments"
     }    
   ],
   "paths": {
@@ -915,7 +919,6 @@
         }
       }
     },
-    
     "/tours/{tour-id}": {
       "get": {
         "tags": [
@@ -925,7 +928,7 @@
         "summary": "Returns a specific tour",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -999,7 +1002,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -1077,15 +1080,7 @@
         "summary": "Deletes a specified tour on a specified device",
         "parameters": [
           {
-            "in": "path",
-            "name": "tour-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -1137,7 +1132,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -1211,7 +1206,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1230,10 +1225,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /tours/{tour-id}": {
-                "operationId": "getTour", 
+              "GET /tours/{tour-id}/drives/{drive-id}": {
+                "operationId": "getDrive", 
                 "parameters": {
-                  "tour-id": "$response.body#/id"
+                  "drive-id": "$response.body#/id"
                 }
               }
             },
@@ -1257,7 +1252,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TourFull"
+                  "$ref": "#/components/schemas/DriveFull"
                 }
               }
             }
@@ -1295,7 +1290,7 @@
         "summary": "Returns a drive of a specific tour",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/drive_id"
@@ -1372,7 +1367,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/drive_id"
@@ -1453,7 +1448,7 @@
         "summary": "Deletes a drive of a specific tour",
         "parameters": [
           {
-            "$ref": "#/components/parameters/tour_id"
+            "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/drive_id"
@@ -1499,22 +1494,28 @@
         }
       }
     },
-    
-    "/shipments/{shipment-id}": {
-      "post": {
+    "/shipments": {
+      "get": {
+        "summary": "Returns a list of shipments",
         "tags": [
           "Shipment Management"
         ],
-        "summary": "Adds a new shipment.",
         "description": "",
         "parameters": [
           {
-            "in": "path",
-            "name": "shipment-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/cid"
+          },
+          {
+            "$ref": "#/components/parameters/tour_id_query"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/embedRequired"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1526,19 +1527,48 @@
             "$ref": "#/components/parameters/api_version"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Shipment"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
+                  "properties": {
+                    "data": {
+                      "oneOf": [
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/ShipmentFull"
+                          }
+                        }, 
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/ShipmentMeta"
+                          }
+                        }
+                      ]
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
               }
             }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -1557,19 +1587,250 @@
           }
         }
       },
+      "post": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Creates a shipment.",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ShipmentCreate"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /shipments/{shipment-id}": {
+                "operationId": "getShipment", 
+                "parameters": {
+                  "shipment-id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShipmentFull"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/shipments/{shipment-id}": {
+      "get": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "operationId": "getShipment",
+        "summary": "Returns a specific shipment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/shipment_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShipmentFull"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Shipment Management"
+        ],
+        "summary": "Updates or creates a shipment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/shipment_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ShipmentUpdate"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            }
+          },
+          "204": {
+            "description": "No Content.",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": false
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "428": {
+            "$ref": "#/components/responses/PreconditionRequired"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Shipment Management"
         ],
-        "summary": "Deletes a specified shipment",
+        "summary": "Deletes a shipment",
         "parameters": [
           {
-            "in": "path",
-            "name": "shipment-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/shipment_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1596,6 +1857,12 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "428": {
+            "$ref": "#/components/responses/PreconditionRequired"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -2312,10 +2579,19 @@
           "default": false
         }
       },
-      "tour_id": {
+      "tour_id_path": {
         "name": "tour-id", 
         "in": "path", 
         "required": true, 
+        "description": "Tour ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "tour_id_query": {
+        "name": "tour_id", 
+        "in": "query", 
+        "required": false, 
         "description": "Tour ID", 
         "schema": {
           "$ref": "#/components/schemas/IDType"
@@ -2326,6 +2602,15 @@
         "in": "path", 
         "required": true, 
         "description": "Drive ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "shipment_id": {
+        "name": "shipment-id", 
+        "in": "path", 
+        "required": true, 
+        "description": "Shipment ID", 
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
@@ -2573,6 +2858,26 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/DriveFull"
+            }
+          }
+        },
+        "required": true
+      },
+      "ShipmentCreate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Shipment"
+            }
+          }
+        },
+        "required": true
+      },
+      "ShipmentUpdate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ShipmentFull"
             }
           }
         },
@@ -4388,7 +4693,7 @@
           }, 
           "uri": {
             "$ref": "#/components/schemas/URI",
-            "example": "/tours/{tour-id}/drives/{drives-id}"
+            "example": "/tours/123/drives/123"
           }
         }, 
         "required": ["id","uri"]
@@ -4626,16 +4931,49 @@
           }
         }
       },
+      "ShipmentFull": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ShipmentMeta"
+          },
+          {
+            "$ref": "#/components/schemas/ShipmentLinkFields"
+          },
+          {
+            "$ref": "#/components/schemas/Shipment"
+          }
+        ]
+      },
+      "ShipmentMeta": {
+        "type": "object", 
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/IDType", 
+            "example": "123"
+          }, 
+          "uri": {
+            "$ref": "#/components/schemas/URI",
+            "example": "/shipments/{shipment-id}"
+          }
+        }, 
+        "required": ["id","uri"]
+      }, 
+      "ShipmentLinkFields": {
+        "type": "object", 
+        "properties": {
+          "tour_links": {
+            "description": "List of URIs of tours to which the shipment is linked, respectively tours with tasks linked to this shipment.",
+            "type": "array", 
+            "items": {
+              "$ref": "#/components/schemas/URI", 
+              "example": "/tours/123"
+            }
+          }
+        }
+      },
       "Shipment": {
         "type": "object",
         "properties": {
-          "shipmentid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
-          },
           "addresses": {
             "type": "array",
             "items": {
@@ -4823,8 +5161,8 @@
       "Task": {
         "type": "object",
         "properties": {
-          "shipment_uri": {
-            "description": "The UUID of the shipment the task refers to",
+          "shipment_link": {
+            "description": "URI of the shipment the task refers to",
             "$ref":  "#/components/schemas/URI", 
             "example": "/shipments/123"
           },
