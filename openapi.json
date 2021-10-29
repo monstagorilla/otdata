@@ -915,6 +915,7 @@
         }
       }
     },
+    
     "/tours/{tour-id}": {
       "get": {
         "tags": [
@@ -994,7 +995,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Updates or adds a tour under a certain URI if the entity tag in the\n`If-Match` header matches the current entity tag on the server.",
+        "summary": "Updates or creates a tour",
         "description": "",
         "parameters": [
           {
@@ -1127,21 +1128,90 @@
         }
       }
     },
-    "/drives/{drive-id}": {
+    "/tour/{tour-id}/drives" :{
+      "get": {
+        "summary": "Returns a list of all drives for a specific tour",
+        "tags": [
+          "Tour Management"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items":{
+                    "$ref": "#/components/schemas/DriveFull"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Tour Management"
         ],
-        "summary": "Adds a new drive.",
+        "summary": "Creates a drive for a specific tour.",
         "description": "",
         "parameters": [
           {
-            "in": "path",
-            "name": "drive-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tour_id"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1154,16 +1224,44 @@
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Drive"
+          "$ref": "#/components/requestBodies/DriveCreate"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /tours/{tour-id}": {
+                "operationId": "getTour", 
+                "parameters": {
+                  "tour-id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TourFull"
+                }
               }
             }
           },
-          "required": true
-        },
-        "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
           },
@@ -1179,6 +1277,170 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/tours/{tour-id}/drives/{drive-id}": {
+      "get": {
+        "tags": [
+          "Tour Management"
+        ],
+        "operationId": "getTour",
+        "summary": "Returns a drive of a specific tour",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_id"
+          },
+          {
+            "$ref": "#/components/parameters/drive_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveFull"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tour Management"
+        ],
+        "summary": "Updates or creates a drive for a specific tour",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_id"
+          },
+          {
+            "$ref": "#/components/parameters/drive_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/DriveUpdate"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            }
+          },
+          "204": {
+            "description": "No Content.",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": false
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "428": {
+            "$ref": "#/components/responses/PreconditionRequired"
+          },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
           }
@@ -1188,15 +1450,16 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Deletes a specified drive",
+        "summary": "Deletes a drive of a specific tour",
         "parameters": [
           {
-            "in": "path",
-            "name": "drive-id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/tour_id"
+          },
+          {
+            "$ref": "#/components/parameters/drive_id"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -1224,16 +1487,23 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "428": {
+            "$ref": "#/components/responses/PreconditionRequired"
+          },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
           }
         }
       }
     },
+    
     "/shipments/{shipment-id}": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Shipment Management"
         ],
         "summary": "Adds a new shipment.",
         "description": "",
@@ -1289,7 +1559,7 @@
       },
       "delete": {
         "tags": [
-          "Tour Management"
+          "Shipment Management"
         ],
         "summary": "Deletes a specified shipment",
         "parameters": [
@@ -1460,7 +1730,7 @@
     "/otdevice/events": {
       "get": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Returns a list of all or a maximum number of events that are in queue",
         "parameters": [
@@ -1535,7 +1805,7 @@
     "/otdevice/events/tour": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Pushes a tour event",
         "parameters": [
@@ -1587,7 +1857,7 @@
     "/otdevice/events/drive": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Pushes a drive event",
         "parameters": [
@@ -1639,7 +1909,7 @@
     "/otdevice/events/task": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Pushes a task event",
         "parameters": [
@@ -1691,7 +1961,7 @@
     "/otdevice/events/ack": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Pushes an acknowledgment for a list of events",
         "parameters": [
@@ -1744,7 +2014,7 @@
     "/otdevice/eta": {
       "post": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Pushes a list of ETAs",
         "parameters": [
@@ -1794,7 +2064,7 @@
       },
       "get": {
         "tags": [
-          "Tour Management"
+          "Event Management"
         ],
         "summary": "Returns list of ETAs for either a certain drive or tour",
         "parameters": [
@@ -2051,6 +2321,15 @@
           "$ref": "#/components/schemas/IDType"
         }
       },
+      "drive_id": {
+        "name": "drive-id", 
+        "in": "path", 
+        "required": true, 
+        "description": "Drive ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
       "if_none_match": {
         "in": "header",
         "name": "If-None-Match",
@@ -2278,7 +2557,27 @@
           }
         },
         "required": true
-      }
+      },
+      "DriveCreate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Drive"
+            }
+          }
+        },
+        "required": true
+      },
+      "DriveUpdate": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DriveFull"
+            }
+          }
+        },
+        "required": true
+      } 
     },
     "schemas": {
       "ProblemDetails": {
@@ -2749,7 +3048,7 @@
           "coordinates": {
             "$ref": "#/components/schemas/Coordinates"
           },
-          "addresstype": {
+          "address_type": {
             "type": "string",
             "enum": [
               "customer",
@@ -2767,7 +3066,7 @@
           "name": {
             "type": "string"
           },
-          "companyname": {
+          "company_name": {
             "type": "string"
           },
           "street": {
@@ -2784,13 +3083,14 @@
           "city": {
             "type": "string"
           },
-          "zipcode": {
+          "zip_code": {
+            "description": "zip code or postal code",
             "type": "string"
           },
           "state": {
             "type": "string"
           },
-          "countrycode": {
+          "country_code": {
             "type": "string",
             "minLength": 3,
             "maxLength": 3,
@@ -4069,23 +4369,33 @@
           }
         }
       },
+      "DriveFull": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DriveMeta"
+          },
+          {
+            "$ref": "#/components/schemas/Drive"
+          }
+        ]
+      }, 
+      "DriveMeta": {
+        "type": "object", 
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/IDType", 
+            "example": "123"
+          }, 
+          "uri": {
+            "$ref": "#/components/schemas/URI",
+            "example": "/tours/{tour-id}/drives/{drives-id}"
+          }
+        }, 
+        "required": ["id","uri"]
+      },
       "Drive": {
         "type": "object",
         "properties": {
-          "id": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
-          },
-          "refid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refid"
-              }
-            ]
-          },
           "address": {
             "allOf": [
               {
@@ -4094,14 +4404,14 @@
             ],
             "description": "Destination address"
           },
+          "name": {
+            "type": "string"
+          },
           "info": {
             "type": "string",
             "description": "Further information"
           },
-          "name": {
-            "type": "string"
-          },
-          "starttimewindow": {
+          "start_timewindow": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/TimeWindow"
@@ -4109,7 +4419,7 @@
             ],
             "description": "Earliest and latest start time"
           },
-          "arrivaltimewindow": {
+          "arrival_timewindow": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/TimeWindow"
@@ -4120,12 +4430,12 @@
           "avis": {
             "$ref": "#/components/schemas/Avis"
           },
-          "drivenumber": {
+          "drive_number": {
             "type": "integer",
             "format": "int32",
             "description": "Indicates the position of the drive in a tour"
           },
-          "adrtotals": {
+          "adr_totals": {
             "type": "object",
             "description": "Summarized information about the dangerous goods that are present\nduring the drive. May be different for each drive.",
             "properties": {
@@ -4134,7 +4444,7 @@
                 "format": "int32",
                 "example": 1650
               },
-              "tunnelcode": {
+              "tunnel_code": {
                 "type": "string",
                 "example": "E"
               }
@@ -4513,14 +4823,12 @@
       "Task": {
         "type": "object",
         "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "shipmentid": {
+          "shipment_uri": {
             "description": "The UUID of the shipment the task refers to",
-            "type": "string"
+            "$ref":  "#/components/schemas/URI", 
+            "example": "/shipments/123"
           },
-          "tasktype": {
+          "task_type": {
             "type": "string",
             "description": "Custom designation for task type"
           },
@@ -4858,18 +5166,6 @@
         "type": "string",
         "format": "date-time",
         "description": "Creation time of the data set"
-      },
-      "ResourceMeta": {
-        "type": "object", 
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/IDType", 
-            "example": 123
-          }, 
-          "uri": {
-            "$ref": "#/components/schemas/URI"
-          }
-        } 
       },
       "did": {
         "allOf": [
