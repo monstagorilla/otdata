@@ -26,8 +26,8 @@
           "default": "https"
         }, 
         "version": {
-          "enum": ["1.1.1"],
-          "default": "1.1.1"
+          "enum": ["2.0.0"],
+          "default": "2.0.0"
         }
       }
     }
