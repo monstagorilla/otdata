@@ -74,28 +74,51 @@
     }
   ],
   "paths": {
-    "/otdata/history": {
+    "/live-data/latest": {
       "get": {
+        "summary": "Returns a list of the latest live data",
         "tags": [
           "Live Data"
         ],
-        "summary": "Returns a list of data that matches the specified time interval and ID",
-        "description": "If no ID is specified, data is returned for all vehicles.\nIf `from` and `to` do not exist, the complete history is returned.",
+        "description": "Filter search: ``cid``, ``did``, ``vid``, ``gid``, ``tour_id`` and ``drive_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/cid"
+          },
           {
             "$ref": "#/components/parameters/did"
           },
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/vid"
           },
           {
             "$ref": "#/components/parameters/gid"
           },
           {
-            "$ref": "#/components/parameters/from"
+            "$ref": "#/components/parameters/tour_id_query"
           },
           {
-            "$ref": "#/components/parameters/to"
+            "$ref": "#/components/parameters/drive_id_query"
+          },
+          {
+            "name": "fields", 
+            "description": "Specifies if just a selection of fields should be returned",
+            "in": "query", 
+            "style": "form",
+            "schema": {
+              "type": "array", 
+              "items": {
+                "type": "string", 
+                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc", "driver_behavior"]
+              }
+            }
+
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -110,23 +133,31 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/Data"
-                          }
-                        }
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Data"
                       }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -149,22 +180,57 @@
         }
       }
     },
-    "/otdata/getlive": {
+    "/live-data/history": {
       "get": {
+        "summary": "Returns a list of history of live data",
         "tags": [
           "Live Data"
         ],
-        "summary": "Returns a list of the current data of all vehicles or vehicles that\nmatch the specified ID ",
-        "description": "If no ID is specified, data is returned for all vehicles.",
+        "description": "Filter search: ``cid``, ``did``, ``vid``, ``gid``, ``tour_id`` and ``drive_id``\n\nTime selection: ``from`` and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/did"
-          },
           {
             "$ref": "#/components/parameters/cid"
           },
           {
+            "$ref": "#/components/parameters/did"
+          },
+          {
+            "$ref": "#/components/parameters/vid"
+          },
+          {
             "$ref": "#/components/parameters/gid"
+          },
+          {
+            "$ref": "#/components/parameters/tour_id_query"
+          },
+          {
+            "$ref": "#/components/parameters/drive_id_query"
+          },
+          {
+            "name": "fields", 
+            "description": "Specifies if just a selection of fields should be returned",
+            "in": "query", 
+            "style": "form",
+            "schema": {
+              "type": "array", 
+              "items": {
+                "type": "string", 
+                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc", "driver_behavior"]
+              }
+            }
+
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -179,23 +245,31 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/Data"
-                          }
-                        }
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Data"
                       }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -211,6 +285,131 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/live-data/{data-id}": {
+      "get": {
+        "tags": [
+          "Live Data"
+        ],
+        "operationId": "getData",
+        "summary": "Returns a specific live data ressource",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/data_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Data"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }, 
+      "delete": {
+        "tags": [
+          "Live Data"
+        ],
+        "summary": "Deletes a live-data ressource",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/data_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "428": {
+            "$ref": "#/components/responses/PreconditionRequired"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -3747,7 +3946,7 @@
         }
       },
       "api_version": {
-        "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`",
+        "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
         "schema": {
           "type": "string",
           "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
@@ -3767,7 +3966,7 @@
       "api_version": {
         "in": "header",
         "name": "api-version",
-        "description": "Version of the OpenTelematics API used, e.g.:`\"1.1.0\"`",
+        "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
         "required": false,
         "schema": {
           "$ref": "#/components/headers/api_version"
@@ -3854,6 +4053,15 @@
         "name": "vehicle_id",
         "in": "path",
         "description": "Vehicle ID",
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        },
+        "required": true
+      },
+      "data_id_path": {
+        "name": "data_id",
+        "in": "path",
+        "description": "Data ID",
         "schema": {
           "$ref": "#/components/schemas/IDType"
         },
@@ -3954,6 +4162,15 @@
         "name": "drive-id", 
         "in": "path", 
         "required": true, 
+        "description": "Drive ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "drive_id_query": {
+        "name": "drive_id", 
+        "in": "query", 
+        "required": false, 
         "description": "Drive ID", 
         "schema": {
           "$ref": "#/components/schemas/IDType"
@@ -4454,53 +4671,43 @@
       },
       "Data": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ID"
+          },
+          {
+            "$ref": "#/components/schemas/DeviceID"
+          },
+          {
+            "$ref": "#/components/schemas/VehicleID"
+          },
+          {
+            "$ref": "#/components/schemas/VehicleGroupID"
+          },
+          {
+            "$ref": "#/components/schemas/CustomerID"
+          },
+          {
+            "$ref": "#/components/schemas/TourID"
+          }
+        ],
         "properties": {
-          "dataid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/dataid"
-              }
-            ]
+          "driver_id": {
+            "$ref": "#/components/schemas/DriverID", 
+            "description": "Driver ID of the driver"
           },
-          "cid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/cid"
-              }
-            ]
+          "codriver_id": {
+            "$ref": "#/components/schemas/DriverID", 
+            "description": "Driver ID of the co-driver"
           },
-          "reason": {
-            "$ref": "#/components/schemas/Reason"
-          },
-          "receivetime": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date Time of message receive (optional)",
-            "example": "2017-07-21T17:32:28.000Z"
-          },
-          "did": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/did"
-              }
-            ]
-          },
-          "devicetime": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-07-21T17:32:28.000Z"
-          },
-          "io": {
-            "$ref": "#/components/schemas/IOState"
+          "timestamp":{
+            "$ref": "#/components/schemas/Timestamp"
           },
           "position": {
             "$ref": "#/components/schemas/Position"
           },
-          "driver": {
-            "$ref": "#/components/schemas/Driver"
-          },
-          "codriver": {
-            "$ref": "#/components/schemas/Driver"
+          "io": {
+            "$ref": "#/components/schemas/IOState"
           },
           "passengers": {
             "type": "array",
@@ -4508,29 +4715,25 @@
               "$ref": "#/components/schemas/Passenger"
             }
           },
-          "temperature": {
+          "temperatures": {
             "$ref": "#/components/schemas/Temp"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
           },
           "can": {
             "$ref": "#/components/schemas/CanData"
           },
-          "tachograph": {
+          "tacho": {
             "$ref": "#/components/schemas/Tacho"
           },
           "dtc": {
-            "$ref": "#/components/schemas/Diag"
+            "$ref": "#/components/schemas/DTC"
           },
-          "driverbehavior": {
-            "$ref": "#/components/schemas/Driverbehavior"
+          "driver_behavior": {
+            "$ref": "#/components/schemas/DriverBehavior"
           }
         },
         "required": [
-          "position",
-          "devicetime",
-          "did"
+          "id",
+          "timestamp"
         ]
       },
       "Reason": {
@@ -5724,7 +5927,7 @@
           }
         }
       },
-      "Diag": {
+      "DTC": {
         "type": "object",
         "properties": {
           "dtcstatus": {
@@ -5920,7 +6123,7 @@
           }
         }
       },
-      "Driverbehavior": {
+      "DriverBehavior": {
         "type": "object",
         "properties": {
           "harshbreak": {
@@ -6690,24 +6893,10 @@
               }
             ]
           },
-          "refid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refid"
-              }
-            ]
-          },
           "did": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/did"
-              }
-            ]
-          },
-          "refdid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refdid"
               }
             ]
           },
@@ -6738,20 +6927,6 @@
       "SetStatus": {
         "type": "object",
         "properties": {
-          "refid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refid"
-              }
-            ]
-          },
-          "refdid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/refdid"
-              }
-            ]
-          },
           "status": {
             "$ref": "#/components/schemas/MessageStatus"
           }
@@ -6937,6 +7112,64 @@
           }
         ]
       },
+      "DeviceID": {
+        "type": "object", 
+        "properties": {
+          "device_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Device ID"
+          }
+        }
+      },
+      "CustomerID": {
+        "type": "object", 
+        "properties": {
+          "customer_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Customer ID"
+          }
+        }
+      },
+      "VehicleID": {
+        "type": "object", 
+        "properties": {
+          "vehicle_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Vehicle ID"
+          }
+        }
+      },
+      "VehicleGroupID": {
+        "type": "object", 
+        "properties": {
+          "vehicle_group_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Vehicle ID"
+          }
+        }
+      },
+      "TourID": {
+        "type": "object", 
+        "properties": {
+          "tour_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Tour ID"
+          }
+        }
+      },
+      "DriveID": {
+        "type": "object", 
+        "properties": {
+          "drive_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Drive ID"
+          }
+        }
+      },
+      "DriverID": {
+        "$ref": "#/components/schemas/IDType",
+        "description": "Driver ID"
+      },
       "vid": {
         "allOf": [
           {
@@ -6974,36 +7207,6 @@
           },
           {
             "description": "Tour ID"
-          }
-        ]
-      },
-      "refdid": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/IDType"
-          },
-          {
-            "description": "Reference Device ID"
-          }
-        ]
-      },
-      "refvid": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/IDType"
-          },
-          {
-            "description": "Reference Vehicle ID"
-          }
-        ]
-      },
-      "refid": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/IDType"
-          },
-          {
-            "description": "Reference ID"
           }
         ]
       },
