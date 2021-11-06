@@ -1271,7 +1271,7 @@
         }
       }
     },
-    "/tour/{tour-id}/drives" :{
+    "/tours/{tour-id}/drives" :{
       "get": {
         "summary": "Returns a list of all drives for a specific tour",
         "tags": [
