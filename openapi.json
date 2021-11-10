@@ -38,6 +38,10 @@
       "description": ""
     },
     {
+      "name": "Tour Management", 
+      "description": "Endpoints to manage tours and their belonging drives"
+    }, 
+    {
       "name": "Tacho", 
       "description": ""
     },
@@ -61,18 +65,6 @@
       "description": ""
     },
     {
-      "name": "Messages", 
-      "description": ""
-    },
-    {
-      "name": "Logs", 
-      "description": ""
-    },
-    {
-      "name": "Tour Management", 
-      "description": "Endpoints to manage tours and their belonging drives"
-    }, 
-    {
       "name": "Events"
     }, 
     {
@@ -80,6 +72,14 @@
     },
     {
       "name": "Event Webhooks"
+    }, 
+    {
+      "name": "Logs", 
+      "description": ""
+    },
+    {
+      "name": "Messages", 
+      "description": ""
     }
   ],
   "paths": {
@@ -119,7 +119,6 @@
                 "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc", "driver_behavior"]
               }
             }
-
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -300,7 +299,7 @@
         }
       }
     },
-    "/live-data/{data-id}": {
+    "/live-data/{live-data-id}": {
       "get": {
         "tags": [
           "Live Data"
@@ -309,7 +308,7 @@
         "summary": "Returns a specific live data ressource",
         "parameters": [
           {
-            "$ref": "#/components/parameters/data_id_path"
+            "$ref": "#/components/parameters/live_data_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -379,10 +378,10 @@
         "tags": [
           "Live Data"
         ],
-        "summary": "Deletes a live-data ressource",
+        "summary": "Deletes a live data ressource",
         "parameters": [
           {
-            "$ref": "#/components/parameters/data_id_path"
+            "$ref": "#/components/parameters/live_data_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -3982,38 +3981,723 @@
         }
       }
     },
-    "/otdevice/events/ack": {
-      "post": {
+    "/tour-events": {
+      "get": {
+        "summary": "Returns a list of tour events",
         "tags": [
-          "Event Webhooks"
+          "Events"
         ],
-        "summary": "Pushes an acknowledgment for a list of events",
+        "description": "",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/tour_event_query"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
           {
             "$ref": "#/components/parameters/token"
           },
           {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TourEvent"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/tour-events/{tour-event-id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "getTourEvent",
+        "summary": "Returns a specific tour event",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_event_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
             "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TourEvent"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/drive-events": {
+      "get": {
+        "summary": "Returns a list of drive events",
+        "tags": [
+          "Events"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/drive_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/drive_event_query"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/DriveEvent"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/drive-events/{drive-event-id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "getDriveEvent",
+        "summary": "Returns a specific drive event",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/drive_event_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DriveEvent"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/task-events": {
+      "get": {
+        "summary": "Returns a list of task events",
+        "tags": [
+          "Events"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/tour_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/drive_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/task_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/task_event_query"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TaskEvent"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/task-events/{task-event-id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "getTaskEvent",
+        "summary": "Returns a specific Task Event",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/task_event_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEvent"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/ressource-events": {
+      "get": {
+        "summary": "Returns a list of ressource events",
+        "tags": [
+          "Events"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ressource_uri_query"
+          },
+          {
+            "$ref": "#/components/parameters/ressource_event_query"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/RessourceEvent"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/ressource-events/{ressource-event-id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "getRessource",
+        "summary": "Returns a specific ressource event",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ressource_event_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RessourceEvent"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/{callback-url}/tour-event": {
+      "post": {
+        "tags": [
+          "Event Webhooks"
+        ],
+        "summary": "Sends a tour event.",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/callback_url_path"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/token"
           },
           {
             "$ref": "#/components/parameters/api_version"
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/IDType"
+          "$ref": "#/components/requestBodies/TourEvent"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /customers/{customer-id}": {
+                "operationId": "getCustomer", 
+                "parameters": {
+                  "customer-id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerFull"
                 }
               }
             }
           },
-          "description": "List of Event IDs to be acknowledged",
-          "required": true
-        },
-        "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
           },
@@ -4028,6 +4712,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -4600,6 +5287,14 @@
         }, 
         "required": false
       },
+      "callback_url_path":{
+        "name": "callback_url", 
+        "in": "path", 
+        "schema": {
+          "$ref":  "#/components/schemas/URL"
+        }, 
+        "required": true
+      },
       "event_types": {
         "in": "query",
         "name": "event_types", 
@@ -4611,6 +5306,38 @@
           "items":{
             "$ref": "#/components/schemas/EventType"
           }          
+        }
+      },
+      "tour_event_id_path":{
+        "name": "tour-event-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "drive_event_id_path":{
+        "name": "drive-event-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "task_event_id_path":{
+        "name": "task-event-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "ressource_event_id_path":{
+        "name": "ressource-event-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
         }
       },
       "subscription_id_path": {
@@ -4755,6 +5482,15 @@
           "default": false
         }
       },
+      "live_data_id_path": {
+        "name": "live-data-id", 
+        "in": "path", 
+        "required": true, 
+        "description": "Live Data ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
       "tour_id_path": {
         "name": "tour-id", 
         "in": "path", 
@@ -4826,6 +5562,78 @@
           "type": "string"
         }, 
         "required": true
+      }, 
+      "tour_uri_query": {
+        "name": "tour-uri", 
+        "in": "query", 
+        "required": false, 
+        "description": "URI of the tour the event refers to",
+        "schema": {
+          "$ref": "#/components/schemas/URI"
+        }
+      },
+      "drive_uri_query": {
+        "name": "drive-uri", 
+        "in": "query", 
+        "required": false, 
+        "description": "URI of the drive the event refers to",
+        "schema": {
+          "$ref": "#/components/schemas/URI"
+        }
+      },
+      "task_uri_query": {
+        "name": "task-uri", 
+        "in": "query", 
+        "required": false, 
+        "description": "URI of the task the event refers to",
+        "schema": {
+          "$ref": "#/components/schemas/URI"
+        }
+      },
+      "ressource_uri_query": {
+        "name": "ressource-uri", 
+        "in": "query", 
+        "required": false, 
+        "description": "URI of the ressource the event refers to",
+        "schema": {
+          "$ref": "#/components/schemas/URI"
+        }
+      }, 
+      "tour_event_query": {
+        "name": "tour-event", 
+        "in": "query", 
+        "required": false, 
+        "description": "Type of the tour event",
+        "schema": {
+          "$ref": "#/components/schemas/TourEventTypes"
+        }
+      },
+      "drive_event_query": {
+        "name": "drive-event", 
+        "in": "query", 
+        "required": false, 
+        "description": "Type of the drive event",
+        "schema": {
+          "$ref": "#/components/schemas/DriveEventTypes"
+        }
+      },
+      "task_event_query": {
+        "name": "task-event", 
+        "in": "query", 
+        "required": false, 
+        "description": "Type of the task event",
+        "schema": {
+          "$ref": "#/components/schemas/TaskEventTypes"
+        }
+      },
+      "ressource_event_query": {
+        "name": "ressource-event", 
+        "in": "query", 
+        "required": false, 
+        "description": "Type of the ressource event",
+        "schema": {
+          "$ref": "#/components/schemas/RessourceEventTypes"
+        }
       }
     },
     "responses": {
@@ -5193,6 +6001,36 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/SubscriptionFull"
+            }
+          }
+        }
+      }, 
+      "TourEvent":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TourEvent"
+            }
+          }
+        }
+      },
+      "DriveEvent":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DriveEvent"
+            }
+          }
+        }
+      },
+      "TaskEvent":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TaskEvent"
             }
           }
         }
@@ -7138,114 +7976,103 @@
         "type": "string", 
         "enum": ["tour", "drive", "task", "ressource", "live-data", "tacho"]
       },
+      "TourEventTypes": {
+        "description": "'available/created': Telematic -> TMS, tour fertig vorliegend",
+        "type": "string", 
+        "enum": [
+          "available/created",
+          "transmitted",
+          "read",
+          "excepted",
+          "started",
+          "canceled",
+          "deleted",
+          "finished",
+          "denied", 
+          "other"
+        ]
+      },
       "TourEvent": {
+        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/EventMeta"
           }
         ],
         "properties": {
-          "tourid": {
-            "description": "ID of the associated tour",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
+          "tour_uri": {
+            "description": "URI of the associated tour",
+            "$ref": "#/components/schemas/URI", 
+            "example": "/tours/123"
           },
           "event": {
-            "type": "string",
-            "enum": [
-              "available/created",
-              "transmitted",
-              "read",
-              "excepted",
-              "started",
-              "canceled",
-              "deleted",
-              "finished",
-              "denied"
-            ],
-            "description": "'available/created': Telematic -> TMS, tour fertig vorliegend"
+            "$ref": "#/components/schemas/TourEventTypes"
           },
           "additions": {
             "$ref": "#/components/schemas/KeyValueList"
           }
         }
+      },
+      "DriveEventTypes": {
+        "description": "",
+        "type": "string",
+        "enum": [
+          "started",
+          "paused",
+          "interrupted",
+          "canceled",
+          "deleted",
+          "arrived",
+          "finished", 
+          "other"
+        ]
       },
       "DriveEvent": {
+        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/EventMeta"
           }
         ],
         "properties": {
-          "driveid": {
-            "description": "ID of the associated drive",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
-          },
-          "tourid": {
-            "description": "ID of the associated tour",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
+          "drive_uri": {
+            "description": "URI of the associated drive",
+            "$ref": "#/components/schemas/URI", 
+            "example": "/tours/123/drives/123"
           },
           "event": {
-            "type": "string",
-            "enum": [
-              "started",
-              "paused",
-              "interrupted",
-              "canceled",
-              "deleted",
-              "arrived",
-              "finished"
-            ]
+            "$ref": "#/components/schemas/DriveEventTypes"
           },
           "additions": {
             "$ref": "#/components/schemas/KeyValueList"
           }
         }
       },
+      "TaskEventTypes": {
+        "type": "string",
+        "enum": [
+          "started",
+          "canceled",
+          "finished",
+          "deleted",
+          "other"
+        ]
+      },
       "TaskEvent": {
+        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/EventMeta"
           }
         ],
         "properties": {
-          "taskid": {
-            "description": "ID of the associated task",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
-          },
-          "tourid": {
-            "description": "ID of the associated tour",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
+          "task_uri": {
+            "description": "URI of the associated task",
+            "$ref": "#/components/schemas/URI", 
+            "example": "/tours/123/drives/123/tasks/123"
           },
           "event": {
-            "description": "Type of the event. If you just want to transmit information during a\ntask, use the enum 'info'",
-            "type": "string",
-            "enum": [
-              "started",
-              "canceled",
-              "finished",
-              "deleted",
-              "info"
-            ]
+            "$ref": "#/components/schemas/TaskEventTypes"
           },
           "shipment": {
             "type": "object",
@@ -7277,6 +8104,34 @@
                 }
               }
             }
+          },
+          "additions": {
+            "$ref": "#/components/schemas/KeyValueList"
+          }
+        }
+      },
+      "RessourceEventTypes": {
+        "type": "string",
+        "enum": [
+          "updated",
+          "deleted"
+        ]
+      },
+      "RessourceEvent": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EventMeta"
+          }
+        ], 
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/RessourceEventTypes"
+          },
+          "ressource_uri": {
+            "description": "URI of the associated ressource",
+            "$ref": "#/components/schemas/URI", 
+            "example": "/customers/123"
           },
           "additions": {
             "$ref": "#/components/schemas/KeyValueList"
