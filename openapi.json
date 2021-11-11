@@ -669,9 +669,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
             "$ref": "#/components/parameters/otid"
           },
           {
@@ -698,23 +695,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/DeviceFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TachoFile"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
@@ -818,37 +804,78 @@
         }
       }
     },
-    "/otmessage/message": {
-      "post": {
+    "/messages/{message-channel-id}": {
+      "get": {
+        "summary": "Returns a list of messages",
         "tags": [
           "Messages"
         ],
-        "summary": "Sends a message",
+        "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/access_token"
+            "$ref": "#/components/parameters/message_channel_id_path"
+          },
+          {
+            "name": "sender", 
+            "in": "query",
+            "required": false, 
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
           },
           {
             "$ref": "#/components/parameters/otid"
           },
           {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
             "$ref": "#/components/parameters/api_version"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MessageBase"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MessageFull"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
+                    }
+                  }
+                }
               }
             }
-          },
-          "description": "Since there can be only one body parameter, it contains all data that\nis transferred in the body and thus also the token. The parameter name\nis for documentation purposes only.",
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -866,13 +893,17 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
-      },
-      "get": {
+      }, 
+      "post": {
         "tags": [
           "Messages"
         ],
-        "summary": "Returns a list of messages of a specific vehicle",
+        "summary": "Creates a message",
+        "description": "",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/message_channel_id_path"
+          },
           {
             "$ref": "#/components/parameters/otid"
           },
@@ -883,26 +914,34 @@
             "$ref": "#/components/parameters/api_version"
           }
         ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Message"
+        },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/Message"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "$ref": "#/components/schemas/DriverFull"
                 }
               }
             }
@@ -921,6 +960,88 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/messages/{message-channel-id}/{message-id}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "getMessage",
+        "summary": "Returns a specific tacho file",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/message_channel_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/message_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_none_match"
+          },
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageFull"
+                }
+              }
+            }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -986,55 +1107,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/otstatus/setMessageStatus": {
-      "post": {
-        "tags": [
-          "Messages"
-        ],
-        "summary": "Sets status for a specific message",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/otid"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetStatus"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -5044,6 +5116,52 @@
         }
       }
     },
+    "/webhooks/message": {
+      "post": {
+        "tags": [
+          "Event Webhooks"
+        ],
+        "summary": "Sends a message",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/MessageFull"
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/subscriptions":{
       "get": {
         "summary": "Returns a list of subscriptions",
@@ -5534,6 +5652,22 @@
       },
       "subscription_id_path": {
         "name": "subscription-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "message_id_path": {
+        "name": "message-id", 
+        "in": "path", 
+        "required": true,  
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "message_channel_id_path": {
+        "name": "message-channel-id", 
         "in": "path", 
         "required": true,  
         "schema": {
@@ -6280,6 +6414,26 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ETA"
+            }
+          }
+        }
+      }, 
+      "Message": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Message"
+            }
+          }
+        }
+      }, 
+      "MessageFull": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MessageFull"
             }
           }
         }
@@ -8706,82 +8860,33 @@
           }
         }
       },
-      "Message": {
-        "type": "object",
+      "MessageFull": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/MessageBase"
-          }
-        ],
-        "properties": {
-          "direction": {
-            "type": "string",
-            "enum": [
-              "serverToDevice",
-              "deviceToServer"
-            ]
+            "$ref": "#/components/schemas/ID"
           },
-          "status": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MessageStatus"
-            }
+          {
+            "$ref": "#/components/schemas/Message"
+          }
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "timestamp":{
+            "$ref": "#/components/schemas/Timestamp"
+          },
+          "sender": {
+            "type": "string",
+            "description": "Name of sender"
+          },
+          "message_channel_id":{
+            "$ref": "#/components/schemas/IDType"
+          }, 
+          "message": {
+            "type": "string"
           }
         }
-      },
-      "MessageBase": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ]
-          },
-          "did": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/did"
-              }
-            ]
-          },
-          "uid": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IDType"
-              }
-            ],
-            "maxLength": 150,
-            "description": "Unique user id"
-          },
-          "username": {
-            "type": "string",
-            "maxLength": 150
-          },
-          "message": {
-            "type": "string",
-            "description": "context"
-          }
-        },
-        "required": [
-          "refid",
-          "refdid",
-          "message"
-        ]
-      },
-      "SetStatus": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "$ref": "#/components/schemas/MessageStatus"
-          }
-        },
-        "required": [
-          "refid",
-          "refdid",
-          "status"
-        ]
       },
       "Log": {
         "type": "object",
