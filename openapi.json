@@ -46,7 +46,7 @@
       "description": "Endpoints to manage tours and their belonging drives"
     }, 
     {
-      "name": "Tacho", 
+      "name": "Tacho Files", 
       "description": ""
     },
     {
@@ -377,55 +377,6 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
-      }, 
-      "delete": {
-        "tags": [
-          "Live Data"
-        ],
-        "summary": "Deletes a live data ressource",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/live_data_id_path"
-          },
-          {
-            "$ref": "#/components/parameters/if_match"
-          },
-          {
-            "$ref": "#/components/parameters/otid"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "412": {
-            "$ref": "#/components/responses/PreconditionFailed"
-          },
-          "428": {
-            "$ref": "#/components/responses/PreconditionRequired"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
       }
     },
     "/eta/latest": {
@@ -668,35 +619,28 @@
         }
       }
     },
-    "/otdata/tacho": {
+    "/tacho-files": {
       "get": {
+        "summary": "Returns a list of tacho files",
         "tags": [
-          "Tacho"
+          "Tacho Files"
         ],
-        "summary": "Returns a list of all matching DDD files of the specified customer",
-        "description": "If no `did` or `gid` is specified, data is returned for all devices.\nIf `from` and `to` do not exist, all DDD files are returned.\nIf `timeused` is set to `activity`, all DDD files needed to cover the given time intervall are returned.",
+        "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cidRequired"
+            "$ref": "#/components/parameters/cid"
           },
           {
-            "name": "class",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "driver",
-                "vehicle",
-                "all"
-              ]
-            }
+            "$ref": "#/components/parameters/vid"
+          },
+          {
+            "$ref": "#/components/parameters/gid"
           },
           {
             "$ref": "#/components/parameters/did"
           },
           {
-            "$ref": "#/components/parameters/gid"
+            "$ref": "#/components/parameters/vid"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -705,9 +649,9 @@
             "$ref": "#/components/parameters/to"
           },
           {
-            "name": "timeused",
+            "name": "used_time",
             "in": "query",
-            "description": "Indicates to which time tags `from` and `to` refer:\n`\"activity\"` refers to the time the activities were stored in the DDD Files\n`\"download\"` refers to the download time of the DDD file\n`\"data\"` refers to the time stemp of the DDD files",
+            "description": "Indicates to which time tags `from` and `to` refer: ``activity`` refers to the time the activities were stored in the tacho files, ``download`` refers to the download time of the tacho file ``data`` refers to the time stemp of the tacho files",
             "schema": {
               "type": "string",
               "enum": [
@@ -717,6 +661,15 @@
               ],
               "default": "activity"
             }
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/embedRequired"
           },
           {
             "$ref": "#/components/parameters/otid"
@@ -731,23 +684,42 @@
         "responses": {
           "200": {
             "description": "OK",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
+                  "type": "object",
+                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
+                  "properties": {
+                    "data": {
+                      "oneOf": [
+                        {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/TransferContainer"
+                            "$ref": "#/components/schemas/DeviceFull"
+                          }
+                        }, 
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/ID"
                           }
                         }
-                      }
+                      ]
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/Cursor"
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -768,41 +740,62 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
-      },
-      "post": {
+      }
+    },
+    "/tacho-files/{tacho-file-id}": {
+      "get": {
         "tags": [
-          "Tacho"
+          "Tacho Files"
         ],
-        "summary": "Transmits a list of DDD files",
+        "operationId": "getTachoFile",
+        "summary": "Returns a specific tacho file",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cidRequired"
+            "$ref": "#/components/parameters/tacho_file_id_path"
           },
           {
-            "$ref": "#/components/parameters/access_token"
+            "$ref": "#/components/parameters/if_none_match"
           },
           {
             "$ref": "#/components/parameters/otid"
           },
           {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
             "$ref": "#/components/parameters/api_version"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/TransferContainer"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag", 
+                "required": true
+              }, 
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "otid": {
+                "$ref": "#/components/headers/otid",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TachoFile"
                 }
               }
             }
-          }
-        },
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/NoContent"
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -815,6 +808,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "412": {
+            "$ref": "#/components/responses/PreconditionFailed"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -3875,7 +3871,7 @@
         "summary": "Returns a specific shipment",
         "parameters": [
           {
-            "$ref": "#/components/parameters/shipment_id"
+            "$ref": "#/components/parameters/shipment_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -3948,7 +3944,7 @@
         "summary": "Updates or creates a shipment",
         "parameters": [
           {
-            "$ref": "#/components/parameters/shipment_id"
+            "$ref": "#/components/parameters/shipment_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -4026,7 +4022,7 @@
         "summary": "Deletes a shipment",
         "parameters": [
           {
-            "$ref": "#/components/parameters/shipment_id"
+            "$ref": "#/components/parameters/shipment_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -4956,6 +4952,52 @@
         }
       }
     },
+    "/webhooks/tacho-file": {
+      "post": {
+        "tags": [
+          "Event Webhooks"
+        ],
+        "summary": "Sends a tacho file",
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/otid"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/TachoFile"
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/webhooks/eta": {
       "post": {
         "tags": [
@@ -5695,11 +5737,19 @@
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "shipment_id": {
+      "shipment_id_path": {
         "name": "shipment-id", 
         "in": "path", 
         "required": true, 
         "description": "Shipment ID", 
+        "schema": {
+          "$ref": "#/components/schemas/IDType"
+        }
+      },
+      "tacho_file_id_path": {
+        "name": "tacho-file-id", 
+        "in": "path", 
+        "required": true, 
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
@@ -6210,6 +6260,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/LiveData"
+            }
+          }
+        }
+      },
+      "TachoFile":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TachoFile"
             }
           }
         }
@@ -8166,14 +8226,16 @@
               "/tours/123/drives/123", 
               "/tours/123/drives/123/tasks/123",
               "/customers/123", 
-              "/live-data/latest?cid=123?vid=123?fields=position,can,tacho"
+              "/live-data/latest?cid=123?vid=123?fields=position,can,tacho", 
+              "/tacho_files?customer=123", 
+              "/eta/latest?tour_uri=%2Ftours%2F123"
             ]
           }
         }
       },
       "EventType": {
         "type": "string", 
-        "enum": ["tour", "drive", "task", "ressource", "live-data", "tacho"]
+        "enum": ["tour", "drive", "task", "ressource", "live_data", "tacho_file", "eta"]
       },
       "TourEventTypes": {
         "description": "'available/created': Telematic -> TMS, tour fertig vorliegend",
@@ -8751,18 +8813,24 @@
           }
         }
       },
-      "TransferContainer": {
+      "TachoFile": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ID"
+          }, 
+          {
+            "$ref": "#/components/schemas/VehicleID"
+          }, 
+          {
+            "$ref": "#/components/schemas/DriverID"
+          }
+        ],
         "properties": {
           "filename": {
             "type": "string",
             "description": "Filename",
             "example": "123456789.DDD"
-          },
-          "id": {
-            "type": "string",
-            "description": "Vehicle or driver ID",
-            "example": "example: DF00000000000000"
           },
           "class": {
             "type": "string",
@@ -8773,9 +8841,9 @@
             ],
             "example": "driver"
           },
-          "used_company_card": {
+          "company_card": {
             "type": "string",
-            "description": "the company card which was used",
+            "description": "The company card which was used",
             "example": "DU000000000000"
           },
           "type": {
@@ -8955,8 +9023,13 @@
         }
       },
       "DriverID": {
-        "$ref": "#/components/schemas/IDType",
-        "description": "Driver ID"
+        "type": "object", 
+        "properties": {
+          "driver_id": {
+            "$ref": "#/components/schemas/IDType",
+            "description": "Driver ID"
+          }
+        }
       },
       "vid": {
         "allOf": [
