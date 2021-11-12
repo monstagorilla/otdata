@@ -69,6 +69,10 @@
       "description": ""
     },
     {
+      "name": "Messages", 
+      "description": ""
+    },
+    {
       "name": "Events"
     }, 
     {
@@ -79,10 +83,6 @@
     }, 
     {
       "name": "Logs", 
-      "description": ""
-    },
-    {
-      "name": "Messages", 
       "description": ""
     }
   ],
@@ -2287,9 +2287,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
             "$ref": "#/components/parameters/otid"
           },
           {
@@ -2316,23 +2313,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/DeviceFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/DeviceFull"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
@@ -2660,9 +2646,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
             "$ref": "#/components/parameters/otid"
           },
           {
@@ -2689,23 +2672,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/DriverFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/DriverFull"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
@@ -3030,9 +3002,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
             "$ref": "#/components/parameters/otid"
           },
           {
@@ -3059,23 +3028,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/CustomerFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CustomerFull"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
@@ -3406,12 +3364,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
-            "$ref": "#/components/parameters/otid"
-          },
-          {
             "$ref": "#/components/parameters/access_token"
           },
           {
@@ -3435,23 +3387,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/VehicleFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/VehicleFull"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
@@ -3782,9 +3723,6 @@
             "$ref": "#/components/parameters/limit"
           },
           {
-            "$ref": "#/components/parameters/embedRequired"
-          },
-          {
             "$ref": "#/components/parameters/otid"
           },
           {
@@ -3811,23 +3749,12 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
                   "properties": {
                     "data": {
-                      "oneOf": [
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ShipmentFull"
-                          }
-                        }, 
-                        {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/ID"
-                          }
-                        }
-                      ]
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ShipmentFull"
+                      }
                     },
                     "next_cursor":{
                       "$ref": "#/components/schemas/Cursor"
