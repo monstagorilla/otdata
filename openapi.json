@@ -93,19 +93,19 @@
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``cid``, ``did``, ``vid``, ``gid``, ``tour_id`` and ``drive_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_id``, ``device_id``, ``vehicle_id``, ``vehicle_group_id``, ``tour_id`` and ``drive_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
-            "$ref": "#/components/parameters/did"
+            "$ref": "#/components/parameters/device_id"
           },
           {
-            "$ref": "#/components/parameters/vid"
+            "$ref": "#/components/parameters/vehicle_id"
           },
           {
-            "$ref": "#/components/parameters/gid"
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/tour_id_query"
@@ -196,19 +196,19 @@
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``cid``, ``did``, ``vid``, ``gid``, ``tour_id`` and ``drive_id``\n\nTime selection: ``from`` and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_id``, ``device_id``, ``vehicle_id``, ``vehicle_group_id``, ``tour_id`` and ``drive_id``\n\nTime selection: ``from`` and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
-            "$ref": "#/components/parameters/did"
+            "$ref": "#/components/parameters/device_id"
           },
           {
-            "$ref": "#/components/parameters/vid"
+            "$ref": "#/components/parameters/vehicle_id"
           },
           {
-            "$ref": "#/components/parameters/gid"
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/tour_id_query"
@@ -628,19 +628,19 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
-            "$ref": "#/components/parameters/vid"
+            "$ref": "#/components/parameters/vehicle_id"
           },
           {
-            "$ref": "#/components/parameters/gid"
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
-            "$ref": "#/components/parameters/did"
+            "$ref": "#/components/parameters/device_id"
           },
           {
-            "$ref": "#/components/parameters/vid"
+            "$ref": "#/components/parameters/vehicle_id"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -1141,13 +1141,13 @@
             "$ref": "#/components/parameters/to"
           },
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
-            "$ref": "#/components/parameters/did"
+            "$ref": "#/components/parameters/device_id"
           },
           {
-            "$ref": "#/components/parameters/vid"
+            "$ref": "#/components/parameters/vehicle_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -2289,7 +2289,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -2445,7 +2445,7 @@
         "summary": "Returns a specific device",
         "parameters": [
           {
-            "$ref": "#/components/parameters/did_path"
+            "$ref": "#/components/parameters/device_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -2518,7 +2518,7 @@
         "summary": "Updates or creates a device",
         "parameters": [
           {
-            "$ref": "#/components/parameters/did_path"
+            "$ref": "#/components/parameters/device_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -2596,7 +2596,7 @@
         "summary": "Deletes a device",
         "parameters": [
           {
-            "$ref": "#/components/parameters/did_path"
+            "$ref": "#/components/parameters/device_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -2648,7 +2648,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -3363,10 +3363,10 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/gid"
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -3519,7 +3519,7 @@
         "summary": "Returns a specific vehicle",
         "parameters": [
           {
-            "$ref": "#/components/parameters/vid_path"
+            "$ref": "#/components/parameters/vehicle_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -3592,7 +3592,7 @@
         "summary": "Updates or creates a vehicle",
         "parameters": [
           {
-            "$ref": "#/components/parameters/vid_path"
+            "$ref": "#/components/parameters/vehicle_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -3670,7 +3670,7 @@
         "summary": "Deletes a vehicle",
         "parameters": [
           {
-            "$ref": "#/components/parameters/vid_path"
+            "$ref": "#/components/parameters/vehicle_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -3722,7 +3722,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/cid"
+            "$ref": "#/components/parameters/customer_id"
           },
           {
             "$ref": "#/components/parameters/tour_id_query"
@@ -5688,16 +5688,16 @@
           "$ref": "#/components/headers/otid"
         }
       },
-      "cid": {
-        "name": "cid",
+      "customer_id": {
+        "name": "customer_id",
         "in": "query",
         "description": "Customer ID",
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "cidRequired": {
-        "name": "cid",
+      "customer_idRequired": {
+        "name": "customer_id",
         "in": "query",
         "description": "Customer ID",
         "required": true,
@@ -5714,31 +5714,31 @@
         }, 
         "required": true
       },
-      "gid": {
-        "name": "gid",
+      "vehicle_group_id": {
+        "name": "vehicle_group_id",
         "in": "query",
         "description": "Vehicle Group ID",
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "did": {
-        "name": "did",
+      "device_id": {
+        "name": "device_id",
         "in": "query",
         "description": "Device ID",
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "vid": {
-        "name": "vid",
+      "vehicle_id": {
+        "name": "vehicle_id",
         "in": "query",
         "description": "Vehicle ID",
         "schema": {
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "vid_path": {
+      "vehicle_id_path": {
         "name": "vehicle_id",
         "in": "path",
         "description": "Vehicle ID",
@@ -5765,7 +5765,7 @@
         },
         "required": true
       },
-      "did_path": {
+      "device_id_path": {
         "name": "device_id",
         "in": "path",
         "description": "Vehicle ID",
@@ -5774,8 +5774,8 @@
         },
         "required": true
       },
-      "didRequired": {
-        "name": "did",
+      "device_idRequired": {
+        "name": "device_id",
         "in": "query",
         "description": "Device ID",
         "required": true,
@@ -6514,7 +6514,7 @@
       "Device": {
         "type": "object", 
         "properties": {
-          "cid": {
+          "customer_id": {
             "description": "Associated Customer", 
             "$ref": "#/components/schemas/IDType"
           },
@@ -6546,12 +6546,12 @@
       "Vehicle": {
         "type": "object",
         "properties": {
-          "gid": {
+          "vehicle_group_id": {
             "type": "array",
             "items": {
               "allOf": [
                 {
-                  "$ref": "#/components/schemas/gid"
+                  "$ref": "#/components/schemas/vehicle_group_id"
                 }
               ]
             },
@@ -6830,8 +6830,8 @@
       "Driver": {
         "type": "object",
         "properties": {
-          "cid": {
-            "$ref": "#/components/schemas/cid"
+          "customer_id": {
+            "$ref": "#/components/schemas/customer_id"
           },
           "driver_card": {
             "$ref": "#/components/schemas/DriverCard"
@@ -8279,24 +8279,24 @@
           "info": {
             "type": "string"
           },
-          "cid": {
+          "customer_id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/cid"
+                "$ref": "#/components/schemas/customer_id"
               }
             ]
           },
-          "did": {
+          "device_id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/did"
+                "$ref": "#/components/schemas/device_id"
               }
             ]
           },
-          "vid": {
+          "vehicle_id": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/vid"
+                "$ref": "#/components/schemas/vehicle_id"
               }
             ]
           }
@@ -8469,7 +8469,7 @@
               "/tours/123/drives/123", 
               "/tours/123/drives/123/tasks/123",
               "/customers/123", 
-              "/live-data/latest?cid=123?vid=123?fields=position,can,tacho", 
+              "/live-data/latest?customer_id=123?vehicle_id=123?fields=position,can,tacho", 
               "/tacho_files?customer=123", 
               "/eta/latest?tour_uri=%2Ftours%2F123"
             ]
@@ -9152,7 +9152,7 @@
         "format": "date-time",
         "description": "Creation time of the data set"
       },
-      "did": {
+      "device_id": {
         "allOf": [
           {
             "$ref": "#/components/schemas/IDType"
@@ -9225,7 +9225,7 @@
           }
         }
       },
-      "vid": {
+      "vehicle_id": {
         "allOf": [
           {
             "$ref": "#/components/schemas/IDType"
@@ -9235,7 +9235,7 @@
           }
         ]
       },
-      "cid": {
+      "customer_id": {
         "allOf": [
           {
             "$ref": "#/components/schemas/IDType"
@@ -9245,7 +9245,7 @@
           }
         ]
       },
-      "gid": {
+      "vehicle_group_id": {
         "allOf": [
           {
             "$ref": "#/components/schemas/IDType"
