@@ -309,7 +309,7 @@
           "Live Data"
         ],
         "operationId": "getData",
-        "summary": "Returns a specific live data ressource",
+        "summary": "Returns a specific live data resource",
         "parameters": [
           {
             "$ref": "#/components/parameters/live_data_id_path"
@@ -549,7 +549,7 @@
           "ETA"
         ],
         "operationId": "getETA",
-        "summary": "Returns a specific ETA ressource",
+        "summary": "Returns a specific ETA resource",
         "parameters": [
           {
             "$ref": "#/components/parameters/eta_id_path"
@@ -1128,7 +1128,7 @@
     },
     "/tours": {
       "get": {
-        "summary": "Returns a list of tours",
+        "summary": "Returns a list of tours, optionally with embedded subresources",
         "tags": [
           "Tour Management"
         ],
@@ -1185,7 +1185,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "description": "Depending on the value of ``embed``, a list of full resource representations or a list with only the id and uri data is returned",
+                  "description": "Depending on the value of ``embed``, subresources will be embedded",
                   "properties": {
                     "data": {
                       "oneOf": [
@@ -1198,7 +1198,7 @@
                         {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/ID"
+                            "$ref": "#/components/schemas/tour_with_subresources_full"
                           }
                         }
                       ]
@@ -1232,9 +1232,12 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Creates a tour.",
+        "summary": "Creates a tour and optionally its subresources",
         "description": "",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/create_subresources"
+          },
           {
             "$ref": "#/components/parameters/otid"
           },
@@ -1279,7 +1282,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TourFull"
+                  "description": "Depending on the value of ``create_subressources``, subresources will be embedded",
+                  "oneOf":[
+                    {
+                      "$ref": "#/components/schemas/TourFull"
+                    },
+                    {
+                      "$ref": "#/components/schemas/tour_with_subresources_full"
+                    }
+                  ]
                 }
               }
             }
@@ -4559,19 +4570,19 @@
         }
       }
     },
-    "/ressource-events": {
+    "/resource-events": {
       "get": {
-        "summary": "Returns a list of ressource events",
+        "summary": "Returns a list of resource events",
         "tags": [
           "Events"
         ],
         "description": "",
         "parameters": [
           {
-            "$ref": "#/components/parameters/ressource_uri_query"
+            "$ref": "#/components/parameters/resource_uri_query"
           },
           {
-            "$ref": "#/components/parameters/ressource_event_query"
+            "$ref": "#/components/parameters/resource_event_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -4616,7 +4627,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/RessourceEvent"
+                        "$ref": "#/components/schemas/ResourceEvent"
                       }
                     },
                     "next_cursor":{
@@ -4645,16 +4656,16 @@
         }
       }
     },
-    "/ressource-events/{ressource-event-id}": {
+    "/resource-events/{resource-event-id}": {
       "get": {
         "tags": [
           "Events"
         ],
-        "operationId": "getRessource",
-        "summary": "Returns a specific ressource event",
+        "operationId": "getResource",
+        "summary": "Returns a specific resource event",
         "parameters": [
           {
-            "$ref": "#/components/parameters/ressource_event_id_path"
+            "$ref": "#/components/parameters/resource_event_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -4692,7 +4703,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RessourceEvent"
+                  "$ref": "#/components/schemas/ResourceEvent"
                 }
               }
             }
@@ -4859,12 +4870,12 @@
         }
       }
     },
-    "/webhooks/ressource-event": {
+    "/webhooks/resource-event": {
       "post": {
         "tags": [
           "Event Webhooks"
         ],
-        "summary": "Sends a ressource event.",
+        "summary": "Sends a resource event.",
         "description": "",
         "parameters": [
           {
@@ -4878,7 +4889,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/RessourceEvent"
+          "$ref": "#/components/requestBodies/ResourceEvent"
         },
         "responses": {
           "204": {
@@ -5452,6 +5463,73 @@
     }
   },
   "components": {
+    "examples": {
+      "tour_uri": {
+        "value": {
+          "uri": "/tours/123"
+        }
+      },
+      "drives_uri": {
+        "$ref": "#/components/examples/drive_event_uri",
+        "value": {
+          "uri": "/tours/123/drives/", 
+          "drive_uri": {
+            "$ref": "#/components/examples/drive_uri"
+          }
+        }
+      },
+      "drive_uri": {
+        "value": "/tours/123/drives/123"
+      },
+      "tasks_uri": {
+        "value": "/tours/123/drives/123/tasks"
+      },
+      "task_uri": {
+        "value": "/tours/123/drives/123/tasks/123"
+      },
+      "shipment_uri": {
+        "value": "/shipments/123"
+      },
+      "customer_uri": {
+        "value": "/customers/123"
+      },
+      "driver_uri": {
+        "value": "/drivers/123"
+      },
+      "device_uri": {
+        "value": "/devices/123"
+      },
+      "vehicle_uri": {
+        "value": "/vehicles/123"
+      },
+      "message_uri": {
+        "value": "/messages/123/123"
+      },
+      "tour_event_uri": {
+        "value": "/tour-events/123"
+      },
+      "drive_event_uri": {
+        "value": "/drive-events/123"
+      },
+      "task_event_uri": {
+        "value": "/task-events/123"
+      },
+      "resource_event_uri": {
+        "value": "/resource-events/123"
+      }, 
+      "tacho_file_uri": {
+        "value": "/tacho-files/123"
+      }, 
+      "live_data_uri": {
+        "value": "/live-data/123"
+      }, 
+      "eta_uri": {
+        "value": "/eta/123"
+      }, 
+      "subscription_uri": {
+        "value": "/subscriptions/123"
+      }
+    },
     "headers": {
       "etag": {
         "description": "Entity Tag as defined by [RFC2068](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20)",
@@ -5569,8 +5647,8 @@
           "$ref": "#/components/schemas/IDType"
         }
       },
-      "ressource_event_id_path":{
-        "name": "ressource-event-id", 
+      "resource_event_id_path":{
+        "name": "resource-event-id", 
         "in": "path", 
         "required": true,  
         "schema": {
@@ -5729,7 +5807,7 @@
         "name": "embed",
         "in": "query",
         "required": true,
-        "description": "Whether the data of the returned resources should be embedded or whether\nonly a link should be returned",
+        "description": "Whether subresources should be embedded in the response",
         "schema": {
           "type": "boolean",
           "default": false
@@ -5818,7 +5896,7 @@
       "if_none_match": {
         "in": "header",
         "name": "If-None-Match",
-        "description": "Newest known entity tag of the ressource as defined by [RFC7232](https://datatracker.ietf.org/doc/html/rfc7232#section-3.2)",
+        "description": "Newest known entity tag of the resource as defined by [RFC7232](https://datatracker.ietf.org/doc/html/rfc7232#section-3.2)",
         "schema": {
           "type": "string"
         }, 
@@ -5827,14 +5905,14 @@
       "if_match": {
         "in": "header",
         "name": "If-Match",
-        "description": "Newest known entity tag of the ressource as defined by [RFC7232](https://datatracker.ietf.org/doc/html/rfc7232#section-3.1)",
+        "description": "Newest known entity tag of the resource as defined by [RFC7232](https://datatracker.ietf.org/doc/html/rfc7232#section-3.1)",
         "schema": {
           "type": "string"
         }, 
         "required": true
       }, 
       "tour_uri_query": {
-        "name": "tour-uri", 
+        "name": "tour_uri", 
         "in": "query", 
         "required": false, 
         "description": "URI of the tour the event refers to",
@@ -5843,7 +5921,7 @@
         }
       },
       "drive_uri_query": {
-        "name": "drive-uri", 
+        "name": "drive_uri", 
         "in": "query", 
         "required": false, 
         "description": "URI of the drive the event refers to",
@@ -5852,7 +5930,7 @@
         }
       },
       "task_uri_query": {
-        "name": "task-uri", 
+        "name": "task_uri", 
         "in": "query", 
         "required": false, 
         "description": "URI of the task the event refers to",
@@ -5860,17 +5938,17 @@
           "$ref": "#/components/schemas/URI"
         }
       },
-      "ressource_uri_query": {
-        "name": "ressource-uri", 
+      "resource_uri_query": {
+        "name": "resource_uri", 
         "in": "query", 
         "required": false, 
-        "description": "URI of the ressource the event refers to",
+        "description": "URI of the resource the event refers to",
         "schema": {
           "$ref": "#/components/schemas/URI"
         }
       }, 
       "tour_event_query": {
-        "name": "tour-event", 
+        "name": "tour_event", 
         "in": "query", 
         "required": false, 
         "description": "Type of the tour event",
@@ -5879,7 +5957,7 @@
         }
       },
       "drive_event_query": {
-        "name": "drive-event", 
+        "name": "drive_event", 
         "in": "query", 
         "required": false, 
         "description": "Type of the drive event",
@@ -5888,7 +5966,7 @@
         }
       },
       "task_event_query": {
-        "name": "task-event", 
+        "name": "task_event", 
         "in": "query", 
         "required": false, 
         "description": "Type of the task event",
@@ -5896,13 +5974,23 @@
           "$ref": "#/components/schemas/TaskEventTypes"
         }
       },
-      "ressource_event_query": {
-        "name": "ressource-event", 
+      "resource_event_query": {
+        "name": "resource_event", 
         "in": "query", 
         "required": false, 
-        "description": "Type of the ressource event",
+        "description": "Type of the resource event",
         "schema": {
-          "$ref": "#/components/schemas/RessourceEventTypes"
+          "$ref": "#/components/schemas/ResourceEventTypes"
+        }
+      }, 
+      "create_subresources": {
+        "name": "create_subresources", 
+        "in": "query", 
+        "required": true, 
+        "description": "Type of the resource event",
+        "schema": {
+          "type": "boolean", 
+          "default": false
         }
       }
     },
@@ -6099,7 +6187,15 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Tour"
+              "description": "Depending on the value of ``create_subressources``, subresources will be embedded in the body",
+              "oneOf":[
+                {
+                  "$ref": "#/components/schemas/Tour"
+                }, 
+                {
+                  "$ref": "#/components/schemas/tour_with_subresources"  
+                }
+              ]
             }
           }
         },
@@ -6305,12 +6401,12 @@
           }
         }
       }, 
-      "RessourceEvent":  {
+      "ResourceEvent":  {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/RessourceEvent"
+              "$ref": "#/components/schemas/ResourceEvent"
             }
           }
         }
@@ -8084,14 +8180,82 @@
           }
         }
       },
-      "TourFull": {
+      "resource_meta": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ID"
           },
           {
+            "$ref": "#/components/schemas/URI"
+          }
+        ]
+      },
+      "tour_with_subresources": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Tour"
+          }
+        ], 
+        "properties": {
+          "_drives": {
+            "type": "array", 
+            "items" :{
+              "type": "object",
+              "allOf":[
+                {
+                  "$ref": "#/components/schemas/Drive"
+                }
+              ],
+              "properties": {
+                "_tasks": {
+                  "type": "array", 
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "tour_with_subresources_full": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TourFull"
+          }
+        ], 
+        "properties": {
+          "_drives": {
+            "type": "array", 
+            "items" :{
+              "type": "object",
+              "allOf":[ 
+                {
+                  "$ref": "#/components/schemas/DriveFull"
+                }
+              ],
+              "properties": {
+                "_tasks": {
+                  "type": "array", 
+                  "items": {
+                    "$ref": "#/components/schemas/TaskFull"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "TourFull": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
             "$ref": "#/components/schemas/TourLinkFields"
-          },
+          }, 
           {
             "$ref": "#/components/schemas/Tour"
           }
@@ -8159,14 +8323,12 @@
             "example": "2017-07-22T17:32:28Z",
             "description": "Estimated time of arrival"
           },
-          "deviation": {
-            "type": "string",
-            "format": "partial-time",
-            "example": "01:32:28",
-            "description": "Estimated deviation from the given eta and confidence level in partial-time format as defined by [RFC3339, section 5.6] (https://datatracker.ietf.org/doc/html/rfc3339#section-5.6)"
+          "time_window": {
+            "$ref": "#/components/schemas/TimeWindow",
+            "description": "Estimated time window from the given ``eta`` and confidence level"
           },
           "confidence_level": {
-            "description": "Confidence level for the given deviation in percent",
+            "description": "Confidence level for the given ``time_window`` in percent",
             "type": "integer", 
             "minimum": 0, 
             "maximum": 100, 
@@ -8316,7 +8478,7 @@
       },
       "EventType": {
         "type": "string", 
-        "enum": ["tour", "drive", "task", "ressource", "live_data", "tacho_file", "eta"]
+        "enum": ["tour", "drive", "task", "resource", "live_data", "tacho_file", "eta"]
       },
       "TourEventTypes": {
         "description": "'available/created': Telematic -> TMS, tour fertig vorliegend",
@@ -8461,14 +8623,14 @@
           }
         }
       },
-      "RessourceEventTypes": {
+      "ResourceEventTypes": {
         "type": "string",
         "enum": [
           "updated",
           "deleted"
         ]
       },
-      "RessourceEvent": {
+      "ResourceEvent": {
         "type": "object",
         "allOf": [
           {
@@ -8477,10 +8639,10 @@
         ], 
         "properties": {
           "event": {
-            "$ref": "#/components/schemas/RessourceEventTypes"
+            "$ref": "#/components/schemas/ResourceEventTypes"
           },
-          "ressource_uri": {
-            "description": "URI of the associated ressource",
+          "resource_uri": {
+            "description": "URI of the associated resource",
             "$ref": "#/components/schemas/URI", 
             "example": "/customers/123"
           },
