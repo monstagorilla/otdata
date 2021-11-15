@@ -8576,19 +8576,6 @@
         }
       },
       "shipment_full": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/id"
-          },
-          {
-            "$ref": "#/components/schemas/shipment_link_fields"
-          },
-          {
-            "$ref": "#/components/schemas/shipment"
-          }
-        ]
-      },
-      "shipment_link_fields": {
         "type": "object", 
         "properties": {
           "tour_links": {
@@ -8599,7 +8586,15 @@
               "example": "/tours/123"
             }
           }
-        }
+        },
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/id"
+          },
+          {
+            "$ref": "#/components/schemas/shipment"
+          }
+        ]
       },
       "shipment": {
         "type": "object",
