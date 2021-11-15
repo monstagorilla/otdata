@@ -6581,12 +6581,14 @@
         ],
         "properties": {
           "driver_uri": {
-            "$ref": "#/components/schemas/driver_uri", 
-            "description": "Driver ID of the driver"
+            "$ref": "#/components/schemas/uri_type", 
+            "description": "Driver ID of the driver", 
+            "example": "/drivers/123"
           },
           "codriver_uri": {
-            "$ref": "#/components/schemas/driver_uri", 
-            "description": "Driver ID of the co-driver"
+            "$ref": "#/components/schemas/uri_type", 
+            "description": "Driver ID of the co-driver", 
+            "example": "/drivers/123"
           },
           "position": {
             "$ref": "#/components/schemas/position"
@@ -6694,10 +6696,12 @@
         }
       },
       "position": {
-        "properties": {
-          "timestamp": {
+        "allOf": [
+          {
             "$ref": "#/components/schemas/timestamp"
-          },
+          }
+        ],
+        "properties": {
           "coordinates": {
             "$ref": "#/components/schemas/coordinates"
           },
