@@ -144,12 +144,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -257,12 +257,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -338,12 +338,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -412,12 +412,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -497,12 +497,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -578,12 +578,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -682,12 +682,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -763,12 +763,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -849,12 +849,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -929,12 +929,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1008,12 +1008,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1172,12 +1172,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1270,12 +1270,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1354,12 +1354,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1424,12 +1424,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -1441,8 +1441,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -1558,12 +1558,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1640,12 +1640,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1719,12 +1719,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -1792,12 +1792,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -1809,8 +1809,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -1932,12 +1932,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2017,12 +2017,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2099,12 +2099,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2175,12 +2175,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -2192,8 +2192,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -2311,12 +2311,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2395,12 +2395,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2471,12 +2471,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2540,12 +2540,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -2557,8 +2557,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -2670,12 +2670,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2754,12 +2754,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2830,12 +2830,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -2899,12 +2899,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -2916,8 +2916,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3026,12 +3026,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3110,12 +3110,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3186,12 +3186,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3255,12 +3255,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3272,8 +3272,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3385,12 +3385,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3469,12 +3469,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3545,12 +3545,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3614,12 +3614,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3631,8 +3631,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3747,12 +3747,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3831,12 +3831,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3907,12 +3907,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -3976,12 +3976,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -3993,8 +3993,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -4115,12 +4115,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4196,12 +4196,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4280,12 +4280,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4361,12 +4361,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4448,12 +4448,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4529,12 +4529,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4610,12 +4610,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -4691,12 +4691,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -5133,12 +5133,12 @@
           "200": {
             "description": "OK",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -5217,12 +5217,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -5293,12 +5293,12 @@
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             },
@@ -5362,12 +5362,12 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
-              "api-version": {
+              "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -5379,8 +5379,8 @@
                 "$ref": "#/components/headers/api_version",
                 "required": false
               }, 
-              "otid": {
-                "$ref": "#/components/headers/otid",
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
                 "required": true
               }
             }
@@ -5543,7 +5543,7 @@
           "type": "string"
         }
       },
-      "otid": {
+      "ot_id": {
         "description": "Registered OpenTelematics ID of the requester",
         "schema": {
           "type": "string"
@@ -5559,7 +5559,7 @@
     },
     "parameters": {
       "access_token": {
-        "name": "access-token",
+        "name": "Access-Token",
         "in": "header",
         "description": "JSON Web Token",
         "required": false,
@@ -5569,7 +5569,7 @@
       },
       "api_version": {
         "in": "header",
-        "name": "api-version",
+        "name": "API-Version",
         "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
         "required": false,
         "schema": {
@@ -5673,11 +5673,11 @@
       },
       "ot_id": {
         "in": "header",
-        "name": "otid",
+        "name": "OT-ID",
         "description": "Registered OpenTelematics ID of the requester",
         "required": true,
         "schema": {
-          "$ref": "#/components/headers/otid"
+          "$ref": "#/components/headers/ot_id"
         }
       },
       "customer_uri": {
@@ -5955,7 +5955,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -5969,7 +5969,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         }
@@ -5982,7 +5982,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6002,7 +6002,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6022,7 +6022,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6042,7 +6042,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6062,7 +6062,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6082,7 +6082,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6102,7 +6102,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
@@ -6122,7 +6122,7 @@
             "required": true
           }, 
           "otid": {
-            "$ref": "#/components/headers/otid",
+            "$ref": "#/components/headers/ot_id",
             "required": true
           }
         },
