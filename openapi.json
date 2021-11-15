@@ -8415,14 +8415,15 @@
               "/customers/123", 
               "/live-data/latest?customer_id=123?vehicle_id=123?fields=position,can,tacho", 
               "/tacho_files?customer=123", 
-              "/eta/latest?tour_uri=/tours/123"
+              "/eta/latest?tour_uri=/tours/123", 
+              "/messages/123"
             ]
           }
         }
       },
       "event_type": {
         "type": "string", 
-        "enum": ["tour", "drive", "task", "resource", "live_data", "tacho_file", "eta"]
+        "enum": ["tour", "drive", "task", "resource", "live_data", "tacho_file", "eta", "message"]
       },
       "tour_event_types": {
         "description": "'available/created': Telematic -> TMS, tour fertig vorliegend",
