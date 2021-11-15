@@ -6773,10 +6773,11 @@
           }
         ], 
         "properties": {
-          "tours": {
+          "drives": {
             "type": "array",
+            "description": "Drives assigned to the driver",
             "items": {
-              "$ref": "#/components/schemas/tour_uri"
+              "$ref": "#/components/schemas/drive_uri"
             }
           }
         }
@@ -8298,6 +8299,11 @@
       },
       "drive": {
         "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/driver_uri"
+          }
+        ],
         "properties": {
           "address": {
             "allOf": [
