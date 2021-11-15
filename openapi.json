@@ -1087,6 +1087,7 @@
     },
     "/otdata/log": {
       "get": {
+        "deprecated": true,
         "tags": [
           "Logs"
         ],
