@@ -93,7 +93,7 @@
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``customer_id``, ``device_id``, ``vehicle_id``, ``vehicle_group_id``, ``tour_id`` and ``drive_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri``, ``vehicle_group_id`` and ``tour_uri``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
@@ -195,11 +195,11 @@
     },
     "/live-data/history": {
       "get": {
-        "summary": "Returns a list of history of live data",
+        "summary": "Returns a list of live data",
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``customer_id``, ``device_id``, ``vehicle_id``, ``vehicle_group_id``, ``tour_id`` and ``drive_id``\n\nTime selection: ``from`` and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri``, ``vehicle_group_id``, ``tour_uri`` and ``drive_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
@@ -220,6 +220,12 @@
             "$ref": "#/components/parameters/drive_uri_query"
           },
           {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
             "name": "fields", 
             "description": "Specifies if just a selection of fields should be returned",
             "in": "query", 
@@ -233,12 +239,6 @@
               }
             }
 
-          },
-          {
-            "$ref": "#/components/parameters/from"
-          },
-          {
-            "$ref": "#/components/parameters/to"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -391,15 +391,16 @@
     "/eta/latest": {
       "get": {
         "summary": "Returns a list of the latest ETAs",
+        "description": "Filter search: ``tour_uri`` and ``drive_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "ETA"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/drive_uri_query"
+            "$ref": "#/components/parameters/tour_uri_query"
           },
           {
-            "$ref": "#/components/parameters/tour_uri_query"
+            "$ref": "#/components/parameters/drive_uri_query"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -473,15 +474,16 @@
     "/eta/history": {
       "get": {
         "summary": "Returns a list of history of ETAs",
+        "description": "Filter search: ``tour_uri`` and ``drive_uri``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "ETA"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/drive_uri_query"
+            "$ref": "#/components/parameters/tour_uri_query"
           },
           {
-            "$ref": "#/components/parameters/tour_uri_query"
+            "$ref": "#/components/parameters/drive_uri_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -643,22 +645,19 @@
         "tags": [
           "Tacho Files"
         ],
-        "description": "",
+        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri`` and ``vehicle_group_id``\n\nTime selection: ``from``, ``to`` and ``used_time``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/device_uri"
           },
           {
             "$ref": "#/components/parameters/vehicle_uri"
+          },
+          {
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -834,7 +833,7 @@
         "tags": [
           "Messages"
         ],
-        "description": "",
+        "description": "Filter search: ``sender``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/message_channel_id_path"
@@ -1165,17 +1164,11 @@
     "/tours": {
       "get": {
         "summary": "Returns a list of tours, optionally with embedded subresources",
+        "description": "Filter search: ``customer_uri``, ``device_uri`` and ``vehicle_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``embed``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "Tour Management"
         ],
-        "description": "",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/from"
-          },
-          {
-            "$ref": "#/components/parameters/to"
-          },
           {
             "$ref": "#/components/parameters/customer_uri"
           },
@@ -1186,13 +1179,19 @@
             "$ref": "#/components/parameters/vehicle_uri"
           },
           {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/embed_required"
+          },
+          {
             "$ref": "#/components/parameters/cursor"
           },
           {
             "$ref": "#/components/parameters/limit"
-          },
-          {
-            "$ref": "#/components/parameters/embed_required"
           },
           {
             "$ref": "#/components/parameters/ot_id"
@@ -1272,7 +1271,7 @@
           "Tour Management"
         ],
         "summary": "Creates a tour and optionally its subresources",
-        "description": "",
+        "description": "Modified request body: ``create_subresources``",
         "parameters": [
           {
             "$ref": "#/components/parameters/create_subresources"
@@ -2367,7 +2366,7 @@
         "tags": [
           "Devices"
         ],
-        "description": "",
+        "description": "Filter search: ``customer_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
@@ -2741,7 +2740,7 @@
         "tags": [
           "Drivers"
         ],
-        "description": "",
+        "description": "Filter search: ``customer_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
@@ -3115,7 +3114,7 @@
         "tags": [
           "Customers"
         ],
-        "description": "",
+        "description": "Cursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/cursor"
@@ -3486,13 +3485,13 @@
         "tags": [
           "Vehicles"
         ],
-        "description": "",
+        "description": "Filter search: ``customer_uri`` and ``vehicle_group_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
-            "$ref": "#/components/parameters/vehicle_group_id"
+            "$ref": "#/components/parameters/customer_uri"
           },
           {
-            "$ref": "#/components/parameters/customer_uri"
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -3860,7 +3859,7 @@
         "tags": [
           "Shipments"
         ],
-        "description": "",
+        "description": "Filter search: ``customer_uri`` and ``tour_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
@@ -4237,7 +4236,7 @@
         "tags": [
           "Events"
         ],
-        "description": "",
+        "description": "Filter search: ``tour_uri`` and ``tour_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
@@ -4405,7 +4404,7 @@
         "tags": [
           "Events"
         ],
-        "description": "",
+        "description": "Filter search: ``tour_uri``, ``drive_uri`` and ``drive_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
@@ -4576,7 +4575,7 @@
         "tags": [
           "Events"
         ],
-        "description": "",
+        "description": "Filter search: ``tour_uri``, ``drive_uri``, ``task_uri`` and ``task_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
@@ -4750,7 +4749,7 @@
         "tags": [
           "Events"
         ],
-        "description": "",
+        "description": "Filter search: ``resource_uri`` and ``resource_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/resource_uri_query"
@@ -5310,6 +5309,7 @@
         "tags": [
           "Event Subscriptions"
         ],
+        "description": "Filter search: ``callback_url`` and ``event_types``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/callback_url"
