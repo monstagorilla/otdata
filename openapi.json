@@ -8290,7 +8290,7 @@
         ],
         "properties": {
           "tasks_uri": {
-            "allOf": [{"$ref": "#/components/schemas/uri"}], 
+            "$ref": "#/components/schemas/uri_type", 
             "example": "/tours/123/drives/123/tasks"
           }
         }
@@ -8585,18 +8585,18 @@
       "shipment_full": {
         "type": "object", 
         "properties": {
-          "tour_links": {
+          "tours": {
             "description": "List of URIs of tours to which the shipment is linked, respectively tours with tasks linked to this shipment.",
             "type": "array", 
             "items": {
-              "$ref": "#/components/schemas/uri", 
+              "$ref": "#/components/schemas/tour_uri", 
               "example": "/tours/123"
             }
           }
         },
         "allOf": [
           {
-            "$ref": "#/components/schemas/id"
+            "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/shipment"
