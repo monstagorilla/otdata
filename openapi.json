@@ -6917,7 +6917,8 @@
               "shipping_partner",
               "receiving_partner",
               "forwarder",
-              "service"
+              "service", 
+              "other"
             ],
             "description": "Type to distinguish between different types of addresses, so that\nyou can have several addresses in one list"
           },
