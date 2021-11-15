@@ -5950,11 +5950,11 @@
     "responses": {
       "no_content": {
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -5964,11 +5964,11 @@
       "not_modified": {
         "description": "Not Modified. The resource has not been modified since the version specified by the request header If-None-Match.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -5977,11 +5977,11 @@
       "bad_request": {
         "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -5997,11 +5997,11 @@
       "unauthorized": {
         "description": "Unauthorized. The request requires user authentication.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6017,11 +6017,11 @@
       "forbidden": {
         "description": "Forbidden. The server understood the request, but refuses to authorize\nit.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6037,11 +6037,11 @@
       "not_found": {
         "description": "Not Found. The server has not found anything matching the effective\nrequest URI.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6057,11 +6057,11 @@
       "precondition_failed": {
         "description": "Precondition Failed. One or more conditions (e.g. If-None-Match header) given in the request header fields evaluated to false when tested on the server.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6077,11 +6077,11 @@
       "unsupported_media_type": {
         "description": "Unsupported Media Type. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6097,11 +6097,11 @@
       "precondition_required": {
         "description": "Precondition Required. The origin server requires the request to be conditional.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
@@ -6117,11 +6117,31 @@
       "internal_server_error": {
         "description": "Internal Server Error. The server encountered an unexpected condition\nwhich prevented it from fulfilling the request.",
         "headers": {
-          "api-version": {
+          "API-Version": {
             "$ref": "#/components/headers/api_version",
             "required": true
           }, 
-          "otid": {
+          "OT-ID": {
+            "$ref": "#/components/headers/ot_id",
+            "required": true
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/problem_details"  
+            }
+          }
+        }
+      }, 
+      "service_unavailable": {
+        "description": "Service Unavailable. The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
+        "headers": {
+          "API-Version": {
+            "$ref": "#/components/headers/api_version",
+            "required": true
+          }, 
+          "OT-ID": {
             "$ref": "#/components/headers/ot_id",
             "required": true
           }
