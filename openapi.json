@@ -35,51 +35,55 @@
   "tags": [
     {
       "name": "Live Data", 
-      "description": ""
+      "description": "Retrieve live data"
     },
     {
       "name": "ETA", 
-      "description": ""
+      "description": "Retrieve ETAs"
     },
     {
       "name": "Tour Management", 
-      "description": "Endpoints to manage tours and their belonging drives"
+      "description": "Retrieve and manage tours and their belonging drives and tasks"
     }, 
     {
       "name": "Tacho Files", 
-      "description": ""
+      "description": "Retrieve tacho files"
     },
     {
-      "name": "Devices" 
+      "name": "Devices", 
+      "description": "Retrieve and manage devices"
     },
     {
       "name": "Shipments", 
-      "description": "Endpoints to manage shipments"
+      "description": "Retrieve and manage shipments"
     },
     {
       "name": "Vehicles", 
-      "description": ""
+      "description": "Retrieve and manage vehicles"
     },
     {
       "name": "Drivers", 
-      "description": ""
+      "description": "Retrieve and manage drivers"
     },
     {
       "name": "Customers", 
-      "description": ""
+      "description": "Retrieve and manage customers"
     },
     {
       "name": "Messages", 
-      "description": ""
+      "description": "Retrieve and send channel-based messages"
     },
     {
-      "name": "Events"
+      "name": "Events", 
+      "description": "Retrieve events"
     }, 
     {
-      "name": "Event Subscriptions"
+      "name": "Event Subscriptions", 
+      "description": "Retrieve and manage subscriptions"
     },
     {
-      "name": "Event Webhooks"
+      "name": "Event Webhooks", 
+      "description": "All specified webhooks listed until upgrade to OAS3.1"
     }, 
     {
       "name": "Logs", 
@@ -315,7 +319,7 @@
           "Live Data"
         ],
         "operationId": "get_data",
-        "summary": "Returns a specific live data resource",
+        "summary": "Returns a live data resource",
         "parameters": [
           {
             "$ref": "#/components/parameters/live_data_id_path"
@@ -473,7 +477,7 @@
     },
     "/eta/history": {
       "get": {
-        "summary": "Returns a list of history of ETAs",
+        "summary": "Returns a list of ETAs",
         "description": "Filter search: ``tour_uri`` and ``drive_uri``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "ETA"
@@ -566,7 +570,7 @@
           "ETA"
         ],
         "operationId": "get_eta",
-        "summary": "Returns a specific ETA resource",
+        "summary": "Returns an ETA resource",
         "parameters": [
           {
             "$ref": "#/components/parameters/eta_id_path"
@@ -754,7 +758,7 @@
           "Tacho Files"
         ],
         "operationId": "get_tacho_file",
-        "summary": "Returns a specific tacho file",
+        "summary": "Returns a tacho file",
         "parameters": [
           {
             "$ref": "#/components/parameters/tacho_file_id_path"
@@ -829,7 +833,7 @@
     },
     "/messages/{message_channel_id}": {
       "get": {
-        "summary": "Returns a list of messages",
+        "summary": "Returns a list of messages of a message channel",
         "tags": [
           "Messages"
         ],
@@ -924,7 +928,7 @@
         "tags": [
           "Messages"
         ],
-        "summary": "Creates a message",
+        "summary": "Creates a message for a message channel",
         "description": "",
         "parameters": [
           {
@@ -1005,7 +1009,7 @@
           "Messages"
         ],
         "operationId": "get_message",
-        "summary": "Returns a specific tacho file",
+        "summary": "Returns a message",
         "parameters": [
           {
             "$ref": "#/components/parameters/message_channel_id_path"
@@ -1086,7 +1090,7 @@
         "tags": [
           "Logs"
         ],
-        "summary": "Returns a list of logs that matches the specified time intervall",
+        "summary": "Returns a list of logs",
         "description": "If `from` and `to` do not exist, all logs are returned.\nAll logs up to `loglevel` are returned.",
         "parameters": [
           {
@@ -1366,7 +1370,7 @@
           "Tour Management"
         ],
         "operationId": "get_tour",
-        "summary": "Returns a specific tour",
+        "summary": "Returns a tour, optionally with embedded subresources",
         "description": "Modify response: ``embed``",
         "parameters": [
           {
@@ -1536,7 +1540,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Deletes a specific tour",
+        "summary": "Deletes a tour",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -1587,7 +1591,7 @@
     },
     "/tours/{tour_id}/drives" :{
       "get": {
-        "summary": "Returns a list of all drives for a specific tour",
+        "summary": "Returns a list of all drives of a tour",
         "tags": [
           "Tour Management"
         ],
@@ -1667,7 +1671,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Creates a drive for a specific tour.",
+        "summary": "Creates a drive for a tour",
         "description": "",
         "parameters": [
           {
@@ -1755,7 +1759,7 @@
           "Tour Management"
         ],
         "operationId": "get_tour",
-        "summary": "Returns a drive of a specific tour",
+        "summary": "Returns a drive",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -1834,7 +1838,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Updates or creates a drive for a specific tour",
+        "summary": "Updates or creates a drive",
         "description": "",
         "parameters": [
           {
@@ -1919,7 +1923,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Deletes a drive of a specific tour",
+        "summary": "Deletes a drive",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -1973,7 +1977,7 @@
     },
     "/tours/{tour_id}/drives/{drive_id}/tasks" :{
       "get": {
-        "summary": "Returns a list of all tasks for a specific drive",
+        "summary": "Returns a list of all tasks of a drive",
         "tags": [
           "Tour Management"
         ],
@@ -2056,7 +2060,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Creates a task for a specific drive",
+        "summary": "Creates a task for a drive",
         "description": "",
         "parameters": [
           {
@@ -2147,7 +2151,7 @@
           "Tour Management"
         ],
         "operationId": "get_task",
-        "summary": "Returns a task of a specific drive",
+        "summary": "Returns a task",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -2229,7 +2233,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Updates or creates a task for a specific drive",
+        "summary": "Updates or creates a task",
         "description": "",
         "parameters": [
           {
@@ -2317,7 +2321,7 @@
         "tags": [
           "Tour Management"
         ],
-        "summary": "Deletes a task of a specific drive",
+        "summary": "Deletes a task",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -2540,7 +2544,7 @@
           "Devices"
         ],
         "operationId": "get_device",
-        "summary": "Returns a specific device",
+        "summary": "Returns a device",
         "parameters": [
           {
             "$ref": "#/components/parameters/device_id_path"
@@ -2914,7 +2918,7 @@
           "Drivers"
         ],
         "operationId": "get_driver",
-        "summary": "Returns a specific driver",
+        "summary": "Returns a driver",
         "parameters": [
           {
             "$ref": "#/components/parameters/driver_id_path"
@@ -3200,7 +3204,7 @@
         "tags": [
           "Customers"
         ],
-        "summary": "Creates a customer.",
+        "summary": "Creates a customer",
         "description": "",
         "parameters": [
           {
@@ -3285,7 +3289,7 @@
           "Customers"
         ],
         "operationId": "get_customer",
-        "summary": "Returns a specific customer",
+        "summary": "Returns a customer",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_id_path"
@@ -3574,7 +3578,7 @@
         "tags": [
           "Vehicles"
         ],
-        "summary": "Creates a vehicle.",
+        "summary": "Creates a vehicle",
         "description": "",
         "parameters": [
           {
@@ -3659,7 +3663,7 @@
           "Vehicles"
         ],
         "operationId": "get_vehicle",
-        "summary": "Returns a specific vehicle",
+        "summary": "Returns a vehicle",
         "parameters": [
           {
             "$ref": "#/components/parameters/vehicle_id_path"
@@ -3951,7 +3955,7 @@
         "tags": [
           "Shipments"
         ],
-        "summary": "Creates a shipment.",
+        "summary": "Creates a shipment",
         "description": "",
         "parameters": [
           {
@@ -4036,7 +4040,7 @@
           "Shipments"
         ],
         "operationId": "get_shipment",
-        "summary": "Returns a specific shipment",
+        "summary": "Returns a shipment",
         "parameters": [
           {
             "$ref": "#/components/parameters/shipment_id_path"
@@ -4337,7 +4341,7 @@
           "Events"
         ],
         "operationId": "get_tour_event",
-        "summary": "Returns a specific tour event",
+        "summary": "Returns a tour event",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_event_id_path"
@@ -4508,7 +4512,7 @@
           "Events"
         ],
         "operationId": "get_drive_event",
-        "summary": "Returns a specific drive event",
+        "summary": "Returns a drive event",
         "parameters": [
           {
             "$ref": "#/components/parameters/drive_event_id_path"
@@ -4682,7 +4686,7 @@
           "Events"
         ],
         "operationId": "get_task_event",
-        "summary": "Returns a specific Task Event",
+        "summary": "Returns a task event",
         "parameters": [
           {
             "$ref": "#/components/parameters/task_event_id_path"
@@ -4850,7 +4854,7 @@
           "Events"
         ],
         "operationId": "get_resource",
-        "summary": "Returns a specific resource event",
+        "summary": "Returns a resource event",
         "parameters": [
           {
             "$ref": "#/components/parameters/resource_event_id_path"
@@ -4928,7 +4932,7 @@
         "tags": [
           "Event Webhooks"
         ],
-        "summary": "Sends a tour event.",
+        "summary": "Sends a tour event",
         "description": "",
         "parameters": [
           {
@@ -5026,7 +5030,7 @@
         "tags": [
           "Event Webhooks"
         ],
-        "summary": "Sends a task event.",
+        "summary": "Sends a task event",
         "description": "",
         "parameters": [
           {
@@ -5075,7 +5079,7 @@
         "tags": [
           "Event Webhooks"
         ],
-        "summary": "Sends a resource event.",
+        "summary": "Sends a resource event",
         "description": "",
         "parameters": [
           {
@@ -5124,7 +5128,7 @@
         "tags": [
           "Event Webhooks"
         ],
-        "summary": "Sends a set of live data.",
+        "summary": "Sends a set of live data",
         "description": "",
         "parameters": [
           {
@@ -5401,7 +5405,7 @@
         "tags": [
           "Event Subscriptions"
         ],
-        "summary": "Creates a subscription to an event",
+        "summary": "Creates a subscription",
         "description": "",
         "parameters": [
           {
@@ -5486,7 +5490,7 @@
           "Event Subscriptions"
         ],
         "operationId": "get_subscription",
-        "summary": "Returns a specific subscription",
+        "summary": "Returns a subscription",
         "parameters": [
           {
             "$ref": "#/components/parameters/subscription_id_path"
