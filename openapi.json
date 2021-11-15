@@ -303,7 +303,7 @@
         }
       }
     },
-    "/live-data/{live-data-id}": {
+    "/live-data/{live_data_id}": {
       "get": {
         "tags": [
           "Live Data"
@@ -543,7 +543,7 @@
         }
       }
     },
-    "/eta/{eta-id}": {
+    "/eta/{eta_id}": {
       "get": {
         "tags": [
           "ETA"
@@ -728,7 +728,7 @@
         }
       }
     },
-    "/tacho-files/{tacho-file-id}": {
+    "/tacho-files/{tacho_file_id}": {
       "get": {
         "tags": [
           "Tacho Files"
@@ -804,7 +804,7 @@
         }
       }
     },
-    "/messages/{message-channel-id}": {
+    "/messages/{message_channel_id}": {
       "get": {
         "summary": "Returns a list of messages",
         "tags": [
@@ -970,7 +970,7 @@
         }
       }
     },
-    "/messages/{message-channel-id}/{message-id}": {
+    "/messages/{message_channel_id}/{message_id}": {
       "get": {
         "tags": [
           "Messages"
@@ -1255,10 +1255,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /tours/{tour-id}": {
+              "GET /tours/{tour_id}": {
                 "operationId": "get_tour", 
                 "parameters": {
-                  "tour-id": "$response.body#/id"
+                  "tour_id": "$response.body#/id"
                 }
               }
             },
@@ -1319,7 +1319,7 @@
         }
       }
     },
-    "/tours/{tour-id}": {
+    "/tours/{tour_id}": {
       "get": {
         "tags": [
           "Tour Management"
@@ -1523,7 +1523,7 @@
         }
       }
     },
-    "/tours/{tour-id}/drives" :{
+    "/tours/{tour_id}/drives" :{
       "get": {
         "summary": "Returns a list of all drives for a specific tour",
         "tags": [
@@ -1625,10 +1625,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /tours/{tour-id}/drives/{drive-id}": {
+              "GET /tours/{tour_id}/drives/{drive_id}": {
                 "operationId": "get_drive", 
                 "parameters": {
-                  "drive-id": "$response.body#/id"
+                  "drive_id": "$response.body#/id"
                 }
               }
             },
@@ -1681,7 +1681,7 @@
         }
       }
     },
-    "/tours/{tour-id}/drives/{drive-id}": {
+    "/tours/{tour_id}/drives/{drive_id}": {
       "get": {
         "tags": [
           "Tour Management"
@@ -1894,7 +1894,7 @@
         }
       }
     },
-    "/tours/{tour-id}/drives/{drive-id}/tasks" :{
+    "/tours/{tour_id}/drives/{drive_id}/tasks" :{
       "get": {
         "summary": "Returns a list of all tasks for a specific drive",
         "tags": [
@@ -2002,10 +2002,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /tours/{tour-id}/drives/{drive-id}/tasks/{task-id}": {
+              "GET /tours/{tour_id}/drives/{drive_id}/tasks/{task_id}": {
                 "operationId": "get_task", 
                 "parameters": {
-                  "task-id": "$response.body#/id"
+                  "task_id": "$response.body#/id"
                 }
               }
             },
@@ -2058,7 +2058,7 @@
         }
       }
     },
-    "/tours/{tour-id}/drives/{drive-id}/tasks/{task-id}": {
+    "/tours/{tour_id}/drives/{drive_id}/tasks/{task_id}": {
       "get": {
         "tags": [
           "Tour Management"
@@ -2380,10 +2380,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /devices/{device-id}": {
+              "GET /devices/{device_id}": {
                 "operationId": "get_device", 
                 "parameters": {
-                  "device-id": "$response.body#/id"
+                  "device_id": "$response.body#/id"
                 }
               }
             },
@@ -2436,7 +2436,7 @@
         }
       }
     },
-    "/devices/{device-id}": {
+    "/devices/{device_id}": {
       "get": {
         "tags": [
           "Devices"
@@ -2739,10 +2739,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /drivers/{driver-id}": {
+              "GET /drivers/{driver_id}": {
                 "operationId": "get_driver", 
                 "parameters": {
-                  "driver-id": "$response.body#/id"
+                  "driver_id": "$response.body#/id"
                 }
               }
             },
@@ -2795,7 +2795,7 @@
         }
       }
     },
-    "/drivers/{driver-id}": {
+    "/drivers/{driver_id}": {
       "get": {
         "tags": [
           "Drivers"
@@ -3095,10 +3095,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /customers/{customer-id}": {
+              "GET /customers/{customer_id}": {
                 "operationId": "get_customer", 
                 "parameters": {
-                  "customer-id": "$response.body#/id"
+                  "customer_id": "$response.body#/id"
                 }
               }
             },
@@ -3151,7 +3151,7 @@
         }
       }
     },
-    "/customers/{customer-id}": {
+    "/customers/{customer_id}": {
       "get": {
         "tags": [
           "Customers"
@@ -3454,10 +3454,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /vehicles/{vehicle-id}": {
+              "GET /vehicles/{vehicle_id}": {
                 "operationId": "get_vehicle", 
                 "parameters": {
-                  "vehicle-id": "$response.body#/id"
+                  "vehicle_id": "$response.body#/id"
                 }
               }
             },
@@ -3510,7 +3510,7 @@
         }
       }
     },
-    "/vehicles/{vehicle-id}": {
+    "/vehicles/{vehicle_id}": {
       "get": {
         "tags": [
           "Vehicles"
@@ -3816,10 +3816,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /shipments/{shipment-id}": {
+              "GET /shipments/{shipment_id}": {
                 "operationId": "get_shipment", 
                 "parameters": {
-                  "shipment-id": "$response.body#/id"
+                  "shipment_id": "$response.body#/id"
                 }
               }
             },
@@ -3872,7 +3872,7 @@
         }
       }
     },
-    "/shipments/{shipment-id}": {
+    "/shipments/{shipment_id}": {
       "get": {
         "tags": [
           "Shipments"
@@ -4161,7 +4161,7 @@
         }
       }
     },
-    "/tour-events/{tour-event-id}": {
+    "/tour-events/{tour_event_id}": {
       "get": {
         "tags": [
           "Events"
@@ -4326,7 +4326,7 @@
         }
       }
     },
-    "/drive-events/{drive-event-id}": {
+    "/drive-events/{drive_event_id}": {
       "get": {
         "tags": [
           "Events"
@@ -4494,7 +4494,7 @@
         }
       }
     },
-    "/task-events/{task-event-id}": {
+    "/task-events/{task_event_id}": {
       "get": {
         "tags": [
           "Events"
@@ -4656,7 +4656,7 @@
         }
       }
     },
-    "/resource-events/{resource-event-id}": {
+    "/resource-events/{resource_event_id}": {
       "get": {
         "tags": [
           "Events"
@@ -5202,10 +5202,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /subscriptions/{subscription-id}": {
+              "GET /subscriptions/{subscription_id}": {
                 "operationId": "get_subscription", 
                 "parameters": {
-                  "subscription-id": "$response.body#/id"
+                  "subscription_id": "$response.body#/id"
                 }
               }
             },
@@ -5258,7 +5258,7 @@
         }
       }
     },
-    "/subscriptions/{subscription-id}": {
+    "/subscriptions/{subscription_id}": {
       "get": {
         "tags": [
           "Event Subscriptions"
