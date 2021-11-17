@@ -8634,15 +8634,17 @@
             "$ref": "#/components/schemas/resource_meta"
           },
           {
-            "$ref": "#/components/schemas/timestamp"
-          },
-          {
             "$ref": "#/components/schemas/subscription"
           }
         ]
       },
       "subscription": {
         "type": "object", 
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/timestamp"
+          }
+        ],
         "properties": {
           "callback_url": {
             "$ref": "#/components/schemas/url_type"
@@ -9131,7 +9133,7 @@
       "message_full": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/id"
+            "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/message"
