@@ -5326,13 +5326,13 @@
         "tags": [
           "Event Subscriptions"
         ],
-        "description": "Filter search: ``callback_url`` and ``event_types``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``callback_url`` and ``topics``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/callback_url"
           },
           {
-            "$ref": "#/components/parameters/event_types"
+            "$ref": "#/components/parameters/topics"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -5838,9 +5838,9 @@
         }, 
         "required": false
       },
-      "event_types": {
+      "topics": {
         "in": "query",
-        "name": "event_types", 
+        "name": "topics", 
         "required": false,
         "style": "form",
         "explode": false,
@@ -8656,7 +8656,7 @@
             "$ref": "#/components/schemas/topic"
           },
           "event_uri": {
-            "description": "URI structure is depending on the ``event_type``",
+            "description": "URI structure is depending on the ``topic``",
             "$ref": "#/components/schemas/uri_type", 
             "examples": [
               "/tours/123",
