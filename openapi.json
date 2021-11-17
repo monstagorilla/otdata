@@ -5847,7 +5847,7 @@
         "schema": {
           "type": "array", 
           "items":{
-            "$ref": "#/components/schemas/event_type"
+            "$ref": "#/components/schemas/topic"
           }          
         }
       },
@@ -8506,12 +8506,14 @@
       "eta": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/event_meta"
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
+            "$ref": "#/components/schemas/timestamp"
           }, 
           {
             "$ref": "#/components/schemas/drive_uri"
           }
-
         ],
         "properties": {
           "coordinates": {
@@ -8621,18 +8623,6 @@
           "name"
         ]
       },
-      "event_meta": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/resource_meta"
-          }, 
-          {
-            "$ref": "#/components/schemas/timestamp"
-
-          }
-        ]
-      }, 
       "access_token": {
         "type": "string",
         "description": "JSON Web Token"
@@ -8642,6 +8632,9 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
+          },
+          {
+            "$ref": "#/components/schemas/timestamp"
           },
           {
             "$ref": "#/components/schemas/subscription"
@@ -8657,8 +8650,8 @@
           "access_token": {
             "$ref": "#/components/schemas/access_token"
           },
-          "event_type":{
-            "$ref": "#/components/schemas/event_type"
+          "topic":{
+            "$ref": "#/components/schemas/topic"
           },
           "event_uri": {
             "description": "URI structure is depending on the ``event_type``",
@@ -8668,17 +8661,17 @@
               "/tours/123/drives/123", 
               "/tours/123/drives/123/tasks/123",
               "/customers/123", 
-              "/live-data/latest?customer_id=123?vehicle_id=123?fields=position,can,tacho", 
-              "/tacho_files?customer=123", 
+              "/live-data/latest?customer_uri=/customers/123?vehicle_uri=/vehicles/123?fields=position,can,tacho", 
+              "/tacho_files?customer_uri=/customers/123", 
               "/eta/latest?tour_uri=/tours/123", 
               "/messages/123"
             ]
           }
         }
       },
-      "event_type": {
+      "topic": {
         "type": "string", 
-        "enum": ["tour", "drive", "task", "resource", "live_data", "tacho_file", "eta", "message"]
+        "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]
       },
       "tour_event_types": {
         "description": "'available/created': Telematic -> TMS, tour fertig vorliegend",
@@ -8700,7 +8693,13 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/event_meta"
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
+            "$ref": "#/components/schemas/timestamp"
+          }, 
+          {
+            "$ref": "#/components/schemas/tour_uri"
           }
         ],
         "properties": {
@@ -8733,7 +8732,13 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/event_meta"
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
+            "$ref": "#/components/schemas/timestamp"
+          }, 
+          {
+            "$ref": "#/components/schemas/drive_uri"
           }
         ],
         "properties": {
@@ -8762,7 +8767,13 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/event_meta"
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
+            "$ref": "#/components/schemas/timestamp"
+          }, 
+          {
+            "$ref": "#/components/schemas/task_uri"
           }
         ],
         "properties": {
@@ -8819,7 +8830,13 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/event_meta"
+            "$ref": "#/components/schemas/resource_meta"
+          }, 
+          {
+            "$ref": "#/components/schemas/timestamp"
+          }, 
+          {
+            "$ref": "#/components/schemas/resource_uri"
           }
         ], 
         "properties": {
@@ -9369,6 +9386,14 @@
         "properties": {
           "task_uri": {
             "$ref": "#/components/schemas/uri_type"
+          }
+        }
+      },
+      "resource_uri": {
+        "type": "object", 
+        "properties": {
+          "resource_uri": {
+            "$ref": "#/components/schemas/uri_type" 
           }
         }
       },
