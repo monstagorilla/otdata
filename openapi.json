@@ -4931,7 +4931,7 @@
     "/webhooks/tour-event": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a tour event",
         "description": "",
@@ -4980,7 +4980,7 @@
     "/webhooks/drive-event": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a drive event",
         "description": "",
@@ -5029,7 +5029,7 @@
     "/webhooks/task-event": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a task event",
         "description": "",
@@ -5078,7 +5078,7 @@
     "/webhooks/resource-event": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a resource event",
         "description": "",
@@ -5127,7 +5127,7 @@
     "/webhooks/live-data": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a set of live data",
         "description": "",
@@ -5176,7 +5176,7 @@
     "/webhooks/tacho-file": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a tacho file",
         "description": "",
@@ -5225,7 +5225,7 @@
     "/webhooks/eta": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends an ETA",
         "description": "",
@@ -5274,7 +5274,7 @@
     "/webhooks/message": {
       "post": {
         "tags": [
-          "Event Webhooks"
+          "Webhooks"
         ],
         "summary": "Sends a message",
         "description": "",
@@ -5324,7 +5324,7 @@
       "get": {
         "summary": "Returns a list of subscriptions",
         "tags": [
-          "Event Subscriptions"
+          "Webhook Subscriptions"
         ],
         "description": "Filter search: ``callback_url`` and ``topics``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
@@ -5404,7 +5404,7 @@
       },
       "post": {
         "tags": [
-          "Event Subscriptions"
+          "Webhook Subscriptions"
         ],
         "summary": "Creates a subscription",
         "description": "",
@@ -5488,7 +5488,7 @@
     "/subscriptions/{subscription_id}": {
       "get": {
         "tags": [
-          "Event Subscriptions"
+          "Webhook Subscriptions"
         ],
         "operationId": "get_subscription",
         "summary": "Returns a subscription",
@@ -5565,7 +5565,7 @@
       },
       "put": {
         "tags": [
-          "Event Subscriptions"
+          "Webhook Subscriptions"
         ],
         "summary": "Updates or creates a subscription",
         "parameters": [
@@ -5646,7 +5646,7 @@
       },
       "delete": {
         "tags": [
-          "Event Subscriptions"
+          "Webhook Subscriptions"
         ],
         "summary": "Deletes a subscription",
         "parameters": [
