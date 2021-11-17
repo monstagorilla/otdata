@@ -9001,7 +9001,7 @@
           },
           "adr_info": {
             "type": "object",
-            "description": "Information on classification according to the 'Agreement concerning\nthe International Carriage of Dangerous Goods by Road' (ADR).\nSummarized information on the dangerous goods present on each drive\ncan be found in `Drive`",
+            "description": "Information on classification according to the 'Agreement concerning\nthe International Carriage of Dangerous Goods by Road' (ADR). Summarized information on the dangerous goods present on each drive can be found in ``adr_totals`` in the drive resource",
             "properties": {
               "points": {
                 "type": "integer",
