@@ -8625,7 +8625,7 @@
         "type": "object",
         "allOf": [
           {
-            "$ref": "#/components/schemas/id"
+            "$ref": "#/components/schemas/resource_meta"
           }, 
           {
             "$ref": "#/components/schemas/timestamp"
@@ -8701,9 +8701,6 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/event_meta"
-          },
-          {
-            "$ref": "#/components/schemas/tour_uri"
           }
         ],
         "properties": {
@@ -8737,9 +8734,6 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/event_meta"
-          }, 
-          {
-            "$ref": "#/components/schemas/drive_uri"
           }
         ],
         "properties": {
@@ -8769,9 +8763,6 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/event_meta"
-          }, 
-          {
-            "$ref": "#/components/schemas/task_uri"
           }
         ],
         "properties": {
