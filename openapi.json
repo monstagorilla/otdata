@@ -8626,13 +8626,12 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/id"
-          }
-        ], 
-        "properties": {
-          "timestamp": {
+          }, 
+          {
             "$ref": "#/components/schemas/timestamp"
-          } 
-        }
+
+          }
+        ]
       }, 
       "access_token": {
         "type": "string",
@@ -9133,10 +9132,12 @@
       },
       "message": {
         "type": "object",
-        "properties": {
-          "timestamp":{
+        "allOf": [
+          {
             "$ref": "#/components/schemas/timestamp"
-          },
+          }
+        ],
+        "properties": {
           "sender": {
             "type": "string",
             "description": "Name of sender"
