@@ -78,11 +78,11 @@
       "description": "Retrieve events"
     }, 
     {
-      "name": "Event Subscriptions", 
+      "name": "Webhook Subscriptions", 
       "description": "Retrieve and manage subscriptions"
     },
     {
-      "name": "Event Webhooks", 
+      "name": "Webhooks", 
       "description": "All specified webhooks listed until upgrade to OAS3.1"
     }, 
     {
