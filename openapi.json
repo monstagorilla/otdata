@@ -9350,10 +9350,10 @@
         "type": "object",
         "properties": {
           "timestamp": {
-            "$ref": "#/components/schemas/timestamp_type"
+            "$ref": "#/components/schemas/timestamp_type",
+            "description": "Creation time of the data set"
           }
-        },
-        "description": "Creation time of the data set"
+        }
       },
       "timestamp_type": {
         "type": "string",
