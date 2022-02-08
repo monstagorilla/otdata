@@ -84,10 +84,6 @@
     {
       "name": "Webhooks", 
       "description": "All specified webhooks listed until upgrade to OAS3.1"
-    }, 
-    {
-      "name": "Logs", 
-      "description": ""
     }
   ],
   "paths": {
@@ -1075,87 +1071,6 @@
           },
           "412": {
             "$ref": "#/components/responses/precondition_failed"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      }
-    },
-    "/otdata/log": {
-      "get": {
-        "deprecated": true,
-        "tags": [
-          "Logs"
-        ],
-        "summary": "Returns a list of logs",
-        "description": "If `from` and `to` do not exist, all logs are returned.\nAll logs up to `loglevel` are returned.",
-        "parameters": [
-          {
-            "name": "loglevel",
-            "in": "query",
-            "description": "From 0 (most important) to 7 (least important):\n0=Emergency, 1=Alert, 2=Critical, 3=Error, 4=Warning, 5=Notice, 6=Informational, 7=Debug",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0,
-              "maximum": 7
-            }
-          },
-          {
-            "$ref": "#/components/parameters/from"
-          },
-          {
-            "$ref": "#/components/parameters/to"
-          },
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    
-                    {
-                      "type": "object",
-                      "properties": {
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/log"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
