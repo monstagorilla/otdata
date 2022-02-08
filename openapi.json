@@ -6844,7 +6844,7 @@
             "description": "Driver ID of the driver", 
             "example": "/drivers/123"
           },
-          "codriver_uri": {
+          "co_driver_uri": {
             "$ref": "#/components/schemas/uri_type", 
             "description": "Driver ID of the co-driver", 
             "example": "/drivers/123"
@@ -8557,11 +8557,6 @@
       },
       "drive": {
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/driver_uri"
-          }
-        ],
         "properties": {
           "address": {
             "allOf": [
@@ -8593,6 +8588,16 @@
               }
             ],
             "description": "Earliest and latest arrival time"
+          },
+          "driver_uri": {
+            "$ref": "#/components/schemas/uri_type", 
+            "description": "Driver ID of the driver", 
+            "example": "/drivers/123"
+          },
+          "co_driver_uri": {
+            "$ref": "#/components/schemas/uri_type", 
+            "description": "Driver ID of the co-driver", 
+            "example": "/drivers/123"
           },
           "avis": {
             "$ref": "#/components/schemas/avis"
