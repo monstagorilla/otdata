@@ -8956,44 +8956,35 @@
             "properties": {
               "height": {
                 "type": "number",
-                "multipleOf": 0.1,
                 "description": "Height in cm",
                 "example": 30
               },
               "width": {
                 "type": "number",
-                "multipleOf": 0.1,
                 "description": "Width in cm",
                 "example": 80
               },
               "length": {
                 "type": "number",
-                "multipleOf": 0.1,
                 "description": "Length in cm",
                 "example": 120
               },
               "weight": {
                 "type": "number",
-                "multipleOf": 0.1,
                 "description": "Weight in kg",
                 "example": 566
               },
               "area": {
                 "type": "number",
-                "multipleOf": 0.1,
                 "description": "Area in m2",
                 "example": 0.96
               },
               "volume": {
                 "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
                 "example": 0.288
               },
               "cargo_space": {
                 "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
                 "example": 1.5
               }
             }
