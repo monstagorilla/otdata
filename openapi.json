@@ -8673,6 +8673,10 @@
               "/eta/latest?tour_uri=/tours/123", 
               "/messages/123"
             ]
+          }, 
+          "expiration_time": {
+            "type": "string", 
+            "format": "date-time"
           }
         }
       },
