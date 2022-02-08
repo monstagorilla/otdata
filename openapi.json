@@ -1381,9 +1381,6 @@
             "$ref": "#/components/parameters/embed_required"
           },
           {
-            "$ref": "#/components/parameters/if_none_match"
-          },
-          {
             "$ref": "#/components/parameters/ot_id"
           },
           {
@@ -1397,13 +1394,6 @@
           "200": {
             "description": "OK",
             "headers": {
-              "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
-              }, 
-              "Cache-Control": {
-                "$ref": "#/components/headers/cache_control"
-              },
               "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
