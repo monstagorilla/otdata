@@ -8409,6 +8409,9 @@
           },
           "info": {
             "type": "string"
+          },
+          "additions": {
+            "$ref": "#/components/schemas/key_value_list"
           }
         }
       },
@@ -8530,6 +8533,9 @@
                 "example": "E"
               }
             }
+          },
+          "additions": {
+            "$ref": "#/components/schemas/key_value_list"
           }
         },
         "required": [
