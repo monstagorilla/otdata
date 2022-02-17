@@ -6897,6 +6897,10 @@
               "indirect"
             ],
             "description": "`satellite`: GPS, Galileo, GLONASS etc.\n`indirect`: Bluetooth, Wi-Fi etc."
+          }, 
+          "satellite_count": {
+            "type": "integer", 
+            "description": "Number of satellites to estimate accuracy"
           }
         },
         "required": [
