@@ -8603,7 +8603,7 @@
         "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]
       },
       "tour_event_types": {
-        "description": "'transmitted': tour transmitted to driver, device or vehicle, \n'read': tour read by driver, \n'excepted': tour excepted by driver, \n'denied': tour denied by driver, \n'started': tour started, \n'canceled': tour canceled, \n'deleted': tour deleted, \n'finished': tour finished",
+        "description": "``transmitted``: tour transmitted to driver, device or vehicle, \n``read``: tour read by driver, \n``excepted``: tour excepted by driver, \n``denied``: tour denied by driver, \n``started``: tour started, \n``canceled``: tour canceled, \n``deleted``: tour deleted, \n``finished``: tour finished",
         "type": "string", 
         "enum": [
           "transmitted",
@@ -8643,7 +8643,7 @@
         }
       },
       "drive_event_types": {
-        "description": "'started': drive started, \n'paused': drive paused, \n'interrupted': rive interrupted due to an unplanned event e.g. accident, \n'canceled': drive canceled, \n'deleted': drive deleted, \n'arrived': arrived at destination, \n'finished': drive and including tasks finished",
+        "description": "``started``: drive started, \n``paused``: drive paused, \n``interrupted``: drive interrupted due to an unplanned event e.g. accident, \n``canceled``: drive canceled, \n``deleted``: drive deleted, \n``arrived``: arrived at destination, \n``finished``: drive and including tasks finished",
         "type": "string",
         "enum": [
           "started",
@@ -8711,7 +8711,7 @@
           "event": {
             "$ref": "#/components/schemas/task_event_types"
           },
-          "shipment": {
+          "shipment_info": {
             "type": "object",
             "description": "Information about the associated shipment",
             "properties": {
@@ -8723,7 +8723,7 @@
               }
             }
           },
-          "items": {
+          "items_info": {
             "description": "Information about single items.",
             "type": "array",
             "items": {
@@ -8751,7 +8751,8 @@
         "type": "string",
         "enum": [
           "updated",
-          "deleted"
+          "deleted", 
+          "other"
         ]
       },
       "resource_event": {
@@ -8762,9 +8763,6 @@
           }, 
           {
             "$ref": "#/components/schemas/timestamp"
-          }, 
-          {
-            "$ref": "#/components/schemas/resource_uri"
           }
         ], 
         "properties": {
@@ -8773,7 +8771,7 @@
           },
           "resource_uri": {
             "description": "URI of the associated resource",
-            "$ref": "#/components/schemas/uri", 
+            "$ref": "#/components/schemas/uri_type", 
             "example": "/customers/123"
           },
           "additions": {
@@ -9306,14 +9304,6 @@
         "properties": {
           "task_uri": {
             "$ref": "#/components/schemas/uri_type"
-          }
-        }
-      },
-      "resource_uri": {
-        "type": "object", 
-        "properties": {
-          "resource_uri": {
-            "$ref": "#/components/schemas/uri_type" 
           }
         }
       },
