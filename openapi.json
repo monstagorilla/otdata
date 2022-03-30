@@ -9237,6 +9237,7 @@
         "format": "url"
       },
       "cursor": {
+        "description": "Cursor for cursor-based pagination.",
         "type": "string"
       },
       "data_status": {
