@@ -9019,12 +9019,12 @@
       },
       "key_value_list": {
         "type": "array",
+        "description": "List of generic key-value pairs for custom extension of the standard",
         "items": {
           "type": "object",
           "properties": {
             "key": {
-              "type": "string",
-              "description": ""
+              "type": "string"
             },
             "value": {
               "type": "string"
