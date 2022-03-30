@@ -6723,7 +6723,6 @@
       },
       "live_data": {
         "type": "object",
-        "required": ["timestamp"],
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
