@@ -1287,7 +1287,7 @@
         ],
         "operationId": "get_tour",
         "summary": "Returns a tour, optionally with embedded subresources",
-        "description": "Modify response: ``embed``",
+        "description": "If subresources are embedded in the response, the ETag header may not be sent. The ETag header is only related to the tour resource not to its subresources. A response with subresources and ETag header could be misleading./n Modify response: ``embed``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -1309,6 +1309,13 @@
           "200": {
             "description": "OK",
             "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
               "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
