@@ -8643,7 +8643,7 @@
         }
       },
       "drive_event_types": {
-        "description": "",
+        "description": "'started': drive started, \n'paused': drive paused, \n'interrupted': rive interrupted due to an unplanned event e.g. accident, \n'canceled': drive canceled, \n'deleted': drive deleted, \n'arrived': arrived at destination, \n'finished': drive and including tasks finished",
         "type": "string",
         "enum": [
           "started",
