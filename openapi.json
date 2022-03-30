@@ -1240,7 +1240,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "description": "Depending on the value of ``create_subressources``, subresources will be embedded",
+                  "description": "Depending on the value of ``create_subresources``, subresources will be embedded",
                   "oneOf":[
                     {
                       "$ref": "#/components/schemas/tour_full"
@@ -6308,7 +6308,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "description": "Depending on the value of ``create_subressources``, subresources will be embedded in the body",
+              "description": "Depending on the value of ``create_subresources``, subresources will be embedded in the body",
               "oneOf":[
                 {
                   "$ref": "#/components/schemas/tour"
