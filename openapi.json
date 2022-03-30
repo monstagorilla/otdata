@@ -8570,9 +8570,11 @@
         ],
         "properties": {
           "callback_url": {
+            "description":  "URL to which webhooks should send requests",
             "$ref": "#/components/schemas/url_type"
           },
           "access_token": {
+            "description": "JSON Web Token for authentication at callback server",
             "$ref": "#/components/schemas/access_token"
           },
           "topic":{
@@ -8594,12 +8596,14 @@
           }, 
           "expiration_time": {
             "type": "string", 
+            "description": "Expiration time to limit the lifetime and avoid obsolete subscriptions",
             "format": "date-time"
           }
         }
       },
       "topic": {
         "type": "string", 
+        "description": "Distinguishes between different topics that can be subscribed to",
         "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]
       },
       "tour_event_types": {
