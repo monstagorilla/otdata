@@ -6743,9 +6743,6 @@
             "$ref": "#/components/schemas/customer_uri"
           },
           {
-            "$ref": "#/components/schemas/tour_uri"
-          }, 
-          {
             "$ref": "#/components/schemas/drive_uri"
           }
         ],
