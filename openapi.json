@@ -7,6 +7,10 @@
     "contact": {
       "name": "OpenTelematics e.V.",
       "email": "info@opentelematics.io"
+    },
+    "license": {
+          "name": "License", 
+          "url": "https://gitlab.com/opentelematics/otdata/-/blob/master/LICENSE"
     }
   },
   "externalDocs": {
