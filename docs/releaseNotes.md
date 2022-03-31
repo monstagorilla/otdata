@@ -1,4 +1,29 @@
 # Release Notes
+
+## Version 2.0.0
+A complete list of changes can be found in the [git history]
+
+### Major Changes
+- Improve tour management to handle logistics processes with complex tasks, multiple drives and detailed information about different items in shipments
+- Introduce unified REST structure
+- Introduce webhooks and subscriptions for asynchronous server-to-client communication 
+- Introduce events to transmit status changes 
+- Add new endpoints for the management of vehicles, drivers, devices, customers, shipments and tacho files
+- Introduce endpoint for retrieving ETAs
+- Introduce channel-based messaging
+- Improve endpoint `/live-data` and add response modification
+- Introducing ETag header for caching and optimistic concurrency control 
+- Using URI instead of IDs
+- Add license 
+- Update to Open API Specification 3.0.3
+
+### Minor Changes
+- Introduce media type `application/problem+json` for detailed error responses 
+- Introduce cursor-based pagination for retrieving lists from collections
+- Add [license](https://gitlab.com/opentelematics/otdata/-/blob/master/LICENSE)
+- Using references instead of always transmitting complete data sets
+- Unify naming 
+
 ## Version 1.1.0 
 A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/tree/1.1.0).
 
