@@ -1546,13 +1546,6 @@
           "200": {
             "description": "OK",
             "headers": {
-              "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
-              }, 
-              "Cache-Control": {
-                "$ref": "#/components/headers/cache_control"
-              },
               "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
@@ -1939,13 +1932,6 @@
           "200": {
             "description": "OK",
             "headers": {
-              "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
-              }, 
-              "Cache-Control": {
-                "$ref": "#/components/headers/cache_control"
-              },
               "API-Version": {
                 "$ref": "#/components/headers/api_version",
                 "required": true
