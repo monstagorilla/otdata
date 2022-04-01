@@ -13,13 +13,12 @@ A complete list of changes can be found in the [git history]
 - Introduce channel-based messaging
 - Improve endpoint `/live-data` and add response modification
 - Introducing ETag header for caching and optimistic concurrency control 
-- Using URI instead of IDs
-- Add license 
-- Update to Open API Specification 3.0.3
+- Update to Open API Specification 3.0.3 and restructure most abstractions
 
 ### Minor Changes
 - Introduce media type `application/problem+json` for detailed error responses 
 - Introduce cursor-based pagination for retrieving lists from collections
+- Using URI instead of IDs
 - Add [license](https://gitlab.com/opentelematics/otdata/-/blob/master/LICENSE)
 - Using references instead of always transmitting complete data sets
 - Unify naming 
