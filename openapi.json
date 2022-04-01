@@ -117,10 +117,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /live-data/{live-data-id}": {
+              "GET /live-data/{live_data_id}": {
                 "operationId": "get_live_data", 
                 "parameters": {
-                  "live-data-id": "$response.body#/id"
+                  "live_data_id": "$response.body#/id"
                 }
               }
             },
@@ -505,10 +505,10 @@
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /eta/{eta-id}": {
+              "GET /eta/{eta_id}": {
                 "operationId": "get_eta", 
                 "parameters": {
-                  "eta-id": "$response.body#/id"
+                  "eta_id": "$response.body#/id"
                 }
               }
             },
