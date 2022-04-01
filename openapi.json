@@ -39,11 +39,11 @@
   "tags": [
     {
       "name": "Live Data", 
-      "description": "Retrieve live data"
+      "description": "Retrieve and create live data"
     },
     {
       "name": "ETA", 
-      "description": "Retrieve ETAs"
+      "description": "Retrieve and create ETAs"
     },
     {
       "name": "Tour Management", 
@@ -91,6 +91,91 @@
     }
   ],
   "paths": {
+    "/live-data": {
+      "post": {
+        "tags": [
+          "Live Data"
+        ],
+        "summary": "Creates a live data resource",
+        "operationId": "create_live_data",
+        "description": "May be used to send live data from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/live_data_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /live-data/{live-data-id}": {
+                "operationId": "get_live_data", 
+                "parameters": {
+                  "live-data-id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/live_data_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      }
+    },
     "/live-data/latest": {
       "get": {
         "summary": "Returns a list of the latest live data",
@@ -166,7 +251,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/live_data"
+                        "$ref": "#/components/schemas/live_data_full"
                       }
                     },
                     "next_cursor":{
@@ -283,7 +368,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/live_data"
+                        "$ref": "#/components/schemas/live_data_full"
                       }
                     },
                     "next_cursor":{
@@ -362,7 +447,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/live_data"
+                  "$ref": "#/components/schemas/live_data_full"
                 }
               }
             }
@@ -384,6 +469,91 @@
           },
           "412": {
             "$ref": "#/components/responses/precondition_failed"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      }
+    },
+    "/eta": {
+      "post": {
+        "tags": [
+          "ETA"
+        ],
+        "summary": "Creates an ETA resource",
+        "operationId": "create_eta",
+        "description": "May be used to send calculated ETA from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/eta_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /eta/{eta-id}": {
+                "operationId": "get_eta", 
+                "parameters": {
+                  "eta-id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eta_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -446,7 +616,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/eta"
+                        "$ref": "#/components/schemas/eta_full"
                       }
                     },
                     "next_cursor":{
@@ -536,7 +706,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/eta"
+                        "$ref": "#/components/schemas/eta_full"
                       }
                     },
                     "next_cursor":{
@@ -615,7 +785,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/eta"
+                  "$ref": "#/components/schemas/eta_full"
                 }
               }
             }
@@ -6364,6 +6534,16 @@
       }
     },
     "requestBodies": {
+      "live_data_create": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/live_data"
+            }
+          }
+        },
+        "required": true
+      },
       "tour_create": {
         "content": {
           "application/json": {
@@ -6597,7 +6777,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/live_data"
+              "$ref": "#/components/schemas/live_data_full"
             }
           }
         }
@@ -6613,6 +6793,16 @@
         }
       },
       "eta":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/eta_full"
+            }
+          }
+        }
+      }, 
+      "eta_create":  {
         "required": true,
         "content": {
           "application/json": {
@@ -6781,12 +6971,20 @@
           }
         }
       },
-      "live_data": {
+      "live_data_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
-          },
+          }, 
+          {
+            "$ref": "#/components/schemas/live_data"
+          }
+        ]
+      },
+      "live_data": {
+        "type": "object",
+        "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           },
@@ -8478,11 +8676,19 @@
           }
         }
       },
-      "eta": {
+      "eta_full": {
+        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
+          {
+            "$ref": "#/components/schemas/eta"
+          }
+        ]
+      },
+      "eta": {
+        "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
