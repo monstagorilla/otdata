@@ -3,7 +3,7 @@
   "info": {
     "version": "2.0.0",
     "title": "OTData API",
-    "description": "The software-independent standard interface for the transmission of telematics data.\n- The authentication is specified by the interface operator\n- It is recommended to use OAuth 2.0",
+    "description": "The software-independent standard interface for the transmission of telematics data.\n\nThis is not a documentation of an existing API, it is the specification how to write a correct API according to the OTData API standard. You may only implement parts of it.\n\nThe authentication is specified by the interface operator\n\nIt is recommended to use OAuth 2.0",
     "contact": {
       "name": "OpenTelematics e.V.",
       "email": "info@opentelematics.io"
