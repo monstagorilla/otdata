@@ -79,7 +79,7 @@
     },
     {
       "name": "Events", 
-      "description": "Retrieve events"
+      "description": "Retrieve and create events"
     }, 
     {
       "name": "Webhook Subscriptions", 
@@ -4421,7 +4421,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/tour_event"
+                        "$ref": "#/components/schemas/tour_event_full"
                       }
                     },
                     "next_cursor":{
@@ -4443,6 +4443,89 @@
           },
           "404": {
             "$ref": "#/components/responses/not_found"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Creates a tour event",
+        "operationId": "create_tour_event",
+        "description": "May be used to send tour event from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/tour_event_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /tour-events/{tour_event_id}": {
+                "operationId": "get_tour_event", 
+                "parameters": {
+                  "tour_event_id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tour_event_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -4500,7 +4583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/tour_event"
+                  "$ref": "#/components/schemas/tour_event_full"
                 }
               }
             }
@@ -4593,7 +4676,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/drive_event"
+                        "$ref": "#/components/schemas/drive_event_full"
                       }
                     },
                     "next_cursor":{
@@ -4615,6 +4698,89 @@
           },
           "404": {
             "$ref": "#/components/responses/not_found"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Creates a drive event",
+        "operationId": "create_drive_event",
+        "description": "May be used to send drive event from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/drive_event_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /drive-events/{drive_event_id}": {
+                "operationId": "get_drive_event", 
+                "parameters": {
+                  "drive_event_id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/drive_event_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -4672,7 +4838,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/drive_event"
+                  "$ref": "#/components/schemas/drive_event_full"
                 }
               }
             }
@@ -4768,7 +4934,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/task_event"
+                        "$ref": "#/components/schemas/task_event_full"
                       }
                     },
                     "next_cursor":{
@@ -4790,6 +4956,89 @@
           },
           "404": {
             "$ref": "#/components/responses/not_found"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Creates a task event",
+        "operationId": "create_task_event",
+        "description": "May be used to send task event from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/task_event_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /task-events/{task_event_id}": {
+                "operationId": "get_task_event", 
+                "parameters": {
+                  "task_event_id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/task_event_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -4847,7 +5096,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/task_event"
+                  "$ref": "#/components/schemas/task_event_full"
                 }
               }
             }
@@ -6737,12 +6986,32 @@
         "content": {
           "application/json": {
             "schema": {
+              "$ref": "#/components/schemas/tour_event_full"
+            }
+          }
+        }
+      },
+      "tour_event_create":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
               "$ref": "#/components/schemas/tour_event"
             }
           }
         }
       },
       "drive_event":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/drive_event_full"
+            }
+          }
+        }
+      },
+      "drive_event_create":  {
         "required": true,
         "content": {
           "application/json": {
@@ -6757,11 +7026,21 @@
         "content": {
           "application/json": {
             "schema": {
+              "$ref": "#/components/schemas/task_event_full"
+            }
+          }
+        }
+      },
+      "task_event_create":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
               "$ref": "#/components/schemas/task_event"
             }
           }
         }
-      }, 
+      },
       "resource_event":  {
         "required": true,
         "content": {
@@ -8887,12 +9166,20 @@
           "other"
         ]
       },
-      "tour_event": {
+      "tour_event_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
-          }, 
+          },
+          {
+            "$ref": "#/components/schemas/tour_event"
+          }
+        ]
+      },
+      "tour_event": {
+        "type": "object",
+        "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
@@ -8926,12 +9213,20 @@
           "other"
         ]
       },
-      "drive_event": {
+      "drive_event_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
-          }, 
+          },
+          {
+            "$ref": "#/components/schemas/drive_event"
+          }
+        ]
+      },
+      "drive_event": {
+        "type": "object",
+        "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
@@ -8961,12 +9256,20 @@
           "other"
         ]
       },
-      "task_event": {
+      "task_event_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
-          }, 
+          },
+          {
+            "$ref": "#/components/schemas/task_event"
+          }
+        ]
+      },
+      "task_event": {
+        "type": "object",
+        "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
@@ -9030,7 +9333,7 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
-          }, 
+          },
           {
             "$ref": "#/components/schemas/timestamp"
           }
