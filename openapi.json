@@ -75,7 +75,7 @@
     },
     {
       "name": "Messages", 
-      "description": "Retrieve and send channel-based messages"
+      "description": "Retrieve and manage channel-based messages"
     },
     {
       "name": "Events", 
@@ -1252,6 +1252,142 @@
           },
           "412": {
             "$ref": "#/components/responses/precondition_failed"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Messages"
+        ],
+        "operationId": "put_message",
+        "summary": "Updates or creates a message",
+        "description": "If the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/message_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_match"
+          },
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/message_full"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            }
+          },
+          "204": {
+            "description": "No Content.",
+            "headers": {
+              "api-version": {
+                "$ref": "#/components/headers/api_version",
+                "required": false
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "412": {
+            "$ref": "#/components/responses/precondition_failed"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
+          },
+          "428": {
+            "$ref": "#/components/responses/precondition_required"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "Deletes a message",
+        "operationId": "delete_message",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/message_id_path"
+          },
+          {
+            "$ref": "#/components/parameters/if_match_required"
+          },
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "412": {
+            "$ref": "#/components/responses/precondition_failed"
+          },
+          "428": {
+            "$ref": "#/components/responses/precondition_required"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
