@@ -1550,7 +1550,7 @@
         ],
         "summary": "Creates a tour and optionally its subresources",
         "operationId": "create_tour",
-        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the request and therefore also in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\nModified request body: ``create_subresources``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources and shipments linked to the tour in the request and therefore also in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\nModified request body: ``create_subresources``",
         "parameters": [
           {
             "$ref": "#/components/parameters/create_subresources"
@@ -1726,13 +1726,16 @@
         ],
         "summary": "Updates or creates a tour",
         "operationId": "put_tour",
-        "description": "If the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send.",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources and shipments. These are marked with a leading underscore. The request MAY be used to create a resource and its subresources but MUST NOT be used to update any subresources. \n\nIf the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
+          },
+          {
+            "$ref": "#/components/parameters/create_subresources"
           },
           {
             "$ref": "#/components/parameters/ot_id"
@@ -6451,7 +6454,7 @@
         "name": "embed",
         "in": "query",
         "required": true,
-        "description": "Whether subresources should be embedded in the response",
+        "description": "Whether to embed subresources and shipments linked with the tour in the response.",
         "schema": {
           "type": "boolean",
           "default": false
@@ -6612,7 +6615,7 @@
         "name": "create_subresources", 
         "in": "query", 
         "required": true, 
-        "description": "Whether also subresources should be created",
+        "description": "Whether also subresources and shipments linked to the tour should be created.",
         "schema": {
           "type": "boolean", 
           "default": false
@@ -6840,7 +6843,15 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/tour_full"
+              "description": "Depending on the value of ``create_subresources``, subresources will be embedded in the body",
+              "oneOf":[
+                {
+                  "$ref": "#/components/schemas/tour_full"
+                }, 
+                {
+                  "$ref": "#/components/schemas/tour_with_subresources_full"  
+                }
+              ]
             }
           }
         },
@@ -8895,58 +8906,91 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/tour"
-          }
-        ], 
-        "properties": {
-          "_drives": {
-            "type": "array", 
-            "items" :{
-              "type": "object",
-              "allOf":[
-                {
-                  "$ref": "#/components/schemas/drive"
+          },
+          {
+            "type": "object", 
+            "properties": {
+              "_drives": {
+                "type": "array", 
+                "items" :{
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/drive"
+                    }, 
+                    {
+                      "type": "object", 
+                      "properties": {
+                        "_tasks":{
+                          "type": "array", 
+                          "items": {
+                            "$ref": "#/components/schemas/task"
+                          }
+                        }
+                      }
+                    }
+                  
+                  ]
                 }
-              ],
-              "properties": {
-                "_tasks": {
-                  "type": "array", 
-                  "items": {
-                    "$ref": "#/components/schemas/task"
-                  }
+              }, 
+              "_shipments": {
+                "type": "array",
+                "items" :{
+                  "type": "object",
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/shipment"
+                    }
+                  ]
                 }
               }
-            }
+            }    
           }
-        }
+        ]
       }, 
       "tour_with_subresources_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/tour_full"
-          }
-        ], 
-        "properties": {
-          "_drives": {
-            "type": "array", 
-            "items" :{
-              "type": "object",
-              "allOf":[ 
-                {
-                  "$ref": "#/components/schemas/drive_full"
+          },
+          {
+            "type": "object", 
+            "properties": {
+              "_drives": {
+                "type": "array", 
+                "items" :{
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/drive_full"
+                    }, 
+                    {
+                      "type": "object", 
+                      "properties": {
+                        "_tasks":{
+                          "type": "array", 
+                          "items": {
+                            "$ref": "#/components/schemas/task_full"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
-              ],
-              "properties": {
-                "_tasks": {
-                  "type": "array", 
-                  "items": {
-                    "$ref": "#/components/schemas/task_full"
-                  }
+              }, 
+              "_shipments": {
+                "type": "array",
+                "items" :{
+                  "type": "object",
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/shipment_full"
+                    }
+                  ]
                 }
               }
-            }
+            }    
           }
-        }
+        ]
       }, 
       "tour_full": {
         "type": "object",
@@ -9041,14 +9085,17 @@
           },
           {
             "$ref": "#/components/schemas/drive"
+          },
+          {
+            "type": "object", 
+            "properties": {
+              "tasks_uri": {
+                "$ref": "#/components/schemas/uri_type", 
+                "example": "/tours/123/drives/123/tasks"
+              }
+            }
           }
-        ],
-        "properties": {
-          "tasks_uri": {
-            "$ref": "#/components/schemas/uri_type", 
-            "example": "/tours/123/drives/123/tasks"
-          }
-        }
+        ]
       },
       "drive": {
         "type": "object",
