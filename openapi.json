@@ -125,8 +125,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -513,8 +512,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -959,8 +957,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -1212,8 +1209,7 @@
             
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -1623,8 +1619,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -1711,8 +1706,7 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -2014,8 +2008,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -2403,8 +2396,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -2800,8 +2792,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -3179,8 +3170,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -3555,8 +3545,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -3934,8 +3923,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -4316,8 +4304,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -4704,8 +4691,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -4959,8 +4945,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -5217,8 +5202,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -6032,8 +6016,7 @@
             },
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag",
-                "required": true
+                "$ref": "#/components/headers/etag"
               },
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
@@ -6371,7 +6354,8 @@
         "description": "Entity Tag as defined by [RFC2068](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20)",
         "schema": {
           "type": "string"
-        }
+        }, 
+        "required": true
       },
       "cache_control": {
         "description": "Header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)",
