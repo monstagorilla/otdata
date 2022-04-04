@@ -131,12 +131,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -233,12 +231,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -350,12 +346,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -427,19 +421,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -518,12 +509,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -597,12 +586,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -687,12 +674,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -764,19 +749,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -876,12 +858,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -963,12 +943,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1035,19 +1013,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1132,12 +1107,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1215,12 +1188,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1290,19 +1261,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1371,12 +1339,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -1384,12 +1350,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -1524,12 +1488,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1625,12 +1587,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1712,12 +1672,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -1794,12 +1752,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -1807,12 +1763,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -1929,12 +1883,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2014,12 +1966,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2089,19 +2039,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2173,12 +2120,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -2186,12 +2131,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -2314,12 +2257,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2402,12 +2343,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2480,19 +2419,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2567,12 +2503,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -2580,12 +2514,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -2711,12 +2643,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2798,12 +2728,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2870,19 +2798,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -2951,12 +2876,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -2964,12 +2887,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -3089,12 +3010,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3176,12 +3095,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3248,19 +3165,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3329,12 +3243,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -3342,12 +3254,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -3464,12 +3374,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3551,12 +3459,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3623,19 +3529,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3704,12 +3607,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -3717,12 +3618,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -3842,12 +3741,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -3929,12 +3826,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4001,19 +3896,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4082,12 +3974,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -4095,12 +3985,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -4223,12 +4111,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4310,12 +4196,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4382,19 +4266,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4463,12 +4344,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -4476,12 +4355,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -4610,12 +4487,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4697,12 +4572,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4769,19 +4642,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4864,12 +4734,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -4951,12 +4819,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5023,19 +4889,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5121,12 +4984,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5208,12 +5069,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5280,19 +5139,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5372,12 +5228,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5449,19 +5303,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -5935,12 +5786,10 @@
             "description": "OK",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -6022,12 +5871,10 @@
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -6094,19 +5941,16 @@
             "description": "OK",
             "headers": {
               "ETag": {
-                "$ref": "#/components/headers/etag", 
-                "required": true
+                "$ref": "#/components/headers/etag"
               }, 
               "Cache-Control": {
                 "$ref": "#/components/headers/cache_control"
               },
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             },
             "content": {
@@ -6175,12 +6019,10 @@
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "headers": {
               "API-Version": {
-                "$ref": "#/components/headers/api_version",
-                "required": true
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -6188,12 +6030,10 @@
             "description": "No Content.",
             "headers": {
               "api-version": {
-                "$ref": "#/components/headers/api_version",
-                "required": false
+                "$ref": "#/components/headers/api_version"
               }, 
               "OT-ID": {
-                "$ref": "#/components/headers/ot_id",
-                "required": true
+                "$ref": "#/components/headers/ot_id"
               }
             }
           },
@@ -6361,20 +6201,23 @@
         "description": "Header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)",
         "schema": {
           "type": "string"
-        }
+        }, 
+        "required": true
       },
       "ot_id": {
         "description": "Registered OpenTelematics ID of the requester",
         "schema": {
           "type": "string"
-        }
+        }, 
+        "required": true
       },
       "api_version": {
         "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
         "schema": {
           "type": "string",
           "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
-        }
+        }, 
+        "required": false
       }
     },
     "parameters": {
@@ -6780,12 +6623,10 @@
       "no_content": {
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "description": "No Content. The server has successfully fulfilled the request and there is no additional content to return in the response payload body"
@@ -6807,12 +6648,10 @@
         "description": "Bad Request. The server cannot or will not process the request, due to a client error.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6827,12 +6666,10 @@
         "description": "Unauthorized. The request requires user authentication.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6847,12 +6684,10 @@
         "description": "Forbidden. The server understood the request, but refuses to authorize\nit.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6867,12 +6702,10 @@
         "description": "Not Found. The server has not found anything matching the effective\nrequest URI.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6887,12 +6720,10 @@
         "description": "Precondition Failed. One or more conditions (e.g. If-None-Match header) given in the request header fields evaluated to false when tested on the server.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6907,12 +6738,10 @@
         "description": "Unsupported Media Type. The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6927,12 +6756,10 @@
         "description": "Precondition Required. The origin server requires the request to be conditional.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6947,12 +6774,10 @@
         "description": "Internal Server Error. The server encountered an unexpected condition\nwhich prevented it from fulfilling the request.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
@@ -6967,12 +6792,10 @@
         "description": "Service Unavailable. The server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         },
         "content": {
