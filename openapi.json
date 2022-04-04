@@ -51,7 +51,7 @@
     }, 
     {
       "name": "Tacho Files", 
-      "description": "Retrieve tacho files"
+      "description": "Retrieve and create tacho files"
     },
     {
       "name": "Devices", 
@@ -895,7 +895,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/tacho_file"
+                        "$ref": "#/components/schemas/tacho_file_full"
                       }
                     },
                     "next_cursor":{
@@ -917,6 +917,89 @@
           },
           "404": {
             "$ref": "#/components/responses/not_found"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tacho Files"
+        ],
+        "summary": "Creates a tacho file",
+        "operationId": "create_tacho_file",
+        "description": "May be used to send tacho files from driver or vehicle device to server.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/tacho_file_create"
+        },
+        "responses": {
+          "201": {
+            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
+            "links": {
+              "GET /tacho-files/{tacho_file_id}": {
+                "operationId": "get_tacho_file", 
+                "parameters": {
+                  "tacho_file_id": "$response.body#/id"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "$ref": "#/components/headers/etag",
+                "required": true
+              },
+              "Cache-Control": {
+                "$ref": "#/components/headers/cache_control"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/api_version",
+                "required": true
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tacho_file_full"
+                }
+              }
+            }
+          },
+          "204": {
+            "$ref": "#/components/responses/no_content"
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupported_media_type"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -974,7 +1057,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/tacho_file"
+                  "$ref": "#/components/schemas/tacho_file_full"
                 }
               }
             }
@@ -7202,6 +7285,16 @@
         "content": {
           "application/json": {
             "schema": {
+              "$ref": "#/components/schemas/tacho_file_full"
+            }
+          }
+        }
+      },
+      "tacho_file_create":  {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
               "$ref": "#/components/schemas/tacho_file"
             }
           }
@@ -9814,12 +9907,20 @@
           }
         }
       },
-      "tacho_file": {
+      "tacho_file_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
+          {
+            "$ref": "#/components/schemas/tacho_file"
+          }
+        ]
+      },
+      "tacho_file": {
+        "type": "object",
+        "allOf": [
           {
             "$ref": "#/components/schemas/vehicle_uri"
           }, 
