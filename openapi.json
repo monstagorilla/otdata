@@ -9877,36 +9877,6 @@
           }
         }
       },
-      "log": {
-        "type": "object",
-        "properties": {
-          "log_level": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0,
-            "maximum": 7,
-            "description": "From 0 (most important) to 7 (least important):\n0=Emergency, 1=Alert, 2=Critical, 3=Error, 4=Warning, 5=Notice, 6=Informational, 7=Debug"
-          },
-          "call": {
-            "type": "string",
-            "description": "Which call (protocol)"
-          },
-          "username": {
-            "type": "string",
-            "description": "Which user account was it"
-          },
-          "time": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date Time of message receive",
-            "example": "2017-07-21T17:32:28.000Z"
-          },
-          "message": {
-            "type": "string",
-            "description": "Log message"
-          }
-        }
-      },
       "tacho_file_full": {
         "type": "object",
         "allOf": [
