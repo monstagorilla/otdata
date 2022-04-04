@@ -1485,7 +1485,7 @@
       "get": {
         "summary": "Returns a list of tours, optionally with embedded subresources",
         "operationId": "get_tours",
-        "description": "Filter search: ``customer_uri``, ``device_uri`` and ``vehicle_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``embed``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nFilter search: ``customer_uri``, ``device_uri`` and ``vehicle_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``embed``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "Tour Management"
         ],
@@ -1593,7 +1593,7 @@
         ],
         "summary": "Creates a tour and optionally its subresources",
         "operationId": "create_tour",
-        "description": "Modified request body: ``create_subresources``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the request and therefore also in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\nModified request body: ``create_subresources``",
         "parameters": [
           {
             "$ref": "#/components/parameters/create_subresources"
@@ -1689,7 +1689,7 @@
         ],
         "operationId": "get_tour",
         "summary": "Returns a tour, optionally with embedded subresources",
-        "description": "If subresources are embedded in the response, the ETag header MAY not be sent. The ETag header is only related to the tour resource, not to its subresources. A response with subresources and ETag header could be misleading.\n\n Modify response: ``embed``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the response. These are marked with a leading underscore.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\n Modify response: ``embed``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
