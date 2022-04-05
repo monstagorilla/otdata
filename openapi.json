@@ -6365,14 +6365,6 @@
           "$ref": "#/components/schemas/uri_type"
         }
       },
-      "customer_uri_required": {
-        "name": "customer_uri",
-        "in": "query",
-        "required": true,
-        "schema": {
-          "$ref": "#/components/schemas/uri_type"
-        }
-      },
       "customer_id_path": {
         "name": "customer_id",
         "in": "path",
@@ -6410,14 +6402,6 @@
         },
         "required": true
       },
-      "data_id_path": {
-        "name": "data_id",
-        "in": "path",
-        "schema": {
-          "$ref": "#/components/schemas/id_type"
-        },
-        "required": true
-      },
       "driver_id_path": {
         "name": "driver_id",
         "in": "path",
@@ -6433,14 +6417,6 @@
           "$ref": "#/components/schemas/id_type"
         },
         "required": true
-      },
-      "device_uri_required": {
-        "name": "device_uri",
-        "in": "query",
-        "required": true,
-        "schema": {
-          "$ref": "#/components/schemas/uri_type"
-        }
       },
       "cursor": {
         "name": "cursor",
@@ -7392,22 +7368,6 @@
             }
           }
         ]
-      },
-      "reason": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0,
-            "description": "Reason number for the message"
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Reason for the message"
-          }
-        }
       },
       "io_state": {
         "type": "object",
@@ -10048,14 +10008,6 @@
       "uri_type": {
         "type": "string", 
         "format": "uri"
-      },
-      "url": {
-        "type": "object", 
-        "properties": {
-          "url": {
-            "$ref": "#/components/schemas/url_type"
-          }
-        }
       },
       "url_type": {
         "type": "string", 
