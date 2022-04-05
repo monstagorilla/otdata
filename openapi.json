@@ -9961,12 +9961,12 @@
               "valid_from": {
                 "type": "string",
                 "format": "date",
-                "example": "2017-07-21T00:00:00.000Z"
+                "example": "2017-07-21"
               },
               "valid_to": {
                 "type": "string",
                 "format": "date",
-                "example": "2017-07-21T00:00:00.000Z"
+                "example": "2017-07-21"
               }
             }
           },
