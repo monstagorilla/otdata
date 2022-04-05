@@ -6623,12 +6623,10 @@
         "description": "Not Modified. The resource has not been modified since the version specified by the request header If-None-Match.",
         "headers": {
           "API-Version": {
-            "$ref": "#/components/headers/api_version",
-            "required": true
+            "$ref": "#/components/headers/api_version"
           }, 
           "OT-ID": {
-            "$ref": "#/components/headers/ot_id",
-            "required": true
+            "$ref": "#/components/headers/ot_id"
           }
         }
       },
