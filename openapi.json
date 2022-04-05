@@ -1316,6 +1316,9 @@
         "description": "If the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/message_channel_id_path"
+          },
+          {
             "$ref": "#/components/parameters/message_id_path"
           },
           {
@@ -1393,6 +1396,9 @@
         "summary": "Deletes a message",
         "operationId": "delete_message",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/message_channel_id_path"
+          },
           {
             "$ref": "#/components/parameters/message_id_path"
           },
