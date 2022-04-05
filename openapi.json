@@ -6149,15 +6149,6 @@
           "uri": "/tours/123"
         }
       },
-      "drives_uri": {
-        "$ref": "#/components/examples/drive_event_uri",
-        "value": {
-          "uri": "/tours/123/drives/", 
-          "drive_uri": {
-            "$ref": "#/components/examples/drive_uri"
-          }
-        }
-      },
       "drive_uri": {
         "value": "/tours/123/drives/123"
       },
