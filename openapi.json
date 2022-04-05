@@ -6126,6 +6126,18 @@
   },
   "components": {
     "examples": {
+      "event_uris": {
+        "value": [
+          "/tours/123",
+          "/tours/123/drives/123", 
+          "/tours/123/drives/123/tasks/123",
+          "/customers/123", 
+          "/live-data/latest?customer_uri=/customers/123?vehicle_uri=/vehicles/123?fields=position,can,tacho", 
+          "/tacho_files?customer_uri=/customers/123", 
+          "/eta/latest?tour_uri=/tours/123", 
+          "/messages/123"
+        ]
+      },
       "tour_uri": {
         "value": {
           "uri": "/tours/123"
@@ -7209,27 +7221,27 @@
         ]
       },
       "device": {
-        "type": "object", 
         "allOf": [
           {
             "$ref": "#/components/schemas/customer_uri"
-          }
-        ],
-        "properties": {
-          "imei": {
-            "type": "string",
-            "minLength": 15,
-            "maxLength": 15,
-            "description": "IMEI",
-            "example": ""
           },
-          "sn": {
-            "type": "string",
-            "maxLength": 30,
-            "description": "Serial number",
-            "example": ""
+          {
+            "type": "object", 
+            "properties": {
+              "imei": {
+                "type": "string",
+                "minLength": 15,
+                "maxLength": 15,
+                "description": "IMEI"
+              },
+              "sn": {
+                "type": "string",
+                "maxLength": 30,
+                "description": "Serial number"
+              }
+            }
           }
-        }
+        ]
       },
       "vehicle_full": {
         "type": "object",
@@ -7248,11 +7260,7 @@
           "vehicle_groups": {
             "type": "array",
             "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/vehicle_group_id"
-                }
-              ]
+              "$ref": "#/components/schemas/vehicle_group_id"
             },
             "description": "List of assigned vehicle groups"
           },
@@ -7308,7 +7316,6 @@
         ]
       },
       "live_data": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
@@ -7327,47 +7334,64 @@
           },
           {
             "$ref": "#/components/schemas/drive_uri"
-          }
-        ],
-        "properties": {
-          "driver_uri": {
-            "$ref": "#/components/schemas/uri_type", 
-            "description": "Driver ID of the driver", 
-            "example": "/drivers/123"
-          },
-          "co_driver_uri": {
-            "$ref": "#/components/schemas/uri_type", 
-            "description": "Driver ID of the co-driver", 
-            "example": "/drivers/123"
-          },
-          "position": {
-            "$ref": "#/components/schemas/position"
-          },
-          "io": {
-            "$ref": "#/components/schemas/io_state"
-          },
-          "passengers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/passenger"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "driver_uri": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri_type"
+                  },
+                  {
+                    "description": "Driver ID of the driver", 
+                    "example": "/drivers/123"
+                  } 
+                ]
+                 
+              },
+              "co_driver_uri": {
+                "allOf":[
+                  {
+                    "$ref": "#/components/schemas/uri_type" 
+
+                  },
+                  {
+                    "description": "Driver ID of the co-driver", 
+                    "example": "/drivers/123"
+                  }
+                ]
+              },
+              "position": {
+                "$ref": "#/components/schemas/position"
+              },
+              "io": {
+                "$ref": "#/components/schemas/io_state"
+              },
+              "passengers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/passenger"
+                }
+              },
+              "temperatures": {
+                "$ref": "#/components/schemas/temp"
+              },
+              "can": {
+                "$ref": "#/components/schemas/can_data"
+              },
+              "tacho": {
+                "$ref": "#/components/schemas/tacho"
+              },
+              "dtc": {
+                "$ref": "#/components/schemas/dtc"
+              },
+              "driver_behavior": {
+                "$ref": "#/components/schemas/driver_behavior"
+              }
             }
-          },
-          "temperatures": {
-            "$ref": "#/components/schemas/temp"
-          },
-          "can": {
-            "$ref": "#/components/schemas/can_data"
-          },
-          "tacho": {
-            "$ref": "#/components/schemas/tacho"
-          },
-          "dtc": {
-            "$ref": "#/components/schemas/dtc"
-          },
-          "driver_behavior": {
-            "$ref": "#/components/schemas/driver_behavior"
           }
-        }
+        ]
       },
       "reason": {
         "type": "object",
@@ -7449,49 +7473,52 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
-          }
-        ],
-        "properties": {
-          "coordinates": {
-            "$ref": "#/components/schemas/coordinates"
-          },
-          "heading": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Direction in degrees (0-360)"
-          },
-          "speed": {
-            "type": "number",
-            "format": "float",
-            "description": "Speed in km/h"
-          },
-          "altitude": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Altitude in m"
-          },
-          "accuracy": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Accuracy in m"
-          },
-          "characteristic": {
-            "type": "string",
-            "enum": [
-              "satellite",
-              "gsm",
-              "indirect"
-            ],
-            "description": "`satellite`: GPS, Galileo, GLONASS etc.\n`indirect`: Bluetooth, Wi-Fi etc."
           }, 
-          "satellite_count": {
-            "type": "integer", 
-            "description": "Number of satellites to estimate accuracy"
+          {
+            "type": "object", 
+            "properties": {
+              "coordinates": {
+                "$ref": "#/components/schemas/coordinates"
+              },
+              "heading": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Direction in degrees (0-360)"
+              },
+              "speed": {
+                "type": "number",
+                "format": "float",
+                "description": "Speed in km/h"
+              },
+              "altitude": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Altitude in m"
+              },
+              "accuracy": {
+                "type": "integer",
+                "format": "int32",
+                "description": "Accuracy in m"
+              },
+              "characteristic": {
+                "type": "string",
+                "enum": [
+                  "satellite",
+                  "gsm",
+                  "indirect"
+                ],
+                "description": "`satellite`: GPS, Galileo, GLONASS etc.\n`indirect`: Bluetooth, Wi-Fi etc."
+              }, 
+              "satellite_count": {
+                "type": "integer", 
+                "description": "Number of satellites to estimate accuracy"
+              }
+            },
+            "required": [
+              "timestamp",
+              "coordinates"
+            ]
           }
-        },
-        "required": [
-          "timestamp",
-          "coordinates"
         ]
       },
       "customer_full": {
@@ -7514,37 +7541,41 @@
         }
       },
       "driver_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/driver"
-          }
-        ], 
-        "properties": {
-          "drives": {
-            "type": "array",
-            "description": "Drives assigned to the driver",
-            "items": {
-              "$ref": "#/components/schemas/drive_uri"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "drives": {
+                "type": "array",
+                "description": "Drives assigned to the driver",
+                "items": {
+                  "$ref": "#/components/schemas/drive_uri"
+                }
+              }
             }
           }
-        }
+        ]
       },
       "driver": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/customer_uri"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "driver_card": {
+                "$ref": "#/components/schemas/driver_card"
+              }
+            }    
           }
-        ],
-        "properties": {
-          "driver_card": {
-            "$ref": "#/components/schemas/driver_card"
-          }
-        }
+        ]
       },
       "passenger": {
         "type": "object",
@@ -7553,9 +7584,11 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/id_type"
+              }, 
+              {
+                "description": "Passenger ID"
               }
-            ],
-            "description": "Passenger ID"
+            ]
           },
           "name": {
             "type": "string",
@@ -7570,84 +7603,90 @@
           "set_points": {
             "type": "array",
             "items": {
-              "type": "object",
               "allOf": [
                 {
                   "$ref": "#/components/schemas/data_status"
-                }
-              ],
-              "properties": {
-                "value": {
+                }, 
+                {
                   "type": "object",
                   "properties": {
-                    "name": {
-                      "type": "string",
-                      "maxLength": 150
-                    },
                     "value": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "in °C"
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "maxLength": 150
+                        },
+                        "value": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "in °C"
+                        }
+                      }
                     }
                   }
                 }
-              }
+              ]
             }
           },
           "temperatures": {
             "type": "array",
             "items": {
-              "type": "object",
               "allOf": [
                 {
                   "$ref": "#/components/schemas/data_status"
-                }
-              ],
-              "properties": {
-                "value": {
+                }, 
+                {
                   "type": "object",
                   "properties": {
-                    "name": {
-                      "type": "string",
-                      "maxLength": 150
-                    },
                     "value": {
-                      "type": "number",
-                      "format": "float",
-                      "description": "in °C"
-                    },
-                    "alert": {
-                      "type": "boolean",
-                      "description": "alert condition set"
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "maxLength": 150
+                        },
+                        "value": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "in °C"
+                        },
+                        "alert": {
+                          "type": "boolean",
+                          "description": "alert condition set"
+                        }
+                      }
                     }
                   }
                 }
-              }
+              ]
             }
           },
           "contacts": {
             "type": "array",
             "items": {
-              "type": "object",
               "allOf": [
                 {
                   "$ref": "#/components/schemas/data_status"
-                }
-              ],
-              "properties": {
-                "value": {
+                }, 
+                {
                   "type": "object",
                   "properties": {
-                    "name": {
-                      "type": "string",
-                      "maxLength": 150
-                    },
                     "value": {
-                      "type": "boolean"
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "maxLength": 150
+                        },
+                        "value": {
+                          "type": "boolean"
+                        }
+                      }
                     }
                   }
                 }
-              }
+              ]
             }
           }
         }
@@ -7770,368 +7809,410 @@
             "type": "object",
             "properties": {
               "speed": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
-                  }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "description": "Speed in km/h"
-                  }
-                }
-              },
-              "rpm": {
-                "type": "object",
-                "allOf": [
+                  }, 
                   {
-                    "$ref": "#/components/schemas/data_status"
-                  }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "description": "Rotational speed of engine in rpm"
-                  }
-                }
-              },
-              "fuel_consumption": {
-                "type": "object",
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Fuel consumption in l/h"
-                  }
-                }
-              },
-              "fuel_level": {
-                "type": "object",
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "default": 0,
-                      "minimum": 0,
-                      "maximum": 100,
-                      "description": "Fuel level primary, secondary, ... tank in %"
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "description": "Speed in km/h"
+                      }
                     }
                   }
-                }
+                ]
+              },
+              "rpm": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "description": "Rotational speed of engine in rpm"
+                      }
+                    }
+                  }
+                ]
+              },
+              "fuel_consumption": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Fuel consumption in l/h"
+                      }
+                    }
+                  }
+                ]
+              },
+              "fuel_level": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0,
+                          "minimum": 0,
+                          "maximum": 100,
+                          "description": "Fuel level primary, secondary, ... tank in %"
+                        }
+                      }
+                    }
+                  }
+                ]
               },
               "axel_weight": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0,
+                          "minimum": 0
+                        },
+                        "description": "Axel 1,2,... Weight in kg"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "default": 0,
-                      "minimum": 0
-                    },
-                    "description": "Axel 1,2,... Weight in kg"
-                  }
-                }
+                ]
               },
               "turbo_pressure": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Turbo pressure in kPa"
+                      }
+                    }
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Turbo pressure in kPa"
-                  }
-                }
+                ]
               },
               "coolant_temp": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "description": "Coolant temperature in °C"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "description": "Coolant temperature in °C"
-                  }
-                }
+                ]
               },
               "accelerator_pedal": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Accelerator pedal in %"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 100,
-                    "description": "Accelerator pedal in %"
-                  }
-                }
+                ]
               },
               "torque": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 250,
+                        "description": "Torque in %"
+                      }
+                    }
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 250,
-                    "description": "Torque in %"
-                  }
-                }
+                ]                
               },
               "battery_voltage": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "description": "Battery voltage in V"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "description": "Battery voltage in V"
-                  }
-                }
+                ]
               },
               "coolant_level": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Coolant level in %"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 100,
-                    "description": "Coolant level in %"
-                  }
-                }
+                ]
               },
               "oil_temp": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "description": "Oil temperature in °C"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "description": "Oil temperature in °C"
-                  }
-                }
+                ]
               },
               "oil_level": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Oil level in %"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 100,
-                    "description": "Oil level in %"
-                  }
-                }
+                ]
               },
               "throttle": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "maximum": 100,
+                        "description": "Throttle position in %"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "maximum": 100,
-                    "description": "Throttle position in %"
-                  }
-                }
+                ]
               },
               "air_inlet_pressure": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Air inlet pressure in kPa"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Air inlet pressure in kPa"
-                  }
-                }
+                ]
               },
               "gear": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "description": "0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "description": "0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked"
-                  }
-                }
+                ]
               },
               "seat_belt": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "enum": [
+                          "off",
+                          "on"
+                        ],
+                        "default": "off"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "default": "off"
-                  }
-                }
+                ]
               },
               "oil_pressure": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Engine oil pressure in kPa"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Engine oil pressure in kPa"
-                  }
-                }
+                ]
               },
               "wet_tank_air_pressure": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Wet tank air pressure in kPa"
+                      }
+                    }
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Wet tank air pressure in kPa"
-                  }
-                }
+                ]
               },
               "pto": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "atLeastOne"
+                        ],
+                        "default": "none"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "none",
-                      "atLeastOne"
-                    ],
-                    "default": "none"
-                  }
-                }
+                ]
               },
               "ignition_switch": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "enum": [
+                          "off",
+                          "on"
+                        ],
+                        "default": "off"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "default": "off"
-                  }
-                }
+                ]
               }
             }
           },
@@ -8139,316 +8220,352 @@
             "type": "object",
             "properties": {
               "mileage": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Mileage in km"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Mileage in km"
-                  }
-                }
+                ]
               },
               "total_fuel": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Total fuel in liter"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Total fuel in liter"
-                  }
-                }
+                ]
               },
               "fuel_used_at_cruise": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Fuel used at cruise in liter"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Fuel used at cruise in liter"
-                  }
-                }
+                ]
               },
               "fuel_used_at_drive": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Fuel used at drive in liter"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Fuel used at drive in liter"
-                  }
-                }
+                ]
               },
               "idle_longer_5": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Number of idle longer than 5 min"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Number of idle longer than 5 min"
-                  }
-                }
+                ]
               },
               "idle_longer_10": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Number of idle longer than 10 min"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Number of idle longer than 10 min"
-                  }
-                }
+                ]
               },
               "total_idle_time": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Total idle time in sec"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Total idle time in sec"
-                  }
-                }
+                ]
               },
               "total_time_pto": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Total pto time in sec"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Total pto time in sec"
-                  }
-                }
+                ]
               },
               "time_cruise": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Cruise time in sec."
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Cruise time in sec."
-                  }
-                }
+                ]
               },
               "rpm_threshold": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0,
+                          "minimum": 0
+                        },
+                        "description": "Rpm > treshold 1,2,3 sec."
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "default": 0,
-                      "minimum": 0
-                    },
-                    "description": "Rpm > treshold 1,2,3 sec."
-                  }
-                }
+                ]
               },
               "speed_threshold": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0,
+                          "minimum": 0
+                        },
+                        "description": "Speed > threshold speed 1,2,3 sec."
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "array",
-                    "items": {
-                      "type": "integer",
-                      "format": "int32",
-                      "default": 0,
-                      "minimum": 0
-                    },
-                    "description": "Speed > threshold speed 1,2,3 sec."
-                  }
-                }
+                ]
               },
               "brake_applications": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Number of brake applications"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Number of brake applications"
-                  }
-                }
+                ]
               },
               "clutch_applications": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Number of clutch applications"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Number of clutch applications"
-                  }
-                }
+                ]
               },
               "engine_on": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Time engine is on in sec"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Time engine is on in sec"
-                  }
-                }
+                ]
               },
               "time_torque_90": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Time torque > 90%  in sec"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Time torque > 90%  in sec"
-                  }
-                }
+                ]
               },
               "fuel_rate_average": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number",
+                        "format": "float",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Fuel rate average in l/h"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "number",
-                    "format": "float",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Fuel rate average in l/h"
-                  }
-                }
+                ]
               },
               "total_distance_cruise_control": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Total vehicle distance with cruise control"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Total vehicle distance with cruise control"
-                  }
-                }
+                ]
               },
               "total_fuel_consumption_pto": {
-                "type": "object",
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/data_status"
+                  }, 
+                  {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0,
+                        "minimum": 0,
+                        "description": "Total fuel consumption with pto"
+                      }
+                    }    
                   }
-                ],
-                "properties": {
-                  "value": {
-                    "type": "integer",
-                    "format": "int32",
-                    "default": 0,
-                    "minimum": 0,
-                    "description": "Total fuel consumption with pto"
-                  }
-                }
+                ]
               }
             }
           }
@@ -8535,24 +8652,28 @@
             "format": "float",
             "description": " Speed of the vehicle registered by the tachograph"
           },
-          "card_id": {
+          "card_ids": {
             "type": "object",
             "properties": {
               "driver_1": {
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/id_type"
+                  }, 
+                  {
+                    "description": "Card ID of driver 1"
                   }
-                ],
-                "description": "Card ID of driver 1"
+                ]
               },
               "driver_2": {
                 "allOf": [
                   {
                     "$ref": "#/components/schemas/id_type"
+                  }, 
+                  {
+                    "description": "Card ID of driver 2"
                   }
-                ],
-                "description": "Card ID of driver 2"
+                ]
               }
             },
             "description": "Driver card IDs"
@@ -8568,195 +8689,217 @@
         "type": "object",
         "properties": {
           "dtc_status": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "on"
+                    ],
+                    "description": "Generic malfunction indicator light"
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "off",
-                  "on"
-                ],
-                "description": "Generic malfunction indicator light"
-              }
-            }
+            ]
           },
           "dtc_red": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "on"
+                    ],
+                    "description": "Red malfunction indicator light"
+                  }
+                }
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "off",
-                  "on"
-                ],
-                "description": "Red malfunction indicator light"
-              }
-            }
+            ]
           },
           "dtc_amber": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "on"
+                    ],
+                    "description": "Amber malfunction indicator light"
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "off",
-                  "on"
-                ],
-                "description": "Amber malfunction indicator light"
-              }
-            }
+            ]
           },
           "dtc_protect": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "on"
+                    ],
+                    "description": "Protection malfunction indicator light"
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "off",
-                  "on"
-                ],
-                "description": "Protection malfunction indicator light"
-              }
-            }
+            ]
           },
           "handbreak": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "off",
+                      "on"
+                    ],
+                    "description": "Handbrake malfunction indicator light"
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "off",
-                  "on"
-                ],
-                "description": "Handbrake malfunction indicator light"
-              }
-            }
+            ]
           },
           "battery_status": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failure"
+                    ]
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "ok",
-                  "failure"
-                ]
-              }
-            }
+            ]
           },
           "coolant_status": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failure"
+                    ]
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "ok",
-                  "failure"
-                ]
-              }
-            }
+            ]
           },
           "oil_pressure": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failure"
+                    ]
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "ok",
-                  "failure"
-                ]
-              }
-            }
+            ]
           },
           "break_pads": {
             "type": "array",
             "items": {
-              "type": "object",
               "allOf": [
                 {
                   "$ref": "#/components/schemas/data_status"
+                }, 
+                {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "$ref": "#/components/schemas/breakpad"
+                    }
+                  }
                 }
-              ],
-              "properties": {
-                "value": {
-                  "$ref": "#/components/schemas/breakpad"
-                }
-              }
+              ]
             }
           },
           "oil_level_status": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failure"
+                    ]
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "ok",
-                  "failure"
-                ]
-              }
-            }
+            ]
           },
           "abs_status": {
-            "type": "object",
             "allOf": [
               {
                 "$ref": "#/components/schemas/data_status"
+              }, 
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "enum": [
+                      "fullyOperational",
+                      "notFullyOperational"
+                    ]
+                  }
+                }    
               }
-            ],
-            "properties": {
-              "value": {
-                "type": "string",
-                "enum": [
-                  "fullyOperational",
-                  "notFullyOperational"
-                ]
-              }
-            }
+            ]
           }
         }
       },
@@ -8935,12 +9078,7 @@
               "_shipments": {
                 "type": "array",
                 "items" :{
-                  "type": "object",
-                  "allOf":[
-                    {
-                      "$ref": "#/components/schemas/shipment"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/shipment"
                 }
               }
             }    
@@ -8980,12 +9118,7 @@
               "_shipments": {
                 "type": "array",
                 "items" :{
-                  "type": "object",
-                  "allOf":[
-                    {
-                      "$ref": "#/components/schemas/shipment_full"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/shipment_full"
                 }
               }
             }    
@@ -8993,24 +9126,25 @@
         ]
       }, 
       "tour_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
           {
             "$ref": "#/components/schemas/tour"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "drives_uri": {
+                "allOf": [{"$ref": "#/components/schemas/uri"}], 
+                "example": "/tours/123/drives"
+              }
+            }    
           }
-        ], 
-        "properties": {
-          "drives_uri": {
-            "allOf": [{"$ref": "#/components/schemas/uri"}], 
-            "example": "/tours/123/drives"
-          }
-        }
+        ]
       },
       "tour": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/customer_uri"
@@ -9020,22 +9154,24 @@
           },
           {
             "$ref": "#/components/schemas/vehicle_uri"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "info": {
+                "type": "string"
+              },
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
+              }
+            }    
           }
-        ],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "info": {
-            "type": "string"
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
-          }
-        }
+        ]
       },
       "eta_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9052,30 +9188,39 @@
           }, 
           {
             "$ref": "#/components/schemas/drive_uri"
+          }, 
+          {
+            "type": "object", 
+            "properties": {
+              "coordinates": {
+                "$ref": "#/components/schemas/coordinates"
+              },
+              "eta": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2017-07-22T17:32:28Z",
+                "description": "Estimated time of arrival"
+              },
+              "time_window": {
+                "allOf":[
+                  {
+                    "$ref": "#/components/schemas/time_window"
+                  },
+                  {
+                    "description": "Estimated time window from the given ``eta`` and confidence level"
+                  }
+                ]
+              },
+              "confidence_level": {
+                "description": "Confidence level for the given ``time_window`` in percent",
+                "type": "integer", 
+                "minimum": 0, 
+                "maximum": 100, 
+                "default": 95
+              }
+            }    
           }
-        ],
-        "properties": {
-          "coordinates": {
-            "$ref": "#/components/schemas/coordinates"
-          },
-          "eta": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-07-22T17:32:28Z",
-            "description": "Estimated time of arrival"
-          },
-          "time_window": {
-            "$ref": "#/components/schemas/time_window",
-            "description": "Estimated time window from the given ``eta`` and confidence level"
-          },
-          "confidence_level": {
-            "description": "Confidence level for the given ``time_window`` in percent",
-            "type": "integer", 
-            "minimum": 0, 
-            "maximum": 100, 
-            "default": 95
-          }
-        }
+        ]
       },
       "drive_full": {
         "type": "object",
@@ -9090,8 +9235,14 @@
             "type": "object", 
             "properties": {
               "tasks_uri": {
-                "$ref": "#/components/schemas/uri_type", 
-                "example": "/tours/123/drives/123/tasks"
+                "allOf":[
+                  {
+                    "$ref": "#/components/schemas/uri_type"
+                  }, 
+                  {
+                    "example": "/tours/123/drives/123/tasks"
+                  }
+                ]
               }
             }
           }
@@ -9104,9 +9255,11 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/address"
+              }, 
+              {
+                "description": "Destination address"
               }
-            ],
-            "description": "Destination address"
+            ]
           },
           "name": {
             "type": "string"
@@ -9119,27 +9272,43 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/time_window"
+              }, 
+              {
+                "description": "Earliest and latest start time"
               }
-            ],
-            "description": "Earliest and latest start time"
+            ]
           },
           "arrival_time_window": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/time_window"
+              }, 
+              {
+                "description": "Earliest and latest arrival time"
               }
-            ],
-            "description": "Earliest and latest arrival time"
+            ]
           },
           "driver_uri": {
-            "$ref": "#/components/schemas/uri_type", 
-            "description": "Driver ID of the driver", 
-            "example": "/drivers/123"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "Driver ID of the driver", 
+                "example": "/drivers/123"
+              }
+            ]
           },
           "co_driver_uri": {
-            "$ref": "#/components/schemas/uri_type", 
-            "description": "Driver ID of the co-driver", 
-            "example": "/drivers/123"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type" 
+              },
+              {
+                "description": "Driver ID of the co-driver", 
+                "example": "/drivers/123"
+              }
+            ]
           },
           "avis": {
             "$ref": "#/components/schemas/avis"
@@ -9178,7 +9347,6 @@
         "description": "JSON Web Token"
       },
       "subscription_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9189,44 +9357,54 @@
         ]
       },
       "subscription": {
-        "type": "object", 
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
-          }
-        ],
-        "properties": {
-          "callback_url": {
-            "description":  "URL to which webhooks should send requests",
-            "$ref": "#/components/schemas/url_type"
-          },
-          "access_token": {
-            "description": "JSON Web Token for authentication at callback server",
-            "$ref": "#/components/schemas/access_token"
-          },
-          "topic":{
-            "$ref": "#/components/schemas/topic"
-          },
-          "event_uri": {
-            "description": "URI structure is depending on the ``topic``",
-            "$ref": "#/components/schemas/uri_type", 
-            "examples": [
-              "/tours/123",
-              "/tours/123/drives/123", 
-              "/tours/123/drives/123/tasks/123",
-              "/customers/123", 
-              "/live-data/latest?customer_uri=/customers/123?vehicle_uri=/vehicles/123?fields=position,can,tacho", 
-              "/tacho_files?customer_uri=/customers/123", 
-              "/eta/latest?tour_uri=/tours/123", 
-              "/messages/123"
-            ]
           }, 
-          "expiration_time": {
-            "type": "string", 
-            "description": "Expiration time to limit the lifetime and avoid obsolete subscriptions",
-            "format": "date-time"
+          {
+            "type": "object", 
+            "properties": {
+              "callback_url": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/url_type"
+                  },
+                  {
+                    "description":  "URL to which webhooks should send requests"
+                  }
+                ]
+              },
+              "access_token": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/access_token"
+                  },
+                  {
+                    "description": "JSON Web Token for authentication at callback server"
+                  }
+                ]
+              },
+              "topic":{
+                "$ref": "#/components/schemas/topic"
+              },
+              "event_uri": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri_type"
+                  },
+                  {
+                    "description": "URI structure is depending on the ``topic``"
+                  }
+                ]
+              }, 
+              "expiration_time": {
+                "type": "string", 
+                "description": "Expiration time to limit the lifetime and avoid obsolete subscriptions",
+                "format": "date-time"
+              }
+            }    
           }
-        }
+        ]
       },
       "topic": {
         "type": "string", 
@@ -9249,7 +9427,6 @@
         ]
       },
       "tour_event_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9260,26 +9437,28 @@
         ]
       },
       "tour_event": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
             "$ref": "#/components/schemas/tour_uri"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "$ref": "#/components/schemas/coordinates"
+              },
+              "event": {
+                "$ref": "#/components/schemas/tour_event_types"
+              },
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
+              }
+            }    
           }
-        ],
-        "properties": {
-          "coordinates": {
-            "$ref": "#/components/schemas/coordinates"
-          },
-          "event": {
-            "$ref": "#/components/schemas/tour_event_types"
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
-          }
-        }
+        ]
       },
       "drive_event_types": {
         "description": "``started``: drive started, \n``paused``: drive paused, \n``interrupted``: drive interrupted due to an unplanned event e.g. accident, \n``canceled``: drive canceled, \n``deleted``: drive deleted, \n``arrived``: arrived at destination, \n``finished``: drive and including tasks finished",
@@ -9296,7 +9475,6 @@
         ]
       },
       "drive_event_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9307,26 +9485,28 @@
         ]
       },
       "drive_event": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
             "$ref": "#/components/schemas/drive_uri"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "$ref": "#/components/schemas/coordinates"
+              },
+              "event": {
+                "$ref": "#/components/schemas/drive_event_types"
+              },
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
+              }
+            }    
           }
-        ],
-        "properties": {
-          "coordinates": {
-            "$ref": "#/components/schemas/coordinates"
-          },
-          "event": {
-            "$ref": "#/components/schemas/drive_event_types"
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
-          }
-        }
+        ]
       },
       "task_event_types": {
         "type": "string",
@@ -9339,7 +9519,6 @@
         ]
       },
       "task_event_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9350,57 +9529,59 @@
         ]
       },
       "task_event": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
             "$ref": "#/components/schemas/task_uri"
-          }
-        ],
-        "properties": {
-          "coordinates": {
-            "$ref": "#/components/schemas/coordinates"
-          },
-          "event": {
-            "$ref": "#/components/schemas/task_event_types"
-          },
-          "shipment_info": {
+          }, 
+          {
             "type": "object",
-            "description": "Information about the associated shipment",
             "properties": {
-              "status": {
-                "type": "string"
+              "coordinates": {
+                "$ref": "#/components/schemas/coordinates"
+              },
+              "event": {
+                "$ref": "#/components/schemas/task_event_types"
+              },
+              "shipment_info": {
+                "type": "object",
+                "description": "Information about the associated shipment",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "additions": {
+                    "$ref": "#/components/schemas/key_value_list"
+                  }
+                }
+              },
+              "items_info": {
+                "description": "Information about single items.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "item_id": {
+                      "$ref": "#/components/schemas/id_type"
+                    },
+                    "status": {
+                      "description": "Information about the status of an item e.g. the condition at\ndelivery",
+                      "type": "string"
+                    },
+                    "additions": {
+                      "$ref": "#/components/schemas/key_value_list"
+                    }
+                  }
+                }
               },
               "additions": {
                 "$ref": "#/components/schemas/key_value_list"
               }
-            }
-          },
-          "items_info": {
-            "description": "Information about single items.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "item_id": {
-                  "$ref": "#/components/schemas/id_type"
-                },
-                "status": {
-                  "description": "Information about the status of an item e.g. the condition at\ndelivery",
-                  "type": "string"
-                },
-                "additions": {
-                  "$ref": "#/components/schemas/key_value_list"
-                }
-              }
-            }
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
+            }    
           }
-        }
+        ]
       },
       "resource_event_types": {
         "type": "string",
@@ -9411,47 +9592,63 @@
         ]
       },
       "resource_event": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/timestamp"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "event": {
+                "$ref": "#/components/schemas/resource_event_types"
+              },
+              "resource_uri": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri_type"
+                  },
+                  {
+                    "description": "URI of the associated resource",
+                    "example": "/customers/123"    
+                  }
+                ]
+              },
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
+              }
+            }    
           }
-        ], 
-        "properties": {
-          "event": {
-            "$ref": "#/components/schemas/resource_event_types"
-          },
-          "resource_uri": {
-            "description": "URI of the associated resource",
-            "$ref": "#/components/schemas/uri_type", 
-            "example": "/customers/123"
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
-          }
-        }
+        ]
       },
       "shipment_full": {
-        "type": "object", 
-        "properties": {
-          "tours": {
-            "description": "List of URIs of tours to which the shipment is linked, respectively tours with tasks linked to this shipment.",
-            "type": "array", 
-            "items": {
-              "$ref": "#/components/schemas/tour_uri", 
-              "example": "/tours/123"
-            }
-          }
-        },
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/shipment"
+          }, 
+          {
+            "type": "object", 
+            "properties": {
+              "tours": {
+                "description": "List of URIs of tours to which the shipment is linked, respectively tours with tasks linked to this shipment.",
+                "type": "array", 
+                "items": {
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/tour_uri"
+                    },
+                    {
+                      "example": "/tours/123"
+                    }
+                  ]
+                }
+              }
+            }    
           }
         ]
       },
@@ -9479,19 +9676,17 @@
         "description": "",
         "properties": {
           "item_id": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/id_type"
-              }
-            ]
+            "$ref": "#/components/schemas/id_type"
           },
           "parent_id": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/id_type"
+              }, 
+              {
+                "description": "Item ID of the package the item is part of (e.g. the ID of the\npalette to which the item belongs). With the `parentid` you are able\nto map any tree structure in the item list."
               }
-            ],
-            "description": "Item ID of the package the item is part of (e.g. the ID of the\npalette to which the item belongs). With the `parentid` you are able\nto map any tree structure in the item list."
+            ]
           },
           "count": {
             "type": "integer",
@@ -9634,7 +9829,6 @@
         }
       },
       "task_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9645,30 +9839,32 @@
         ]
       },
       "task": {
-        "type": "object",
         "allOf": [
           {
             "$ref":  "#/components/schemas/shipment_uri" 
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "task_type": {
+                "type": "string",
+                "description": "Custom designation for task type"
+              },
+              "address": {
+                "$ref": "#/components/schemas/address"
+              },
+              "time_window": {
+                "$ref": "#/components/schemas/time_window"
+              },
+              "description": {
+                "type": "string"
+              },
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
+              }
+            }    
           }
-        ],
-        "properties": {
-          "task_type": {
-            "type": "string",
-            "description": "Custom designation for task type"
-          },
-          "address": {
-            "$ref": "#/components/schemas/address"
-          },
-          "time_window": {
-            "$ref": "#/components/schemas/time_window"
-          },
-          "description": {
-            "type": "string"
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
-          }
-        }
+        ]
       },
       "key_value_list": {
         "type": "array",
@@ -9711,27 +9907,28 @@
         ]
       },
       "message": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
-          }
-        ],
-        "properties": {
-          "sender": {
-            "type": "string",
-            "description": "Name of sender"
-          },
-          "message_channel_id":{
-            "$ref": "#/components/schemas/id_type"
           }, 
-          "message": {
-            "type": "string"
+          {
+            "type": "object",
+            "properties": {
+              "sender": {
+                "type": "string",
+                "description": "Name of sender"
+              },
+              "message_channel_id":{
+                "$ref": "#/components/schemas/id_type"
+              }, 
+              "message": {
+                "type": "string"
+              }
+            }    
           }
-        }
+        ]
       },
       "tacho_file_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -9742,51 +9939,53 @@
         ]
       },
       "tacho_file": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/vehicle_uri"
           }, 
           {
             "$ref": "#/components/schemas/driver_uri"
+          }, 
+          {
+            "type": "object",
+            "properties": {
+              "file_name": {
+                "type": "string",
+                "description": "File name",
+                "example": "123456789.DDD"
+              },
+              "class": {
+                "type": "string",
+                "enum": [
+                  "driver",
+                  "vehicle",
+                  "all"
+                ],
+                "example": "driver"
+              },
+              "company_card": {
+                "type": "string",
+                "description": "The company card which was used",
+                "example": "DU000000000000"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ddd",
+                  "dlc",
+                  "tgd",
+                  "c1b_v1b"
+                ],
+                "example": 0
+              },
+              "data": {
+                "type": "string",
+                "description": "container data bytes encoded in Base64",
+                "example": "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
+              }
+            }
           }
-        ],
-        "properties": {
-          "file_name": {
-            "type": "string",
-            "description": "File name",
-            "example": "123456789.DDD"
-          },
-          "class": {
-            "type": "string",
-            "enum": [
-              "driver",
-              "vehicle",
-              "all"
-            ],
-            "example": "driver"
-          },
-          "company_card": {
-            "type": "string",
-            "description": "The company card which was used",
-            "example": "DU000000000000"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "ddd",
-              "dlc",
-              "tgd",
-              "c1b_v1b"
-            ],
-            "example": 0
-          },
-          "data": {
-            "type": "string",
-            "description": "container data bytes encoded in Base64",
-            "example": "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
-          }
-        }
+        ]
       },
       "driver_card": {
         "type": "object",
@@ -9899,8 +10098,14 @@
         "type": "object",
         "properties": {
           "timestamp": {
-            "$ref": "#/components/schemas/timestamp_type",
-            "description": "Creation time of the data set"
+            "allOf":[
+              {
+                "$ref": "#/components/schemas/timestamp_type"
+              },
+              {
+                "description": "Creation time of the data set"
+              }
+            ]
           }
         }
       },
@@ -9973,9 +10178,9 @@
         }
       },
       "vehicle_group_id": {
-        "type": "object", 
+        "type": "object",
         "properties": {
-          "vehicle_group_id": {
+          "vehicle_group_id": {         
             "$ref": "#/components/schemas/id_type"
           }
         }
