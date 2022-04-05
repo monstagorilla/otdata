@@ -7380,8 +7380,7 @@
           "input": {
             "example": [
               1,
-              2,
-              "..."
+              2
             ],
             "type": "array",
             "items": {
@@ -7392,8 +7391,7 @@
           "output": {
             "example": [
               1,
-              2,
-              "..."
+              2
             ],
             "type": "array",
             "items": {
@@ -7404,8 +7402,7 @@
           "analog": {
             "example": [
               1.1,
-              2.2,
-              "..."
+              2.2
             ],
             "type": "array",
             "items": {
@@ -9933,7 +9930,7 @@
                   "tgd",
                   "c1b_v1b"
                 ],
-                "example": 0
+                "example": "ddd"
               },
               "data": {
                 "type": "string",
