@@ -1158,7 +1158,6 @@
         ],
         "summary": "Creates a message for a message channel",
         "operationId": "create_message",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/message_channel_id_path"
@@ -1869,7 +1868,6 @@
         "tags": [
           "Tour Management"
         ],
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -1938,7 +1936,6 @@
         ],
         "summary": "Creates a drive for a tour",
         "operationId": "create_drives",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -2240,7 +2237,6 @@
         "tags": [
           "Tour Management"
         ],
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -2312,7 +2308,6 @@
         ],
         "summary": "Creates a task for a drive",
         "operationId": "create_task",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_id_path"
@@ -2703,7 +2698,6 @@
         ],
         "summary": "Creates a device",
         "operationId": "create_device",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -3070,7 +3064,6 @@
         ],
         "summary": "Creates a driver",
         "operationId": "create_driver",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -3434,7 +3427,6 @@
         ],
         "summary": "Creates a customer",
         "operationId": "create_customer",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -3801,7 +3793,6 @@
         ],
         "summary": "Creates a vehicle",
         "operationId": "create_vehicle",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -4171,7 +4162,6 @@
         ],
         "summary": "Creates a shipment",
         "operationId": "create_shipment",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5366,7 +5356,6 @@
         ],
         "summary": "Sends a tour event",
         "operationId": "webhook_tour_event",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5416,7 +5405,6 @@
         ],
         "summary": "Sends a drive event",
         "operationId": "webhook_drive_event",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5466,7 +5454,6 @@
         ],
         "summary": "Sends a task event",
         "operationId": "webhook_task_event",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5516,7 +5503,6 @@
         ],
         "summary": "Sends a resource event",
         "operationId": "webhook_resource_event",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5566,7 +5552,6 @@
         ],
         "summary": "Sends a set of live data",
         "operationId": "webhook_live_data",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5616,7 +5601,6 @@
         ],
         "summary": "Sends a tacho file",
         "operationId": "webhook_tacho_file",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5666,7 +5650,6 @@
         ],
         "summary": "Sends an ETA",
         "operationId": "webhook_eta",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5716,7 +5699,6 @@
         ],
         "summary": "Sends a message",
         "operationId": "webhook_message",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5846,7 +5828,6 @@
         ],
         "summary": "Creates a subscription",
         "operationId": "create_subscription",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -9625,7 +9606,6 @@
       },
       "item": {
         "type": "object",
-        "description": "",
         "properties": {
           "item_id": {
             "$ref": "#/components/schemas/id_type"
