@@ -6217,7 +6217,7 @@
         "required": true
       },
       "ot_id": {
-        "description": "Registered OpenTelematics ID of the requester",
+        "description": "Registered OpenTelematics ID of the responder",
         "schema": {
           "type": "string"
         }, 
@@ -6246,9 +6246,9 @@
         "in": "header",
         "name": "API-Version",
         "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
-        "required": false,
         "schema": {
-          "$ref": "#/components/headers/api_version"
+          "type": "string",
+          "pattern": "^[1-9][0-9]*\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
         }
       },
       "from": {
@@ -6352,7 +6352,7 @@
         "description": "Registered OpenTelematics ID of the requester",
         "required": true,
         "schema": {
-          "$ref": "#/components/headers/ot_id"
+          "$ref": "#/components/schemas/id_type"
         }
       },
       "customer_uri": {
