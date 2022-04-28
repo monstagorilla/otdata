@@ -9588,6 +9588,16 @@
       "shipment": {
         "type": "object",
         "properties": {
+          "shipment_reference": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/id_type"
+              },
+              {
+                "description": "Reference (e.g. number or name of the shipment used in shipment tracking), that is used independently of API-specific IDs and URIs."    
+              }
+            ]
+          },
           "addresses": {
             "type": "array",
             "items": {
