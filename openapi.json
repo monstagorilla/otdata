@@ -9601,6 +9601,9 @@
             "items": {
               "$ref": "#/components/schemas/item"
             }
+          }, 
+          "additions": {
+            "$ref": "#/components/schemas/key_value_list"
           }
         }
       },
@@ -9755,6 +9758,9 @@
                 "example": true
               }
             }
+          }, 
+          "additions": {
+            "$ref": "#/components/schemas/key_value_list"
           }
         }
       },
