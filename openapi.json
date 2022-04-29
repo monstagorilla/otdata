@@ -53,16 +53,12 @@
       "description": "Retrieve and create tacho files"
     },
     {
-      "name": "Devices", 
-      "description": "Retrieve and manage devices"
+      "name": "Objects", 
+      "description": "Retrieve and manage objects"
     },
     {
       "name": "Shipments", 
       "description": "Retrieve and manage shipments"
-    },
-    {
-      "name": "Vehicles", 
-      "description": "Retrieve and manage vehicles"
     },
     {
       "name": "Drivers", 
@@ -97,7 +93,7 @@
         ],
         "summary": "Creates a live data resource",
         "operationId": "create_live_data",
-        "description": "May be used to send live data from driver or vehicle device to server.",
+        "description": "May be used to send live data to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -179,16 +175,13 @@
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri``, ``vehicle_group_id`` and ``tour_uri``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_uri``, ``object_uri``, ``vehicle_group_id`` and ``tour_uri``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
           },
           {
-            "$ref": "#/components/parameters/device_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_uri"
+            "$ref": "#/components/parameters/object_uri"
           },
           {
             "$ref": "#/components/parameters/vehicle_group_id"
@@ -284,16 +277,13 @@
         "tags": [
           "Live Data"
         ],
-        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri``, ``vehicle_group_id``, ``tour_uri`` and ``drive_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_uri``, ``object_uri``, ``vehicle_group_id``, ``tour_uri`` and ``drive_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``fields``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
           },
           {
-            "$ref": "#/components/parameters/device_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_uri"
+            "$ref": "#/components/parameters/object_uri"
           },
           {
             "$ref": "#/components/parameters/vehicle_group_id"
@@ -475,7 +465,7 @@
         ],
         "summary": "Creates an ETA resource",
         "operationId": "create_eta",
-        "description": "May be used to send calculated ETA from driver or vehicle device to server.",
+        "description": "May be used to send calculated ETA to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -803,16 +793,13 @@
         "tags": [
           "Tacho Files"
         ],
-        "description": "Filter search: ``customer_uri``, ``device_uri``, ``vehicle_uri`` and ``vehicle_group_id``\n\nTime selection: ``from``, ``to`` and ``used_time``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``customer_uri``, ``object_uri`` and ``vehicle_group_id``\n\nTime selection: ``from``, ``to`` and ``used_time``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
           },
           {
-            "$ref": "#/components/parameters/device_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_uri"
+            "$ref": "#/components/parameters/object_uri"
           },
           {
             "$ref": "#/components/parameters/vehicle_group_id"
@@ -909,7 +896,7 @@
         ],
         "summary": "Creates a tacho file",
         "operationId": "create_tacho_file",
-        "description": "May be used to send tacho files from driver or vehicle device to server.",
+        "description": "May be used to send tacho files to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -1449,7 +1436,7 @@
       "get": {
         "summary": "Returns a list of tours, optionally with embedded subresources",
         "operationId": "get_tours",
-        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nFilter search: ``customer_uri``, ``device_uri`` and ``vehicle_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``embed``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nFilter search: ``customer_uri`` and ``object_uri``\n\nTime selection: ``from``and ``to``\n\nModify response: ``embed``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "tags": [
           "Tour Management"
         ],
@@ -1458,10 +1445,7 @@
             "$ref": "#/components/parameters/customer_uri"
           },
           {
-            "$ref": "#/components/parameters/device_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_uri"
+            "$ref": "#/components/parameters/object_uri"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -2614,17 +2598,20 @@
         }
       }
     },
-    "/devices": {
+    "/objects": {
       "get": {
-        "summary": "Returns a list of devices",
-        "operationId": "get_devices",
+        "summary": "Returns a list of objects",
+        "operationId": "get_objects",
         "tags": [
-          "Devices"
+          "Objects"
         ],
         "description": "Filter search: ``customer_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/customer_uri"
+          },
+          {
+            "$ref": "#/components/parameters/vehicle_group_id"
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -2661,7 +2648,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/device_full"
+                        "$ref": "#/components/schemas/object_full"
                       }
                     },
                     "next_cursor":{
@@ -2694,10 +2681,10 @@
       },
       "post": {
         "tags": [
-          "Devices"
+          "Objects"
         ],
-        "summary": "Creates a device",
-        "operationId": "create_device",
+        "summary": "Creates an object",
+        "operationId": "create_object",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -2710,16 +2697,16 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/device_create"
+          "$ref": "#/components/requestBodies/object_create"
         },
         "responses": {
           "201": {
             "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
             "links": {
-              "GET /devices/{device_id}": {
-                "operationId": "get_device", 
+              "GET /objects/{object_id}": {
+                "operationId": "get_object", 
                 "parameters": {
-                  "device_id": "$response.body#/id"
+                  "object_id": "$response.body#/id"
                 }
               }
             },
@@ -2740,7 +2727,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/device_full"
+                  "$ref": "#/components/schemas/object_full"
                 }
               }
             }
@@ -2772,16 +2759,16 @@
         }
       }
     },
-    "/devices/{device_id}": {
+    "/objects/{object_id}": {
       "get": {
         "tags": [
-          "Devices"
+          "Objects"
         ],
-        "operationId": "get_device",
-        "summary": "Returns a device",
+        "operationId": "get_object",
+        "summary": "Returns an object",
         "parameters": [
           {
-            "$ref": "#/components/parameters/device_id_path"
+            "$ref": "#/components/parameters/object_id_path"
           },
           {
             "$ref": "#/components/parameters/if_none_match"
@@ -2816,7 +2803,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/device_full"
+                  "$ref": "#/components/schemas/object_full"
                 }
               }
             }
@@ -2849,14 +2836,14 @@
       },
       "put": {
         "tags": [
-          "Devices"
+          "Objects"
         ],
-        "summary": "Updates or creates a device",
-        "operationId": "put_device",
+        "summary": "Updates or creates an object",
+        "operationId": "put_object",
         "description": "If the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send.",
         "parameters": [
           {
-            "$ref": "#/components/parameters/device_id_path"
+            "$ref": "#/components/parameters/object_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match"
@@ -2872,7 +2859,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/device_update"
+          "$ref": "#/components/requestBodies/object_update"
         },
         "responses": {
           "201": {
@@ -2928,13 +2915,13 @@
       },
       "delete": {
         "tags": [
-          "Devices"
+          "Objects"
         ],
-        "summary": "Deletes a device",
-        "operationId": "delete_device",
+        "summary": "Deletes an object",
+        "operationId": "delete_object",
         "parameters": [
           {
-            "$ref": "#/components/parameters/device_id_path"
+            "$ref": "#/components/parameters/object_id_path"
           },
           {
             "$ref": "#/components/parameters/if_match_required"
@@ -3709,372 +3696,6 @@
         }
       }
     },
-    "/vehicles": {
-      "get": {
-        "summary": "Returns a list of vehicles",
-        "operationId": "get_vehicles",
-        "tags": [
-          "Vehicles"
-        ],
-        "description": "Filter search: ``customer_uri`` and ``vehicle_group_id``\n\nCursor-based pagination: ``cursor`` and ``limit``",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/customer_uri"
-          },
-          {
-            "$ref": "#/components/parameters/vehicle_group_id"
-          },
-          {
-            "$ref": "#/components/parameters/cursor"
-          },
-          {
-            "$ref": "#/components/parameters/limit"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/vehicle_full"
-                      }
-                    },
-                    "next_cursor":{
-                      "$ref": "#/components/schemas/cursor"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Creates a vehicle",
-        "operationId": "create_vehicle",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/vehicle_create"
-        },
-        "responses": {
-          "201": {
-            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
-            "links": {
-              "GET /vehicles/{vehicle_id}": {
-                "operationId": "get_vehicle", 
-                "parameters": {
-                  "vehicle_id": "$response.body#/id"
-                }
-              }
-            },
-            "headers": {
-              "ETag": {
-                "$ref": "#/components/headers/etag"
-              },
-              "Cache-Control": {
-                "$ref": "#/components/headers/cache_control"
-              },
-              "API-Version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/vehicle_full"
-                }
-              }
-            }
-          },
-          "204": {
-            "$ref": "#/components/responses/no_content"
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
-          },
-          "415": {
-            "$ref": "#/components/responses/unsupported_media_type"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      }
-    },
-    "/vehicles/{vehicle_id}": {
-      "get": {
-        "tags": [
-          "Vehicles"
-        ],
-        "operationId": "get_vehicle",
-        "summary": "Returns a vehicle",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/vehicle_id_path"
-          },
-          {
-            "$ref": "#/components/parameters/if_none_match"
-          },
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "ETag": {
-                "$ref": "#/components/headers/etag"
-              }, 
-              "Cache-Control": {
-                "$ref": "#/components/headers/cache_control"
-              },
-              "API-Version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/vehicle_full"
-                }
-              }
-            }
-          },
-          "304": {
-            "$ref": "#/components/responses/not_modified"
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
-          },
-          "412": {
-            "$ref": "#/components/responses/precondition_failed"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Updates or creates a vehicle",
-        "operationId": "put_vehicle",
-        "description": "If the request is used to create a new resource, the ``If_Match`` header SHOULD be omitted. If it is used to update an existing resource, the ``If-Match`` header MUST be send.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/vehicle_id_path"
-          },
-          {
-            "$ref": "#/components/parameters/if_match"
-          },
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/vehicle_update"
-        },
-        "responses": {
-          "201": {
-            "description": "Created. The request has been fulfilled and has resulted in one or more new resources being created.",
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            }
-          },
-          "204": {
-            "description": "No Content.",
-            "headers": {
-              "api-version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
-          },
-          "412": {
-            "$ref": "#/components/responses/precondition_failed"
-          },
-          "415": {
-            "$ref": "#/components/responses/unsupported_media_type"
-          },
-          "428": {
-            "$ref": "#/components/responses/precondition_required"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Vehicles"
-        ],
-        "summary": "Deletes a vehicle",
-        "operationId": "delete_vehicle",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/vehicle_id_path"
-          },
-          {
-            "$ref": "#/components/parameters/if_match_required"
-          },
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "204": {
-            "$ref": "#/components/responses/no_content"
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
-          },
-          "412": {
-            "$ref": "#/components/responses/precondition_failed"
-          },
-          "428": {
-            "$ref": "#/components/responses/precondition_required"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      }
-    },
     "/shipments": {
       "get": {
         "summary": "Returns a list of shipments",
@@ -4537,7 +4158,7 @@
         ],
         "summary": "Creates a tour event",
         "operationId": "create_tour_event",
-        "description": "May be used to send tour event from driver or vehicle device to server.",
+        "description": "May be used to send tour event to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -4784,7 +4405,7 @@
         ],
         "summary": "Creates a drive event",
         "operationId": "create_drive_event",
-        "description": "May be used to send drive event from driver or vehicle device to server.",
+        "description": "May be used to send drive event to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -5034,7 +4655,7 @@
         ],
         "summary": "Creates a task event",
         "operationId": "create_task_event",
-        "description": "May be used to send task event from driver or vehicle device to server.",
+        "description": "May be used to send task event to server.",
         "parameters": [
           {
             "$ref": "#/components/parameters/ot_id"
@@ -6119,7 +5740,7 @@
           "/tours/123/drives/123", 
           "/tours/123/drives/123/tasks/123",
           "/customers/123", 
-          "/live-data/latest?customer_uri=/customers/123?vehicle_uri=/vehicles/123?fields=position,can,tacho", 
+          "/live-data/latest?customer_uri=/customers/123?object_uri=/objects/123?fields=position,can,tacho", 
           "/tacho_files?customer_uri=/customers/123", 
           "/eta/latest?tour_uri=/tours/123", 
           "/messages/123"
@@ -6148,11 +5769,8 @@
       "driver_uri": {
         "value": "/drivers/123"
       },
-      "device_uri": {
-        "value": "/devices/123"
-      },
-      "vehicle_uri": {
-        "value": "/vehicles/123"
+      "object_uri": {
+        "value": "/objects/123"
       },
       "message_uri": {
         "value": "/messages/123/123"
@@ -6358,27 +5976,12 @@
           "$ref": "#/components/schemas/id_type"
         }
       },
-      "device_uri": {
-        "name": "device_uri",
+      "object_uri": {
+        "name": "object_uri",
         "in": "query",
         "schema": {
           "$ref": "#/components/schemas/uri_type"
         }
-      },
-      "vehicle_uri": {
-        "name": "vehicle_uri",
-        "in": "query",
-        "schema": {
-          "$ref": "#/components/schemas/uri_type"
-        }
-      },
-      "vehicle_id_path": {
-        "name": "vehicle_id",
-        "in": "path",
-        "schema": {
-          "$ref": "#/components/schemas/id_type"
-        },
-        "required": true
       },
       "driver_id_path": {
         "name": "driver_id",
@@ -6388,8 +5991,8 @@
         },
         "required": true
       },
-      "device_id_path": {
-        "name": "device_id",
+      "object_id_path": {
+        "name": "object_id",
         "in": "path",
         "schema": {
           "$ref": "#/components/schemas/id_type"
@@ -6881,41 +6484,21 @@
         },
         "required": true
       },
-      "vehicle_create": {
+      "object_create": {
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/vehicle"
+              "$ref": "#/components/schemas/object"
             }
           }
         },
         "required": true
       },
-      "vehicle_update": {
+      "object_update": {
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/vehicle_full"
-            }
-          }
-        },
-        "required": true
-      },
-      "device_create": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/device"
-            }
-          }
-        },
-        "required": true
-      },
-      "device_update": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/device_full"
+              "$ref": "#/components/schemas/object_full"
             }
           }
         },
@@ -7161,100 +6744,95 @@
           }
         }
       },
-      "device_full": {
+      "object_full": {
         "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
           {
-            "$ref": "#/components/schemas/device"
+            "$ref": "#/components/schemas/object"
           }
         ]
       },
-      "device": {
+      "object": {
         "allOf": [
           {
             "$ref": "#/components/schemas/customer_uri"
           },
           {
             "type": "object", 
+            "description": "An object contains information about e.g. a vehicle or/and a device which can be linked to e.g. live data sets. The data structure is very broad to allow use in very different contexts.",
             "properties": {
-              "imei": {
-                "type": "string",
-                "minLength": 15,
-                "maxLength": 15,
-                "description": "IMEI"
-              },
-              "sn": {
-                "type": "string",
-                "maxLength": 30,
-                "description": "Serial number"
+              "device": {
+                "type":"object",
+                "properties":{
+                  "imei": {
+                    "type": "string",
+                    "minLength": 15,
+                    "maxLength": 15,
+                    "description": "IMEI"
+                  },
+                  "sn": {
+                    "type": "string",
+                    "maxLength": 30,
+                    "description": "Serial number"
+                  }
+                }
+              }, 
+              "vehicle": {
+                "type": "object",
+                "properties": {
+                  "vehicle_groups": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/vehicle_group_id"
+                    },
+                    "description": "List of assigned vehicle groups"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 150,
+                    "description": "Name of vehicle",
+                    "example": "MH-MH 1"
+                  },
+                  "plate_number": {
+                    "type": "string",
+                    "maxLength": 150,
+                    "description": "Plate number of vehicle",
+                    "example": "MH-MH 1"
+                  },
+                  "manufacturer": {
+                    "type": "string",
+                    "maxLength": 150,
+                    "description": "Manufacturer",
+                    "example": "Mercedes-Benz"
+                  },
+                  "model": {
+                    "type": "string",
+                    "maxLength": 150,
+                    "description": "Model type",
+                    "example": "1844 LS"
+                  },
+                  "construction_year": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Building Year",
+                    "example": 2008
+                  },
+                  "vin": {
+                    "type": "string",
+                    "minLength": 17,
+                    "maxLength": 17,
+                    "pattern": "^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$",
+                    "description": "Vehicle identification number",
+                    "example": "WDB9340321L333168"
+                  }        
+                }
               }
             }
           }
         ]
-      },
-      "vehicle_full": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/resource_meta"
-          }, 
-          {
-            "$ref": "#/components/schemas/vehicle"
-          }
-        ]
-      },
-      "vehicle": {
-        "type": "object",
-        "properties": {
-          "vehicle_groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/vehicle_group_id"
-            },
-            "description": "List of assigned vehicle groups"
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 150,
-            "description": "Name of vehicle",
-            "example": "MH-MH 1"
-          },
-          "plate_number": {
-            "type": "string",
-            "maxLength": 150,
-            "description": "Plate number of vehicle",
-            "example": "MH-MH 1"
-          },
-          "manufacturer": {
-            "type": "string",
-            "maxLength": 150,
-            "description": "Manufacturer",
-            "example": "Mercedes-Benz"
-          },
-          "model": {
-            "type": "string",
-            "maxLength": 150,
-            "description": "Model type",
-            "example": "1844 LS"
-          },
-          "construction_year": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Building Year",
-            "example": 2008
-          },
-          "vin": {
-            "type": "string",
-            "minLength": 17,
-            "maxLength": 17,
-            "pattern": "^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$",
-            "description": "Vehicle identification number",
-            "example": "WDB9340321L333168"
-          }
-        }
       },
       "live_data_full": {
         "type": "object",
@@ -7273,10 +6851,7 @@
             "$ref": "#/components/schemas/timestamp"
           },
           {
-            "$ref": "#/components/schemas/device_uri"
-          },
-          {
-            "$ref": "#/components/schemas/vehicle_uri"
+            "$ref": "#/components/schemas/object_uri"
           },
           {
             "$ref": "#/components/schemas/vehicle_group_id"
@@ -8951,11 +8526,8 @@
             "$ref": "#/components/schemas/customer_uri"
           },
           {
-            "$ref": "#/components/schemas/device_uri"
+            "$ref": "#/components/schemas/object_uri"
           },
-          {
-            "$ref": "#/components/schemas/vehicle_uri"
-          }, 
           {
             "type": "object",
             "properties": {
@@ -9213,7 +8785,7 @@
         "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]
       },
       "tour_event_types": {
-        "description": "``transmitted``: tour transmitted to driver, device or vehicle, \n``read``: tour read by driver, \n``excepted``: tour excepted by driver, \n``denied``: tour denied by driver, \n``started``: tour started, \n``canceled``: tour canceled, \n``deleted``: tour deleted, \n``finished``: tour finished",
+        "description": "``transmitted``: tour transmitted to e.g. driver, device or vehicle, \n``read``: tour read by driver, \n``excepted``: tour excepted by driver, \n``denied``: tour denied by driver, \n``started``: tour started, \n``canceled``: tour canceled, \n``deleted``: tour deleted, \n``finished``: tour finished",
         "type": "string", 
         "enum": [
           "transmitted",
@@ -9755,7 +9327,7 @@
       "tacho_file": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/vehicle_uri"
+            "$ref": "#/components/schemas/object_uri"
           }, 
           {
             "$ref": "#/components/schemas/driver_uri"
@@ -9840,6 +9412,35 @@
           }
         }
       },
+      "breakpad": {
+        "type": "object",
+        "properties": {
+          "axel": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "axle number front to back beginning with 0"
+          },
+          "wheel": {
+            "type": "string",
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "mal_adjusted",
+              "delayed_return",
+              "delayed_breaking",
+              "outworn",
+              "error",
+              "n/a"
+            ]
+          }
+        }
+      },
       "id": {
         "type": "object", 
         "properties": {
@@ -9919,10 +9520,10 @@
         "type": "string",
         "format": "date-time"
       },
-      "device_uri": {
+      "object_uri": {
         "type": "object", 
         "properties":{
-          "device_uri": {
+          "object_uri": {
             "$ref": "#/components/schemas/uri_type"
           }
         }
@@ -9955,14 +9556,6 @@
         "type": "object", 
         "properties": {
           "driver_uri": {
-            "$ref": "#/components/schemas/uri_type"
-          }
-        }
-      },
-      "vehicle_uri": {
-        "type": "object", 
-        "properties": {
-          "vehicle_uri": {
             "$ref": "#/components/schemas/uri_type"
           }
         }
