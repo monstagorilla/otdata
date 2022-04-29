@@ -206,7 +206,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc", "driver_behavior"]
+                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc"]
               }
             }
           },
@@ -320,7 +320,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc", "driver_behavior"]
+                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc"]
               }
             }
 
@@ -7337,9 +7337,6 @@
               },
               "dtc": {
                 "$ref": "#/components/schemas/dtc"
-              },
-              "driver_behavior": {
-                "$ref": "#/components/schemas/driver_behavior"
               }
             }
           }
@@ -8832,135 +8829,6 @@
                   }
                 }    
               }
-            ]
-          }
-        }
-      },
-      "driver_behavior": {
-        "type": "object",
-        "properties": {
-          "harsh_breaks": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total harsh brakes times"
-          },
-          "harsh_accelerations": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total harsh accelerations times"
-          },
-          "idle_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total idle time sec."
-          },
-          "coasting_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total coasting time sec."
-          },
-          "coasting_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total coasting distance km"
-          },
-          "acceleration_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total acceleration time sec."
-          },
-          "acceleration_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total acceleration distance km"
-          },
-          "deceleration_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total deceleration time sec."
-          },
-          "deceleration_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total deceleration distance km"
-          },
-          "overspeed_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total overspeed time sec."
-          },
-          "overspeed_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total overspeed distance km"
-          },
-          "rpm_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total over RPM time sec."
-          },
-          "rpm_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total over RPM distance km"
-          },
-          "cruisable_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total cruisable time sec."
-          },
-          "cruisable_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total cruisable distance km"
-          },
-          "cruise_time": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total cruise time sec."
-          },
-          "cruise_distance": {
-            "type": "number",
-            "format": "float",
-            "description": "Total cruise distance in km"
-          },
-          "cruise_time_2": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Total cruise time w/o acceleration pedal in sec."
-          },
-          "cruise_distance_2": {
-            "type": "number",
-            "format": "float",
-            "description": "Total cruise distance w/o acceleration pedal in km"
-          }
-        }
-      },
-      "breakpad": {
-        "type": "object",
-        "properties": {
-          "axel": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "axle number front to back beginning with 0"
-          },
-          "wheel": {
-            "type": "string",
-            "enum": [
-              "left",
-              "right"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ok",
-              "mal_adjusted",
-              "delayed_return",
-              "delayed_breaking",
-              "outworn",
-              "error",
-              "n/a"
             ]
           }
         }
