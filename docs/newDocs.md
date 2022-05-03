@@ -10,7 +10,11 @@
 ## URI in addition to IDs
 Much more understandable documentation without the need for external information, because path templating is not mandatory. You can directly make a GET request on a returned URI instead of combining the returned IDs with a specified path template to a valid URI. In addition, for example, customer data can be managed on another server and the exact endpoint can be explicitly specified with a URL (subtype of URI), which is not possible via IDs and local path templating. 
 
-## Webhook
+## Callbacks
+### Webhooks
+To push data asynchronously from the server to the client, so-called webhooks are used. They are defined as POST requests and can transmit, for example, events, ETAs or generic messages. 
+### Publish–subscribe pattern
+The `callback_url` and which webhooks to send, can be defined out-of-band or managed with the `/subscriptions` endpoint in a typical publish-subscribe pattern.
 
 ## Cursor-based Pagination
 We use cursor-based pagination (also known as keyset pagination) because it has some advantages over offset-based pagination. There is no page drifting when new datasets are added between two requests and it scales well with a large number of datasets respectively large offsets.  
