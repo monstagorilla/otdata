@@ -8,7 +8,7 @@ This process guarantees optimistic concurrency control.
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
 flowchart TD
-    A[PUT /shipment/123] --> B[Matches `Ìf-Match` with latest ETag?]
+    A[PUT /shipments/123] --> B[Matches `Ìf-Match` with latest ETag?]
     B -->|Yes| C[204 No Content]
     B -->|No| D[412 Precondition Failed]
     D --> E[GET /shipments/123]
