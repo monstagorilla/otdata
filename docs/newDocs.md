@@ -3,8 +3,19 @@
 The [HTTP ETag header](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20) is used to maintain data integrity when editing resources and to enable caching. Each resource has an ETag assigned by the server. The ETag changes in the moment the server modifies the resource.
 ### Optimistic concurrency control
 To avoid data loss when editing a resource, the OTData API uses optimistic concurrency control. Pessimistic concurrency control is not necessary, due to the mostly low collision and locking probability.  
-An [`If-Match` header](https://datatracker.ietf.org/doc/html/rfc7232#section-3.1) with the latest known ETag is sent along with a PUT or DELETE request. If the ETag of the resource has not been changed and the client therefore knows the latest instance of the resource, the server can proceed processing the request. If the latest ETag differs from the `Ìf-Match` header, the server returns a `412 Precondition Failed` status code. The client must then make a GET request to the resource and start the editing from the beginning with the new resource instance and the new ETag.  
+An [`If-Match` header](https://datatracker.ietf.org/doc/html/rfc7232#section-3.1) with the latest known ETag is sent along with a PUT or DELETE request. If the ETag of the resource has not been changed and the client therefore knows the latest instance of the resource, the server can proceed processing the request. If the latest ETag differs from the `Ìf-Match` header, the server returns a `412 Precondition Failed` status code. The client must then make a GET request to the resource and start the editing from the beginning with the new resource instance and the new ETag. If the latest ETag matches the `Ìf-Match` header, the server returns a `204 No Content` status code. The resource was successfully updated.  
 This process guarantees optimistic concurrency control.
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
+flowchart TD
+    A[PUT /shipment/123] --> B[Matches `Ìf-Match` with latest ETag?]
+    B -->|Yes| C[204 No Content]
+    B -->|No| D[412 Precondition Failed]
+    D --> E[GET /shipments/123]
+    E --> F[200 OK]
+    F --> A
+    C --> G[Successfully updated]
+```
 ### Caching
 When retrieving a certain resource and an instance of it is already known, an [`If-None-Match` header](https://datatracker.ietf.org/doc/html/rfc7232#section-3.2) with the latest known ETag can be sent along with the GET request. If the ETag of the resource has not been changed and the client therefore knows the latest instance of the resource, the server just returns a `304 Not Modified` status code without body. The client can use its local instance. If the ETag of the resource has been changed, the server returns `200 OK` along with the resource instance in the response body.  
 This Caching with ETag headers reduces latency, since the server only needs to look up the ETag, and bandwith because the response body can be omitted in many cases.
