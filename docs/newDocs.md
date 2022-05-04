@@ -1,4 +1,4 @@
-# new
+# General concepts
 ## ETag header
 The [HTTP ETag header](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20) is used to maintain data integrity when editing resources and to enable caching. Each resource has an ETag assigned by the server. The ETag changes in the moment the server modifies the resource.
 ### Optimistic concurrency control
