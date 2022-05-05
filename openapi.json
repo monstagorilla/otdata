@@ -5820,7 +5820,7 @@
         "schema": {
           "type": "string"
         }, 
-        "required": true
+        "required": false
       },
       "api_version": {
         "description": "Version of the OpenTelematics API used, e.g.:`\"2.0.0\"`",
@@ -5949,7 +5949,7 @@
         "in": "header",
         "name": "OT-ID",
         "description": "Registered OpenTelematics ID of the requester",
-        "required": true,
+        "required": false,
         "schema": {
           "$ref": "#/components/schemas/id_type"
         }
