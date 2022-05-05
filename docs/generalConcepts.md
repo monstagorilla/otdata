@@ -40,7 +40,7 @@ The typical endpoint in the OTData API has always the same structure:
 
 | Request                 | Use                                                                   | Cacheable | Description                                  |
 |-------------------------|-----------------------------------------------------------------------|-----------|----------------------------------------------|
-| GET `/shipments`        | Search a collection with filters                                      | No        | Response can be returned in pages ([pagination](#cursor-based-pagination)). Caching is not useful here, because of the filtering and pagination.            |
+| GET `/shipments`        | Search a collection with filters                                      | No        | Response can be returned in pages ([pagination](#cursor-based-pagination)). <br/>Caching is not useful here, because of the filtering and pagination.            |
 | POST `/shipments`       | Create a new resource                                                 | Yes       | ID, URI and links are assigned by the server. |
 | GET `/shipments/123`    | Retrieve a certain resource                                           | Yes       |                                              |
 | PUT `/shipments/123`    | Create a new resource or replace an existing with the request payload | No        | ID, URI and links are assigned by the client. |
