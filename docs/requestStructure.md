@@ -6,7 +6,7 @@ Each request has at least the following header parameters:
 - `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
 For all other primitive types query parameters are used. Entire objects are transmitted in the body.  
 If the request returns a list of objects and therefore pagination is needed, it has also the following query parameters:  
-- `cursor`: Cursor for [cursor-based pagination](#cursor-based-pagination). Use next_cursor from response body to get the next page.  
+- `cursor`: Cursor for [cursor-based pagination](generalConcepts.md#cursor-based-pagination). Use next_cursor from response body to get the next page.  
 - `limit`: The limit parameter sets a maximum number of results to return per request.  
 
 ## Response structure
@@ -21,7 +21,7 @@ Cacheable responses have also the following header parameters:
 ## Response body
 `200 OK` and `201 Created` responses have a response body with either a single object or a `data` property with a list of objects and a `next_cursor` for pagination.  
   
-Responses with error status codes (4xx and 5xx) have a body conforming to the [application/problem+json MIME type](#applicationproblemjson-mime-type).
+Responses with error status codes (4xx and 5xx) have a body conforming to the [application/problem+json MIME type](generalConcepts.md#applicationproblemjson-mime-type).
 
 ## HTTP Status Codes  
 Overview of the use of HTTP Status Codes. 
