@@ -1,19 +1,26 @@
-# Request Structure 
-## Parameter Structure
-Each request has at least the following parameters:  
-- `otid` (required): Registered OpenTelematics ID of the requester
-- `version`: Version of the OpenTelematics API used, e.g.:`"1.1.0"`  
-- `token`: JSON Web Token
+# Request structure 
+## Parameter structure
+Each request has at least the following header parameters:  
+- `OT-ID`: Registered OpenTelematics ID of the requester
+- `Access-Token`: JSON Web Token
+- `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
+For all other primitive types query parameters are used. Entire objects are transmitted in the body.  
+If the request returns a list of objects and therefore pagination is needed, it has also the following query parameters:  
+- `cursor`: Cursor for [cursor-based pagination](https://opentelematics.gitlab.io/otdata/docs/#/generalConcepts?id=cursor-based-pagination). Use next_cursor from response body to get the next page.  
+- `limit`: The limit parameter sets a maximum number of results to return per request.  
+
+## Response structure
+Each request has at least the following header parameters:  
+- `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
+- `OT-ID`: Registered OpenTelematics ID of the responder  
+Cacheable responses have also the following header parameters:  
+- `ETag`: Entity Tag as defined by [RFC2068](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20)  
+- `Cache-Control`: Header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)  
+
+## Response body
+`200 OK` and `201 Created` responses have a response body with either a single object or a `data` property with a list of objects and a `next_cursor` for pagination.  
   
-For all primitive types query parameters are used. Objects and tokens are transmitted in the body.  
-
-
-## Response Body
-Each "200: OK" response body consists of four fields:
-- `otid` (required): Registered OpenTelematics ID of the responder
-- `version`: Version of the OpenTelematics API used, e.g.:`"1.1.0"`
-- `message`: Further explanation
-- `data`: Object that contains the actual data
+Responses with error status codes (4xx and 5xx) have a body conforming to the [application/problem+json MIME type](https://opentelematics.gitlab.io/otdata/docs/#/generalConcepts?id=applicationproblemjson-mime-type).
 
 ## HTTP Status Codes  
 Overview of the use of HTTP Status Codes. 
