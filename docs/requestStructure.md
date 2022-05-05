@@ -1,6 +1,6 @@
 # Request structure 
 ## Parameter structure
-Each request has at least the following header parameters:  
+Each request has at least the following header parameters:
 - `OT-ID`: Registered OpenTelematics ID of the requester
 - `Access-Token`: JSON Web Token
 - `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
@@ -10,10 +10,11 @@ If the request returns a list of objects and therefore pagination is needed, it 
 - `limit`: The limit parameter sets a maximum number of results to return per request.  
 
 ## Response structure
-Each request has at least the following header parameters:  
+Each request has at least the following header parameters:
 - `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
 - `OT-ID`: Registered OpenTelematics ID of the responder  
-Cacheable responses have also the following header parameters:  
+
+Cacheable responses have also the following header parameters:
 - `ETag`: Entity Tag as defined by [RFC2068](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20)  
 - `Cache-Control`: Header as defined by [RFC7234](https://datatracker.ietf.org/doc/html/rfc7234#section-5.2)  
 
