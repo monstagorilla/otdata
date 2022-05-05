@@ -1,5 +1,5 @@
-- [General Concepts](generalConcepts.md)
 - [API Sections](apiSections.md)
+- [General Concepts](generalConcepts.md)
 - [Request Structure](requestStructure.md)
 - [Data Models](dataModels.md)
 - [Release Notes](releaseNotes.md)
