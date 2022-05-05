@@ -48,22 +48,6 @@ Overview of the data types used in the respective context.
 | seconds             | `int32`          |                    |
 | longitude, latitude in meter| `double` |                    |
 
-
-## IDs
-Overview of the different types of IDs. 
-  
-All IDs are `strings`. With the exception of `otid`, which is assigned by OpenTelematics, all IDs can have their own structure and are defined by the software company or the customer.
-
-|ID          | Description |
-|------------|-------------|
-| `cid`      | Customer ID   |
-| `gid`      | Vehicle Group ID: Identifies a vehicle group that represents a set of Device IDs.     |
-| `otid`     | OpenTelematics ID: Every member of OpenTelematics e.V. has a registered ID. Both the requester and the responder transfer their `otid` so that each participant can assign it to the respective member. You can request the IDs of all members with `GET /otmember/getmember`.|
-| `did`      | Device ID: Identifies a specific device or vehicle.     |
-| `refid`    | Reference ID     |
-| `refdid`   | Reference Device ID     |
-| `dataid`   | Data ID      |
-
 ## Date and time indications  
 Unless otherwise stated, we use the ISO 8601 specification for all types of times.  
 https://tools.ietf.org/html/rfc3339#section-5.6 
