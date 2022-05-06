@@ -14,21 +14,29 @@ You can retrieve the current data or a history of datasets within a specified ti
 
 ## Tour Management
 
-There are two structures for tour management: `ShortOrder` and `ExtendedOrder`. `ShortOrder` is a subset of `ExtendedOrder`. They contain all static information about a tour. They can be updated (e.g. a drive can be added to a tour). Dynamic and not predictable information can be transmitted with [events](https://opentelematics.gitlab.io/otdata/docs/#/apiSections?id=events-and-eta). 
-
-Simplified Structure:
-
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
-graph LR
-   subgraph ExtendedOrder
-   direction TB
-   subgraph ShortOrder
-   Tour --array--> Drive
-   Drive --> Address
-   Drive --> TimeWindow
+graph TB
+   subgraph Tour
+   /tours --> /tours/1
+   /tours/1 --> /tours/1/drives
+   /tours/1/drives --> /tours/1/drives/1
+   /tours/1/drives --> /tours/1/drives/2
+
+   /tours/1/drives/1 --> /tours/1/drives/1/tasks
+   /tours/1/drives/1/tasks --> /tours/1/drives/1/tasks/delivery
+   /tours/1/drives/1/tasks --> /tours/1/drives/1/tasks/pickup
+
+   /tours/1/drives/2 --> /tours/1/drives/2/tasks
+   /tours/1/drives/2/tasks --> /tours/1/drives/2/tasks/delivery
    end
-   Drive --array--> Shipment --array--> Item & Task
+   subgraph Shipments
+   /shipments --> /shipments/1
+   /shipments --> /shipments/2
+
+   /shipments/1 -.- /tours/1/drives/1/tasks/delivery
+   /shipments/2 -.- /tours/1/drives/1/tasks/pickup
+   /shipments/2 -.- /tours/1/drives/2/tasks/delivery
    end
 ```
 
@@ -56,18 +64,17 @@ A task has a custom defined `tasktype` (e.g. "delivery"), a further `address` if
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
 
 sequenceDiagram
-   participant TMS
-   participant Telematic
+   participant Client
+   participant Server
+   participant Callback Server
 
-   Note over TMS,Telematic: Events   
-   Telematic->>TMS: POST /otdevice/events/tour
-   Telematic->>TMS: POST /otdevice/events/drive
-   Telematic->>TMS: POST /otdevice/events/task
-   TMS->>Telematic: POST /otdevice/events/ack
-   TMS->>Telematic: GET /otdevice/events
-   Note over TMS,Telematic: ETA   
-   Telematic->>TMS: POST /otdevice/eta
-   TMS->>Telematic: GET /otdevice/eta
+   Note over Client,Server: Manage Subscriptions   
+   Client->>Server: GET, POST /subscriptions
+   Client->>Server: GET, PUT, DELETE /subscriptions/123
+   Note over Server,Callback Server: Send Webhooks
+   Server->>Callback Server: POST /webhooks/drive-event
+   Server->>Callback Server: POST /webhooks/live-data
+   Server->>Callback Server: POST /webhooks/eta
 ```
 
 Events can be retrieved as a list (e.g. from a queue of all new and not yet downloaded events) or pushed individually. There are different kinds of events: Tour, drive and task events. Every kind of event has a `timestamp`, `coordinates` and refers to a drive and a tour. There is also an additional list of generic key-value pairs for custom content. The event types have different lists of enums for the actual event description. The task event has additional lists for status infomation of the associated shipment and its items (e.g. item condition at delivery).
