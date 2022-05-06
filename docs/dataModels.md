@@ -65,5 +65,6 @@ Use the OpenAPI format `“date”` for ISO 8601 "full-date":
     "type": "string",
     "format": "date",
     "example": "2017-07-21"
-}```
+}
+```
 
