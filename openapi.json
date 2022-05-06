@@ -3703,13 +3703,18 @@
         "tags": [
           "Shipments"
         ],
-        "description": "Filter search: ``customer_uri`` and ``tour_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``tour_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
-            "$ref": "#/components/parameters/customer_uri"
-          },
-          {
-            "$ref": "#/components/parameters/tour_uri_query"
+            "allOf":[
+
+              {
+                "$ref": "#/components/parameters/tour_uri_query"
+              }, 
+              {
+                "description": "The ``tour_uri`` is a subset of the ``task_uri`` found in ``linked_tasks``"
+              }
+            ]
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -4055,95 +4060,6 @@
           },
           "428": {
             "$ref": "#/components/responses/precondition_required"
-          },
-          "500": {
-            "$ref": "#/components/responses/internal_server_error"
-          }, 
-          "503": {
-            "$ref": "#/components/responses/service_unavailable"
-          }
-        }
-      }
-    },
-    "/tasks": {
-      "get": {
-        "summary": "Returns a list of the tasks that correspond to a shipment",
-        "operationId": "get_tasks",
-        "tags": [
-          "Shipments"
-        ],
-        "description": "Filter search: ``task_type``\n\nCursor-based pagination: ``cursor`` and ``limit``",
-        "parameters": [
-          {
-            "name": "shipment_uri", 
-            "in": "query", 
-            "required": true, 
-            "schema": {
-              "$ref": "#/components/schemas/uri_type"
-            }
-          },
-          {
-            "name": "task_type", 
-            "in": "query", 
-            "required": false, 
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/limit"
-          },
-          {
-            "$ref": "#/components/parameters/ot_id"
-          },
-          {
-            "$ref": "#/components/parameters/access_token"
-          },
-          {
-            "$ref": "#/components/parameters/api_version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "API-Version": {
-                "$ref": "#/components/headers/api_version"
-              }, 
-              "OT-ID": {
-                "$ref": "#/components/headers/ot_id"
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/task_full"
-                      }
-                    },
-                    "next_cursor":{
-                      "$ref": "#/components/schemas/cursor"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/bad_request"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/not_found"
           },
           "500": {
             "$ref": "#/components/responses/internal_server_error"
@@ -9096,16 +9012,16 @@
           {
             "type": "object", 
             "properties": {
-              "tours": {
-                "description": "List of URIs of tours to which the shipment is linked, respectively tours with tasks linked to this shipment.",
+              "linked_tasks": {
+                "description": "List of URIs of tasks to which the shipment is linked. The URIs of the corresponding tour and drive are simply the subsets of the task_uri.",
                 "type": "array", 
                 "items": {
                   "allOf":[
                     {
-                      "$ref": "#/components/schemas/tour_uri"
+                      "$ref": "#/components/schemas/task_uri"
                     },
                     {
-                      "example": "/tours/123"
+                      "example": "/tours/123/drives/123/tasks/123"
                     }
                   ]
                 }
