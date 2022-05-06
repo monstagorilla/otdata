@@ -49,8 +49,7 @@ Overview of the data types used in the respective context.
 | longitude, latitude in meter| `double` |                    |
 
 ## Date and time indications  
-Unless otherwise stated, we use the ISO 8601 specification for all types of times.  
-https://tools.ietf.org/html/rfc3339#section-5.6 
+Unless otherwise stated, we use the [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6) specification for all types of times.   
    
 Use the OpenAPI format `“date-time”` for ISO 8601 "date-time":   
 ```json
