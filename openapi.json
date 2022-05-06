@@ -6871,7 +6871,7 @@
                     "$ref": "#/components/schemas/uri_type"
                   },
                   {
-                    "description": "Driver ID of the driver", 
+                    "description": "Driver URI of the driver", 
                     "example": "/drivers/123"
                   } 
                 ]
@@ -8667,7 +8667,7 @@
                 "$ref": "#/components/schemas/uri_type"
               }, 
               {
-                "description": "Driver ID of the driver", 
+                "description": "Driver URI of the driver", 
                 "example": "/drivers/123"
               }
             ]
@@ -8678,7 +8678,7 @@
                 "$ref": "#/components/schemas/uri_type" 
               },
               {
-                "description": "Driver ID of the co-driver", 
+                "description": "Driver URI of the co-driver", 
                 "example": "/drivers/123"
               }
             ]
