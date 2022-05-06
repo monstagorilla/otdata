@@ -57,7 +57,30 @@ A shipment has a fixed list of items and a list of tasks to be completed at the 
 
 A task has a custom defined `tasktype` (e.g. "delivery"), a further `address` if it for example must be carried out at special coordinates on a factory site and a `timewindow`. There is also a list of generic key-value pairs so that it is also possible to define complex custom tasks.
 
+### Typical requests
+#### Create an entire tour with drives, tasks and linked shipments:  
+- IDs and URIs assigned by server:  
+`POST /shipments?create_multiple=true` or several `POST /shipments?create_multiple=false` (Create shipments associated with the new tour if they have not yet been created)  
+`POST /tours?create_subresources=true` (Create the entire tour)  
+- IDs and URIs assigned by client:  
+`PUT /tours?create_subresources=true` (Create the entire tour and linked shipments)
 
+Notice: When a request is used to create multiple resources, it is important to define a behavior for partial failure of the combined requests.
+
+#### Find all tasks linked to a shipment
+Simply read the `linked_tasks` list with all the URIs of linked tasks. With those URIs it is then easy to retrieve or subscribe to all events regarding the logistic process of the shipment:
+
+To get information about the planned logistic process regarding the shipment, simply use a subset of the `task_uri` e.g. `/tours/123/drives/123`:  
+- Information about the planned drive:  
+`GET /tours/123/drives/123`  
+- Directly retrieve events regarding the drive:  
+`GET /drive-events?drive_uri=/tours/123/drives/123`  
+- Subscribe to the corresponding drive events:  
+`POST /subscriptions`  
+request body: 
+```json
+
+```
 ### Events and ETA
 
 ```mermaid
