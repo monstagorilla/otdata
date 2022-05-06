@@ -4065,6 +4065,95 @@
         }
       }
     },
+    "/tasks": {
+      "get": {
+        "summary": "Returns a list of the tasks that correspond to a shipment",
+        "operationId": "get_tasks",
+        "tags": [
+          "Shipments"
+        ],
+        "description": "Filter search: ``task_type``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "parameters": [
+          {
+            "name": "shipment_uri", 
+            "in": "query", 
+            "required": true, 
+            "schema": {
+              "$ref": "#/components/schemas/uri_type"
+            }
+          },
+          {
+            "name": "task_type", 
+            "in": "query", 
+            "required": false, 
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/ot_id"
+          },
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/api_version"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "API-Version": {
+                "$ref": "#/components/headers/api_version"
+              }, 
+              "OT-ID": {
+                "$ref": "#/components/headers/ot_id"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/task_full"
+                      }
+                    },
+                    "next_cursor":{
+                      "$ref": "#/components/schemas/cursor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }, 
+          "503": {
+            "$ref": "#/components/responses/service_unavailable"
+          }
+        }
+      }
+    },
     "/tour-events": {
       "get": {
         "summary": "Returns a list of tour events",
