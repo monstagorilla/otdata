@@ -58,6 +58,18 @@ A shipment has a fixed list of items and a list of tasks to be completed at the 
 A task has a custom defined `tasktype` (e.g. "delivery"), a further `address` if it for example must be carried out at special coordinates on a factory site and a `timewindow`. There is also a list of generic key-value pairs so that it is also possible to define complex custom tasks.
 
 ### Examples for some typical requests
+#### Get the latest location of a vehicle
+- Use the `object_uri` of the vehicle and the `fields` parameter:  
+`GET /live-data/latest?object_uri=/objects/123&fields=position`
+
+#### Get the latest calculated ETA of a drive
+- Use the `drive_uri`:  
+`GET /eta/latest?drive_uri=/tours/123/drives/123`  
+
+#### Get the tacho files (e.g. DDD) of a vehicle for the activities in a certain time window
+- Use the `object_uri` of the vehicle, the `from` and `to` parameters and the `used_time` parameter:  
+`GET /tacho-files?object_uri=/objects/123&from=2022-05-06T10%3A33%3A00.140Z&to=2022-05-06T12%3A33%3A00.140Z?used_time=activity`
+
 #### Create an entire tour with drives, tasks and linked shipments:  
 - IDs and URIs assigned by server:  
 `POST /shipments?create_multiple=true` or several `POST /shipments?create_multiple=false` (Create shipments associated with the new tour if they have not yet been created)  
@@ -102,7 +114,13 @@ Request body:
   "event": "started"
 }
 ```
-### Events and ETA
+
+#### Get all shipments that corresponds to a tour
+- Instead of searching the entire tour for shipment links, it is possible to search the `/shipments` endpoint:  
+`GET /shipments?tour_uri=/tours/123`
+
+
+## Events and ETA
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
