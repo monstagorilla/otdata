@@ -69,13 +69,13 @@
       "description": "Retrieve and manage customers"
     },
     {
-      "name": "Messages", 
-      "description": "Retrieve and manage channel-based messages"
-    },
-    {
       "name": "Events", 
       "description": "Retrieve and create events"
     }, 
+    {
+      "name": "Messages", 
+      "description": "Retrieve and manage channel-based messages"
+    },
     {
       "name": "Webhook Subscriptions", 
       "description": "Retrieve and manage subscriptions"
