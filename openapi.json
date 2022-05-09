@@ -6963,7 +6963,7 @@
             "type": "array",
             "items": {
               "type": "number",
-              "format": "double"
+              "format": "float"
             },
             "description": "Analog values"
           },
