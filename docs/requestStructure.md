@@ -51,7 +51,7 @@ Overview of the use of HTTP status codes. The selection of status codes differs 
 `GET /live-data/123`: The server cannot map the transmitted URI to a resource.
 
 - `412 Precondition Failed`: If the client has indicated preconditions in its headers which the server does not meet. Example:  
-`PUT /shipments/123`: The transmitted ETag header doeas not match the latest ETag.
+`PUT /shipments/123`: The transmitted ETag header does not match the latest ETag.
 - `415 Unsupported Media Type`: If the media format of the requested data is not supported by the server, so the server is rejecting the request. Example:  
 `POST /shipments`: The request body is not of the `application/json` MIME type.
 - `428 Precondition Required`: If the origin server requires the request to be conditional. Example:  
