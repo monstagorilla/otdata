@@ -35,14 +35,14 @@ Overview of the use of HTTP status codes. The selection of status codes differs 
 `POST /shipments`: The created resource with the assigned ID and URI is returned in the response body and can be cached. 
 
 - `204 No Content`: If the successful response to a request does not contain a body with data. Example:  
-`POST /webhooks/tour-event`: "204" is the only successful status code, because the response never contains data.  
+`POST /webhooks/tour-event`: `204` is the only successful status code, because the response never contains data.  
 
 **Client Error (4xx):**  
 - `400 Bad Request`: If there is a formally invalid use or combination of parameters or an incorrect request syntax. Example:  
-`GET /live-data/latest`: Some possible reasons why "400" may be returned: The "from" parameter is an integer or the format does not match ISO 8601. Due to a typo, a parameter called "fron" is transferred.  
+`GET /live-data/latest`: Some possible reasons why `400` may be returned: The `from` parameter is an integer or the format does not match ISO 8601. Due to a typo, a parameter called `fron` is transferred.  
   
 - `401 Unauthorized`: If authentication is required and has failed or not yet been provided. Example:  
-`GET /otdata/getlive`: The transmitted "token" is rejected by the server.
+`GET /live-data/latest`: The transmitted `Access-Token` is rejected by the server.
   
 - `403 Forbidden`: If valid authentication credentials were provided in the request but are not considered sufficient by the server to grant access. Return `404: Not Found` instead, if you do not want to expose that type of information. Example:  
 `GET /live-data/123`: The transmitted "token" is accepted by the server but you do not have permission for the specific dataset.
