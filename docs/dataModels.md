@@ -28,26 +28,6 @@ You can verify the correctness of the data with the `“status”` and if it is 
 },
 ```
 
-## Types
-Overview of the data types used in the respective context.  
-
-
-| Unit                | Data type        | Exceptions         |
-|---------------------|------------------|--------------------|
-| kilometer           | `float`          | mileage: `int32`   |
-| meter               | `int32`          |                    |
-| centimeter          | `number`         |                    |
-| km/h                | `float`          |                    |
-| rpm                 | `int32`          |                    |
-| liter, l/h          | `float`          | total fuel: `int32`| 
-| %                   | `int32`          |                    |
-| temperature in °C   | `float`          |                    |
-| pressure in kPa     | `ìnt32`          |                    |
-| kg                  | `int32`          |                    |
-| voltage in V        | `float`          |                    |
-| seconds             | `int32`          |                    |
-| longitude, latitude in meter| `double` |                    |
-
 ## Date and time indications  
 Unless otherwise stated, we use the [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6) specification for all types of times.   
    
