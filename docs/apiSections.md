@@ -2,18 +2,17 @@
 
 ## Live Data
 
-You can retrieve the current data or a history of datasets within a specified time interval. The data consists of: 
+You can retrieve the latest data or a history of datasets within a specified time interval. The data consists of: 
 
 - Position and movement data
 - Driver and passenger information
-- CAN and FMS data 
+- CAN data 
 - Diagnostic trouble codes (DTC)
-- Temperature data
-- IO status
-- Driver behaviour
+
+## ETA
+You can retrieve the latest ETA or a history of ETAs within a specified time interval. An ETA data set consists of an actual ETA for the corresponding drive and a time window for estimated deviations in conjunction with a confidence level. 
 
 ## Tour Management
-
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
 graph TB
@@ -40,24 +39,31 @@ graph TB
    end
 ```
 
-A `tour` consists of a number of `drives`. 
+A tour consists of a number of drives. 
 
 ### Drive
 
-A drive has a target address and time windows for starting and arrival times. The `ExtendedOrder` structure has additionally a list of shipments, that need to be processed at the certain target address and information about dangerous goods that are loaded during the drive. The start of a tour is also a `drive`.
+A drive has a target address, time windows for starting and arrival times, a list of tasks, that must be carried out at the certain target address and information about dangerous goods that are loaded during the drive. The start of a tour is also a `drive`.
 
 ### Shipments
 
-A shipment has a fixed list of items and a list of tasks to be completed at the end of the drive. 
+A shipment contains a list of items and a list of all relevant addresses (e.g. invoice or customer address). A shipment refers to a number of tasks that process it. 
 
 ### Items
- An item has an `id` and a `parentID`, so there is the possibility to represents a tree structure (e.g. a pallet of boxes with hard drives inside that all have their own ids). It also has detailed information about dimensions, codes (e.g. barcodes) and dangerous goods.
+
+An item has an `item_id` and a `parent_id`, so it is possible to represent a tree structure (e.g. a pallet of boxes with hard drives inside that all have their own ids). It also has detailed information about dimensions, codes (e.g. barcodes) and dangerous goods.
 
 ### Tasks
 
-A task has a custom defined `tasktype` (e.g. "delivery"), a further `address` if it for example must be carried out at special coordinates on a factory site and a `timewindow`. There is also a list of generic key-value pairs so that it is also possible to define complex custom tasks.
+A task has a custom defined `task_type` (e.g. "delivery"), a further `address`, for example special coordinates on a factory site where it must be carried out at, and a `time_window`. There is also a list of generic key-value pairs so that it is also possible to define complex custom tasks. A task has a `shipment_uri` to a corresponding shipment to be processed.
 
-## Events and ETA
+## Tacho Files
+To transmit tacho files (e.g. DDD files).
+
+## Objects, Shipments, Drivers and customer
+Endpoints for retrieving and managing resources that can be referenced in the various API sections. 
+
+## Events
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
@@ -76,13 +82,12 @@ sequenceDiagram
    Server->>Callback Server: POST /webhooks/eta
 ```
 
-Events can be retrieved as a list (e.g. from a queue of all new and not yet downloaded events) or pushed individually. There are different kinds of events: Tour, drive and task events. Every kind of event has a `timestamp`, `coordinates` and refers to a drive and a tour. There is also an additional list of generic key-value pairs for custom content. The event types have different lists of enums for the actual event description. The task event has additional lists for status infomation of the associated shipment and its items (e.g. item condition at delivery).
-You can acknowledge events if they are successfully transmitted.  
+With events all the real-time data and status information can be transmitted. They can be retrieved as a list from a filtered endpoint (e.g. get all new drive events with the correct time in the `from` parameter from the `/drive-events` endpoint) or pushed asynchronously via [webhooks](generalConcepts.md#Callbacks). Each event type has a different list of enums for the actual event description. The task event has additional lists for status infomation of the associated shipment and its items (e.g. item condition at delivery).
 
-`ETA` consists of an actual `eta`for the target address and a timewindow for estimated deviations.
-You can push lists of ETAs for drives or retrieve a list of ETAs for a single or all drives in a tour.  
+## Messages
+For sending messages to or retrieving messages from a channel. It is also possible to subscribe to a specific channel and get the messages directly via webhook.
 
-## Tacho
-
-You can transmit tacho data (e.g. DDD files) and retrieve information about registered drivers and vehicles.  
-It is also possible to get information about activities, working periods and vehicle usage of drivers.
+## Subscriptions
+To manage [subscriptions](generalConcepts.md#Callbacks) to various events.
+## Webhooks
+The different [webhook](generalConcepts.md#Callbacks) requests.
