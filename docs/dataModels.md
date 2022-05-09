@@ -22,10 +22,9 @@ You can verify the correctness of the data with the `“status”` and if it is 
                     "description": "Speed in km/h"   
                 }
             }
-        },
-    . . .
+        }
     }
-},
+}
 ```
 
 ## Date and time indications  
