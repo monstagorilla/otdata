@@ -1,7 +1,7 @@
 # Data Models
 ## Basic schema for vehicle data in API responses  
-Data that can be not available or faulty are returned in a tuple-like structure with a `"status"` property and a `"value"` property. The `"status"` property has three possible values: `“ok”` (data is available), `“error”` (an error occurred) and `“n/a”` (data is not available e.g. vehicle is turned off). The `"value"` property holds the actual data.
-You can verify the correctness of the data with the `“status”` and if it is `“ok”`, access the `“value”`.  
+Data that can be not available or faulty are returned in a tuple-like structure with a `status` property and a `value` property. The `status` property has three possible values: `ok` (data is available), `error` (an error occurred) and `n/a` (data is not available e.g. vehicle is turned off). The `value` property holds the actual data.
+You can verify the correctness of the data with the `status` and if it is `ok`, access the `value`.  
 ```json
 "caninstant": {
     "type": "object",
@@ -30,7 +30,7 @@ You can verify the correctness of the data with the `“status”` and if it is 
 ## Date and time indications  
 Unless otherwise stated, we use the [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6) specification for all types of times.   
    
-Use the OpenAPI format `“date-time”` for ISO 8601 "date-time":   
+Use the OpenAPI format `date-time` for ISO 8601 "date-time":   
 ```json
 "deadline": {
     "type": "string",
@@ -38,7 +38,7 @@ Use the OpenAPI format `“date-time”` for ISO 8601 "date-time":
     "example": "2017-07-22T17:32:28Z"
 }
 ```
-Use the OpenAPI format `“date”` for ISO 8601 "full-date":
+Use the OpenAPI format `date` for ISO 8601 "full-date":
 ```json
 "valid_from": {
     "type": "string",
