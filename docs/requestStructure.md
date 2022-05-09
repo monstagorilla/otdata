@@ -10,7 +10,7 @@ If the request returns a list of objects and therefore pagination is needed, it 
 - `limit`: The limit parameter sets a maximum number of results to return per request.  
 
 ## Response headers
-Each request has at least the following header parameters:
+Each response has at least the following header parameters:
 - `API-Version`: Version of the OpenTelematics API used, e.g.:`"2.0.0"`  
 - `OT-ID`: Registered OpenTelematics ID of the responder  
 
@@ -32,31 +32,31 @@ Overview of the use of HTTP status codes. The selection of status codes differs 
 `GET /live-data/latest`: `200` is the only successful status code. A list of data is returned in the body. If no data is available with the specified filters, an empty list is returned.  
   
 - `201 Created`: If the request has succeeded and has led to the creation of a resource. The new resource may be returned in the response body. Example:  
-`POST /shipments`:  
+`POST /shipments`: The created resource with the assigned ID and URI is returned in the response body and can be cached. 
 
 - `204 No Content`: If the successful response to a request does not contain a body with data. Example:  
 `POST /webhooks/tour-event`: "204" is the only successful status code, because the response never contains data.  
 
 **Client Error (4xx):**  
-- "400 Bad Request": If there is a formally invalid use or combination of parameters or an incorrect request syntax. Example:  
-`GET /otdata/gethistory`: Some possible reasons why "400" may be returned: The "from" parameter is an integer or the format does not match ISO 8601. Due to a typo, a parameter called "fron" is transferred.  
+- `400 Bad Request`: If there is a formally invalid use or combination of parameters or an incorrect request syntax. Example:  
+`GET /live-data/latest`: Some possible reasons why "400" may be returned: The "from" parameter is an integer or the format does not match ISO 8601. Due to a typo, a parameter called "fron" is transferred.  
   
-- "401 Unauthorized": If authentication is required and has failed or not yet been provided. Example:  
+- `401 Unauthorized`: If authentication is required and has failed or not yet been provided. Example:  
 `GET /otdata/getlive`: The transmitted "token" is rejected by the server.
   
-- "403 Forbidden": If valid authentication credentials were provided in the request but are not considered sufficient by the server to grant access.	Return - "404: Not Found" instead, if you do not want to expose that type of information. Example:  
-`GET /otdata/getlive`: The transmitted "token" is accepted by the server but you do not have permission for the specific "did"
+- `403 Forbidden`: If valid authentication credentials were provided in the request but are not considered sufficient by the server to grant access. Return `404: Not Found` instead, if you do not want to expose that type of information. Example:  
+`GET /live-data/123`: The transmitted "token" is accepted by the server but you do not have permission for the specific dataset.
   
-- "404 Not Found": If the server has not found anything matching the effective request URI. Example:  
-`GET /otdata/getlive`: The server cannot map the transmitted "did" to a resource.
+- `404 Not Found`: If the server has not found anything matching the effective request URI. Example:  
+`GET /live-data/123`: The server cannot map the transmitted URI to a resource.
 
-- "412 Precondition Failed": 
-- "415 Unsupported Media Type"
-- "428 Precondition Required"
-
+- `412 Precondition Failed`: If the client has indicated preconditions in its headers which the server does not meet. Example:  
+`PUT /shipments/123`: The transmitted ETag header doeas not match the latest ETag.
+- `415 Unsupported Media Type`: If the media format of the requested data is not supported by the server, so the server is rejecting the request. Example:  
+`POST /shipments`: The request body is not of the `application/json` MIME type.
+- `428 Precondition Required`: If the origin server requires the request to be conditional. Example:  
+`PUT /shipments/123`: The update is transmitted without required ETag header.  
 
 **Server Error (5xx):**  
-- "500 Internal Server Error": General error message for all types of server errors.
-
-
-- "503 Service Unavailable."
+- `500 Internal Server Error`: General error message for all types of server errors.
+- `503 Service Unavailable`: If the server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
