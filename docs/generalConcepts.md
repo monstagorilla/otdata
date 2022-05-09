@@ -1,4 +1,26 @@
 # General concepts
+## Endpoint structure
+The typical endpoint in the OTData API has always the same structure: 
+
+| Request                 | Use                                                                   | Cacheable | Description                                  |
+|-------------------------|-----------------------------------------------------------------------|-----------|----------------------------------------------|
+| GET `/shipments`        | Search a collection with filters                                      | No        | Response can be returned in pages ([pagination](#cursor-based-pagination)). <br/>Caching is not useful here, because of the filtering and pagination.            |
+| POST `/shipments`       | Create a new resource                                                 | Yes       | ID, URI and links are assigned by the server. |
+| GET `/shipments/123`    | Retrieve a certain resource                                           | Yes       |                                              |
+| PUT `/shipments/123`    | Create a new resource or replace an existing with the request payload | No        | ID, URI and links are assigned by the client. |
+| DELETE `/shipments/123` | Delete a certain resource                                             | No        |                                              |
+
+## Naming conventions
+| Content Type        | Naming Convention| Example|
+|---------------------|------------------|------------------|
+| OAS abstractions, fields <br/>in data structures, query <br/>and path parameters| snake_case | `good_example` | 
+| Custom header               | Capitalized and Kebab-Case <br/>as is the case with almost <br/>all HTTP standard headers | `API-Version` |
+| Endpoints          | lowercase and kebab-case | `/live-data` |
+
+## URI in addition to IDs
+The use of URIs leads to a much more understandable documentation without the need for external information, because path templating is not mandatory. You can directly make a GET request on a returned URI instead of combining the returned IDs with a specified path template to a valid URI. In addition, for example, customer data can be managed on another server and the exact endpoint can be explicitly specified with a URL (subtype of URI), which is not possible via IDs and local path templating. 
+
+
 ## ETag header
 The [HTTP ETag header](https://datatracker.ietf.org/doc/html/rfc2068#section-14.20) is used to maintain data integrity when editing resources and to enable caching. Each resource has an ETag assigned by the server. The ETag changes in the moment the server modifies the resource.
 ### Optimistic concurrency control
@@ -19,15 +41,7 @@ flowchart TD
 ### Caching
 When retrieving a certain resource and an instance of it is already known, an [`If-None-Match` header](https://datatracker.ietf.org/doc/html/rfc7232#section-3.2) with the latest known ETag can be sent along with the GET request. If the ETag of the resource has not been changed and the client therefore knows the latest instance of the resource, the server just returns a `304 Not Modified` status code without body. The client can use its local instance. If the ETag of the resource has been changed, the server returns `200 OK` along with the resource instance in the response body.  
 This Caching with ETag headers reduces latency, since the server only needs to look up the ETag, and bandwith because the response body can be omitted in many cases.
-## Naming conventions
-| Content Type        | Naming Convention| Example|
-|---------------------|------------------|------------------|
-| OAS abstractions, fields <br/>in data structures, query <br/>and path parameters| snake_case | `good_example` | 
-| Custom header               | Capitalized and Kebab-Case <br/>as is the case with almost <br/>all HTTP standard headers | `API-Version` |
-| Endpoints          | lowercase and kebab-case | `/live-data` |
 
-## URI in addition to IDs
-The use of URIs leads to a much more understandable documentation without the need for external information, because path templating is not mandatory. You can directly make a GET request on a returned URI instead of combining the returned IDs with a specified path template to a valid URI. In addition, for example, customer data can be managed on another server and the exact endpoint can be explicitly specified with a URL (subtype of URI), which is not possible via IDs and local path templating. 
 
 ## Callbacks
 ### Webhooks
@@ -35,16 +49,6 @@ To push data asynchronously from the server to the client, so-called webhooks ar
 ### Publish–subscribe pattern
 The `callback_url` and which webhooks to send, can be defined out-of-band or managed with the `/subscriptions` endpoint in a typical publish-subscribe pattern. With the subscription, the client can specify the `callback_url`, an `access_token`, to use within the webhook request, the `topic` (e.g. `tour_event`) to subscribe to and its `expiration_time`. Every time something is published to a topic, the clients that are subscribd to it receive the corresponding webhook request. If a webhook request is not successful, it may be retried. In addition to the callbacks, there are endpoints that can be used to retrieve all the events of the different topics via GET request.
 
-## Endpoint structure
-The typical endpoint in the OTData API has always the same structure: 
-
-| Request                 | Use                                                                   | Cacheable | Description                                  |
-|-------------------------|-----------------------------------------------------------------------|-----------|----------------------------------------------|
-| GET `/shipments`        | Search a collection with filters                                      | No        | Response can be returned in pages ([pagination](#cursor-based-pagination)). <br/>Caching is not useful here, because of the filtering and pagination.            |
-| POST `/shipments`       | Create a new resource                                                 | Yes       | ID, URI and links are assigned by the server. |
-| GET `/shipments/123`    | Retrieve a certain resource                                           | Yes       |                                              |
-| PUT `/shipments/123`    | Create a new resource or replace an existing with the request payload | No        | ID, URI and links are assigned by the client. |
-| DELETE `/shipments/123` | Delete a certain resource                                             | No        |                                              |
 
 
 ## Cursor-based pagination
