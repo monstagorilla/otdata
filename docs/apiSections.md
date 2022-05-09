@@ -43,7 +43,7 @@ A tour consists of a number of drives.
 
 ### Drive
 
-A drive has a target address, time windows for starting and arrival times, a list of tasks, that must be carried out at the certain target address and information about dangerous goods that are loaded during the drive. The start of a tour is also a `drive`.
+A drive has a target address, time windows for starting and arrival times, a list of tasks, that must be carried out at the certain target address and information about dangerous goods that are loaded during the drive. The start of a tour is also a drive.
 
 ### Shipments
 
