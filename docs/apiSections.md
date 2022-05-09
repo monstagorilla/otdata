@@ -82,7 +82,7 @@ sequenceDiagram
    Server->>Callback Server: POST /webhooks/eta
 ```
 
-With events all the real-time data and status information can be transmitted. They can be retrieved as a list from a filtered endpoint (e.g. get all new drive events with the correct time in the `from` parameter from the `/drive-events` endpoint) or pushed asynchronously via [webhooks](generalConcepts.md#Callbacks). Each event type has a different list of enums for the actual event description. The task event has additional lists for status infomation of the associated shipment and its items (e.g. item condition at delivery).
+With events all the real-time data and status information can be transmitted. They can be retrieved as a list from a filtered endpoint (e.g. get all new drive events with the correct time in the `from` parameter from the `/drive-events` endpoint) or pushed asynchronously via [webhooks](generalConcepts.md#Callbacks). You can manage the webhooks to be sent with subscriptions. Each event type has a different list of enums for the actual event description. The task event has additional lists for status infomation of the associated shipment and its items (e.g. item condition at delivery).
 
 ## Messages
 For sending messages to or retrieving messages from a channel. It is also possible to subscribe to a specific channel and get the messages directly via webhook.
