@@ -6896,7 +6896,7 @@
                 "$ref": "#/components/schemas/position"
               },
               "io": {
-                "$ref": "#/components/schemas/io_state"
+                "$ref": "#/components/schemas/io"
               },
               "passengers": {
                 "type": "array",
@@ -6920,61 +6920,37 @@
           }
         ]
       },
-      "io_state": {
-        "type": "object",
-        "properties": {
-          "ignition": {
-            "type": "boolean",
-            "description": "State of ignition"
-          },
-          "battery": {
-            "type": "boolean",
-            "description": "State of external battery input"
-          },
-          "input": {
-            "example": [
-              1,
-              2
-            ],
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "description": "Input states (input1, input2, …)"
-          },
-          "output": {
-            "example": [
-              1,
-              2
-            ],
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "description": "Output states (input1, input2, …)"
-          },
-          "analog": {
-            "example": [
-              1.1,
-              2.2
-            ],
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "float"
-            },
-            "description": "Analog values"
-          },
-          "voltage": {
-            "type": "number",
-            "format": "float",
-            "description": "Battery input voltage"
-          },
-          "backup_battery": {
-            "type": "number",
-            "format": "float",
-            "description": "Backup battery input voltage"
-          }
+      "io": {
+        "type": "array", 
+        "description": "Generic list for IO data, e.g. sensors.",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/data_status"
+            }, 
+            {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Unique name of the data set."
+                }, 
+                "value": {
+                  "oneOf":[ 
+                    {
+                      "type": "string"
+                    }, 
+                    {
+                      "type": "number"
+                    }, 
+                    {
+                      "type": "boolean"
+                    }
+                  ], 
+                  "description": "The value in one of the specified types."
+                }
+              }
+            }
+          ]
         }
       },
       "position": {
