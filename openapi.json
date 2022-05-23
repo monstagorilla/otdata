@@ -6904,8 +6904,8 @@
                   "$ref": "#/components/schemas/passenger"
                 }
               },
-              "temperatures": {
-                "$ref": "#/components/schemas/temp"
+              "temperature_sensors": {
+                "$ref": "#/components/schemas/temperature_sensors"
               },
               "can": {
                 "$ref": "#/components/schemas/can_data"
@@ -6924,33 +6924,27 @@
         "type": "array", 
         "description": "Generic list for IO data, e.g. sensors.",
         "items": {
-          "allOf": [
-            {
-              "$ref": "#/components/schemas/data_status"
+          "type": "object",  
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Unique name of the data set."
             }, 
-            {
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Unique name of the data set."
+            "value": {
+              "oneOf":[ 
+                {
+                  "type": "string"
                 }, 
-                "value": {
-                  "oneOf":[ 
-                    {
-                      "type": "string"
-                    }, 
-                    {
-                      "type": "number"
-                    }, 
-                    {
-                      "type": "boolean"
-                    }
-                  ], 
-                  "description": "The value in one of the specified types."
+                {
+                  "type": "number"
+                }, 
+                {
+                  "type": "boolean"
                 }
-              }
+              ], 
+              "description": "The value in one of the specified types."
             }
-          ]
+          }
         }
       },
       "position": {
@@ -7078,96 +7072,26 @@
           }
         }
       },
-      "temp": {
-        "type": "object",
-        "properties": {
-          "set_points": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/data_status"
-                }, 
-                {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "maxLength": 150
-                        },
-                        "value": {
-                          "type": "number",
-                          "format": "float",
-                          "description": "in °C"
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "temperatures": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/data_status"
-                }, 
-                {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "maxLength": 150
-                        },
-                        "value": {
-                          "type": "number",
-                          "format": "float",
-                          "description": "in °C"
-                        },
-                        "alert": {
-                          "type": "boolean",
-                          "description": "alert condition set"
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "contacts": {
-            "type": "array",
-            "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/data_status"
-                }, 
-                {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "maxLength": 150
-                        },
-                        "value": {
-                          "type": "boolean"
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
+      "temperature_sensors": {
+        "type": "array", 
+        "items": {
+          "type": "object", 
+          "properties": {
+            "name": {
+              "type": "string", 
+              "description": "Name of the temperature sensor"
+            },
+            "temperature": {
+              "type": "number",
+              "description": "Measured temperature in °C"
+            },
+            "setpoint": { 
+              "type": "number",
+              "description": "Temperature setpoint in °C"
+            }, 
+            "is_contact_sensor": {
+              "type": "boolean", 
+              "description": "If it is a contact sensor"
             }
           }
         }
