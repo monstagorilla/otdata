@@ -9308,6 +9308,273 @@
           }
         }
       },
+      "fms_truck_bus": {
+        "type": "object", 
+        "properties": {
+          "engine_total_fuel_used": {
+
+          }, 
+          "fuel_level_1": {
+
+          }, 
+          "fuel_level_2": {
+
+          }, 
+          "actual_engine_percent_torque": {
+
+          }, 
+          "engine_speed": {
+
+          }, 
+          "engine_total_hours_of_operation": {
+
+          }, 
+          "vehicle_identification_number": {
+
+          }, 
+          "sw_version_supported": {
+
+          }, 
+          "diagnostics_supported": {
+
+          }, 
+          "requests_supported": {
+
+          }, 
+          "high_resolution_total_vehicle_distance": {
+
+          }, 
+          "vehicle_motion": {
+
+          }, 
+          "driver_2_working_state": {
+
+          }, 
+          "driver_1_working_state": {
+
+          }, 
+          "vehicle_overspeed": {
+
+          }, 
+          "driver_1_time_rel_states": {
+
+          }, 
+          "driver_2_time_rel_states": {
+
+          },
+          "driver_1_card": {
+
+          },
+          "driver_2_card": {
+
+          },
+          "direction_indicator": {
+
+          },
+          "tachograph_performance ": {
+
+          },
+          "handling_information": {
+
+          },
+          "system_event": {
+
+          },
+          "tachograph_vehicle_speed": {
+
+          },
+          "engine_coolant_temperature": {
+
+          },
+          "ambient_air_temperature": {
+
+          },
+          "driver_1 / Driver 2 Identification": {
+
+          },
+          "fuel_rate": {
+
+          },
+          "instantaneous_fuel_economy": {
+
+          },
+          "service_brake_air_pressure_circuit_#1 ": {
+
+          },
+          "service_brake_air_pressure_circuit_#2 ": {
+
+          },
+          "high_resolution_engine_total_fuel_used": {
+
+          },
+          "aftertreatment_1_diesel_exhaust_fluid_tank_1_level": {
+
+          },
+          "fms_tell_tale_status": {
+
+          },
+          "brake_pedal_position": {
+
+          },
+          "fuel_type": {
+
+          },
+          "total_fuel_used_gaseous": {
+
+          },
+          "retarder_torque_mode": {
+
+          },
+          "actual_retarder_percent_torque": {
+
+          },
+          "retarder_selection_non_engine": {
+
+          }
+        }
+      },
+      "fms_truck": {
+        "type": "object",
+        "properties": {
+          "wheel_based_speed": {
+
+          },
+          "clutch_switch": {
+
+          },
+          "brake_switch": {
+
+          },
+          "cruise_control_active": {
+
+          },
+          "pto_state": {
+
+          },
+          "parking_brake_switch": {
+
+          },
+          "cruise_control_states": {
+
+          },
+          "accelerator_pedal_position_1": {
+
+          },
+          "engine_percent_load_at_current_speed": {
+
+          },
+          "axle_location": {
+
+          },
+          "tire_location": {
+
+          },
+          "axle_weight": {
+
+          },
+          "service_distance": {
+
+          },
+          "at_least_one_pto_engaged": {
+
+          },
+          "gross_combination_vehicle_weight": {
+
+          }
+        }
+      },
+      "fms_bus": {
+        "type": "object",
+        "properties": {
+          "wheel_based_speed": {
+
+          },
+          "clutch_switch": {
+
+          },
+          "brake_switch": {
+
+          },
+          "cruise_control_active": {
+
+          },
+          "parking_brake_switch": {
+
+          },
+          "cruise_control_states": {
+
+          },
+          "accelerator_pedal_position_1": {
+
+          },
+          "status_2_of_doors": {
+
+          },
+          "ramp/wheel_chairlift_status": {
+
+          },
+          "position_of_doors": {
+
+          },
+          "status_of_doors 1 - 10": {
+
+          },
+          "seconds": {
+
+          },
+          "minutes": {
+
+          },
+          "hours": {
+
+          }, 
+          "month": {
+
+          }, 
+          "day": {
+
+          }, 
+          "year": {
+
+          }, 
+          "alternator_status_4": {
+
+          }, 
+          "alternator_status_3": {
+
+          },
+          "alternator_status_2": {
+
+          }, 
+          "alternator_status_1": {
+
+          }, 
+          "selected_gear": {
+
+          }, 
+          "current_gear": {
+
+          }, 
+          "bellow_pressure_front_axle_left": {
+
+          }, 
+          "bellow_pressure_front_axle_right": {
+
+          }, 
+          "bellow_pressure_rear_axle_left": {
+
+          }, 
+          "bellow_pressure_rear_axle_right": {
+
+          }, 
+          "hybrid_battery_pack_remaining_charge": {
+
+          }, 
+          "steering_wheel_angle": {
+
+          }
+        }
+      },
       "id": {
         "type": "object", 
         "properties": {
