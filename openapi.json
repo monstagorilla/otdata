@@ -9233,6 +9233,7 @@
               },
               "data": {
                 "type": "string",
+                "format": "byte",
                 "description": "container data bytes encoded in Base64",
                 "example": "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
               }
@@ -9310,75 +9311,136 @@
       },
       "fms_truck_bus": {
         "type": "object", 
+        "description": "As specified in FMS-Standard description Version 04. The data is transmitted in interpreted form. `Offsets` and `per bit gain` are already calculated.",
         "properties": {
           "engine_total_fuel_used": {
-
+            "type": "number", 
+            "multipleOf": 0.5, 
+            "minimum": 0, 
+            "maximum": 2105540607.5, 
+            "description": "SPN 250. <br>Accumulated amount of fuel used during vehicle operation in liter."
           }, 
           "fuel_level_1": {
-
+            "type": "number", 
+            "multipleOf": 0.4, 
+            "minimum": 0,
+            "maximum": 100, 
+            "description": "SPN 96. <br>Ratio of volume of fuel to the total volume of fuel storage container in percent."
           }, 
           "fuel_level_2": {
-
+            "type": "number", 
+            "multipleOf": 0.4, 
+            "minimum": 0, 
+            "maximum": 100,
+            "description": "SPN 38. <br>Ratio of volume of fuel to the total volume of fuel storage container in percent."
           }, 
           "actual_engine_percent_torque": {
-
+            "type": "integer", 
+            "multipleOf": 1, 
+            "minimum": -125, 
+            "maximum": 125,
+            "description": "SPN 513. <br>The calculated output torque of the engine in percent. The data is transmitted in indicated torque as a percent of reference engine torque." 
           }, 
           "engine_speed": {
-
+            "type": "number",
+            "multipleOf": 0.125,
+            "minimum": 0,
+            "maximum": 8031.875,
+            "description": "SPN 190. <br>Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders in rounds per minute."
           }, 
           "engine_total_hours_of_operation": {
+            "type": "number",
+            "multipleOf": 0.05,
+            "minimum": 0, 
+            "maximum": 210554060.75, 
+            "description": "SPN 247. <br>Accumulated time of operation of engine in hours."
 
           }, 
           "vehicle_identification_number": {
-
+            "type": "string", 
+            "maxLength": 200, 
+            "description": "SPN 237. <br>Vehicle Identification Number as assigned by the vehicle manufacturer."
           }, 
           "sw_version_supported": {
-
+            "type": "string", 
+            "description": "SPN 2806. <br>Information that identifies which issue level of the FMS-standard document the software included in the FMS gateway supports. Four bytes, representing ab.cd type revision level identification."
           }, 
           "diagnostics_supported": {
-
+            "type": "string", 
+            "enum": ["not_supported", "supported", "reserved", "do_not_care"],
+            "description": "SPN 2804. <br>Status signal which indicates if the FMS Vehicle Interface (FMS Gateway) supports the handling of diagnostic messages from the vehicle network onto the FMS network."
           }, 
           "requests_supported": {
-
+            "type": "string", 
+            "enum": ["not_supported", "supported", "reserved", "do_not_care"],
+            "description": "SPN 2805. <br>Status signal which indicates if the FMS Vehicle Interface (FMS Gateway) will respond to requests from the FMS device for the PGNs listed in the FMS Interface Specification."
           }, 
           "high_resolution_total_vehicle_distance": {
-
+            "type": "integer", 
+            "multipleOf": 5, 
+            "minimum": 0, 
+            "maximum": 21055406075, 
+            "description": "SPN 917. <br>Accumulated distance travelled by the vehicle during its operation in meters."
           }, 
           "vehicle_motion": {
-
+            "type": "string", 
+            "enum": ["not_detected", "detected"], 
+            "description": "SPN 1611. <br>Indicates whether motion of the vehicle is detected or not."
           }, 
           "driver_2_working_state": {
-
+            "type": "string", 
+            "enum": ["rest", "driver_available", "work", "drive", "error", "not_available"], 
+            "description": "SPN 1613. <br>State of work of the driver 2."
           }, 
           "driver_1_working_state": {
-
+            "type": "string", 
+            "enum": ["rest", "driver_available", "work", "drive", "error", "not_available"], 
+            "description": "SPN 1612. <br>State of work of the driver 1."
           }, 
           "vehicle_overspeed": {
-
+            "type": "string", 
+            "enum": ["no_overspeed", "overspeed"], 
+            "description": "SPN 1614. <br>Indicates whether the vehicle is exceeding the legal speed limit set in the tachograph." 
           }, 
           "driver_1_time_rel_states": {
-
+            "type": "string", 
+            "enum": ["TODO"],
+            "description": "SPN 1617. <br>Indicates if the driver 1 approaches or exceeds working time limits (or other limits)." 
           }, 
           "driver_2_time_rel_states": {
-
+            "type": "string",
+            "enum": ["TODO"], 
+            "description": "SPN 1618. <br>Indicates if the driver 2 approaches or exceeds working time limits (or other limits)." 
           },
           "driver_1_card": {
-
+            "type": "string", 
+            "enum": ["not_present", "present"], 
+            "description": "SPN 1615. <br>Indicates the presence of driver card 1."
           },
           "driver_2_card": {
-
+            "type": "string", 
+            "enum": ["not_present", "present"],
+            "description": "SPN 1616. <br>Indicates the presence of driver card 2." 
           },
           "direction_indicator": {
-
+            "type": "string", 
+            "enum": ["forward", "reverse"],
+            "description": "SPN 1619. <br>Indicates the direction of the vehicle." 
           },
           "tachograph_performance ": {
-
+            "type": "string", 
+            "enum": ["normal_performance", "performance_analysis"], 
+            "description": "SPN 1620. <br>Indicates the tachograph performance; including electronic or mechanical analysis, instrument analysis, speed sensor analysis, mass storage analysis, and printer analysis."
           },
           "handling_information": {
-
+            "type": "string", 
+            "enum": ["no_handling_information", "handling_information"],
+            "description": "SPN 1621. <br>Indicates that handling information is present." 
           },
           "system_event": {
-
+            "type": "string", 
+            "enum": ["no_tachograph_event", "tachograph_event"],
+            "description": "SPN 1622. <br>Indicates that a tachograph event has occurred." 
           },
           "tachograph_vehicle_speed": {
 
