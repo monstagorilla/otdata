@@ -9318,7 +9318,7 @@
             "multipleOf": 0.5, 
             "minimum": 0, 
             "maximum": 2105540607.5, 
-            "description": "SPN 250. <br>Accumulated amount of fuel used during vehicle operation in liter."
+            "description": "SPN 250. <br>Accumulated amount of fuel used during vehicle operation in liters."
           }, 
           "fuel_level_1": {
             "type": "number", 
@@ -9443,199 +9443,613 @@
             "description": "SPN 1622. <br>Indicates that a tachograph event has occurred." 
           },
           "tachograph_vehicle_speed": {
-
+            "type": "number", 
+            "multipleOf": 0.00390625, 
+            "minimum": 0, 
+            "maximum": 250.99609375, 
+            "description": "SPN 1624. <br>Speed of the vehicle registered by the tachograph in kilometers per hour."
           },
           "engine_coolant_temperature": {
-
+            "type": "integer", 
+            "minimum": -40, 
+            "maximum": 210, 
+            "description": "SPN 110. <br>Temperature of liquid found in engine cooling system in degrees Celsius."
           },
           "ambient_air_temperature": {
-
+            "type": "number",
+            "multipleOf": 0.03125, 
+            "minimum": -273, 
+            "maximum": 1734.96875, 
+            "description": "SPN 171. <br>Temperature of air surrounding vehicle in degrees Celsius."
           },
-          "driver_1 / Driver 2 Identification": {
-
+          "driver_1_driver_2_identification": {
+            "type": "string",
+            "description": "SPN 1625/1626."
           },
           "fuel_rate": {
-
+            "type": "number", 
+            "multipleOf": 0.05, 
+            "minimum": 0, 
+            "maximum": 3212.75, 
+            "description": "SPN 183. <br>Amount of fuel consumed by engine per unit of time in liters per hour."
           },
           "instantaneous_fuel_economy": {
-
+            "type": "number", 
+            "multipleOf": 0.001953125, 
+            "minimum": 0, 
+            "maximum": 125.5, 
+            "description": "SPN 184. <br>Current fuel economy at current vehicle velocity in kilometers per liter."
           },
-          "service_brake_air_pressure_circuit_#1 ": {
-
+          "service_brake_air_pressure_circuit_1 ": {
+            "type": "integer", 
+            "multipleOf": 8, 
+            "minimum": 0, 
+            "maximum": 2000, 
+            "description": "SPN 1087. <br>The pneumatic pressure in the service brake circuit or reservoir 1 in kilopascal."
           },
-          "service_brake_air_pressure_circuit_#2 ": {
-
+          "service_brake_air_pressure_circuit_2 ": {
+            "type": "integer", 
+            "multipleOf": 8, 
+            "minimum": 0, 
+            "maximum": 2000, 
+            "description": "SPN 1088. <br>The pneumatic pressure in the service brake circuit or reservoir 2 in kilopascal."
           },
           "high_resolution_engine_total_fuel_used": {
-
+            "type": "number",
+            "multipleOf": 0.001,
+            "minimum": 0,
+            "maximum": 4211081.215,
+            "description": "SPN 5054. <br>Accumulated amount of fuel used during vehicle operation in liters. High resolution used for calculations and fleet management systems."
           },
           "aftertreatment_1_diesel_exhaust_fluid_tank_1_level": {
-
+            "type": "number",
+            "multipleOf": 0.4,
+            "minimum": 0,
+            "maximum": 100,
+            "description": "SPN 1761. <br>Ratio of volume of diesel exhaust fluid to the total volume of diesel exhaust fluid storage container in percent."
           },
           "fms_tell_tale_status": {
 
           },
           "brake_pedal_position": {
-
+            "type": "number", 
+            "multipleOf": 0.4, 
+            "minimum": 0, 
+            "maximum": 100, 
+            "description": "SPN 521. <br>Ratio of brake pedal position to maximum pedal position in percent."
           },
           "fuel_type": {
-
+            "type": "integer", 
+            "minimum": 0, 
+            "maximum": 255, 
+            "description": "SPN 5837. <br>Type of fuel currently being utilized by the vehicle. See table in FMS Standard description."
           },
           "total_fuel_used_gaseous": {
-
+            "type": "number", 
+            "multipleOf": 0.5,
+            "minimum": 0, 
+            "maximum": 2105540607.5, 
+            "description": "SPN 1040. <br>Total fuel consumed (trip drive fuel + trip PTO governor moving fuel + trip PTO governor non-moving fuel + trip idle fuel) over the life of the engine in kilograms."
           },
           "retarder_torque_mode": {
-
+            "type": "integer", 
+            "minimum": 0, 
+            "maximum": 15, 
+            "description": "SPN 900. <br>State signal which indicates which retarder torque mode is currently generating, limiting, or controlling the torque. See Appendix D in SAE documentation."
           },
           "actual_retarder_percent_torque": {
-
+            "type": "integer", 
+            "minimum": -125, 
+            "maximum": 125, 
+            "description": "SPN 520. <br>Actual braking torque of the retarder as a percent of retarder configuration reference torque SPN 556."
           },
           "retarder_selection_non_engine": {
-
+            "type": "number", 
+            "multipleOf": 0.4, 
+            "minimum": 0, 
+            "maximum": 100, 
+            "description": "SPN 1716. <br>Position of the driver's selector for retarders that are not part of the engine system, expressed as percent and determined by the ratio of current position to the maximum possible position."
+          }
+        }
+      },
+      "fms_truck_bus_mutual": {
+        "type": "object", 
+        "properties": {
+          "wheel_based_speed": {
+            "type": "number",
+            "multipleOf": 0.00390625, 
+            "minimum": 0,
+            "maximum": 250.99609375,
+            "description": "SPN 84. <br>Speed of the vehicle as calculated from wheel or tailshaft speed in kilometers per hour."
+          },
+          "clutch_switch": {
+            "type": "string", 
+            "enum": ["released", "depressed"], 
+            "description": "SPN 598. <br> Switch signal which indicates that the clutch pedal is being pressed."
+          },
+          "brake_switch": {
+            "type": "string", 
+            "enum": ["released", "depressed"], 
+            "description": "SPN 597. <br> Switch signal which indicates that the driver operated brake foot pedal is being pressed."
+          },
+          "cruise_control_active": {
+            "type": "string", 
+            "enum": ["off", "on"],
+            "description": "SPN 595. <br> Whether cruise control is switched on." 
+          },
+         
+          "parking_brake_switch": {
+            "type": "string", 
+            "enum": ["not_set", "set"],
+            "description": "SPN 70. <br>Switch signal which indicates when the parking brake is set."
+          },
+          "cruise_control_states": {
+            "type": "string", 
+            "enum": ["off", "hold", "accelerate", "decelerate", "resume", "set", "accelerate_override", "not_available"], 
+            "description": "SPN 527."
+          },
+          "accelerator_pedal_position_1": {
+            "type": "number", 
+            "multipleOf": 0.4, 
+            "minimum": 0, 
+            "maximum": 100, 
+            "description": "SPN 91. <br>The ratio of actual position of the analogue engine speed/torque request input device (such as an accelerator pedal or throttle lever) to the maximum position of the input device in percent."
           }
         }
       },
       "fms_truck": {
         "type": "object",
-        "properties": {
-          "wheel_based_speed": {
-
-          },
-          "clutch_switch": {
-
-          },
-          "brake_switch": {
-
-          },
-          "cruise_control_active": {
-
-          },
-          "pto_state": {
-
-          },
-          "parking_brake_switch": {
-
-          },
-          "cruise_control_states": {
-
-          },
-          "accelerator_pedal_position_1": {
-
-          },
-          "engine_percent_load_at_current_speed": {
-
-          },
-          "axle_location": {
-
-          },
-          "tire_location": {
-
-          },
-          "axle_weight": {
-
-          },
-          "service_distance": {
-
-          },
-          "at_least_one_pto_engaged": {
-
-          },
-          "gross_combination_vehicle_weight": {
-
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/fms_truck_bus_mutual"
+          }, 
+          {
+            "properties": {
+              "pto_state": {
+                "type": "string", 
+                "enum": ["off", "set", "not_available"],
+                "description": "SPN 976. <br> This parameter is used to indicate the current state or mode of operation by the power takeoff (PTO) device."
+              },
+              "engine_percent_load_at_current_speed": {
+                "type": "integer", 
+                "minimum": 0, 
+                "maximum": 125, 
+                "description": "SPN 92. <br>The ratio of actual engine percent torque (indicated) to maximum indicated torque available at the current engine speed, clipped to zero torque during engine braking."
+              },
+              "axle_location": {
+                "type": "integer", 
+                "minimum": 1, 
+                "maximum": 15, 
+                "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting front to back on the vehicle."
+              },
+              "tire_location": {
+                "type": "integer", 
+                "minimum": 1, 
+                "maximum": 15, 
+                "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting left to right when facing in the direction of normal vehicle travel (forward)."
+              },
+              "axle_weight": {
+                "type": "number", 
+                "multipleOf": 0.5, 
+                "minimum": 0,
+                "maximum": 32127.5, 
+                "description": "SPN 582. <br>Total mass imposed by the tires on the road surface at the specified axle."
+              },
+              "service_distance": {
+                "type": "integer", 
+                "multipleOf": 5, 
+                "minimum": -160635, 
+                "maximum": 160640, 
+                "description": "SPN 914. <br>The distance which can be travelled by the vehicle before the next service inspection is required in kilometers. A negative distance is transmitted if the service inspection has been passed."
+              },
+              "at_least_one_pto_engaged": {
+                "type": "string",
+                "enum": ["no", "at_least_one"],
+                "description": "SPN 3948. <br>Indicates that at least one PTO is engaged."
+              },
+              "gross_combination_vehicle_weight": {
+                "type": "integer", 
+                "multipleOf": 10, 
+                "minimum": 0, 
+                "maximum": 642550,
+                "description": "SPN 1760. <br>The total weight of the truck and all attached trailers in kilograms."
+              }
+            }
           }
-        }
+        ]
+      },
+      "fms_lock_status_door": {
+        "type": "string", 
+        "enum": ["unlocked", "locked"]
+      },
+      "fms_enable_status_door": {
+        "type": "string", 
+        "enum": ["disabled", "enabled"]
+      },
+      "fms_open_status_door": {
+        "type": "string", 
+        "enum": ["closed", "open"]
       },
       "fms_bus": {
         "type": "object",
-        "properties": {
-          "wheel_based_speed": {
-
-          },
-          "clutch_switch": {
-
-          },
-          "brake_switch": {
-
-          },
-          "cruise_control_active": {
-
-          },
-          "parking_brake_switch": {
-
-          },
-          "cruise_control_states": {
-
-          },
-          "accelerator_pedal_position_1": {
-
-          },
-          "status_2_of_doors": {
-
-          },
-          "ramp/wheel_chairlift_status": {
-
-          },
-          "position_of_doors": {
-
-          },
-          "status_of_doors 1 - 10": {
-
-          },
-          "seconds": {
-
-          },
-          "minutes": {
-
-          },
-          "hours": {
-
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/fms_truck_bus_mutual"
           }, 
-          "month": {
-
-          }, 
-          "day": {
-
-          }, 
-          "year": {
-
-          }, 
-          "alternator_status_4": {
-
-          }, 
-          "alternator_status_3": {
-
-          },
-          "alternator_status_2": {
-
-          }, 
-          "alternator_status_1": {
-
-          }, 
-          "selected_gear": {
-
-          }, 
-          "current_gear": {
-
-          }, 
-          "bellow_pressure_front_axle_left": {
-
-          }, 
-          "bellow_pressure_front_axle_right": {
-
-          }, 
-          "bellow_pressure_rear_axle_left": {
-
-          }, 
-          "bellow_pressure_rear_axle_right": {
-
-          }, 
-          "hybrid_battery_pack_remaining_charge": {
-
-          }, 
-          "steering_wheel_angle": {
-
+          {
+            "properties": {
+              "status_2_of_doors": {
+                "type": "string", 
+                "enum": ["all_disabled", "at_least_one_enabled"], 
+                "description": "SPN 3411. <br>Composite indication of all bus door statuses."
+              },
+              "ramp_wheel_chairlift": {
+                "type": "string", 
+                "enum": ["inside", "outside"], 
+                "description": "SPN 1820. <br>Signal which indicates the actual position of the ramp / wheel chair lift."
+              },
+              "position_of_doors": {
+                "type": "string", 
+                "enum": ["at_least_one_open", "closing_last", "all_closed"], 
+                "description": "SPN 1821. <br>Signal which indicates the actual position of the doors."
+              },
+              "lock_status_door_1": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3412."
+                  }
+                ]
+              }, 
+              "open_status_door_1": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3413."
+                  }
+                ]
+              },
+              "enable_status_door_1": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3414."
+                  }
+                ]
+              },
+              "lock_status_door_2": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3415."
+                  }
+                ]
+              }, 
+              "open_status_door_2": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3416."
+                  }
+                ]
+              },
+              "enable_status_door_2": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3417."
+                  }
+                ]
+              },
+              "lock_status_door_3": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3418."
+                  }
+                ]
+              }, 
+              "open_status_door_3": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3419."
+                  }
+                ]
+              },
+              "enable_status_door_3": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3420."
+                  }
+                ]
+              },
+              "lock_status_door_4": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3421."
+                  }
+                ]
+              }, 
+              "open_status_door_4": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3422."
+                  }
+                ]
+              },
+              "enable_status_door_4": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3423."
+                  }
+                ]
+              },
+              "lock_status_door_5": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3424."
+                  }
+                ]
+              }, 
+              "open_status_door_5": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3425."
+                  }
+                ]
+              },
+              "enable_status_door_5": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3426."
+                  }
+                ]
+              },
+              "lock_status_door_6": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3427."
+                  }
+                ]
+              }, 
+              "open_status_door_6": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3428."
+                  }
+                ]
+              },
+              "enable_status_door_6": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3429."
+                  }
+                ]
+              },
+              "lock_status_door_7": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3430."
+                  }
+                ]
+              }, 
+              "open_status_door_7": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3431."
+                  }
+                ]
+              },
+              "enable_status_door_7": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3432."
+                  }
+                ]
+              },
+              "lock_status_door_8": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3433."
+                  }
+                ]
+              }, 
+              "open_status_door_8": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3434."
+                  }
+                ]
+              },
+              "enable_status_door_8": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3435."
+                  }
+                ]
+              },
+              "lock_status_door_9": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3436."
+                  }
+                ]
+              }, 
+              "open_status_door_9": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3437."
+                  }
+                ]
+              },
+              "enable_status_door_9": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3438."
+                  }
+                ]
+              },
+              "lock_status_door_10": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_lock_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3439."
+                  }
+                ]
+              }, 
+              "open_status_door_10": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_open_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3440."
+                  }
+                ]
+              },
+              "enable_status_door_10": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/fms_enable_status_door"
+                  }, 
+                  {
+                    "description": "SPN 3441."
+                  }
+                ]
+              },
+              "seconds": {
+    
+              },
+              "minutes": {
+    
+              },
+              "hours": {
+    
+              }, 
+              "month": {
+    
+              }, 
+              "day": {
+    
+              }, 
+              "year": {
+    
+              }, 
+              "alternator_status_4": {
+    
+              }, 
+              "alternator_status_3": {
+    
+              },
+              "alternator_status_2": {
+    
+              }, 
+              "alternator_status_1": {
+    
+              }, 
+              "selected_gear": {
+    
+              }, 
+              "current_gear": {
+    
+              }, 
+              "bellow_pressure_front_axle_left": {
+    
+              }, 
+              "bellow_pressure_front_axle_right": {
+    
+              }, 
+              "bellow_pressure_rear_axle_left": {
+    
+              }, 
+              "bellow_pressure_rear_axle_right": {
+    
+              }, 
+              "hybrid_battery_pack_remaining_charge": {
+    
+              }, 
+              "steering_wheel_angle": {
+    
+              }
+            }
           }
-        }
+        ]
       },
       "id": {
         "type": "object", 
