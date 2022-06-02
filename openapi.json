@@ -3706,14 +3706,7 @@
         "description": "Filter search: ``tour_uri``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
-            "allOf":[
-              {
-                "$ref": "#/components/parameters/tour_uri_query"
-              }, 
-              {
-                "description": "The ``tour_uri`` is a subset of the ``task_uri`` found in ``linked_tasks``"
-              }
-            ]
+            "$ref": "#/components/parameters/tour_uri_query"   
           },
           {
             "$ref": "#/components/parameters/cursor"
@@ -8297,8 +8290,7 @@
               "data": {
                 "type": "string",
                 "format": "byte",
-                "description": "container data bytes encoded in Base64",
-                "example": "5MCMfOGVgyZPnyxamDRjA0EAwX1BBPOQA..."
+                "description": "container data bytes encoded in Base64"
               }
             }
           }
@@ -8372,9 +8364,51 @@
           }
         }
       },
+      "fms_bus_standard": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/fms_truck_bus"
+          },
+          {
+            "$ref": "#/components/schemas/fms_bus_only"
+          },
+          {
+            "description": "All data of the Bus FMS-Standard"
+          }
+        ]
+      }, 
+      "fms_truck_standard": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/fms_truck_bus"
+          },
+          {
+            "$ref": "#/components/schemas/fms_truck_only"
+          },
+          {
+            "description": "All data of the Truck FMS-Standard"
+          }
+        ]
+      },
+      "fms_truck_standard_and_bus_standard": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/fms_truck_bus"
+          }, 
+          {
+            "$ref": "#/components/schemas/fms_truck_only"
+          },
+          {
+            "$ref": "#/components/schemas/fms_bus_only"
+          },
+          {
+            "description": "All data of the Truck FMS Standard and the Bus FMS-Standard"
+          }
+        ]
+      },
       "fms": {
         "type": "object",
-        "description": "As specified in FMS-Standard description Version 04. The data is transmitted in interpreted form. `Offsets` and `per bit gain` are already calculated.",
+        "description": "As specified in FMS-Standard description Version 04. The data is transmitted in interpreted form. `Offsets` and `per bit gain` are already calculated. Data that is sent in different repetitions on the CAN bus can be transmitted as one.",
         "properties": {
           "supporting": {
             "type": "string", 
@@ -8384,37 +8418,13 @@
         },
         "oneOf": [
           {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/fms_truck_bus"
-              },
-              {
-                "$ref": "#/components/schemas/fms_truck"
-              }
-            ]
+            "$ref": "#/components/schemas/fms_truck_standard"
           }, 
           {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/fms_truck_bus"
-              },
-              {
-                "$ref": "#/components/schemas/fms_bus"
-              }
-            ]
+            "$ref": "#/components/schemas/fms_bus_standard"
           }, 
           {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/fms_truck_bus"
-              }, 
-              {
-                "$ref": "#/components/schemas/fms_truck"
-              },
-              {
-                "$ref": "#/components/schemas/fms_bus"
-              }
-            ]
+            "$ref": "#/components/schemas/fms_truck_standard_and_bus_standard"
           }
         ]
       },
@@ -8426,9 +8436,6 @@
         "type": "object", 
         "description": "All data common in the Truck and Bus FMS Standards",
         "allOf": [
-          {
-            "$ref": "#/components/schemas/fms_truck_bus_mutual"
-          }, 
           {
             "properties": {
               "engine_total_fuel_used": {
@@ -8729,6 +8736,9 @@
                 "description": "SPN 1716. <br>Position of the driver's selector for retarders that are not part of the engine system, expressed as percent and determined by the ratio of current position to the maximum possible position."
               }
             }
+          },
+          {
+            "$ref": "#/components/schemas/fms_truck_bus_mutual"
           }
         ]
       },
@@ -8778,7 +8788,7 @@
           }
         }
       },
-      "fms_truck": {
+      "fms_truck_only": {
         "type": "object",
         "description": "Data specified in the `truck only` section that does not appear in the `bus only` section.",
         "allOf": [
@@ -8859,11 +8869,11 @@
         "type": "string", 
         "enum": ["closed", "open"]
       },
-      "fms_bus": {
-        "type": "object",
-        "description": "Data specified in the `bus only` section that does not appear in the `truck only` section.",
+      "fms_bus_only": {
         "allOf": [
           {
+            "type": "object",
+            "description": "Data specified in the `bus only` section that does not appear in the `truck only` section.",    
             "properties": {
               "status_2_of_doors": {
                 "type": "string", 
