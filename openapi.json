@@ -199,7 +199,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc"]
+                "enum": ["position", "fms", "io", "passengers", "temperatures"]
               }
             }
           },
@@ -6899,8 +6899,8 @@
                   "$ref": "#/components/schemas/passenger"
                 }
               },
-              "temperature_sensors": {
-                "$ref": "#/components/schemas/temperature_sensors"
+              "temperatures": {
+                "$ref": "#/components/schemas/temperatures"
               }
             }
           }
@@ -7058,7 +7058,7 @@
           }
         }
       },
-      "temperature_sensors": {
+      "temperatures": {
         "type": "array", 
         "items": {
           "type": "object", 
@@ -7070,14 +7070,6 @@
             "temperature": {
               "type": "number",
               "description": "Measured temperature in °C"
-            },
-            "setpoint": { 
-              "type": "number",
-              "description": "Temperature setpoint in °C"
-            }, 
-            "is_contact_sensor": {
-              "type": "boolean", 
-              "description": "If it is a contact sensor"
             }
           }
         }
