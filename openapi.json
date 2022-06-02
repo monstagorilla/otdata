@@ -3707,7 +3707,6 @@
         "parameters": [
           {
             "allOf":[
-
               {
                 "$ref": "#/components/parameters/tour_uri_query"
               }, 
@@ -6887,13 +6886,16 @@
 
                   },
                   {
-                    "description": "Driver ID of the co-driver", 
+                    "description": "Driver URI of the co-driver", 
                     "example": "/drivers/123"
                   }
                 ]
               },
               "position": {
                 "$ref": "#/components/schemas/position"
+              },
+              "fms": {
+                "$ref": "#/components/schemas/fms"
               },
               "io": {
                 "$ref": "#/components/schemas/io"
@@ -6906,15 +6908,6 @@
               },
               "temperature_sensors": {
                 "$ref": "#/components/schemas/temperature_sensors"
-              },
-              "can": {
-                "$ref": "#/components/schemas/can_data"
-              },
-              "tacho": {
-                "$ref": "#/components/schemas/tacho"
-              },
-              "dtc": {
-                "$ref": "#/components/schemas/dtc"
               }
             }
           }
@@ -7207,1074 +7200,144 @@
           }
         }
       },
-      "can_data": {
-        "type": "object",
-        "properties": {
-          "can_instant": {
-            "type": "object",
-            "properties": {
-              "speed": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "description": "Speed in km/h"
-                      }
-                    }
-                  }
-                ]
-              },
-              "rpm": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "description": "Rotational speed of engine in rpm"
-                      }
-                    }
-                  }
-                ]
-              },
-              "fuel_consumption": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Fuel consumption in l/h"
-                      }
-                    }
-                  }
-                ]
-              },
-              "fuel_level": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer",
-                          "default": 0,
-                          "minimum": 0,
-                          "maximum": 100,
-                          "description": "Fuel level primary, secondary, ... tank in %"
-                        }
-                      }
-                    }
-                  }
-                ]
-              },
-              "axel_weight": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer",
-                          "default": 0,
-                          "minimum": 0
-                        },
-                        "description": "Axel 1,2,... Weight in kg"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "turbo_pressure": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Turbo pressure in kPa"
-                      }
-                    }
-                  }
-                ]
-              },
-              "coolant_temp": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "description": "Coolant temperature in °C"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "accelerator_pedal": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "maximum": 100,
-                        "description": "Accelerator pedal in %"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "torque": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "maximum": 250,
-                        "description": "Torque in %"
-                      }
-                    }
-                  }
-                ]                
-              },
-              "battery_voltage": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "description": "Battery voltage in V"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "coolant_level": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "maximum": 100,
-                        "description": "Coolant level in %"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "oil_temp": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "description": "Oil temperature in °C"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "oil_level": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "maximum": 100,
-                        "description": "Oil level in %"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "throttle": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "maximum": 100,
-                        "description": "Throttle position in %"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "air_inlet_pressure": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Air inlet pressure in kPa"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "gear": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "description": "0=neutral / 45(-)=reverse / 43(+)=forward / 127 = parked"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "seat_belt": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "string",
-                        "enum": [
-                          "off",
-                          "on"
-                        ],
-                        "default": "off"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "oil_pressure": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Engine oil pressure in kPa"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "wet_tank_air_pressure": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Wet tank air pressure in kPa"
-                      }
-                    }
-                  }
-                ]
-              },
-              "pto": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "string",
-                        "enum": [
-                          "none",
-                          "atLeastOne"
-                        ],
-                        "default": "none"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "ignition_switch": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "string",
-                        "enum": [
-                          "off",
-                          "on"
-                        ],
-                        "default": "off"
-                      }
-                    }    
-                  }
-                ]
-              }
-            }
-          },
-          "can_total": {
-            "type": "object",
-            "properties": {
-              "mileage": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Mileage in km"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "total_fuel": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Total fuel in liter"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "fuel_used_at_cruise": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Fuel used at cruise in liter"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "fuel_used_at_drive": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Fuel used at drive in liter"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "idle_longer_5": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Number of idle longer than 5 min"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "idle_longer_10": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Number of idle longer than 10 min"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "total_idle_time": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Total idle time in sec"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "total_time_pto": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Total pto time in sec"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "time_cruise": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Cruise time in sec."
-                      }
-                    }    
-                  }
-                ]
-              },
-              "rpm_threshold": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer",
-                          "default": 0,
-                          "minimum": 0
-                        },
-                        "description": "Rpm > treshold 1,2,3 sec."
-                      }
-                    }    
-                  }
-                ]
-              },
-              "speed_threshold": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer",
-                          "default": 0,
-                          "minimum": 0
-                        },
-                        "description": "Speed > threshold speed 1,2,3 sec."
-                      }
-                    }    
-                  }
-                ]
-              },
-              "brake_applications": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Number of brake applications"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "clutch_applications": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Number of clutch applications"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "engine_on": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Time engine is on in sec"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "time_torque_90": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Time torque > 90%  in sec"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "fuel_rate_average": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "number",
-                        "format": "float",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Fuel rate average in l/h"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "total_distance_cruise_control": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Total vehicle distance with cruise control"
-                      }
-                    }    
-                  }
-                ]
-              },
-              "total_fuel_consumption_pto": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/data_status"
-                  }, 
-                  {
-                    "type": "object",
-                    "properties": {
-                      "value": {
-                        "type": "integer",
-                        "default": 0,
-                        "minimum": 0,
-                        "description": "Total fuel consumption with pto"
-                      }
-                    }    
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      "tacho": {
-        "type": "object",
-        "description": "`working_state`, `time_rel_state`, `card_present`, `over_speed`,\n`system_event`, `direction` and `speed` are described and specified as in\nSAE J 1939",
-        "properties": {
-          "working_state": {
-            "type": "object",
-            "properties": {
-              "driver_1": {
-                "type": "string",
-                "enum": [
-                  "rest",
-                  "available",
-                  "work",
-                  "drive",
-                  "error",
-                  "n/a"
-                ]
-              },
-              "driver_2": {
-                "type": "string",
-                "enum": [
-                  "rest",
-                  "available",
-                  "work",
-                  "drive",
-                  "error",
-                  "n/a"
-                ]
-              }
-            },
-            "description": "State of work of the drivers"
-          },
-          "time_rel_state": {
-            "type": "object",
-            "properties": {
-              "driver_1": {
-                "type": "integer",
-                "minimum": 0
-              },
-              "driver_2": {
-                "type": "integer",
-                "minimum": 0
-              }
-            },
-            "description": "Indicates if the driver approaches or exceeds working time limits\n0=normal / 1=15 min. bef. 4 1/2h / 2=4 1/2h reached / 3=15 min bef. 9h / 4=9h reached / 5=15min bef. 16h / 6=16h reached / 14=Error / 15=n/a"
-          },
-          "card_present": {
-            "type": "object",
-            "properties": {
-              "driver_1": {
-                "type": "boolean"
-              },
-              "driver_2": {
-                "type": "boolean"
-              }
-            },
-            "description": "Indicates the presence of a driver card"
-          },
-          "over_speed": {
-            "type": "boolean",
-            "description": "Indicates whether the vehicle is exceeding the legal speed limit set\nin the tachograph"
-          },
-          "system_event": {
-            "type": "boolean",
-            "description": "Indicates that a tachograph event has occurred. This may include\npower supply interruption, interruption of the speed sensor,\nincorrect data on the driver card, driving without a driver card,\nillegal removal of a driver card, insertion of a driver card during\ndriving, and time adjustment"
-          },
-          "direction": {
-            "type": "string",
-            "enum": [
-              "forward",
-              "reverse"
-            ],
-            "description": "Indicates the direction of the vehicle"
-          },
-          "speed": {
-            "type": "number",
-            "format": "float",
-            "description": " Speed of the vehicle registered by the tachograph"
-          },
-          "card_ids": {
-            "type": "object",
-            "properties": {
-              "driver_1": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/id_type"
-                  }, 
-                  {
-                    "description": "Card ID of driver 1"
-                  }
-                ]
-              },
-              "driver_2": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/id_type"
-                  }, 
-                  {
-                    "description": "Card ID of driver 2"
-                  }
-                ]
-              }
-            },
-            "description": "Driver card IDs"
-          },
-          "rpm": {
-            "type": "integer",
-            "description": "Output shaft speed  rpm"
-          }
-        }
-      },
       "dtc": {
         "type": "object",
         "properties": {
           "dtc_status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "description": "Generic malfunction indicator light"
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on"
+                ],
+                "description": "Generic malfunction indicator light"
               }
-            ]
+            }   
           },
           "dtc_red": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "description": "Red malfunction indicator light"
-                  }
-                }
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on"
+                ],
+                "description": "Red malfunction indicator light"
               }
-            ]
+            }
           },
           "dtc_amber": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "description": "Amber malfunction indicator light"
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on"
+                ],
+                "description": "Amber malfunction indicator light"
               }
-            ]
+            }
           },
           "dtc_protect": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "description": "Protection malfunction indicator light"
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on"
+                ],
+                "description": "Protection malfunction indicator light"
               }
-            ]
+            }   
           },
           "handbreak": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "off",
-                      "on"
-                    ],
-                    "description": "Handbrake malfunction indicator light"
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "off",
+                  "on"
+                ],
+                "description": "Handbrake malfunction indicator light"
               }
-            ]
+            }
           },
           "battery_status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "ok",
-                      "failure"
-                    ]
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failure"
+                ]
               }
-            ]
+            }
           },
           "coolant_status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "ok",
-                      "failure"
-                    ]
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failure"
+                ]
               }
-            ]
+            }
           },
           "oil_pressure": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "ok",
-                      "failure"
-                    ]
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failure"
+                ]
               }
-            ]
+            }
           },
           "break_pads": {
             "type": "array",
             "items": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/data_status"
-                }, 
-                {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "$ref": "#/components/schemas/breakpad"
-                    }
-                  }
+              "type": "object",
+              "properties": {
+                "value": {
+                  "$ref": "#/components/schemas/breakpad"
                 }
-              ]
+              }
             }
           },
           "oil_level_status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "ok",
-                      "failure"
-                    ]
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failure"
+                ]
               }
-            ]
+            }
           },
           "abs_status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/data_status"
-              }, 
-              {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "string",
-                    "enum": [
-                      "fullyOperational",
-                      "notFullyOperational"
-                    ]
-                  }
-                }    
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "enum": [
+                  "fullyOperational",
+                  "notFullyOperational"
+                ]
               }
-            ]
+            }    
           }
         }
       },
@@ -9316,7 +8379,7 @@
           "supporting": {
             "type": "string", 
             "enum": ["truck", "bus", "truck_and_bus"], 
-            "description": "Whether the FMS Truck Standard, the FMS Bus Standard or both are supported. The according schema is used."
+            "description": "Whether the Truck FMS Standard, the Bus FMS Standard or both are supported. The according schema is used."
           }
         },
         "oneOf": [
@@ -9354,6 +8417,10 @@
             ]
           }
         ]
+      },
+      "fms_telltale_status": {
+        "type": "string", 
+        "enum": ["off", "red", "yellow", "info"]
       },
       "fms_truck_bus": {
         "type": "object", 
@@ -9418,12 +8485,12 @@
               }, 
               "diagnostics_supported": {
                 "type": "string", 
-                "enum": ["not_supported", "supported", "reserved", "do_not_care"],
+                "enum": ["not_supported", "supported", "do_not_care"],
                 "description": "SPN 2804. <br>Status signal which indicates if the FMS Vehicle Interface (FMS Gateway) supports the handling of diagnostic messages from the vehicle network onto the FMS network."
               }, 
               "requests_supported": {
                 "type": "string", 
-                "enum": ["not_supported", "supported", "reserved", "do_not_care"],
+                "enum": ["not_supported", "supported", "do_not_care"],
                 "description": "SPN 2805. <br>Status signal which indicates if the FMS Vehicle Interface (FMS Gateway) will respond to requests from the FMS device for the PGNs listed in the FMS Interface Specification."
               }, 
               "high_resolution_total_vehicle_distance": {
@@ -9440,12 +8507,12 @@
               }, 
               "driver_2_working_state": {
                 "type": "string", 
-                "enum": ["rest", "driver_available", "work", "drive", "error", "not_available"], 
+                "enum": ["rest", "driver_available", "work", "drive"], 
                 "description": "SPN 1613. <br>State of work of the driver 2."
               }, 
               "driver_1_working_state": {
                 "type": "string", 
-                "enum": ["rest", "driver_available", "work", "drive", "error", "not_available"], 
+                "enum": ["rest", "driver_available", "work", "drive"], 
                 "description": "SPN 1612. <br>State of work of the driver 1."
               }, 
               "vehicle_overspeed": {
@@ -9454,14 +8521,16 @@
                 "description": "SPN 1614. <br>Indicates whether the vehicle is exceeding the legal speed limit set in the tachograph." 
               }, 
               "driver_1_time_rel_states": {
-                "type": "string", 
-                "enum": ["TODO"],
-                "description": "SPN 1617. <br>Indicates if the driver 1 approaches or exceeds working time limits (or other limits)." 
+                "type": "integer", 
+                "minimum": 0,
+                "maximum": 6,
+                "description": "SPN 1617. <br>Indicates if the driver 1 approaches or exceeds working time limits (or other limits).<br>0=normal<br>1=15 min. bef. 4 1/2h <br>2=4 1/2h reached <br>3=15 min bef. 9h <br>4=9h reached <br>5=15min bef. 16h <br>6=16h reached"
               }, 
               "driver_2_time_rel_states": {
-                "type": "string",
-                "enum": ["TODO"], 
-                "description": "SPN 1618. <br>Indicates if the driver 2 approaches or exceeds working time limits (or other limits)." 
+                "type": "integer", 
+                "minimum": 0,
+                "maximum": 6,
+                "description": "SPN 1618. <br>Indicates if the driver 2 approaches or exceeds working time limits (or other limits).<br>0=normal<br>1=15 min. bef. 4 1/2h <br>2=4 1/2h reached <br>3=15 min bef. 9h <br>4=9h reached <br>5=15min bef. 16h <br>6=16h reached"
               },
               "driver_1_card": {
                 "type": "string", 
@@ -9485,12 +8554,12 @@
               },
               "handling_information": {
                 "type": "string", 
-                "enum": ["no_handling_information", "handling_information"],
+                "enum": ["no_information", "information"],
                 "description": "SPN 1621. <br>Indicates that handling information is present." 
               },
               "system_event": {
                 "type": "string", 
-                "enum": ["no_tachograph_event", "tachograph_event"],
+                "enum": ["no_event", "event"],
                 "description": "SPN 1622. <br>Indicates that a tachograph event has occurred." 
               },
               "tachograph_vehicle_speed": {
@@ -9559,8 +8628,66 @@
                 "maximum": 100,
                 "description": "SPN 1761. <br>Ratio of volume of diesel exhaust fluid to the total volume of diesel exhaust fluid storage container in percent."
               },
-              "fms_tell_tale_status": {
-    
+              "fms_telltale_status": {
+                "type": "array", 
+                "description": "The array enables the transmission of the five Telltale blocks, each of which is sent in a different repetition on the CAN bus.",
+                "maxItems": 5, 
+                "items":{
+                  "type": "object", 
+                  "properties": {
+                    "telltale_block_id": {
+                      "type": "integer", 
+                      "minimum": 0, 
+                      "maximum": 4, 
+                      "description": "ID of the block the taletell status 1-15 in this item belongs to."
+                    },
+                    "telltale_status_1": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_2": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_3": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_4": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_5": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_6": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_7": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_8": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_9": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_10": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_11": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_12": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_13": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_14": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    },
+                    "telltale_status_15": {
+                      "$ref": "#/components/schemas/fms_telltale_status"
+                    }
+                  }
+                }
               },
               "brake_pedal_position": {
                 "type": "number", 
@@ -9639,7 +8766,7 @@
           },
           "cruise_control_states": {
             "type": "string", 
-            "enum": ["off", "hold", "accelerate", "decelerate", "resume", "set", "accelerate_override", "not_available"], 
+            "enum": ["off", "hold", "accelerate", "decelerate", "resume", "set", "accelerate_override"], 
             "description": "SPN 527."
           },
           "accelerator_pedal_position": {
@@ -9659,7 +8786,7 @@
             "properties": {
               "pto_state": {
                 "type": "string", 
-                "enum": ["off", "set", "not_available"],
+                "enum": ["off", "set"],
                 "description": "SPN 976. <br> This parameter is used to indicate the current state or mode of operation by the power takeoff (PTO) device."
               },
               "engine_percent_load_at_current_speed": {
@@ -9668,24 +8795,34 @@
                 "maximum": 125, 
                 "description": "SPN 92. <br>The ratio of actual engine percent torque (indicated) to maximum indicated torque available at the current engine speed, clipped to zero torque during engine braking."
               },
-              "axle_location": {
-                "type": "integer", 
-                "minimum": 1, 
-                "maximum": 15, 
-                "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting front to back on the vehicle."
-              },
-              "tire_location": {
-                "type": "integer", 
-                "minimum": 1, 
-                "maximum": 15, 
-                "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting left to right when facing in the direction of normal vehicle travel (forward)."
-              },
-              "axle_weight": {
-                "type": "number", 
-                "multipleOf": 0.5, 
-                "minimum": 0,
-                "maximum": 32127.5, 
-                "description": "SPN 582. <br>Total mass imposed by the tires on the road surface at the specified axle."
+              "vehicle_weight": {
+                "type": "array", 
+                "description": "The array enables the transmission of up to 225 (15*15) axle weights, each of which is sent in a different repetition on the CAN bus.", 
+                "maxItems": 225,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "axle_location": {
+                      "type": "integer", 
+                      "minimum": 1, 
+                      "maximum": 15, 
+                      "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting front to back on the vehicle."
+                    },
+                    "tire_location": {
+                      "type": "integer", 
+                      "minimum": 1, 
+                      "maximum": 15, 
+                      "description": "SPN 928. <br>To identify to which of several similar devices (such as tires or fuel tanks) the information applies. The 4 bits represent a position number, counting left to right when facing in the direction of normal vehicle travel (forward)."
+                    },
+                    "axle_weight": {
+                      "type": "number", 
+                      "multipleOf": 0.5, 
+                      "minimum": 0,
+                      "maximum": 32127.5, 
+                      "description": "SPN 582. <br>Total mass imposed by the tires on the road surface at the specified axle."
+                    }
+                  }    
+                }
               },
               "service_distance": {
                 "type": "integer", 
@@ -10189,7 +9326,7 @@
         "description": "Cursor for cursor-based pagination.",
         "type": "string"
       },
-      "data_status": {
+      "fms_data_status": {
         "type": "object",
         "properties": {
           "status": {
@@ -10197,7 +9334,7 @@
             "enum": [
               "ok",
               "error",
-              "n/a"
+              "not_available"
             ],
             "description": "Indicates availability of data"
           }
