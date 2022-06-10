@@ -199,7 +199,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "fms", "io", "passengers", "temperatures"]
+                "enum": ["position", "fms", "sensors", "passengers", "temperatures"]
               }
             }
           },
