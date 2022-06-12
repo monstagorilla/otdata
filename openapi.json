@@ -8437,18 +8437,19 @@
                 "enum": ["truck", "bus", "truck_and_bus"], 
                 "description": "Whether the Truck FMS Standard, the Bus FMS Standard or both are supported. The according schema is used."
               }
-            }
-          }
-        ],
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/fms_truck_standard"
-          }, 
-          {
-            "$ref": "#/components/schemas/fms_bus_standard"
-          }, 
-          {
-            "$ref": "#/components/schemas/fms_truck_standard_and_bus_standard"
+            }, 
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/fms_truck_standard"
+              }, 
+              {
+                "$ref": "#/components/schemas/fms_bus_standard"
+              }, 
+              {
+                "$ref": "#/components/schemas/fms_truck_standard_and_bus_standard"
+              }
+            ]
+    
           }
         ]
       },
