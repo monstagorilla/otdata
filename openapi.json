@@ -6926,7 +6926,17 @@
                   "description": "Unique name of the sensor."
                 }, 
                 "value": {
-                  "type": "boolean",
+                  "oneOf":[ 
+                    {
+                      "type": "string"
+                    }, 
+                    {
+                      "type": "number"
+                    }, 
+                    {
+                      "type": "boolean"
+                    }
+                  ], 
                   "description": "The value in one of the specified types."
                 }
               }
