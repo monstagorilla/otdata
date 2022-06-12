@@ -6910,12 +6910,12 @@
         "type": "array", 
         "description": "Generic list for sensor data",
         "items": {
-          "type": "object",  
           "allOf": [
             {
               "$ref": "#/components/schemas/timestamp"
             }, 
             {
+              "type": "object",  
               "properties": {
                 "name": {
                   "type": "string",
@@ -8413,13 +8413,13 @@
         ]
       },
       "fms": {
-        "type": "object",
-        "description": "As specified in FMS-Standard description Version 04. The data is transmitted in interpreted form. `Offsets` and `per bit gain` are already calculated. Data that is sent in different repetitions on the CAN bus can be transmitted as one.",
         "allOf": [
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
+            "type": "object",
+            "description": "As specified in FMS-Standard description Version 04. The data is transmitted in interpreted form. `Offsets` and `per bit gain` are already calculated. Data that is sent in different repetitions on the CAN bus can be transmitted as one.",    
             "properties": {
               "supporting": {
                 "type": "string", 
