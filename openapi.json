@@ -6741,13 +6741,15 @@
         }
       },
       "object_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
           {
             "$ref": "#/components/schemas/object"
+          }, 
+          {
+            "type": "object"
           }
         ]
       },
@@ -6830,13 +6832,15 @@
         ]
       },
       "live_data_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           }, 
           {
             "$ref": "#/components/schemas/live_data"
+          }, 
+          {
+            "type": "object"
           }
         ]
       },
@@ -6922,17 +6926,7 @@
                   "description": "Unique name of the sensor."
                 }, 
                 "value": {
-                  "oneOf":[ 
-                    {
-                      "type": "string"
-                    }, 
-                    {
-                      "type": "number"
-                    }, 
-                    {
-                      "type": "boolean"
-                    }
-                  ], 
+                  "type": "boolean",
                   "description": "The value in one of the specified types."
                 }
               }
@@ -6990,13 +6984,15 @@
         ]
       },
       "customer_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
           },
           {
             "$ref": "#/components/schemas/customer"
+          }, 
+          {
+            "type": "object"
           }
         ]
       },
@@ -7068,12 +7064,12 @@
       "temperatures": {
         "type": "array", 
         "items": {
-          "type": "object", 
           "allOf": [
             {
               "$ref": "#/components/schemas/timestamp"
             }, 
             {
+              "type": "object", 
               "properties": {
                 "name": {
                   "type": "string", 
@@ -7341,19 +7337,20 @@
         }
       },
       "resource_meta": {
-        "type": "object",
-        "required": ["id", "uri"],
         "allOf": [
           {
             "$ref": "#/components/schemas/id"
           },
           {
             "$ref": "#/components/schemas/uri"
+          }, 
+          {
+            "type": "object",
+            "required": ["id", "uri"]    
           }
         ]
       },
       "tour_with_subresources": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/tour"
@@ -7394,7 +7391,6 @@
         ]
       }, 
       "tour_with_subresources_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/tour_full"
@@ -7445,8 +7441,14 @@
             "type": "object",
             "properties": {
               "drives_uri": {
-                "allOf": [{"$ref": "#/components/schemas/uri"}], 
-                "example": "/tours/123/drives"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri"
+                  }, 
+                  {
+                    "example": "/tours/123/drives"
+                  }
+                ]
               }
             }    
           }
@@ -7528,7 +7530,6 @@
         ]
       },
       "drive_full": {
-        "type": "object",
         "allOf": [
           {
             "$ref": "#/components/schemas/resource_meta"
@@ -8446,10 +8447,10 @@
         "enum": ["off", "red", "yellow", "info"]
       },
       "fms_truck_bus": {
-        "type": "object", 
-        "description": "All data common in the Truck and Bus FMS Standards",
         "allOf": [
           {
+            "type": "object", 
+            "description": "All data common in the Truck and Bus FMS Standards",    
             "properties": {
               "engine_total_fuel_used": {
                 "type": "number", 
@@ -8802,10 +8803,10 @@
         }
       },
       "fms_truck_only": {
-        "type": "object",
-        "description": "Data specified in the `truck only` section that does not appear in the `bus only` section.",
         "allOf": [
           {
+            "type": "object",
+            "description": "Data specified in the `truck only` section that does not appear in the `bus only` section.",    
             "properties": {
               "pto_state": {
                 "type": "string", 
