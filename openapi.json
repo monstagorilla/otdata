@@ -6938,6 +6938,10 @@
                     }
                   ], 
                   "description": "The value in one of the specified types."
+                }, 
+                "unit": {
+                  "type": "string", 
+                  "description": "Unit in which the value is expressed"
                 }
               }
             }
@@ -8020,7 +8024,8 @@
           },
           "unit": {
             "type": "string",
-            "example": "kg"
+            "example": "kg",
+            "description": "Unit in which the value is expressed"
           },
           "description": {
             "type": "string",
@@ -8104,6 +8109,7 @@
               "unit": {
                 "type": "string",
                 "example": "l",
+                "description": "Unit in which the value is expressed",
                 "enum": [
                   "l",
                   "kg"
