@@ -6870,7 +6870,7 @@
                     "$ref": "#/components/schemas/uri_type"
                   },
                   {
-                    "description": "Driver URI of the driver", 
+                    "description": "URI of the driver", 
                     "example": "/drivers/123"
                   } 
                 ]
@@ -6883,7 +6883,7 @@
 
                   },
                   {
-                    "description": "Driver URI of the co-driver", 
+                    "description": "URI of the co-driver", 
                     "example": "/drivers/123"
                   }
                 ]
@@ -9340,7 +9340,14 @@
         "type": "object", 
         "properties": {
           "id": {
-            "$ref": "#/components/schemas/id_type"
+            "allOf":[
+              {
+                "$ref": "#/components/schemas/id_type"
+              }, 
+              {
+                "description": "Local ID of this resource"
+              }
+            ]          
           }
         }
       },
@@ -9351,7 +9358,14 @@
         "type": "object", 
         "properties": {
           "uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf":[
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of this resource. The `uri` can be a URN, e.g. `/tours/123` or a URL, e.g. `https://api.opentelematics.io/2.0.0/tours/123`. A `uri` contains the local `id` and is equivalent to the URI created by path templating, e.g. the path template `/tours/{tour_id}/drives/{drive_id}` leads to a `uri` like `/tours/123/drives/123` or `https://api.opentelematics.io/2.0.0/tours/123/drives/123`"
+              }
+            ]
           }
         }
       },
@@ -9419,7 +9433,14 @@
         "type": "object", 
         "properties":{
           "object_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related object"
+              }
+            ]
           }
         }
       },
@@ -9427,7 +9448,14 @@
         "type": "object", 
         "properties": {
           "tour_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related tour"
+              }
+            ]
           }
         }
       },
@@ -9435,7 +9463,14 @@
         "type": "object", 
         "properties": {
           "drive_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related drive"
+              }
+            ]
           }
         }
       },
@@ -9443,7 +9478,14 @@
         "type": "object", 
         "properties": {
           "task_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related task"
+              }
+            ]
           }
         }
       },
@@ -9451,7 +9493,14 @@
         "type": "object", 
         "properties": {
           "driver_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related driver"
+              }
+            ]
           }
         }
       },
@@ -9459,7 +9508,14 @@
         "type": "object", 
         "properties": {
           "customer_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related customer"
+              }
+            ]
           }
         }
       },
@@ -9467,7 +9523,14 @@
         "type": "object", 
         "properties": {
           "shipment_uri": {
-            "$ref": "#/components/schemas/uri_type"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              }, 
+              {
+                "description": "URI of the related shipment"
+              }
+            ]
           }
         }
       },
