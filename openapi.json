@@ -7044,6 +7044,9 @@
             "properties": {
               "driver_card": {
                 "$ref": "#/components/schemas/driver_card"
+              }, 
+              "address": {
+                "$ref": "#/components/schemas/address"
               }
             }    
           }
