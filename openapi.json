@@ -7130,14 +7130,6 @@
           },
           "contact": {
             "$ref": "#/components/schemas/contact"
-          },
-          "poi_name": {
-            "type": "string",
-            "maxLength": 30
-          },
-          "poi_group": {
-            "type": "string",
-            "maxLength": 30
           }
         }
       },
@@ -8445,42 +8437,36 @@
             "properties": {
               "engine_total_fuel_used": {
                 "type": "number", 
-                "multipleOf": 0.5, 
                 "minimum": 0, 
                 "maximum": 2105540607.5, 
                 "description": "SPN 250. <br>Accumulated amount of fuel used during vehicle operation in liters."
               }, 
               "fuel_level_1": {
                 "type": "number", 
-                "multipleOf": 0.4, 
                 "minimum": 0,
                 "maximum": 100, 
                 "description": "SPN 96. <br>Ratio of volume of fuel to the total volume of fuel storage container in percent."
               }, 
               "fuel_level_2": {
                 "type": "number", 
-                "multipleOf": 0.4, 
                 "minimum": 0, 
                 "maximum": 100,
                 "description": "SPN 38. <br>Ratio of volume of fuel to the total volume of fuel storage container in percent."
               }, 
               "actual_engine_percent_torque": {
                 "type": "integer", 
-                "multipleOf": 1, 
                 "minimum": -125, 
                 "maximum": 125,
                 "description": "SPN 513. <br>The calculated output torque of the engine in percent. The data is transmitted in indicated torque as a percent of reference engine torque." 
               }, 
               "engine_speed": {
                 "type": "number",
-                "multipleOf": 0.125,
                 "minimum": 0,
                 "maximum": 8031.875,
                 "description": "SPN 190. <br>Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders in rounds per minute."
               }, 
               "engine_total_hours_of_operation": {
                 "type": "number",
-                "multipleOf": 0.05,
                 "minimum": 0, 
                 "maximum": 210554060.75, 
                 "description": "SPN 247. <br>Accumulated time of operation of engine in hours."
@@ -8507,7 +8493,6 @@
               }, 
               "high_resolution_total_vehicle_distance": {
                 "type": "integer", 
-                "multipleOf": 5, 
                 "minimum": 0, 
                 "maximum": 21055406075, 
                 "description": "SPN 917. <br>Accumulated distance travelled by the vehicle during its operation in meters."
@@ -8576,7 +8561,6 @@
               },
               "tachograph_vehicle_speed": {
                 "type": "number", 
-                "multipleOf": 0.00390625, 
                 "minimum": 0, 
                 "maximum": 250.99609375, 
                 "description": "SPN 1624. <br>Speed of the vehicle registered by the tachograph in kilometers per hour."
@@ -8589,7 +8573,6 @@
               },
               "ambient_air_temperature": {
                 "type": "number",
-                "multipleOf": 0.03125, 
                 "minimum": -273, 
                 "maximum": 1734.96875, 
                 "description": "SPN 171. <br>Temperature of air surrounding vehicle in degrees Celsius."
@@ -8600,42 +8583,36 @@
               },
               "fuel_rate": {
                 "type": "number", 
-                "multipleOf": 0.05, 
                 "minimum": 0, 
                 "maximum": 3212.75, 
                 "description": "SPN 183. <br>Amount of fuel consumed by engine per unit of time in liters per hour."
               },
               "instantaneous_fuel_economy": {
                 "type": "number", 
-                "multipleOf": 0.001953125, 
                 "minimum": 0, 
                 "maximum": 125.5, 
                 "description": "SPN 184. <br>Current fuel economy at current vehicle velocity in kilometers per liter."
               },
               "service_brake_air_pressure_circuit_1 ": {
                 "type": "integer", 
-                "multipleOf": 8, 
                 "minimum": 0, 
                 "maximum": 2000, 
                 "description": "SPN 1087. <br>The pneumatic pressure in the service brake circuit or reservoir 1 in kilopascal."
               },
               "service_brake_air_pressure_circuit_2 ": {
                 "type": "integer", 
-                "multipleOf": 8, 
                 "minimum": 0, 
                 "maximum": 2000, 
                 "description": "SPN 1088. <br>The pneumatic pressure in the service brake circuit or reservoir 2 in kilopascal."
               },
               "high_resolution_engine_total_fuel_used": {
                 "type": "number",
-                "multipleOf": 0.001,
                 "minimum": 0,
                 "maximum": 4211081.215,
                 "description": "SPN 5054. <br>Accumulated amount of fuel used during vehicle operation in liters. High resolution used for calculations and fleet management systems."
               },
               "aftertreatment_1_diesel_exhaust_fluid_tank_1_level": {
                 "type": "number",
-                "multipleOf": 0.4,
                 "minimum": 0,
                 "maximum": 100,
                 "description": "SPN 1761. <br>Ratio of volume of diesel exhaust fluid to the total volume of diesel exhaust fluid storage container in percent."
@@ -8703,7 +8680,6 @@
               },
               "brake_pedal_position": {
                 "type": "number", 
-                "multipleOf": 0.4, 
                 "minimum": 0, 
                 "maximum": 100, 
                 "description": "SPN 521. <br>Ratio of brake pedal position to maximum pedal position in percent."
@@ -8716,7 +8692,6 @@
               },
               "total_fuel_used_gaseous": {
                 "type": "number", 
-                "multipleOf": 0.5,
                 "minimum": 0, 
                 "maximum": 2105540607.5, 
                 "description": "SPN 1040. <br>Total fuel consumed (trip drive fuel + trip PTO governor moving fuel + trip PTO governor non-moving fuel + trip idle fuel) over the life of the engine in kilograms."
@@ -8735,7 +8710,6 @@
               },
               "retarder_selection_non_engine": {
                 "type": "number", 
-                "multipleOf": 0.4, 
                 "minimum": 0, 
                 "maximum": 100, 
                 "description": "SPN 1716. <br>Position of the driver's selector for retarders that are not part of the engine system, expressed as percent and determined by the ratio of current position to the maximum possible position."
@@ -8753,7 +8727,6 @@
         "properties": {
           "wheel_based_speed": {
             "type": "number",
-            "multipleOf": 0.00390625, 
             "minimum": 0,
             "maximum": 250.99609375,
             "description": "SPN 84. <br>Speed of the vehicle as calculated from wheel or tailshaft speed in kilometers per hour."
@@ -8786,7 +8759,6 @@
           },
           "accelerator_pedal_position": {
             "type": "number", 
-            "multipleOf": 0.4, 
             "minimum": 0, 
             "maximum": 100, 
             "description": "SPN 91. <br>The ratio of actual position of the analogue engine speed/torque request input device (such as an accelerator pedal or throttle lever) to the maximum position of the input device in percent."
@@ -8831,7 +8803,6 @@
                     },
                     "axle_weight": {
                       "type": "number", 
-                      "multipleOf": 0.5, 
                       "minimum": 0,
                       "maximum": 32127.5, 
                       "description": "SPN 582. <br>Total mass imposed by the tires on the road surface at the specified axle."
@@ -8841,7 +8812,6 @@
               },
               "service_distance": {
                 "type": "integer", 
-                "multipleOf": 5, 
                 "minimum": -160635, 
                 "maximum": 160640, 
                 "description": "SPN 914. <br>The distance which can be travelled by the vehicle before the next service inspection is required in kilometers. A negative distance is transmitted if the service inspection has been passed."
@@ -8853,7 +8823,6 @@
               },
               "gross_combination_vehicle_weight": {
                 "type": "integer", 
-                "multipleOf": 10, 
                 "minimum": 0, 
                 "maximum": 642550,
                 "description": "SPN 1760. <br>The total weight of the truck and all attached trailers in kilograms."
@@ -9197,7 +9166,6 @@
               },
               "seconds": {
                 "type": "number", 
-                "multipleOf": 0.25, 
                 "minimum": 0, 
                 "maximum": 62.5, 
                 "description": "SPN 959. <br>Part of a parameter used to represent time."
@@ -9266,42 +9234,36 @@
               }, 
               "bellow_pressure_front_axle_left": {
                 "type": "number", 
-                "multipleOf": 0.1,
                 "minimum": 0, 
                 "maximum": 6425, 
                 "description": "SPN 1725. <br>Used for bellow pressure information. In kilopascal."
               }, 
               "bellow_pressure_front_axle_right": {
                 "type": "number", 
-                "multipleOf": 0.1,
                 "minimum": 0, 
                 "maximum": 6426, 
                 "description": "SPN 1725. <br>Used for bellow pressure information. In kilopascal."
               }, 
               "bellow_pressure_rear_axle_left": {
                 "type": "number", 
-                "multipleOf": 0.1,
                 "minimum": 0, 
                 "maximum": 6427, 
                 "description": "SPN 1725. <br>Used for bellow pressure information. In kilopascal."
               }, 
               "bellow_pressure_rear_axle_right": {
                 "type": "number", 
-                "multipleOf": 0.1,
                 "minimum": 0, 
                 "maximum": 6428, 
                 "description": "SPN 1725. <br>Used for bellow pressure information. In kilopascal."
               }, 
               "hybrid_battery_pack_remaining_charge": {
                 "type": "number",
-                "multipleOf": 0.0025,
                 "minimum": 0,
                 "maximum": 160.6375,
                 "description": "SPN 5464. <br> Indicates the hybrid battery pack remaining charge in percent."
               }, 
               "steering_wheel_angle": {
                 "type": "number", 
-                "multipleOf": 0.0009765625, 
                 "minimum": -31.3740234375, 
                 "maximum": 31.375, 
                 "description": "SPN 1807. <br>The main operator`s steering wheel angle (on the steering column, not the actual wheel angle) in radian."
