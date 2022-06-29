@@ -199,7 +199,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "fms", "sensors", "passengers", "temperatures"]
+                "enum": ["position", "fms", "sensors", "temperatures"]
               }
             }
           },
@@ -310,7 +310,7 @@
               "type": "array", 
               "items": {
                 "type": "string", 
-                "enum": ["position", "io", "passengers", "temperatures", "can", "tacho", "dtc"]
+                "enum": ["position", "fms", "sensors", "temperatures"]
               }
             }
 
@@ -6897,12 +6897,6 @@
               "sensors": {
                 "$ref": "#/components/schemas/sensors"
               },
-              "passengers": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/passenger"
-                }
-              },
               "temperatures": {
                 "$ref": "#/components/schemas/temperatures"
               }
@@ -7054,26 +7048,6 @@
             }    
           }
         ]
-      },
-      "passenger": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/id_type"
-              }, 
-              {
-                "description": "Passenger ID"
-              }
-            ]
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 150,
-            "description": "Passenger name"
-          }
-        }
       },
       "temperatures": {
         "type": "array", 
