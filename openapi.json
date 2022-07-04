@@ -6847,6 +6847,9 @@
       "live_data": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/timestamp"
           },
           {
@@ -7005,12 +7008,19 @@
         ]
       },
       "customer": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "$ref": "#/components/schemas/address"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "address": {
+                "$ref": "#/components/schemas/address"
+              }
+            }
           }
-        }
+        ]
       },
       "driver_full": {
         "allOf": [
@@ -7036,6 +7046,9 @@
       },
       "driver": {
         "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
           {
             "$ref": "#/components/schemas/customer_uri"
           }, 
@@ -7440,6 +7453,9 @@
       "tour": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/customer_uri"
           },
           {
@@ -7473,6 +7489,9 @@
       },
       "eta": {
         "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
@@ -7542,6 +7561,9 @@
         "properties": {
           "address": {
             "allOf": [
+              {
+                "$ref": "#/components/schemas/external_id"
+              },
               {
                 "$ref": "#/components/schemas/address"
               }, 
@@ -7646,6 +7668,9 @@
       "subscription": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
@@ -7726,6 +7751,9 @@
       "tour_event": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
@@ -7774,6 +7802,9 @@
       "drive_event": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
@@ -7817,6 +7848,9 @@
       },
       "task_event": {
         "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
           {
             "$ref": "#/components/schemas/timestamp"
           }, 
@@ -7881,6 +7915,9 @@
       "resource_event": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/resource_meta"
           },
           {
@@ -7940,36 +7977,43 @@
         ]
       },
       "shipment": {
-        "type": "object",
-        "properties": {
-          "shipment_reference": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/id_type"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "shipment_reference": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/id_type"
+                  },
+                  {
+                    "description": "Reference (e.g. number or name of the shipment used in shipment tracking), that is used independently of API-specific IDs and URIs."    
+                  }
+                ]
               },
-              {
-                "description": "Reference (e.g. number or name of the shipment used in shipment tracking), that is used independently of API-specific IDs and URIs."    
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/address"
+                },
+                "description": "All addresses relevant for the shipment"
+              },
+              "items": {
+                "type": "array",
+                "description": "List of all single items of the shipment",
+                "items": {
+                  "$ref": "#/components/schemas/item"
+                }
+              }, 
+              "additions": {
+                "$ref": "#/components/schemas/key_value_list"
               }
-            ]
-          },
-          "addresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/address"
-            },
-            "description": "All addresses relevant for the shipment"
-          },
-          "items": {
-            "type": "array",
-            "description": "List of all single items of the shipment",
-            "items": {
-              "$ref": "#/components/schemas/item"
-            }
-          }, 
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
+            }    
           }
-        }
+        ]
       },
       "item": {
         "type": "object",
@@ -8142,6 +8186,9 @@
       "task": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref":  "#/components/schemas/shipment_uri" 
           }, 
           {
@@ -8210,6 +8257,9 @@
       "message": {
         "allOf": [
           {
+            "$ref": "#/components/schemas/external_id"
+          },
+          {
             "$ref": "#/components/schemas/timestamp"
           }, 
           {
@@ -8241,6 +8291,9 @@
       },
       "tacho_file": {
         "allOf": [
+          {
+            "$ref": "#/components/schemas/external_id"
+          },
           {
             "$ref": "#/components/schemas/object_uri"
           }, 
@@ -9290,6 +9343,21 @@
           }
         }
       },
+      "external_id": {
+        "type": "object", 
+        "properties": {
+          "external_id": {
+            "allOf":[
+              {
+                "$ref": "#/components/schemas/id_type"
+              }, 
+              {
+                "description": "ID of this resource in the context of the source database. Uniquely identifies the resource in the source database. In the context of the API it is part of the respective dataset not the resources metadata like URI and ID."
+              }
+            ]          
+          }
+        }
+      },
       "id_type": {
         "type": "string"
       },
@@ -9377,7 +9445,7 @@
                 "$ref": "#/components/schemas/uri_type"
               }, 
               {
-                "description": "URI of the related object containing information about the data-generating instance."
+                "description": "URI of the related object, the data-generating instance."
               }
             ]
           }
