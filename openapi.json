@@ -1500,7 +1500,7 @@
                         {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/tour_with_subresources_full"
+                            "$ref": "#/components/schemas/tour_with_subresources_and_shipments_full"
                           }
                         }
                       ]
@@ -1539,10 +1539,10 @@
         ],
         "summary": "Creates a tour and optionally its subresources",
         "operationId": "create_tour",
-        "description": "Due to the potentially frequent need, this request allows embedding of subresources and shipments linked to the tour in the request and therefore also in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\nModified request body: ``create_subresources``",
+        "description": "Due to the potentially frequent need, this request allows embedding of subresources linked to the tour in the request and therefore also in the response. These are marked with a leading underscore and MUST NOT be cached, because no concurrency control is possible due to the missing ``ETag`` header.\n\nIf subresources are embedded in the response, the ``ETag`` header SHOULD not be sent. The ``ETag`` header is only related to the tour resource, not to its subresources. A response with subresources and ``ETag`` header could be misleading.\n\nModified request body: ``create_subresources``",
         "parameters": [
           {
-            "$ref": "#/components/parameters/create_subresources"
+            "$ref": "#/components/parameters/create_subresources_post"
           },
           {
             "$ref": "#/components/parameters/ot_id"
@@ -1555,7 +1555,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/tour_create"
+          "$ref": "#/components/requestBodies/tour_create_post"
         },
         "responses": {
           "201": {
@@ -1676,7 +1676,7 @@
                       "$ref": "#/components/schemas/tour_full"
                     }, 
                     {
-                      "$ref": "#/components/schemas/tour_with_subresources_full"
+                      "$ref": "#/components/schemas/tour_with_subresources_and_shipments_full"
                     }
                   ]
                 }
@@ -1724,7 +1724,7 @@
             "$ref": "#/components/parameters/if_match"
           },
           {
-            "$ref": "#/components/parameters/create_subresources"
+            "$ref": "#/components/parameters/create_subresources_put"
           },
           {
             "$ref": "#/components/parameters/ot_id"
@@ -6177,7 +6177,7 @@
           "$ref": "#/components/schemas/resource_event_types"
         }
       }, 
-      "create_subresources": {
+      "create_subresources_put": {
         "name": "create_subresources", 
         "in": "query", 
         "required": true, 
@@ -6186,7 +6186,18 @@
           "type": "boolean", 
           "default": false
         }
+      },
+      "create_subresources_post": {
+        "name": "create_subresources", 
+        "in": "query", 
+        "required": true, 
+        "description": "Whether also subresources linked to the tour should be created.",
+        "schema": {
+          "type": "boolean", 
+          "default": false
+        }
       }
+
     },
     "responses": {
       "no_content": {
@@ -6385,7 +6396,7 @@
         },
         "required": true
       },
-      "tour_create": {
+      "tour_create_post": {
         "content": {
           "application/json": {
             "schema": {
@@ -6413,7 +6424,7 @@
                   "$ref": "#/components/schemas/tour_full"
                 }, 
                 {
-                  "$ref": "#/components/schemas/tour_with_subresources_full"  
+                  "$ref": "#/components/schemas/tour_with_subresources_and_shipments_full"  
                 }
               ]
             }
@@ -7372,6 +7383,72 @@
                         }
                       }
                     }
+                  ]
+                }
+              }
+            }    
+          }
+        ]
+      }, 
+      "tour_with_subresources_full": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/tour_full"
+          },
+          {
+            "type": "object", 
+            "properties": {
+              "_drives": {
+                "type": "array", 
+                "items" :{
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/drive_full"
+                    }, 
+                    {
+                      "type": "object", 
+                      "properties": {
+                        "_tasks":{
+                          "type": "array", 
+                          "items": {
+                            "$ref": "#/components/schemas/task_full"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }    
+          }
+        ]
+      }, 
+      "tour_with_subresources_and_shipments": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/tour"
+          },
+          {
+            "type": "object", 
+            "properties": {
+              "_drives": {
+                "type": "array", 
+                "items" :{
+                  "allOf":[
+                    {
+                      "$ref": "#/components/schemas/drive"
+                    }, 
+                    {
+                      "type": "object", 
+                      "properties": {
+                        "_tasks":{
+                          "type": "array", 
+                          "items": {
+                            "$ref": "#/components/schemas/task"
+                          }
+                        }
+                      }
+                    }
                   
                   ]
                 }
@@ -7386,7 +7463,7 @@
           }
         ]
       }, 
-      "tour_with_subresources_full": {
+      "tour_with_subresources_and_shipments_full": {
         "allOf": [
           {
             "$ref": "#/components/schemas/tour_full"
@@ -7984,16 +8061,6 @@
           {
             "type": "object",
             "properties": {
-              "shipment_reference": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/id_type"
-                  },
-                  {
-                    "description": "Reference (e.g. number or name of the shipment used in shipment tracking), that is used independently of API-specific IDs and URIs."    
-                  }
-                ]
-              },
               "addresses": {
                 "type": "array",
                 "items": {
