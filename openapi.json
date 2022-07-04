@@ -9284,7 +9284,7 @@
                 "$ref": "#/components/schemas/id_type"
               }, 
               {
-                "description": "Local ID of this resource"
+                "description": "ID of this resource in the context of the API. Uniquely identifies the resource in the respective collection. It does not have to be globally unique, but at least in conjunction with the path/endpoint."
               }
             ]          
           }
@@ -9302,7 +9302,7 @@
                 "$ref": "#/components/schemas/uri_type"
               }, 
               {
-                "description": "URI of this resource. The `uri` can be a URN, e.g. `/tours/123` or a URL, e.g. `https://api.opentelematics.io/2.0.0/tours/123`. A `uri` contains the local `id` and is equivalent to the URI created by path templating, e.g. the path template `/tours/{tour_id}/drives/{drive_id}` leads to a `uri` like `/tours/123/drives/123` or `https://api.opentelematics.io/2.0.0/tours/123/drives/123`"
+                "description": "URI of this resource. The `uri` can be a URN, e.g. `/tours/123` or a URL, e.g. `https://api.opentelematics.io/2.0.0/tours/123`. The `uri` is the conjunction of the path template of the endpoint and the needed IDs, e.g. the path template `/tours/{tour_id}/drives/{drive_id}` leads to a `uri` like `/tours/123/drives/123` or `https://api.opentelematics.io/2.0.0/tours/123/drives/123`"
               }
             ]
           }
