@@ -6760,7 +6760,7 @@
           },
           {
             "type": "object", 
-            "description": "An object contains information about e.g. a vehicle or/and a device which can be linked to e.g. live data sets. The data structure is very broad to allow use in very different contexts.",
+            "description": "An object that contains information about the data-generating vehicle or/and device.",
             "properties": {
               "device": {
                 "type":"object",
@@ -9377,7 +9377,7 @@
                 "$ref": "#/components/schemas/uri_type"
               }, 
               {
-                "description": "URI of the related object"
+                "description": "URI of the related object containing information about the data-generating instance."
               }
             ]
           }
