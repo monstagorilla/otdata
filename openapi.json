@@ -7019,6 +7019,7 @@
         ]
       },
       "customer": {
+        "description": "Information about a customer of the telematics provider",
         "allOf": [
           {
             "$ref": "#/components/schemas/external_id"
@@ -9587,7 +9588,7 @@
                 "$ref": "#/components/schemas/uri_type"
               }, 
               {
-                "description": "URI of the related customer"
+                "description": "URI of the related customer of the telematics provider"
               }
             ]
           }
