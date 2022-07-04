@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Version 2.0.0
-A complete list of changes can be found in the [git history]
+A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/master)
 
 ### Major Changes
 - Improve [tour management](apiSections.md#Tour-Management) to handle logistics processes with complex tasks, multiple drives and detailed information about different items in shipments
@@ -12,9 +12,9 @@ A complete list of changes can be found in the [git history]
 - Introduce endpoint for retrieving [ETAs](apiSections.md#ETA)
 - Introduce channel-based messaging
 - Improve endpoint [`/live-data`](apiSections.md#live-data) and add response modification
+- Introduce full support for FMS Truck and Bus Specification
 - Introducing [ETag](generalConcepts.md#ETag-header) header for caching and optimistic concurrency control 
 - Update to Open API Specification 3.0.3 and restructure most abstractions
-- Improve data structures for transmission of vehicle data (CAN, TMS, EBS etc.)
 ### Minor Changes
 - Introduce media type [`application/problem+json`](generalConcepts.md#applicationproblemjson-mime-type) for detailed error responses 
 - Introduce [cursor-based pagination](generalConcepts.md#Cursor-based-pagination) for retrieving lists from collections
@@ -22,9 +22,10 @@ A complete list of changes can be found in the [git history]
 - Add [license](https://gitlab.com/opentelematics/otdata/-/blob/master/LICENSE)
 - Using references instead of always transmitting complete data sets
 - Unify [naming](generalConcepts.md#Naming-conventions) 
+- A lot of minor changes and fixes
 
 ## Version 1.1.0 
-A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/tree/1.1.0).
+A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/1.1.0).
 
 ### Major Changes
 - Introduce strong abstractions for better reusable, more consistent and unified code
