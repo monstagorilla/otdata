@@ -5,9 +5,8 @@
 You can retrieve the latest data or a history of datasets within a specified time interval. The data consists of: 
 
 - Position and movement data
-- Driver and passenger information
-- CAN data 
-- Diagnostic trouble codes (DTC)
+- FMS data 
+- Sensor data
 
 ## ETA
 You can retrieve the latest ETA or a history of ETAs within a specified time interval. An ETA data set consists of an actual ETA for the corresponding drive and a time window for estimated deviations in conjunction with a confidence level. 
