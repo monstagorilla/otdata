@@ -7517,7 +7517,7 @@
               "drives_uri": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/uri"
+                    "$ref": "#/components/schemas/uri_type"
                   }, 
                   {
                     "example": "/tours/123/drives"
