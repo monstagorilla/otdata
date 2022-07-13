@@ -6915,6 +6915,9 @@
                 "$ref": "#/components/schemas/temperatures"
               }
             }
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7547,11 +7550,11 @@
               },
               "info": {
                 "type": "string"
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7635,98 +7638,102 @@
         ]
       },
       "drive": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/external_id"
-              },
-              {
-                "$ref": "#/components/schemas/address"
-              }, 
-              {
-                "description": "Destination address"
-              }
-            ]
-          },
-          "name": {
-            "type": "string"
-          },
-          "info": {
-            "type": "string",
-            "description": "Further information"
-          },
-          "start_time_window": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/time_window"
-              }, 
-              {
-                "description": "Earliest and latest start time"
-              }
-            ]
-          },
-          "arrival_time_window": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/time_window"
-              }, 
-              {
-                "description": "Earliest and latest arrival time"
-              }
-            ]
-          },
-          "driver_uri": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/uri_type"
-              }, 
-              {
-                "description": "Driver URI of the driver", 
-                "example": "/drivers/123"
-              }
-            ]
-          },
-          "co_driver_uri": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/uri_type" 
-              },
-              {
-                "description": "Driver URI of the co-driver", 
-                "example": "/drivers/123"
-              }
-            ]
-          },
-          "avis": {
-            "$ref": "#/components/schemas/avis"
-          },
-          "drive_number": {
-            "type": "integer",
-            "description": "Indicates the position of the drive in a tour"
-          },
-          "adr_totals": {
+        "allOf": [
+          {
             "type": "object",
-            "description": "Summarized information about the dangerous goods that are present\nduring the drive. May be different for each drive.",
             "properties": {
-              "points": {
-                "type": "integer",
-                "example": 1650
+              "address": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/external_id"
+                  },
+                  {
+                    "$ref": "#/components/schemas/address"
+                  }, 
+                  {
+                    "description": "Destination address"
+                  }
+                ]
               },
-              "tunnel_code": {
+              "name": {
+                "type": "string"
+              },
+              "info": {
                 "type": "string",
-                "example": "E"
-              }
-            }
-          },
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
+                "description": "Further information"
+              },
+              "start_time_window": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/time_window"
+                  }, 
+                  {
+                    "description": "Earliest and latest start time"
+                  }
+                ]
+              },
+              "arrival_time_window": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/time_window"
+                  }, 
+                  {
+                    "description": "Earliest and latest arrival time"
+                  }
+                ]
+              },
+              "driver_uri": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri_type"
+                  }, 
+                  {
+                    "description": "Driver URI of the driver", 
+                    "example": "/drivers/123"
+                  }
+                ]
+              },
+              "co_driver_uri": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/uri_type" 
+                  },
+                  {
+                    "description": "Driver URI of the co-driver", 
+                    "example": "/drivers/123"
+                  }
+                ]
+              },
+              "avis": {
+                "$ref": "#/components/schemas/avis"
+              },
+              "drive_number": {
+                "type": "integer",
+                "description": "Indicates the position of the drive in a tour"
+              },
+              "adr_totals": {
+                "type": "object",
+                "description": "Summarized information about the dangerous goods that are present\nduring the drive. May be different for each drive.",
+                "properties": {
+                  "points": {
+                    "type": "integer",
+                    "example": 1650
+                  },
+                  "tunnel_code": {
+                    "type": "string",
+                    "example": "E"
+                  }
+                }
+              }   
+            },
+            "required": [
+              "address",
+              "name"
+            ] 
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
-        },
-        "required": [
-          "address",
-          "name"
         ]
       },
       "access_token": {
@@ -7845,11 +7852,11 @@
               },
               "event": {
                 "$ref": "#/components/schemas/tour_event_types"
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7896,11 +7903,11 @@
               },
               "event": {
                 "$ref": "#/components/schemas/drive_event_types"
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7945,40 +7952,48 @@
                 "$ref": "#/components/schemas/task_event_types"
               },
               "shipment_info": {
-                "type": "object",
-                "description": "Information about the associated shipment",
-                "properties": {
-                  "status": {
-                    "type": "string"
-                  },
-                  "additions": {
-                    "$ref": "#/components/schemas/key_value_list"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Information about the associated shipment",
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      }
+                    }
+                  }, 
+                  {
+                    "$ref": "#/components/schemas/additions"
                   }
-                }
+                ]
               },
               "items_info": {
                 "description": "Information about single items.",
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "item_id": {
-                      "$ref": "#/components/schemas/id_type"
-                    },
-                    "status": {
-                      "description": "Information about the status of an item e.g. the condition at\ndelivery",
-                      "type": "string"
-                    },
-                    "additions": {
-                      "$ref": "#/components/schemas/key_value_list"
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "item_id": {
+                          "$ref": "#/components/schemas/id_type"
+                        },
+                        "status": {
+                          "description": "Information about the status of an item e.g. the condition at\ndelivery",
+                          "type": "string"
+                        }
+                      }    
+                    }, 
+                    {
+                      "$ref": "#/components/schemas/additions"
                     }
-                  }
-                }
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
+                  ]
+                }           
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -8017,11 +8032,11 @@
                     "example": "/customers/123"    
                   }
                 ]
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -8060,186 +8075,198 @@
             "$ref": "#/components/schemas/external_id"
           },
           {
-            "type": "object",
-            "properties": {
-              "addresses": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/address"
-                },
-                "description": "All addresses relevant for the shipment"
-              },
-              "items": {
-                "type": "array",
-                "description": "List of all single items of the shipment",
-                "items": {
-                  "$ref": "#/components/schemas/item"
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "addresses": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/address"
+                    },
+                    "description": "All addresses relevant for the shipment"
+                  },
+                  "items": {
+                    "type": "array",
+                    "description": "List of all single items of the shipment",
+                    "items": {
+                      "$ref": "#/components/schemas/item"
+                    }
+                  }
                 }
               }, 
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
+              {
+                "$ref": "#/components/schemas/additions"
               }
-            }    
+            ]    
           }
         ]
       },
       "item": {
-        "type": "object",
-        "properties": {
-          "item_id": {
-            "$ref": "#/components/schemas/id_type"
-          },
-          "parent_id": {
-            "allOf": [
-              {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "item_id": {
                 "$ref": "#/components/schemas/id_type"
-              }, 
-              {
-                "description": "Item ID of the package the item is part of (e.g. the ID of the\npalette to which the item belongs). With the `parentid` you are able\nto map any tree structure in the item list."
-              }
-            ]
-          },
-          "count": {
-            "type": "number",
-            "example": 1.3
-          },
-          "unit": {
-            "type": "string",
-            "example": "kg",
-            "description": "Unit in which the value is expressed"
-          },
-          "description": {
-            "type": "string",
-            "example": "Deuteriumfläschchen"
-          },
-          "codes": {
-            "type": "array",
-            "description": "List of codes on the item, e.g. barcodes",
-            "items": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "string"
-                },
-                "scan_possible": {
-                  "type": "boolean",
-                  "description": "If the code is scannable"
-                },
-                "type": {
-                  "type": "string",
-                  "example": "QRCode",
-                  "description": "Type to distinguish between different types of codes"
-                }
-              }
-            }
-          },
-          "scan_required": {
-            "type": "boolean",
-            "description": "Indicates if the item must be scanned"
-          },
-          "dimension": {
-            "type": "object",
-            "properties": {
-              "height": {
-                "type": "number",
-                "description": "Height in cm",
-                "example": 30
               },
-              "width": {
-                "type": "number",
-                "description": "Width in cm",
-                "example": 80
+              "parent_id": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/id_type"
+                  }, 
+                  {
+                    "description": "Item ID of the package the item is part of (e.g. the ID of the\npalette to which the item belongs). With the `parentid` you are able\nto map any tree structure in the item list."
+                  }
+                ]
               },
-              "length": {
+              "count": {
                 "type": "number",
-                "description": "Length in cm",
-                "example": 120
-              },
-              "weight": {
-                "type": "number",
-                "description": "Weight in kg",
-                "example": 566
-              },
-              "area": {
-                "type": "number",
-                "description": "Area in m2",
-                "example": 0.96
-              },
-              "volume": {
-                "type": "number",
-                "example": 0.288
-              },
-              "cargo_space": {
-                "type": "number",
-                "example": 1.5
-              }
-            }
-          },
-          "adr_info": {
-            "type": "object",
-            "description": "Information on classification according to the 'Agreement concerning\nthe International Carriage of Dangerous Goods by Road' (ADR). Summarized information on the dangerous goods present on each drive can be found in ``adr_totals`` in the drive resource",
-            "properties": {
-              "points": {
-                "type": "integer",
-                "example": 1650
-              },
-              "amount": {
-                "type": "number",
-                "example": 500
+                "example": 1.3
               },
               "unit": {
                 "type": "string",
-                "example": "l",
-                "description": "Unit in which the value is expressed",
-                "enum": [
-                  "l",
-                  "kg"
+                "example": "kg",
+                "description": "Unit in which the value is expressed"
+              },
+              "description": {
+                "type": "string",
+                "example": "Deuteriumfläschchen"
+              },
+              "codes": {
+                "type": "array",
+                "description": "List of codes on the item, e.g. barcodes",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "string"
+                    },
+                    "scan_possible": {
+                      "type": "boolean",
+                      "description": "If the code is scannable"
+                    },
+                    "type": {
+                      "type": "string",
+                      "example": "QRCode",
+                      "description": "Type to distinguish between different types of codes"
+                    }
+                  }
+                }
+              },
+              "scan_required": {
+                "type": "boolean",
+                "description": "Indicates if the item must be scanned"
+              },
+              "dimension": {
+                "type": "object",
+                "properties": {
+                  "height": {
+                    "type": "number",
+                    "description": "Height in cm",
+                    "example": 30
+                  },
+                  "width": {
+                    "type": "number",
+                    "description": "Width in cm",
+                    "example": 80
+                  },
+                  "length": {
+                    "type": "number",
+                    "description": "Length in cm",
+                    "example": 120
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description": "Weight in kg",
+                    "example": 566
+                  },
+                  "area": {
+                    "type": "number",
+                    "description": "Area in m2",
+                    "example": 0.96
+                  },
+                  "volume": {
+                    "type": "number",
+                    "example": 0.288
+                  },
+                  "cargo_space": {
+                    "type": "number",
+                    "example": 1.5
+                  }
+                }
+              },
+              "adr_info": {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Information on classification according to the 'Agreement concerning\nthe International Carriage of Dangerous Goods by Road' (ADR). Summarized information on the dangerous goods present on each drive can be found in ``adr_totals`` in the drive resource",
+                    "properties": {
+                      "points": {
+                        "type": "integer",
+                        "example": 1650
+                      },
+                      "amount": {
+                        "type": "number",
+                        "example": 500
+                      },
+                      "unit": {
+                        "type": "string",
+                        "example": "l",
+                        "description": "Unit in which the value is expressed",
+                        "enum": [
+                          "l",
+                          "kg"
+                        ]
+                      },
+                      "unnr": {
+                        "type": "string",
+                        "example": "1905"
+                      },
+                      "proper_shipping_name": {
+                        "type": "string"
+                      },
+                      "additional_description": {
+                        "type": "string"
+                      },
+                      "class_number": {
+                        "type": "string",
+                        "example": "4.2"
+                      },
+                      "class_name": {
+                        "type": "string",
+                        "example": "flammable liquids"
+                      },
+                      "packing_group": {
+                        "type": "string",
+                        "example": "II"
+                      },
+                      "classification_code": {
+                        "type": "string",
+                        "example": "F1"
+                      },
+                      "tunnel_restriction_code": {
+                        "type": "string",
+                        "example": "E"
+                      },
+                      "is_environmentally_hazardous": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "is_high_risk": {
+                        "type": "boolean",
+                        "example": true
+                      }
+                    }
+                  }
                 ]
-              },
-              "unnr": {
-                "type": "string",
-                "example": "1905"
-              },
-              "proper_shipping_name": {
-                "type": "string"
-              },
-              "additional_description": {
-                "type": "string"
-              },
-              "class_number": {
-                "type": "string",
-                "example": "4.2"
-              },
-              "class_name": {
-                "type": "string",
-                "example": "flammable liquids"
-              },
-              "packing_group": {
-                "type": "string",
-                "example": "II"
-              },
-              "classification_code": {
-                "type": "string",
-                "example": "F1"
-              },
-              "tunnel_restriction_code": {
-                "type": "string",
-                "example": "E"
-              },
-              "is_environmentally_hazardous": {
-                "type": "boolean",
-                "example": false
-              },
-              "is_high_risk": {
-                "type": "boolean",
-                "example": true
               }
             }
           }, 
-          "additions": {
-            "$ref": "#/components/schemas/key_value_list"
+          {
+            "$ref": "#/components/schemas/additions"
           }
-        }
+        ]
       },
       "task_full": {
         "allOf": [
@@ -8274,25 +8301,30 @@
               },
               "description": {
                 "type": "string"
-              },
-              "additions": {
-                "$ref": "#/components/schemas/key_value_list"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
-      "key_value_list": {
-        "type": "array",
-        "description": "List of generic key-value pairs for custom extension of the standard",
-        "items": {
-          "type": "object",
-          "properties": {
-            "key": {
-              "type": "string"
-            },
-            "value": {
-              "type": "string"
+      "additions": {
+        "type": "object", 
+        "properties": {
+          "additions": {
+            "type": "array",
+            "description": "List of generic key-value pairs for custom extension of the standard",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
