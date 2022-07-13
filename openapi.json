@@ -8339,35 +8339,6 @@
           }
         }
       },
-      "breakpad": {
-        "type": "object",
-        "properties": {
-          "axel": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "axle number front to back beginning with 0"
-          },
-          "wheel": {
-            "type": "string",
-            "enum": [
-              "left",
-              "right"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "ok",
-              "mal_adjusted",
-              "delayed_return",
-              "delayed_breaking",
-              "outworn",
-              "error",
-              "n/a"
-            ]
-          }
-        }
-      },
       "fms_bus_standard": {
         "allOf": [
           {
