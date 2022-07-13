@@ -1,4 +1,8 @@
 # Data Models
+
+## Additions
+To transmit custom data without violating the specification, many data structures have an `additions` field, a list of generic key-value pairs.
+
 ## Date and time indications  
 Unless otherwise stated, we use the [ISO 8601](https://tools.ietf.org/html/rfc3339#section-5.6) specification for all types of times.   
    
