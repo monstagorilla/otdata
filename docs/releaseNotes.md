@@ -22,6 +22,7 @@ A complete list of changes can be found in the [git history](https://gitlab.com/
 - Add [license](https://gitlab.com/opentelematics/otdata/-/blob/master/LICENSE)
 - Using references instead of always transmitting complete data sets
 - Unify [naming](generalConcepts.md#Naming-conventions) 
+- Introduce [additions](dataModels.md#additions) for transmission of custom data without violating the specification.
 - A lot of minor changes and fixes
 
 ## Version 1.1.0 
