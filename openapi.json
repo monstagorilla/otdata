@@ -6774,71 +6774,88 @@
             "description": "An object that contains information about the data-generating vehicle or/and device.",
             "properties": {
               "device": {
-                "type":"object",
-                "properties":{
-                  "imei": {
-                    "type": "string",
-                    "minLength": 15,
-                    "maxLength": 15,
-                    "description": "IMEI"
-                  },
-                  "sn": {
-                    "type": "string",
-                    "maxLength": 30,
-                    "description": "Serial number"
+                "allOf": [
+                  {
+                    "type":"object",
+                    "properties":{
+                      "imei": {
+                        "type": "string",
+                        "minLength": 15,
+                        "maxLength": 15,
+                        "description": "IMEI"
+                      },
+                      "sn": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "Serial number"
+                      }
+                    }    
+                  }, 
+                  {
+                    "$ref": "#/components/schemas/additions"
                   }
-                }
+                ]
               }, 
               "vehicle": {
-                "type": "object",
-                "properties": {
-                  "vehicle_groups": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/vehicle_group_id"
-                    },
-                    "description": "List of assigned vehicle groups"
-                  },
-                  "name": {
-                    "type": "string",
-                    "maxLength": 150,
-                    "description": "Name of vehicle",
-                    "example": "MH-MH 1"
-                  },
-                  "plate_number": {
-                    "type": "string",
-                    "maxLength": 150,
-                    "description": "Plate number of vehicle",
-                    "example": "MH-MH 1"
-                  },
-                  "manufacturer": {
-                    "type": "string",
-                    "maxLength": 150,
-                    "description": "Manufacturer",
-                    "example": "Mercedes-Benz"
-                  },
-                  "model": {
-                    "type": "string",
-                    "maxLength": 150,
-                    "description": "Model type",
-                    "example": "1844 LS"
-                  },
-                  "construction_year": {
-                    "type": "integer",
-                    "description": "Building Year",
-                    "example": 2008
-                  },
-                  "vin": {
-                    "type": "string",
-                    "minLength": 17,
-                    "maxLength": 17,
-                    "pattern": "^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$",
-                    "description": "Vehicle identification number",
-                    "example": "WDB9340321L333168"
-                  }        
-                }
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "vehicle_groups": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/vehicle_group_id"
+                        },
+                        "description": "List of assigned vehicle groups"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 150,
+                        "description": "Name of vehicle",
+                        "example": "MH-MH 1"
+                      },
+                      "plate_number": {
+                        "type": "string",
+                        "maxLength": 150,
+                        "description": "Plate number of vehicle",
+                        "example": "MH-MH 1"
+                      },
+                      "manufacturer": {
+                        "type": "string",
+                        "maxLength": 150,
+                        "description": "Manufacturer",
+                        "example": "Mercedes-Benz"
+                      },
+                      "model": {
+                        "type": "string",
+                        "maxLength": 150,
+                        "description": "Model type",
+                        "example": "1844 LS"
+                      },
+                      "construction_year": {
+                        "type": "integer",
+                        "description": "Building Year",
+                        "example": 2008
+                      },
+                      "vin": {
+                        "type": "string",
+                        "minLength": 17,
+                        "maxLength": 17,
+                        "pattern": "^[A-HJ-NPR-Z0-9]{13}[0-9]{4}$",
+                        "description": "Vehicle identification number",
+                        "example": "WDB9340321L333168"
+                      }        
+                    }    
+                  }, 
+                  {
+                    "$ref": "#/components/schemas/additions"
+                  }
+                ]
               }
             }
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -6955,6 +6972,9 @@
                   "description": "Unit in which the value is expressed"
                 }
               }
+            }, 
+            {
+              "$ref": "#/components/schemas/additions"
             }
           ]
         }
@@ -7034,6 +7054,9 @@
                 "$ref": "#/components/schemas/address"
               }
             }
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7077,6 +7100,9 @@
                 "$ref": "#/components/schemas/address"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7099,6 +7125,9 @@
                   "description": "Measured temperature in °C"
                 }
               }
+            }, 
+            {
+              "$ref": "#/components/schemas/additions"
             }
           ]
         }
@@ -7468,6 +7497,9 @@
                 "default": 95
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7659,6 +7691,9 @@
                 "format": "date-time"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -7933,32 +7968,28 @@
           {
             "$ref": "#/components/schemas/external_id"
           },
-          {
-            "allOf": [
-              {
-                "type": "object",
-                "properties": {
-                  "addresses": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/address"
-                    },
-                    "description": "All addresses relevant for the shipment"
-                  },
-                  "items": {
-                    "type": "array",
-                    "description": "List of all single items of the shipment",
-                    "items": {
-                      "$ref": "#/components/schemas/item"
-                    }
-                  }
+          {      
+            "type": "object",
+            "properties": {
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/address"
+                },
+                "description": "All addresses relevant for the shipment"
+              },
+              "items": {
+                "type": "array",
+                "description": "List of all single items of the shipment",
+                "items": {
+                  "$ref": "#/components/schemas/item"
                 }
-              }, 
-              {
-                "$ref": "#/components/schemas/additions"
               }
-            ]    
-          }
+            }
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
+          } 
         ]
       },
       "item": {
@@ -8235,6 +8266,9 @@
                 "type": "string"
               }
             }    
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -8297,6 +8331,9 @@
                 "description": "container data bytes encoded in Base64"
               }
             }
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
@@ -8408,6 +8445,9 @@
               }
             ]
     
+          }, 
+          {
+            "$ref": "#/components/schemas/additions"
           }
         ]
       },
