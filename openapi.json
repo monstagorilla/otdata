@@ -7438,6 +7438,10 @@
               },
               "info": {
                 "type": "string"
+              }, 
+              "branch_office": {
+                "type": "string", 
+                "description": "Branch office of the customer"
               }
             }    
           }, 
