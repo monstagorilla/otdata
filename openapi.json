@@ -7019,6 +7019,9 @@
               "satellite_count": {
                 "type": "integer", 
                 "description": "Number of satellites to estimate accuracy"
+              }, 
+              "address": {
+                "$ref": "#/components/schemas/address"
               }
             },
             "required": [
