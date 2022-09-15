@@ -35,8 +35,12 @@ Request body:
   "timestamp": "2022-05-06T12:33:00.140Z",
   "callback_url": "https://webhooks.opentelematics.io",
   "access_token": "very_secure_token",
-  "topic": "drive_event",
-  "event_uri": "/drive-events?drive_uri=/tours/123/drives/123`",
+  "topics": [
+    {
+      "topic": "drive_event", 
+      "event_uri": "/drive-events?drive_uri=/tours/123/drives/123"
+    }
+  ]
   "expiration_time": "2022-05-06T12:33:00.140Z" 
 }
 ```
