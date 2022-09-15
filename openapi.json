@@ -4069,13 +4069,13 @@
         "tags": [
           "Events"
         ],
-        "description": "Filter search: ``tour_uri`` and ``tour_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``tour_uri`` and ``tour_event_types``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
           },
           {
-            "$ref": "#/components/parameters/tour_event_query"
+            "$ref": "#/components/parameters/tour_event_types_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -4313,7 +4313,7 @@
         "tags": [
           "Events"
         ],
-        "description": "Filter search: ``tour_uri``, ``drive_uri`` and ``drive_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``tour_uri``, ``drive_uri`` and ``drive_event_types``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
@@ -4322,7 +4322,7 @@
             "$ref": "#/components/parameters/drive_uri_query"
           },
           {
-            "$ref": "#/components/parameters/drive_event_query"
+            "$ref": "#/components/parameters/drive_event_types_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -4560,7 +4560,7 @@
         "tags": [
           "Events"
         ],
-        "description": "Filter search: ``tour_uri``, ``drive_uri``, ``task_uri`` and ``task_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``tour_uri``, ``drive_uri``, ``task_uri`` and ``task_event_types``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/tour_uri_query"
@@ -4572,7 +4572,7 @@
             "$ref": "#/components/parameters/task_uri_query"
           },
           {
-            "$ref": "#/components/parameters/task_event_query"
+            "$ref": "#/components/parameters/task_event_types_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -4810,13 +4810,13 @@
         "tags": [
           "Events"
         ],
-        "description": "Filter search: ``resource_uri`` and ``resource_event``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
+        "description": "Filter search: ``resource_uri`` and ``resource_event_types``\n\nTime selection: ``from``and ``to``\n\nCursor-based pagination: ``cursor`` and ``limit``",
         "parameters": [
           {
             "$ref": "#/components/parameters/resource_uri_query"
           },
           {
-            "$ref": "#/components/parameters/resource_event_query"
+            "$ref": "#/components/parameters/resource_event_types_query"
           },
           {
             "$ref": "#/components/parameters/from"
@@ -5878,11 +5878,12 @@
         "name": "topics", 
         "required": false,
         "style": "form",
+        "description": "Specifies if just subscriptions with certain topics should be returned. If a subscription has any of the topics, it will be returned in full.",
         "explode": false,
         "schema": {
           "type": "array", 
           "items":{
-            "$ref": "#/components/schemas/topic"
+            "$ref": "#/components/schemas/topic_types"
           }          
         }
       },
@@ -6141,40 +6142,60 @@
           "$ref": "#/components/schemas/uri_type"
         }
       }, 
-      "tour_event_query": {
-        "name": "tour_event", 
+      "tour_event_types_query": {
+        "name": "tour_event_types", 
         "in": "query", 
+        "style": "form",
+        "explode": false,
         "required": false, 
-        "description": "Type of the tour event",
+        "description": "Specifies if just a selection of tour event types should be returned",
         "schema": {
-          "$ref": "#/components/schemas/tour_event_types"
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/tour_event_types"
+          }
         }
       },
-      "drive_event_query": {
-        "name": "drive_event", 
+      "drive_event_types_query": {
+        "name": "drive_event_types", 
         "in": "query", 
+        "style": "form",
+        "explode": false,
         "required": false, 
-        "description": "Type of the drive event",
+        "description": "Specifies if just a selection of drive event types should be returned",
         "schema": {
-          "$ref": "#/components/schemas/drive_event_types"
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/drive_event_types"
+          }
         }
       },
-      "task_event_query": {
-        "name": "task_event", 
+      "task_event_types_query": {
+        "name": "task_events", 
         "in": "query", 
+        "style": "form",
+        "explode": false,
         "required": false, 
-        "description": "Type of the task event",
+        "description": "Specifies if just a selection of task event types should be returned",
         "schema": {
-          "$ref": "#/components/schemas/task_event_types"
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/task_event_types"
+          }
         }
       },
-      "resource_event_query": {
-        "name": "resource_event", 
+      "resource_event_types_query": {
+        "name": "resource_event_types", 
         "in": "query", 
+        "style": "form",
+        "explode": false,
         "required": false, 
-        "description": "Type of the resource event",
+        "description": "Specifies if just a selection of resource event types should be returned",
         "schema": {
-          "$ref": "#/components/schemas/resource_event_types"
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/resource_event_types"
+          }
         }
       }, 
       "create_subresources_put": {
@@ -7679,19 +7700,13 @@
                   }
                 ]
               },
-              "topic":{
-                "$ref": "#/components/schemas/topic"
+              "topics":{
+                "type": "array",
+                "items": 
+                {
+                  "$ref": "#/components/schemas/topic"
+                }
               },
-              "event_uri": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/uri_type"
-                  },
-                  {
-                    "description": "URI structure is depending on the ``topic``"
-                  }
-                ]
-              }, 
               "expiration_time": {
                 "type": "string", 
                 "description": "Expiration time to limit the lifetime and avoid obsolete subscriptions",
@@ -7704,10 +7719,28 @@
           }
         ]
       },
-      "topic": {
-        "type": "string", 
+      "topic_types": {
+        "type": "string",
         "description": "Distinguishes between different topics that can be subscribed to",
-        "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]
+        "enum": ["tour_event", "drive_event", "task_event", "resource_event", "live_data", "tacho_file", "eta", "message"]    
+      },
+      "topic": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "$ref": "#/components/schemas/topic_types"
+          }, 
+          "event_uri": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/uri_type"
+              },
+              {
+                "description": "URI structure is depending on the ``topic``"
+              }
+            ]
+          }
+        }
       },
       "tour_event_types": {
         "description": "``transmitted``: tour transmitted to e.g. driver, device or vehicle, \n``read``: tour read by driver, \n``excepted``: tour excepted by driver, \n``denied``: tour denied by driver, \n``started``: tour started, \n``canceled``: tour canceled, \n``deleted``: tour deleted, \n``finished``: tour finished",
