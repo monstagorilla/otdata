@@ -1,41 +1,67 @@
-Nutzungsvereinbarung
+Lizenzvereinbarung 
 zwischen
-
-dem OpenTelematics e.V. – Verband der Telematik (Amtsgericht Düsseldorf, VR 11694) Schadowstraße 63, 40212 Düsseldorf (nachfolgend „Verein“ genannt)
+dem OpenTelematics e.V. - Verband der Telematik 
+(Amtsgericht Düsseldorf, VR 11694)
+Schadowstraße 63, 40212 Düsseldorf
+(nachfolgend „Verein“ genannt)
 
 und seinem Mitglied (nachfolgend „Lizenznehmer“ genannt).
 
-Präambel
-Der Verein entwickelt eine Telematik-Schnittstelle (OpenTelematics-Application Programming Interface, nachfolgend „OT-API “ genannt). Dieser Vertrag regelt die Rechte und Pflichten des Lizenznehmers im Hinblick auf die Nutzung dieser Schnittstelle.
-
+Präambel 
+Der Verein entwickelt eine Telematik-Schnittstelle (OpenTelematics-Application Programming Interface, 
+nachfolgend „OT-API“ genannt). Dieser Vertrag regelt die Rechte und Pflichten des Lizenznehmers im Hinblick 
+auf die Nutzung dieser Schnittstelle und ersetzt eine ggfls. bereits bestehende Lizenzvereinbarung der Parteien.
 Dies vorausgeschickt vereinbaren die Parteien folgendes:
 
-§ 1 Vertragsgegenstand und -gebiet, Lizenz
-Der Lizenznehmer erhält das nichtausschließliche, zeitlich auf seine Mitgliedschaft im Verein beschränkte, nicht übertragbare Recht zur Nutzung der OT-API im europäischen Wirtschaftsraum.
+§ 1 Vertragsgegenstand und -gebiet, Lizenz 
+Der Lizenznehmer erhält das nichtausschließliche, zeitlich auf die Vertragslaufzeit nach § 3 beschränkte, nicht 
+übertragbare Recht zur Nutzung der OT-API im deutschsprachigen Raum (Deutschland, Österreich, Schweiz). 
+Die derzeitige und im Rahmen der Entwicklung angestrebte Beschaffenheit der OT-API, sowie Art und Umfang 
+der Nutzung bestimmen sich nach dem als Anlage 1 beigefügten Lizenzschein und der nach Abschluss dieser 
+Vereinbarung in digitaler Form zur Verfügung gestellten Dokumentation. Die Vollständigkeit und Richtigkeit der 
+Beschreibungen ist weder gewährleistet noch geschuldet. Installations- und Konfigurationsleistungen sind nicht 
+Gegenstand dieses Vertrages. Eine Haftung für die technische Brauchbarkeit oder kaufmännische Verwertbarkeit 
+der OT-API übernimmt der Verein nicht. 
+Vertragsgegenstand ist allein der Zugang zu der OT-API sowie die Gewährung einer Erlaubnis zur Nutzung der 
+OT-API. Stellt der Verein die Beschreibung oder den Zugriff über die bestehende OT-API und darüber 
+abgerufenen Services in Zukunft um, werden die Parteien diese Vereinbarung den Änderungen anpassen und 
+fortsetzen.
+Der Lizenznehmer ist nicht berechtigt, die OT-API unterzulizenzieren.
 
-Die derzeitige und im Rahmen der Entwicklung angestrebte Beschaffenheit der OT-API sowie Art und Umfang der Nutzung bestimmen sich nach den auf der Verbandswebsite opentelematics.io veröffentlichten Lizenzschein(en) und der nach Abschluss dieser Vereinbarung in digitaler Form zur Verfügung gestellten Dokumentation. Die Vollständigkeit und Richtigkeit der Beschreibungen ist weder gewährleistet noch geschuldet. Installations- und Konfigurationsleistungen sind nicht Gegenstand dieses Vertrages. Eine Haftung für die technische Brauchbarkeit oder kaufmännische Verwertbarkeit der OT-API übernimmt der Verein nicht. Vertragsgegenstand ist allein der Zugang zu der OT-API sowie die Gewährung einer Erlaubnis zur Nutzung der OT-API. Stellt der Verein die Beschreibung oder den Zugriff über die bestehende OT-API und darüber abgerufenen Services in Zukunft um, werden die Parteien diese Vereinbarung den Änderungen anpassen und fortsetzen.
-
-Der Lizenznehmer ist nicht berechtigt, die OT-API Dritten zu überlassen oder unterzulizenzieren. Er ist verpflichtet, die OT-API durch geeignete Maßnahmen vor dem Zugriff durch unbefugte Dritte zu sichern.
-
-Eine Dekompilierung, Reverse Engineering, Bearbeitung, Umarbeitung, Übersetzung, Disassemblierung oder sonstige Umwandlung des Quellcodes der OT-API sind nur nach vorheriger schriftlicher Genehmigung des Vereins gestattet.
-
-§ 2 Pflichten des Lizenznehmers
+§ 2 Pflichten des Lizenznehmers 
 Eine gesonderte Vergütung ist aufgrund der Mitgliedschaft des Lizenznehmers im Verein nicht geschuldet.
-
-Der Lizenznehmer ist verpflichtet, einen Hinweis auf OpenTelematics bei der Darstellung von Abfrageergebnissen in lesbarer Größe zu platzieren, z. B. an geeigneter Stelle den Hinweis „mit freundlicher Genehmigung des OpenTelematics e.V.“ oder “powered by OpenTelematics e.V.” zu verwenden. Ferner ist der Lizenznehmer angehalten in seiner Außendarstellung (Website, Printmaterial) auf die Verwendung der Marke hinzuweisen. Wenn die vom Lizenznehmer verursachte Serverlast bzw. erzeugten zusätzlichen Support-Leistungen für den Verein unzumutbar werden, haben sich Lizenznehmer und Verein über eine angemessene Kostenbeteiligung zu verständigen. Kommt eine solche einvernehmliche Verständigung nicht zustande, so ist der Verein berechtigt, die Anzahl der Zugriffe auf die OT-API vorübergehend zu beschränken, wenn und soweit eine Überlastung der Server dauerhaft zu befürchten ist.
-
-Der Lizenznehmer wird im angemessenen und dem Stand der Technik entsprechenden Umfang Anti-Viren-Software und Firewalls einsetzen, um einen Angriff auf die OT-API und darüber abgerufenen Services durch Schadsoftware zu verhindern. Zugangsdaten und Passwörter, die der Verein ihm für die Nutzung der OT-API und darüber abgerufenen Services überlässt, dürfen Dritten nicht offenbart und/oder zur Nutzung überlassen werden. Zugangsdaten und Passwörter sind wirksam vor unbefugtem Zugriff schützen.
-
-§ 3 Laufzeit
-Der Vertrag wird auf unbestimmte Zeit geschlossen. Er endet automatisch mit Ablauf des Kalenderjahres, welches auf das Ausscheiden des Lizenznehmers als Mitglied des Vereins folgt, oder durch Kündigung des Lizenznehmers mit einer Frist von 3 Monaten zum Ablauf eines Kalenderjahres.
-
-Der Vertrag kann vom Verein ohne Einhaltung einer Frist aus wichtigem Grund gekündigt werden, wenn der Lizenznehmer die OT-API über den/die veröffentlichten Lizenzschein/e hinaus nutzt oder die OT-API Dritten überlässt oder unterlizenziert, und dies auf eine Abmahnung des Vereins hin nicht innerhalb einer Frist von 1 Monat abstellt. Im Falle einer Änderung der Kontroll- oder Mehrheitsverhältnisse des Lizenznehmers hat der Lizenznehmer dies unverzüglich mitzuteilen. Der Verein hat in diesem Fall ein Sonderkündigungsrecht mit einer Frist von 3 Monaten zum Ablauf eines Kalenderjahres.
-
+Der Lizenznehmer ist verpflichtet, eine Marke oder ein Logo des Vereins nach Vorgabe bei der Darstellung von 
+Abfrageergebnissen in lesbarer Größe platzieren sowie an geeigneter Stelle den Hinweis „mit freundlicher 
+Genehmigung des OpenTelematics e.V.“ oder “powered by OpenTelematics e.V.” zu verwenden.
+Wenn die vom Lizenznehmer verursachte Serverlast bzw. erzeugten zusätzlichen Support-Leistungen für den 
+Verein unzumutbar werden, haben sich Lizenznehmer und Verein über eine angemessene Kostenbeteiligung zu 
+verständigen. Kommt eine solche einvernehmliche Verständigung nicht zustande, so ist der Verein berechtigt, 
+die Anzahl der Zugriffe auf die OT-API vorübergehend zu beschränken, wenn und soweit eine Überlastung der 
+Server dauerhaft zu befürchten ist.
+Der Lizenznehmer wird im angemessenen und dem Stand der Technik entsprechenden Umfang Anti-Viren-Software und Firewalls einsetzen, um einen Angriff auf die OT-API und darüber abgerufenen Services durch 
+Schadsoftware zu verhindern. Zugangsdaten und Passwörter, die der Verein ihm für die Nutzung der OT-API und 
+darüber abgerufenen Services überlässt, sind wirksam vor unbefugtem Zugriff schützen.
+Der Lizenznehmer ist verpflichtet, den Standard des Protokolls bei Erweiterung und/oder Ergänzungen 
+beizubehalten.
+ 
+§ 3 Laufzeit 
+Der Vertrag wird auf unbestimmte Zeit geschlossen. Er endet automatisch am 31.12. des Kalenderjahres, 
+welcher auf das Ausscheiden des Lizenznehmers als Mitglied des Vereins folgt oder mit diesem zusammenfällt, 
+oder durch Kündigung des Lizenznehmers mit einer Frist von 6 Monaten zum Ablauf eines Kalenderjahres.
+Der Vertrag kann vom Verein ohne Einhaltung einer Frist aus wichtigem Grund gekündigt werden, wenn der 
+Lizenznehmer die OT-API über Anlage 1 hinaus nutzt oder die OT-API unterlizenziert und dies auf eine 
+Abmahnung des Vereins hin nicht innerhalb einer Frist von 1 Monat abstellt. Im Falle einer Änderung der 
+Kontroll- oder Mehrheitsverhältnisse beim Lizenznehmer hat der Lizenznehmer dies dem Verein unverzüglich 
+mitzuteilen. Der Verein hat im Falle einer Änderung der Kontroll- oder Mehrheitsverhältnisse beim Lizenznehmer
+ein Sonderkündigungsrecht mit einer Frist von 1 Monat zum Monatsende.
 Jede Kündigung muss schriftlich erfolgen.
-
-Nach Beendigung der Vereinbarung werden die Parteien unverzüglich alle Daten, die die jeweilige Partei der anderen Partei überlassen hat, vollständig auf ihren Datenverarbeitungssystemen und Datenträgern löschen.
-
-§ 4 Schlussbestimmungen
-Änderungen und Ergänzungen dieser Vereinbarung, einschließlich dieser Schriftformklausel, bedürfen der Schriftform. Sind oder werden einzelne Bestimmungen dieser Vereinbarung unwirksam oder nichtig, so bleibt die Gültigkeit der Vereinbarung im Übrigen unberührt. Ungültige oder nichtige Bestimmungen sind einvernehmlich durch solche zu ersetzen, die unter Berücksichtigung der Interessenlage der Parteien den gewünschten wirtschaftlichen Zweck zu erreichen geeignet sind. Entsprechendes gilt für die Ausfüllung von Lücken, die sich in dieser Vereinbarung herausstellen könnten.
-
-Diese Vereinbarung unterliegt dem Recht der Bundesrepublik Deutschland. Erfüllungsort und ausschließlicher Gerichtsstand ist Düsseldorf.
+ 
+§ 4 Schlussbestimmungen 
+Änderungen und Ergänzungen dieser Vereinbarung, einschließlich dieser Schriftformklausel, bedürfen der 
+Schriftform. Sind oder werden einzelne Bestimmungen dieser Vereinbarung unwirksam oder nichtig, so bleibt 
+die Gültigkeit der Vereinbarung im Übrigen unberührt. Ungültige oder nichtige Bestimmungen sind 
+einvernehmlich durch solche zu ersetzen, die unter Berücksichtigung der Interessenlage der Parteien den 
+gewünschten wirtschaftlichen Zweck zu erreichen geeignet sind. Entsprechendes gilt für die Ausfüllung von 
+Lücken, die sich in dieser Vereinbarung herausstellen könnten.
+Diese Vereinbarung unterliegt dem Recht der Bundesrepublik Deutschland. Erfüllungsort und ausschließlicher 
+Gerichtsstand ist Düsseldorf.
