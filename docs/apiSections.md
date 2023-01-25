@@ -11,7 +11,7 @@ You can retrieve the latest data or a history of datasets within a specified tim
 ## ETA
 You can retrieve the latest ETA or a history of ETAs within a specified time interval. An ETA data set consists of an actual ETA for the corresponding drive and a time window for estimated deviations in conjunction with a confidence level. 
 
-## Tour Management
+## Tour Management  
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
 graph TB
