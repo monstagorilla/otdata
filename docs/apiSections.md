@@ -13,7 +13,7 @@ You can retrieve the latest ETA or a history of ETAs within a specified time int
 
 ## Tour Management  
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'Source Sans Pro'}}}%%
+%%{init: {'theme': 'base'}}%%
 graph TB
    subgraph Tour
    /tours --> /tours/1
