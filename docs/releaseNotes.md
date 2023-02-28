@@ -1,7 +1,7 @@
 # Release Notes
 
 ## Version 2.0.0
-A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/master)
+A complete list of changes can be found in the [git history](https://gitlab.com/opentelematics/otdata/-/commits/2.0.0)
 
 ### Major Changes
 - Improve [tour management](apiSections.md#Tour-Management) to handle logistics processes with complex tasks, multiple drives and detailed information about different items in shipments
